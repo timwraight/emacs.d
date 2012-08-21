@@ -6,7 +6,8 @@
 
 ;; (load "~/.emacs.d/vendor/nxhtml/autostart")
 (add-to-list 'load-path "~/.emacs.d/vendor/")
-
+ (let ((default-directory "~/.emacs.d/vendor/"))
+      (normal-top-level-add-subdirs-to-load-path))
 
 ;; NAVIGATION
 (windmove-default-keybindings) 
@@ -129,6 +130,7 @@
 (global-set-key "\C-x\C-m" 'smex)
 (global-set-key "\C-c\C-m" 'smex)
 
+(require 'rainbow-delimiters)
 (rainbow-delimiters-mode 1)
 
 ;; TYPOGRAPHY
@@ -181,7 +183,7 @@
 
 
 ;; PYMACS
-
+(require 'pymacs)
 ;; avoid problems with pymacs (see http://pymacs.progiciels-bpi.ca/index.html)
 (autoload 'pymacs-apply "pymacs")
 (autoload 'pymacs-call "pymacs")
@@ -257,7 +259,8 @@
 ;; AUTOCOMPLETE
 
 ; Load the default configuration
-(require 'auto-complete-config)
+(require 'popup)
+(require 'auto-complete)
 (setq-default ac-sources (add-to-list 'ac-sources 'ac-source-dictionary))
 (global-auto-complete-mode t)
 ; Start auto-completion after 2 characters of a word
@@ -290,6 +293,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#042028" :foreground "#708183" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "apple" :family "Menlo")))))
+ '(default ((t (:inherit nil :stipple nil :background "#042028" :foreground "#708183" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "apple" :family "Menlo"))))
+ '(org-default ((t (:inherit nil :height 1.4 :family "Gill Sans"))))
+ '(org-level-1 ((t (:inherit nil)))))
 
 
