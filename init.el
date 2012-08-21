@@ -4,7 +4,7 @@
 			 ("gnu" . "http://elpa.gnu.org/packages/")))
 
 
-(load "~/.emacs.d/vendor/nxhtml/autostart")
+;; (load "~/.emacs.d/vendor/nxhtml/autostart")
 (add-to-list 'load-path "~/.emacs.d/vendor/")
 
 
@@ -74,8 +74,7 @@
 (setq mac-right-option-modifier nil)
 (setq mac-right-command-modifier 'meta)
 
-
-(autopair-mode 1)
+(require 'autopair)
 (autopair-global-mode 1)
 (setq autopair-autowrap t)
 (global-auto-revert-mode)
@@ -88,6 +87,9 @@
 (set-default 'indent-tabs-mode nil)
 (set-default 'indicate-empty-lines t)
 (set-default 'imenu-auto-rescan t)
+; sentences end in a single space
+(setq sentence-end-double-space nil)
+(global-set-key (kbd "RET") 'newline-and-indent)
 
 
 ;; I can't remember ever having meant to use C-z to suspend the frame
@@ -112,6 +114,7 @@
 
 (menu-bar-mode 0)
 (tool-bar-mode 0)
+(scroll-bar-mode 0)
 (column-number-mode 1)
 (setq max-mini-window-height 1)
 (setq inhibit-splash-screen t)
@@ -123,8 +126,10 @@
 (setq diff-switches "-u")
 
 ; Use C-x C-m for M-x
-(global-set-key "\C-x\C-m" 'execute-extended-command)
-(global-set-key "\C-c\C-m" 'execute-extended-command)
+(global-set-key "\C-x\C-m" 'smex)
+(global-set-key "\C-c\C-m" 'smex)
+
+(rainbow-delimiters-mode 1)
 
 ;; TYPOGRAPHY
 
@@ -137,9 +142,8 @@
 (add-hook 'markdown-mode-hook 'turn-off-auto-fill)
 (add-hook 'latex-mode-hook 'turn-off-auto-fill)
 
-;; PYTHON
 
-; flymake
+; FLYMAKE
 
 (when (load "flymake" t)
   (defun flymake-pyflakes-init ()
@@ -150,7 +154,13 @@
             (file-name-directory buffer-file-name))))
       (list "pycheckers"  (list local-file))))
    (add-to-list 'flymake-allowed-file-name-masks
-             '("\\.py\\'" flymake-pyflakes-init)))
+             '("\\.py\\'" flymake-pyflakes-init))
+   (delete '("\\.html?\\'" flymake-xml-init)
+           flymake-allowed-file-name-masks))
+
+
+
+;; PYTHON
 
 
 (add-hook 'python-mode-hook 
@@ -193,6 +203,10 @@
 (setq mumamo-background-colors nil) 
 (add-to-list 'auto-mode-alist '("\\.html$" . django-html-mumamo-mode))
 
+
+;; HTML
+
+(add-hook 'html-mode-hook 'zencoding-mode)
 
 
 ;; SOLARIZED 
@@ -250,11 +264,8 @@
 (setq ac-auto-start 2)
 ; case sensitivity is important when finding matches
 (setq ac-ignore-case nil)
-(add-to-list 'ac-sources 'ac-source-yasnippet)
+;(add-to-list 'ac-sources 'ac-source-yasnippet)
 
-;; FLYMAKE (general)
-
-(add-hook 'find-file-hook 'flymake-find-file-hook)
 
 ;; JAVASCRIPT
 
