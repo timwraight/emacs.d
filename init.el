@@ -232,7 +232,7 @@
 (setq org-startup-indented 1)
 (setq org-completion-use-ido t)
 (setq org-use-speed-commands t)
-
+(add-hook 'org-mode-hook (lambda () (variable-pitch-mode t)))
 
 ;; HELP
 
@@ -295,6 +295,8 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "#042028" :foreground "#708183" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "apple" :family "Menlo"))))
  '(org-default ((t (:inherit nil :height 1.4 :family "Gill Sans"))))
- '(org-level-1 ((t (:inherit nil)))))
+ '(org-level-1 ((t (:inherit nil :height 1.2))))
+ '(org-level-2 ((t (:inherit nil :height 1.1))))
+ '(variable-pitch ((t (:height 1.3 :family "Gill Sans")))))
 
 
