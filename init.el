@@ -214,20 +214,13 @@
 ;; SOLARIZED 
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/color-theme-solarized-20120715/")
-
 (load-theme 'solarized-dark t)
 
 
 ;; ORG MODE
 
 (setq org-default-notes-file "~/Dropbox/org/general.org")
-(global-set-key (kbd "<f11>") (lambda ()
-                                (interactive)
-                                (if (eq (current-buffer)
-                                        "#<buffer *Org Agenda*>")
-                                    (switch-to-buffer (other-buffer))
-                                    (org-agenda-list)
-                                    )))
+(global-set-key (kbd "<f11>") 'org-agenda-list)
 (global-set-key (kbd "<f12>") 'org-capture)
 (setq org-startup-indented 1)
 (setq org-completion-use-ido t)
