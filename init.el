@@ -6,8 +6,8 @@
 
 ;; (load "~/.emacs.d/vendor/nxhtml/autostart")
 (add-to-list 'load-path "~/.emacs.d/vendor/")
- (let ((default-directory "~/.emacs.d/vendor/"))
-      (normal-top-level-add-subdirs-to-load-path))
+(let ((default-directory "~/.emacs.d/vendor/"))
+  (normal-top-level-add-subdirs-to-load-path))
 
 ;; NAVIGATION
 (windmove-default-keybindings) 
@@ -210,6 +210,7 @@
 
 ;; DJANGO
 
+(require 'pony-mode)
 (setq auto-mode-alist
       (append '(("\\.html?$" . django-html-mumamo-mode)) auto-mode-alist))
 (setq mumamo-background-colors nil) 
@@ -292,11 +293,21 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 
+
 ;; BROWSING
 
 (require 'w3m-load)
 (setq browse-url-browser-function 'w3m-browse-url) 
 (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
+
+
+;; MAIL
+
+(setq gnus-select-method '(nnimap "gmail"
+				  (nnimap-address "imap.gmail.com")
+				  (nnimap-server-port 993)
+				  (nnimap-stream ssl)))
+
 
 
 
@@ -313,7 +324,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(org-agenda-files (quote ("~/Dropbox/org/general.org")))
- '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "/Users/twraight/Envs/dashboard/bin/python" :settings "www/conf/local.py")))))
+ '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "~/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/.virtualenvs/grace/bin/python" :settings "settings")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
