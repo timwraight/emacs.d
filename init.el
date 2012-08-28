@@ -161,6 +161,9 @@
            flymake-allowed-file-name-masks))
 
 
+;; Disable warning popups
+(setq flymake-gui-warnings-enabled nil)
+
 
 ;; PYTHON
 
@@ -179,7 +182,14 @@
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
+;; DOCS
 
+(require 'pylookup)
+(autoload 'pylookup-lookup "pylookup")
+(autoload 'pylookup-update "pylookup")
+(setq pylookup-program "~/.emacs.d/vendor/pylookup/pylookup.py")
+(setq pylookup-db-file "~/.emacs.d/vendor/pylookup/pylookup.db")
+(global-set-key "\C-ch" 'pylookup-lookup)
 
 
 ;; PYMACS
@@ -226,6 +236,19 @@
 (setq org-completion-use-ido t)
 (setq org-use-speed-commands t)
 (add-hook 'org-mode-hook (lambda () (variable-pitch-mode t)))
+(setq org-agenda-window-setup 'current-window)
+(setq org-agenda-restore-windows-after-quit 1)
+(setq org-src-fontify-natively t)
+
+;; org-babel
+
+;; active Babel languages
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((R . t)
+   (emacs-lisp . t)
+   (python . t)
+   ))
 
 ;; HELP
 
@@ -264,9 +287,18 @@
 
 
 ;; JAVASCRIPT
-
+(require 'js2-mode)
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+
+
+;; BROWSING
+
+(require 'w3m-load)
+(setq browse-url-browser-function 'w3m-browse-url) 
+(autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
+
+
 
 
 ;; *********************
@@ -280,13 +312,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
- '(org-agenda-files (quote ("~/Dropbox/org/general.org"))))
+ '(org-agenda-files (quote ("~/Dropbox/org/general.org")))
+ '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "/Users/twraight/Envs/dashboard/bin/python" :settings "www/conf/local.py")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "#042028" :foreground "#708183" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "apple" :family "Menlo"))))
+ '(org-block ((t (:height 0.85 :family "Menlo"))))
  '(org-default ((t (:inherit nil :height 1.4 :family "Gill Sans"))))
  '(org-level-1 ((t (:inherit nil :height 1.2))))
  '(org-level-2 ((t (:inherit nil :height 1.1))))
