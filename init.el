@@ -4,7 +4,6 @@
 			 ("gnu" . "http://elpa.gnu.org/packages/")))
 
 
-;; (load "~/.emacs.d/vendor/nxhtml/autostart")
 (add-to-list 'load-path "~/.emacs.d/vendor/")
  (let ((default-directory "~/.emacs.d/vendor/"))
       (normal-top-level-add-subdirs-to-load-path))
@@ -209,16 +208,13 @@
 
 
 ;; DJANGO
-
-(setq auto-mode-alist
-      (append '(("\\.html?$" . django-html-mumamo-mode)) auto-mode-alist))
-(setq mumamo-background-colors nil) 
-(add-to-list 'auto-mode-alist '("\\.html$" . django-html-mumamo-mode))
+(require 'pony-mode)
 
 
 ;; HTML
-
+(require 'zencoding-mode)
 (add-hook 'html-mode-hook 'zencoding-mode)
+(add-hook 'html-mode-hook 'pony-tpl-mode)
 
 
 ;; SOLARIZED 
@@ -248,6 +244,7 @@
  '((R . t)
    (emacs-lisp . t)
    (python . t)
+   (sql . t)
    ))
 
 ;; HELP
@@ -321,6 +318,9 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "#042028" :foreground "#708183" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "apple" :family "Menlo"))))
  '(org-block ((t (:height 0.85 :family "Menlo"))))
+ '(org-block-background ((t (:height 0.85 :family "Menlo"))))
+ '(org-block-begin-line ((t (:foreground "#777" :height 0.85 :family "Menlo"))) t)
+ '(org-block-end-line ((t (:inherit org-block-begin-line))) t)
  '(org-default ((t (:inherit nil :height 1.4 :family "Gill Sans"))))
  '(org-level-1 ((t (:inherit nil :height 1.2))))
  '(org-level-2 ((t (:inherit nil :height 1.1))))
