@@ -5,8 +5,8 @@
 
 
 (add-to-list 'load-path "~/.emacs.d/vendor/")
- (let ((default-directory "~/.emacs.d/vendor/"))
-      (normal-top-level-add-subdirs-to-load-path))
+(let ((default-directory "~/.emacs.d/vendor/"))
+  (normal-top-level-add-subdirs-to-load-path))
 
 ;; NAVIGATION
 (windmove-default-keybindings) 
@@ -208,8 +208,8 @@
 
 
 ;; DJANGO
-(require 'pony-mode)
 
+(require 'pony-mode)
 
 ;; HTML
 (require 'zencoding-mode)
@@ -289,11 +289,21 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 
 
+
 ;; BROWSING
 
 (require 'w3m-load)
 (setq browse-url-browser-function 'w3m-browse-url) 
 (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
+
+
+;; MAIL
+
+(setq gnus-select-method '(nnimap "gmail"
+				  (nnimap-address "imap.gmail.com")
+				  (nnimap-server-port 993)
+				  (nnimap-stream ssl)))
+
 
 
 
@@ -310,7 +320,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(org-agenda-files (quote ("~/Dropbox/org/general.org")))
- '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "/Users/twraight/Envs/dashboard/bin/python" :settings "www/conf/local.py")))))
+ '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "~/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/.virtualenvs/grace/bin/python" :settings "settings")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -325,6 +335,7 @@
  '(org-default ((t (:inherit nil :height 1.4 :family "Gill Sans"))))
  '(org-level-1 ((t (:inherit nil :foreground "#818f4e" :height 1.2))))
  '(org-level-2 ((t (:inherit nil :height 1.1))))
- '(variable-pitch ((t (:height 1.3 :family "Gill Sans")))))
+ '(variable-pitch ((t (:height 1.3 :family "Gill Sans"))))
+ '(w3m-session-select ((t (:foreground "white" :family "Gill Sans")))))
 
 
