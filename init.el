@@ -321,8 +321,9 @@
  '(org-block-background ((t (:height 0.85 :family "Menlo"))))
  '(org-block-begin-line ((t (:foreground "#777" :height 0.85 :family "Menlo"))) t)
  '(org-block-end-line ((t (:inherit org-block-begin-line))) t)
+ '(org-code ((t (:inherit shadow :height 0.75 :family "Menlo"))))
  '(org-default ((t (:inherit nil :height 1.4 :family "Gill Sans"))))
- '(org-level-1 ((t (:inherit nil :height 1.2))))
+ '(org-level-1 ((t (:inherit nil :foreground "#818f4e" :height 1.2))))
  '(org-level-2 ((t (:inherit nil :height 1.1))))
  '(variable-pitch ((t (:height 1.3 :family "Gill Sans")))))
 
