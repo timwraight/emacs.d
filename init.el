@@ -137,11 +137,26 @@
 (setq line-spacing 4)
 (global-visual-line-mode t)
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
-(add-hook 'text-mode-hook 'turn-on-flyspell)
 
 ;;; turn off auto-fill in tex and markdown
 (add-hook 'markdown-mode-hook 'turn-off-auto-fill)
 (add-hook 'latex-mode-hook 'turn-off-auto-fill)
+
+
+;; SPELLING
+(setq ispell-program-name "aspell"
+      ispell-dictionary "english"
+      ispell-dictionary-alist
+      (let ((default '("[A-Za-z]" "[^A-Za-z]" "[']" nil
+                       ("-B" "-d" "english" "--dict-dir"
+                        "/Library/Application Support/cocoAspell/aspell6-en-6.0-0")
+                       nil iso-8859-1)))
+        `((nil ,@default)
+          ("english" ,@default))))
+(setq ispell-extra-args '("--sug-mode=ultra"))
+(setq ispell-personal-dictionary "~/.aspell.en.pws")
+(setq flyspell-issue-message-flag nil)
+(add-hook 'text-mode-hook 'turn-on-flyspell)
 
 
 ; FLYMAKE
