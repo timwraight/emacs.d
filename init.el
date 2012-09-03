@@ -56,7 +56,7 @@
 
 
 ;; SMEX  (IDO for meta-x)
-
+(require 'smex)
 (global-set-key [(meta x)] (lambda ()
                              (interactive)
                              (or (boundp 'smex-cache)
@@ -177,17 +177,19 @@
 
 
 ;; Use python-mode instead of python.el
-
+(setq py-install-directory "~/.emacs.d/vendor/python-mode/")
+(setq py-shell-name "ipython")
+(require 'python-mode)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
 ;; DOCS
 
-(require 'pylookup)
-(autoload 'pylookup-lookup "pylookup")
-(autoload 'pylookup-update "pylookup")
+(eval-when-compile (require 'pylookup))
 (setq pylookup-program "~/.emacs.d/vendor/pylookup/pylookup.py")
 (setq pylookup-db-file "~/.emacs.d/vendor/pylookup/pylookup.db")
+(autoload 'pylookup-update "pylookup" 
+  "Run pylookup-update and create the database at `pylookup-db-file'." t)
 (global-set-key "\C-ch" 'pylookup-lookup)
 
 
@@ -305,6 +307,10 @@
 				  (nnimap-stream ssl)))
 
 
+
+;; TEX
+(load "auctex.el" nil t t)
+(add-hook 'text-mode-hook (lambda () (variable-pitch-mode t)))
 
 
 
