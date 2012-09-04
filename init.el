@@ -14,6 +14,41 @@
 (global-set-key (kbd "C-x C-o") (lambda () (interactive) (other-window 2))) ;; forward two
 (setq windmove-wrap-around t)
 
+;; Make windmove work in org-mode:
+(add-hook 'org-shiftup-final-hook 'windmove-up)
+(add-hook 'org-shiftleft-final-hook 'windmove-left)
+(add-hook 'org-shiftdown-final-hook 'windmove-down)
+(add-hook 'org-shiftright-final-hook 'windmove-right)
+
+
+;; FILES
+
+;; From https://sites.google.com/site/steveyegge2/my-dot-emacs-file
+(defun rename-file-and-buffer (new-name)
+  "Renames both current buffer and file it's visiting to NEW-NAME." (interactive "sNew name: ")
+  (let ((name (buffer-name))
+	(filename (buffer-file-name)))
+    (if (not filename)
+	(message "Buffer '%s' is not visiting a file!" name)
+      (if (get-buffer new-name)
+          (message "A buffer named '%s' already exists!" new-name)
+	(progn 	 (rename-file name new-name 1) 	 (rename-buffer new-name) 	 (set-visited-file-name new-name) 	 (set-buffer-modified-p nil)))))) 
+
+;; Also from https://sites.google.com/site/steveyegge2/my-dot-emacs-file
+(defun move-buffer-file (dir)
+  "Moves both current buffer and file it's visiting to DIR." (interactive "DNew directory: ")
+  (let* ((name (buffer-name))
+         (filename (buffer-file-name))
+	 (dir
+          (if (string-match dir "\\(?:/\\|\\\\)$")
+              (substring dir 0 -1) dir))
+	 (newname (concat dir "/" name)))
+    
+    (if (not filename)
+        (message "Buffer '%s' is not visiting a file!" name)
+      (progn 	(copy-file filename newname 1) 	(delete-file filename) 	(set-visited-file-name newname) 	(set-buffer-modified-p nil) 	t)))) 
+
+
 
 ;; RECENT FILES
 (recentf-mode t)
@@ -166,7 +201,7 @@
 
 ;; PYTHON
 
-
+(require 'python-mode)
 (add-hook 'python-mode-hook 
       (lambda () 
         (unless (eq buffer-file-name nil) (flymake-mode 1)) ;dont invoke flymake on temporary buffers for the interpreter
@@ -174,7 +209,7 @@
         (local-set-key [f3] 'flymake-goto-next-error)
         ))
 
-
+(setq py-shell-switch-buffers-on-execute-p nil)
 
 ;; Use python-mode instead of python.el
 
@@ -224,7 +259,8 @@
 
 
 ;; ORG MODE
-
+ (add-to-list 'load-path "~/.emacs.d/vendor/org-mode/lisp")
+(require 'org-install)
 (setq org-default-notes-file "~/Dropbox/org/general.org")
 (global-set-key (kbd "<f11>") 'org-agenda-list)
 (global-set-key (kbd "<f12>") 'org-capture)
@@ -245,7 +281,10 @@
    (emacs-lisp . t)
    (python . t)
    (sql . t)
+   (ditaa . t)
    ))
+
+(setq org-ditaa-jar-path "~/bin/ditaa.jar")
 
 ;; HELP
 
@@ -305,6 +344,10 @@
 				  (nnimap-stream ssl)))
 
 
+;; PHP
+
+(require 'php-mode)
+
 
 
 
@@ -320,7 +363,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(org-agenda-files (quote ("~/Dropbox/org/general.org")))
- '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "~/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/.virtualenvs/grace/bin/python" :settings "settings")))))
+ '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "/Users/twraight/Envs/dashboard/bin/python" :settings "www/conf/local.py") (pony-settings make-pony-project :python "~/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/.virtualenvs/grace/bin/python" :settings "settings")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -332,9 +375,9 @@
  '(org-block-begin-line ((t (:foreground "#777" :height 0.85 :family "Menlo"))) t)
  '(org-block-end-line ((t (:inherit org-block-begin-line))) t)
  '(org-code ((t (:inherit shadow :height 0.75 :family "Menlo"))))
- '(org-default ((t (:inherit nil :height 1.4 :family "Gill Sans"))))
+ '(org-default ((t (:inherit nil :foreground "#96906a" :height 1.4 :family "Gill Sans"))))
  '(org-level-1 ((t (:inherit nil :foreground "#818f4e" :height 1.2))))
- '(org-level-2 ((t (:inherit nil :height 1.1))))
+ '(org-level-2 ((t (:inherit nil :foreground "#856a6a" :height 1.1))))
  '(variable-pitch ((t (:height 1.3 :family "Gill Sans"))))
  '(w3m-session-select ((t (:foreground "white" :family "Gill Sans")))))
 
