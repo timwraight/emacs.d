@@ -91,7 +91,7 @@
 
 
 ;; SMEX  (IDO for meta-x)
-
+(require 'smex)
 (global-set-key [(meta x)] (lambda ()
                              (interactive)
                              (or (boundp 'smex-cache)
@@ -172,11 +172,26 @@
 (setq line-spacing 4)
 (global-visual-line-mode t)
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
-(add-hook 'text-mode-hook 'turn-on-flyspell)
 
 ;;; turn off auto-fill in tex and markdown
 (add-hook 'markdown-mode-hook 'turn-off-auto-fill)
 (add-hook 'latex-mode-hook 'turn-off-auto-fill)
+
+
+;; SPELLING
+(setq ispell-program-name "aspell"
+      ispell-dictionary "english"
+      ispell-dictionary-alist
+      (let ((default '("[A-Za-z]" "[^A-Za-z]" "[']" nil
+                       ("-B" "-d" "english" "--dict-dir"
+                        "/Library/Application Support/cocoAspell/aspell6-en-6.0-0")
+                       nil iso-8859-1)))
+        `((nil ,@default)
+          ("english" ,@default))))
+(setq ispell-extra-args '("--sug-mode=ultra"))
+(setq ispell-personal-dictionary "~/.aspell.en.pws")
+(setq flyspell-issue-message-flag nil)
+(add-hook 'text-mode-hook 'turn-on-flyspell)
 
 
 ; FLYMAKE
@@ -212,17 +227,19 @@
 (setq py-shell-switch-buffers-on-execute-p nil)
 
 ;; Use python-mode instead of python.el
-
+(setq py-install-directory "~/.emacs.d/vendor/python-mode/")
+(setq py-shell-name "ipython")
+(require 'python-mode)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
 ;; DOCS
 
-(require 'pylookup)
-(autoload 'pylookup-lookup "pylookup")
-(autoload 'pylookup-update "pylookup")
+(eval-when-compile (require 'pylookup))
 (setq pylookup-program "~/.emacs.d/vendor/pylookup/pylookup.py")
 (setq pylookup-db-file "~/.emacs.d/vendor/pylookup/pylookup.db")
+(autoload 'pylookup-update "pylookup" 
+  "Run pylookup-update and create the database at `pylookup-db-file'." t)
 (global-set-key "\C-ch" 'pylookup-lookup)
 
 
@@ -348,6 +365,10 @@
 
 (require 'php-mode)
 
+
+;; TEX
+(load "auctex.el" nil t t)
+(add-hook 'text-mode-hook (lambda () (variable-pitch-mode t)))
 
 
 
