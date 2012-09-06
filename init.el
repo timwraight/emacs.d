@@ -126,6 +126,8 @@
 (setq sentence-end-double-space nil)
 (global-set-key (kbd "RET") 'newline-and-indent)
 
+;; for text
+(add-hook 'text-mode-hook (lambda () (longlines-mode t)))
 
 ;; I can't remember ever having meant to use C-z to suspend the frame
 (global-set-key (kbd "C-z") 'undo)
@@ -216,7 +218,6 @@
 
 ;; PYTHON
 
-(require 'python-mode)
 (add-hook 'python-mode-hook 
       (lambda () 
         (unless (eq buffer-file-name nil) (flymake-mode 1)) ;dont invoke flymake on temporary buffers for the interpreter
@@ -224,14 +225,6 @@
         (local-set-key [f3] 'flymake-goto-next-error)
         ))
 
-(setq py-shell-switch-buffers-on-execute-p nil)
-
-;; Use python-mode instead of python.el
-(setq py-install-directory "~/.emacs.d/vendor/python-mode/")
-(setq py-shell-name "ipython")
-(require 'python-mode)
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-(add-to-list 'interpreter-mode-alist '("python" . python-mode))
 
 ;; DOCS
 
@@ -399,7 +392,8 @@
  '(org-default ((t (:inherit nil :foreground "#96906a" :height 1.4 :family "Gill Sans"))))
  '(org-level-1 ((t (:inherit nil :foreground "#818f4e" :height 1.2))))
  '(org-level-2 ((t (:inherit nil :foreground "#856a6a" :height 1.1))))
+ '(org-meta-line ((t (:inherit org-block-begin-line))))
  '(variable-pitch ((t (:height 1.3 :family "Gill Sans"))))
- '(w3m-session-select ((t (:foreground "white" :family "Gill Sans")))))
+ '(w3m-session-select ((t (:foreground "white" :family "Gill Sans"))) t))
 
 
