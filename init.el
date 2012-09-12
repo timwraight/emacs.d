@@ -126,22 +126,34 @@
 (setq sentence-end-double-space nil)
 (global-set-key (kbd "RET") 'newline-and-indent)
 
+(setq truncate-partial-width-windows 80)
+(setq fill-column 80)
+
 ;; for text
 (add-hook 'text-mode-hook (lambda () (longlines-mode t)))
 
 ;; I can't remember ever having meant to use C-z to suspend the frame
 (global-set-key (kbd "C-z") 'undo)
 
-;; Remap kill word and kill region
-(global-set-key "\C-w" 'backward-kill-word)
-(global-set-key "\C-x\C-k" 'kill-region)
-(global-set-key "\C-c\C-k" 'kill-region)
-
 ; Expand region
 (global-set-key (kbd "C-=") 'er/expand-region)
 
+; tabs
+(defun my-generate-tab-stops (&optional width max)
+  "Return a sequence suitable for `tab-stop-list'."
+  (let* ((max-column (or max 200))
+         (tab-width (or width tab-width))
+         (count (/ max-column tab-width)))
+    (number-sequence tab-width (* tab-width count) tab-width)))
+
+(setq tab-width 4)
+(setq tab-stop-list (my-generate-tab-stops))
+
+
+
 ;; SNIPPETS
 (require 'yasnippet)
+(yas/load-directory "~/.emacs.d/vendor/yasnippet/snippets")
 (yas-global-mode t)
 (global-set-key (kbd "M-<tab>") 'hippie-expand)
 (delete 'try-expand-line hippie-expand-try-functions-list)
@@ -272,15 +284,44 @@
  (add-to-list 'load-path "~/.emacs.d/vendor/org-mode/lisp")
 (require 'org-install)
 (setq org-default-notes-file "~/Dropbox/org/general.org")
-(global-set-key (kbd "<f11>") 'org-agenda-list)
-(global-set-key (kbd "<f12>") 'org-capture)
+(global-set-key (kbd "<f12>") 'org-agenda-list)
+(global-set-key (kbd "<f11>") 'org-capture)
 (setq org-startup-indented 1)
-(setq org-completion-use-ido t)
 (setq org-use-speed-commands t)
 (add-hook 'org-mode-hook (lambda () (variable-pitch-mode t)))
 (setq org-agenda-window-setup 'current-window)
 (setq org-agenda-restore-windows-after-quit 1)
 (setq org-src-fontify-natively t)
+(setq org-src-tab-acts-natively t)
+
+; Targets include this file and any file contributing to the agenda -
+; up to 9 levels deep
+(setq org-refile-targets (quote ((nil :maxlevel . 9)
+                                 (org-agenda-files :maxlevel . 9))))
+; Use full outline paths for refile targets - we file directly with IDO
+(setq org-refile-use-outline-path t)
+
+
+; Targets complete directly with IDO
+(setq org-outline-path-complete-in-steps nil)
+
+; Allow refile to create parent tasks with confirmation
+(setq org-refile-allow-creating-parent-nodes (quote confirm))
+
+; Use IDO for both buffer and file completion and ido-everywhere to t
+(setq org-completion-use-ido t)
+(setq ido-everywhere t)
+(setq ido-max-directory-size 100000)
+(ido-mode (quote both))
+
+;;;; Refile settings
+; Exclude DONE state tasks from refile targets
+(defun bh/verify-refile-target ()
+  "Exclude todo keywords with a done state from refile targets"
+  (not (member (nth 2 (org-heading-components)) org-done-keywords)))
+
+(setq org-refile-target-verify-function 'bh/verify-refile-target)
+
 
 ;; org-babel
 
@@ -363,6 +404,10 @@
 (load "auctex.el" nil t t)
 (add-hook 'text-mode-hook (lambda () (variable-pitch-mode t)))
 
+
+;; YAML
+
+(setq yaml-indent-offset 4)
 
 
 ;; *********************
