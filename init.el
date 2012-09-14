@@ -129,8 +129,6 @@
 (setq truncate-partial-width-windows 80)
 (setq fill-column 80)
 
-;; for text
-(add-hook 'text-mode-hook (lambda () (longlines-mode t)))
 
 ;; I can't remember ever having meant to use C-z to suspend the frame
 (global-set-key (kbd "C-z") 'undo)
@@ -160,7 +158,6 @@
 (delete 'try-expand-list hippie-expand-try-functions-list)
 
 ;; INTERFACE
-
 (menu-bar-mode 0)
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
@@ -185,6 +182,8 @@
 
 (setq line-spacing 4)
 (global-visual-line-mode t)
+
+;; Turn on auto-fill (ie, break lines after 80 chars or whatever) globally
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 ;;; turn off auto-fill in tex and markdown
@@ -235,6 +234,7 @@
         (unless (eq buffer-file-name nil) (flymake-mode 1)) ;dont invoke flymake on temporary buffers for the interpreter
         (local-set-key [f2] 'flymake-goto-prev-error)
         (local-set-key [f3] 'flymake-goto-next-error)
+        (setq truncate-lines 1)   
         ))
 
 
@@ -276,19 +276,21 @@
 
 ;; SOLARIZED 
 
-(add-to-list 'custom-theme-load-path "~/.emacs.d/elpa/color-theme-solarized-20120715/")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/vendor/emacs-color-theme-solarized/")
 (load-theme 'solarized-dark t)
 
 
 ;; ORG MODE
- (add-to-list 'load-path "~/.emacs.d/vendor/org-mode/lisp")
+(add-to-list 'load-path "~/.emacs.d/vendor/org-mode/lisp")
 (require 'org-install)
 (setq org-default-notes-file "~/Dropbox/org/general.org")
 (global-set-key (kbd "<f12>") 'org-agenda-list)
 (global-set-key (kbd "<f11>") 'org-capture)
 (setq org-startup-indented 1)
 (setq org-use-speed-commands t)
-(add-hook 'org-mode-hook (lambda () (variable-pitch-mode t)))
+(add-hook 'org-mode-hook (lambda ()
+                           (variable-pitch-mode t)
+                           ()))
 (setq org-agenda-window-setup 'current-window)
 (setq org-agenda-restore-windows-after-quit 1)
 (setq org-src-fontify-natively t)
@@ -322,6 +324,15 @@
 
 (setq org-refile-target-verify-function 'bh/verify-refile-target)
 
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/Dropbox/org/general.org" "Tasks")
+         "* TODO %?\n  %i\n  %a")
+        ("a" "Question" entry (file+headline "~/Dropbox/org/general.org" "Questions")
+         "*  %?\n %i\n  %a")))
+
+;;;;; Columns
+(setq org-global-properties )
+(setq org-columns-default-format " %25ITEM %TODO %17Effort(Estimated Effort){:} %CLOCKSUM")
 
 ;; org-babel
 
@@ -421,7 +432,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
+ '(debug-on-error t)
  '(org-agenda-files (quote ("~/Dropbox/org/general.org")))
+ '(org-global-properties (quote (("Effort_ALL" . "0 0:10 0:30 1:00 2:00 3:00 4:00 5:00 6:00 7:00"))))
  '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "/Users/twraight/Envs/dashboard/bin/python" :settings "www/conf/local.py") (pony-settings make-pony-project :python "~/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/.virtualenvs/grace/bin/python" :settings "settings")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -434,10 +447,13 @@
  '(org-block-begin-line ((t (:foreground "#777" :height 0.85 :family "Menlo"))) t)
  '(org-block-end-line ((t (:inherit org-block-begin-line))) t)
  '(org-code ((t (:inherit shadow :height 0.75 :family "Menlo"))))
+ '(org-column ((t (:background "#00313d" :strike-through nil :underline nil :slant normal :weight normal :height 140 :family "Menlo"))))
  '(org-default ((t (:inherit nil :foreground "#96906a" :height 1.4 :family "Gill Sans"))))
  '(org-level-1 ((t (:inherit nil :foreground "#818f4e" :height 1.2))))
  '(org-level-2 ((t (:inherit nil :foreground "#856a6a" :height 1.1))))
  '(org-meta-line ((t (:inherit org-block-begin-line))))
+ '(org-special-keyword ((t (:inherit font-lock-keyword-face :foreground "#003441"))))
+ '(org-table ((t (:foreground "LightSkyBlue" :height 1 :family "Menlo"))))
  '(variable-pitch ((t (:height 1.3 :family "Gill Sans"))))
  '(w3m-session-select ((t (:foreground "white" :family "Gill Sans"))) t))
 
