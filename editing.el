@@ -27,6 +27,8 @@
 (setq truncate-partial-width-windows 80)
 (setq fill-column 80)
 
+;; UNDO TREE
+(require 'undo-tree)
 
 ;; I can't remember ever having meant to use C-z to suspend the frame
 (global-set-key (kbd "C-z") 'undo)
@@ -110,4 +112,35 @@
 ; case sensitivity is important when finding matches
 (setq ac-ignore-case nil)
 ;(add-to-list 'ac-sources 'ac-source-yasnippet)
+
+
+;; Extensible VI Layer
+;; Enable VI functionality in emacs
+
+(require 'evil)
+    (evil-mode 1)
+(require 'surround)
+(global-surround-mode 1)
+(require 'evil-leader)
+(require 'evil-org)
+
+;; Use kj to exit insert mode
+
+(define-key evil-insert-state-map "k" #'cofi/maybe-exit)
+
+(evil-define-command cofi/maybe-exit ()
+  :repeat change
+  (interactive)
+  (let ((modified (buffer-modified-p)))
+    (insert "k")
+    (let ((evt (read-event (format "Insert %c to exit insert state" ?j)
+               nil 0.5)))
+      (cond
+       ((null evt) (message ""))
+       ((and (integerp evt) (char-equal evt ?j))
+    (delete-char -1)
+    (set-buffer-modified-p modified)
+    (push 'escape unread-command-events))
+       (t (setq unread-command-events (append unread-command-events
+                          (list evt))))))))
 

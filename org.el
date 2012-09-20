@@ -22,6 +22,8 @@
 ; Use full outline paths for refile targets - we file directly with IDO
 (setq org-refile-use-outline-path t)
 
+; hide the slashes around emphasised words
+(setq org-hide-emphasis-markers t)
 
 ; Targets complete directly with IDO
 (setq org-outline-path-complete-in-steps nil)
@@ -66,3 +68,33 @@
    ))
 
 (setq org-ditaa-jar-path "~/bin/ditaa.jar")
+
+;; ORG-EXPORT
+
+(unless (boundp 'org-export-latex-classes)
+  (setq org-export-latex-classes nil))
+(add-to-list 'org-export-latex-classes
+  '("article"
+"\\documentclass[11pt,a4paper]{article}
+\\usepackage{fontspec}
+\\usepackage{graphicx} 
+\\usepackage{hyperref}
+\\setromanfont{Palatino}
+\\setmonofont{Menlo}
+\\usepackage{geometry}
+\\tracinglostchars=2
+\\geometry{a4paper, textwidth=5.5in, textheight=10in,
+            marginparsep=7pt, marginparwidth=.6in}
+\\pagestyle{empty}
+\\title{}    
+      [NO-DEFAULT-PACKAGES]
+      [NO-PACKAGES]"
+     ("\\section{%s}" . "\\section*{%s}")
+     ("\\subsection{%s}" . "\\subsection*{%s}")
+     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+     ("\\paragraph{%s}" . "\\paragraph*{%s}")
+     ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+(setq org-latex-to-pdf-process 
+  '("xelatex -interaction nonstopmode %f"
+     "xelatex -interaction nonstopmode %f")) ;; for multiple passes
