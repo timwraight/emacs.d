@@ -24,5 +24,10 @@
 (setq line-spacing 4)
 (global-visual-line-mode t)
 
-;; Turn on auto-fill (ie, break lines after 80 chars or whatever) globally
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+;; SOLARIZED 
+
+(add-to-list 'custom-theme-load-path "~/.emacs.d/vendor/emacs-color-theme-solarized/")
+(load-theme 'solarized-dark t)
+
+

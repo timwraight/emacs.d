@@ -17,8 +17,8 @@
 
 (load-user-file "packages.el")
 (load-user-file "navigation.el")
-(load-user-file "editing.el")
 (load-user-file "interface.el")
+(load-user-file "editing.el")
 (load-user-file "python.el")
 (load-user-file "org.el")
 
@@ -38,14 +38,11 @@
 
 ;; HTML
 (require 'zencoding-mode)
-(add-hook 'html-mode-hook 'zencoding-mode)
-(add-hook 'html-mode-hook 'pony-tpl-mode)
+(add-hook 'html-mode-hook (lambda ()
+                             ('zencoding-mode)
+                             ('pony-tpl-mode)
+                             (variable-pitch-mode 0)))
 
-
-;; SOLARIZED 
-
-(add-to-list 'custom-theme-load-path "~/.emacs.d/vendor/emacs-color-theme-solarized/")
-(load-theme 'solarized-dark t)
 
 
 ;; HELP
@@ -54,7 +51,7 @@
 
 ;; GIT
 
-;(define-key global-map "\M-\C-g" 'magit-status)
+(global-set-key (kbd "C-x g") 'magit-status)
 (require 'magit)
 
 ;; SEARCHING 
