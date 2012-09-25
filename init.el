@@ -41,7 +41,8 @@
 (add-hook 'html-mode-hook 'zencoding-mode)
 (add-hook 'html-mode-hook 'pony-tpl-mode)
 
-
+(add-hook 'html-mode-hook (lambda ()
+                             (variable-pitch-mode 0)))
 
 
 ;; HELP
@@ -50,7 +51,7 @@
 
 ;; GIT
 
-;(define-key global-map "\M-\C-g" 'magit-status)
+(global-set-key (kbd "C-x g") 'magit-status)
 (require 'magit)
 
 ;; SEARCHING 

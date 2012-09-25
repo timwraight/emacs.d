@@ -122,7 +122,7 @@
 (require 'surround)
 (global-surround-mode 1)
 (require 'evil-leader)
-(require 'evil-org)
+;(require 'evil-org)
 
 ;; Use kj to exit insert mode
 
