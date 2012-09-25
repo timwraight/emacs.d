@@ -17,8 +17,8 @@
 
 (load-user-file "packages.el")
 (load-user-file "navigation.el")
-(load-user-file "editing.el")
 (load-user-file "interface.el")
+(load-user-file "editing.el")
 (load-user-file "python.el")
 (load-user-file "org.el")
 
@@ -42,10 +42,6 @@
 (add-hook 'html-mode-hook 'pony-tpl-mode)
 
 
-;; SOLARIZED 
-
-(add-to-list 'custom-theme-load-path "~/.emacs.d/vendor/emacs-color-theme-solarized/")
-(load-theme 'solarized-dark t)
 
 
 ;; HELP
@@ -88,8 +84,8 @@
 
 ;; MAIL
 
-(setq gnus-select-method '(nnimap "gmail"
-				  (nnimap-address "imap.gmail.com")
+(setq gnus-select-method '(nnimap "wraight.net"
+				  (nnimap-address "www43.a2hosting.com")
 				  (nnimap-server-port 993)
 				  (nnimap-stream ssl)))
 
@@ -123,13 +119,17 @@
  '(debug-on-error nil)
  '(org-agenda-files (quote ("~/Dropbox/org/general.org")))
  '(org-global-properties (quote (("Effort_ALL" . "0 0:10 0:30 1:00 2:00 3:00 4:00 5:00 6:00 7:00"))))
- '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "/Users/twraight/Envs/dashboard/bin/python" :settings "www/conf/local.py") (pony-settings make-pony-project :python "~/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/.virtualenvs/grace/bin/python" :settings "settings")))))
+ '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "/Users/twraight/Envs/dashboard/bin/python" :settings "www/conf/local.py") (pony-settings make-pony-project :python "~/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/.virtualenvs/grace/bin/python" :settings "settings"))))
+ '(send-mail-function (quote smtpmail-send-it))
+ '(smtpmail-smtp-server "www43.a2hosting.com")
+ '(smtpmail-smtp-service 465))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "#042028" :foreground "#999999" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "apple" :family "Menlo"))))
+ '(cursor ((t (:background "#fffece" :foreground "#042028"))))
  '(magit-branch ((t (:inherit magit-header :foreground "#9c8d37"))))
  '(magit-header ((t (:inherit header-line :foreground "#00718c"))))
  '(magit-item-highlight ((t (:inherit highlight :foreground "#9c8d37"))))
