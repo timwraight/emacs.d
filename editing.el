@@ -53,9 +53,9 @@
 (require 'yasnippet)
 (yas/load-directory "~/.emacs.d/vendor/yasnippet/snippets")
 (yas-global-mode t)
-(global-set-key (kbd "M-<tab>") 'hippie-expand)
-(delete 'try-expand-line hippie-expand-try-functions-list)
-(delete 'try-expand-list hippie-expand-try-functions-list)
+;; (global-set-key (kbd "M-<tab>") 'hippie-expand)
+;; (delete 'try-expand-line hippie-expand-try-functions-list)
+;; (delete 'try-expand-list hippie-expand-try-functions-list)
 
 ;;; turn off auto-fill in tex and markdown
 (add-hook 'markdown-mode-hook 'turn-off-auto-fill)
@@ -104,43 +104,28 @@
 
 ; Load the default configuration
 (require 'popup)
-(require 'auto-complete)
-(setq-default ac-sources (add-to-list 'ac-sources 'ac-source-dictionary))
-(global-auto-complete-mode t)
+(require 'auto-complete-config)
+(ac-config-default)
+(ac-ropemacs-initialize)
+(add-to-list 'ac-sources 'ac-source-ropemacs)
+;; (setq-default ac-sources (add-to-list
+;;                           'ac-sources
+;;                           'ac-source-dictionary
+;;                           'ac-source-filename
+;;                           'ac-source-functions
+;;                           'ac-source-yasnippet
+;;                           'ac-source-variables
+;;                           'ac-source-symbols
+;;                           'ac-source-features
+;;                           'ac-source-abbrev
+;;                           'ac-source-words-in-same-mode-buffers
+;;                           'ac-source-yasnippet))
+; (global-auto-complete-mode t)
 ; Start auto-completion after 2 characters of a word
-(setq ac-auto-start 2)
+; (setq ac-auto-start 2)
 ; case sensitivity is important when finding matches
-(setq ac-ignore-case nil)
+; (setq ac-ignore-case nil)
 ;(add-to-list 'ac-sources 'ac-source-yasnippet)
 
 
-;; Extensible VI Layer
-;; Enable VI functionality in emacs
-
-(require 'evil)
-    (evil-mode 1)
-(require 'surround)
-(global-surround-mode 1)
-(require 'evil-leader)
-;(require 'evil-org)
-
-;; Use kj to exit insert mode
-
-(define-key evil-insert-state-map "k" #'cofi/maybe-exit)
-
-(evil-define-command cofi/maybe-exit ()
-  :repeat change
-  (interactive)
-  (let ((modified (buffer-modified-p)))
-    (insert "k")
-    (let ((evt (read-event (format "Insert %c to exit insert state" ?j)
-               nil 0.5)))
-      (cond
-       ((null evt) (message ""))
-       ((and (integerp evt) (char-equal evt ?j))
-    (delete-char -1)
-    (set-buffer-modified-p modified)
-    (push 'escape unread-command-events))
-       (t (setq unread-command-events (append unread-command-events
-                          (list evt))))))))
 

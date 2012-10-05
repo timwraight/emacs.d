@@ -3,6 +3,8 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/org-mode/lisp")
 (require 'org-install)
 (setq org-default-notes-file "~/Dropbox/org/general.org")
+(global-set-key (kbd "S-<f13>") 'org-clock-out)
+(global-set-key (kbd "<f13>") 'org-clock-in-last)
 (global-set-key (kbd "<f12>") 'org-agenda-list)
 (global-set-key (kbd "<f11>") 'org-capture)
 (setq org-startup-indented 1)

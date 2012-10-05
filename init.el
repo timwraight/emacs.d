@@ -38,10 +38,9 @@
 
 ;; HTML
 (require 'zencoding-mode)
-(add-hook 'html-mode-hook (lambda ()
-                             ('zencoding-mode)
-                             ('pony-tpl-mode)
-                             (variable-pitch-mode 0)))
+(add-hook 'html-mode-hook 'zencoding-mode)
+(add-hook 'html-mode-hook 'pony-tpl-mode)
+(add-hook 'html-mode-hook (lambda () (variable-pitch-mode 0)))
 
 
 
@@ -64,14 +63,13 @@
 (add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.ya?ml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.js\\(on\\)?$" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.js\\(on\\)?$" . js-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.xml$" . nxml-mode))
 
 
 ;; JAVASCRIPT
-(require 'js2-mode)
-(autoload 'js2-mode "js2" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(autoload 'js-mode "js" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
 
 
 
@@ -103,7 +101,7 @@
 
 ;; YAML
 (require 'yaml-mode)
-(setq yaml-indent-offset 4)
+(setq yaml-indent-offset 2)
 
 
 ;; *********************
@@ -119,8 +117,10 @@
  '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(debug-on-error nil)
  '(org-agenda-files (quote ("~/Dropbox/org/general.org")))
+ '(org-clock-into-drawer 2)
  '(org-global-properties (quote (("Effort_ALL" . "0 0:10 0:30 1:00 2:00 3:00 4:00 5:00 6:00 7:00"))))
- '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "/Users/twraight/Envs/dashboard/bin/python" :settings "www/conf/local.py") (pony-settings make-pony-project :python "~/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/.virtualenvs/grace/bin/python" :settings "settings")))))
+ '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "/Users/twraight/Envs/dashboard/bin/python" :settings "www/conf/local.py") (pony-settings make-pony-project :python "~/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/.virtualenvs/grace/bin/python" :settings "settings"))))
+ '(yaml-indent-offset 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
