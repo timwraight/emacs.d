@@ -2,6 +2,9 @@
 ;; ORG MODE
 (add-to-list 'load-path "~/.emacs.d/vendor/org-mode/lisp")
 (require 'org-install)
+(setq org-directory "~/Dropbox/org")
+(setq org-mobile-directory "~/Dropbox/MobileOrg")
+(setq org-mobile-inbox-for-pull "~/Dropbox/org/from-mobile.org")
 (setq org-default-notes-file "~/Dropbox/org/general.org")
 (global-set-key (kbd "S-<f13>") 'org-clock-out)
 (global-set-key (kbd "<f13>") 'org-clock-in-last)

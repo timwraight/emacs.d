@@ -43,7 +43,6 @@
 (add-hook 'html-mode-hook (lambda () (variable-pitch-mode 0)))
 
 
-
 ;; HELP
 
 (global-set-key (kbd "C-h a") 'apropos)
@@ -83,8 +82,8 @@
 
 ;; MAIL
 
-(setq gnus-select-method '(nnimap "gmail"
-				  (nnimap-address "imap.gmail.com")
+(setq gnus-select-method '(nnimap "wraight.net"
+				  (nnimap-address "www43.a2hosting.com")
 				  (nnimap-server-port 993)
 				  (nnimap-stream ssl)))
 
@@ -119,7 +118,6 @@
  '(org-agenda-files (quote ("~/Dropbox/org/general.org")))
  '(org-clock-into-drawer 2)
  '(org-global-properties (quote (("Effort_ALL" . "0 0:10 0:30 1:00 2:00 3:00 4:00 5:00 6:00 7:00"))))
- '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "/Users/twraight/Envs/dashboard/bin/python" :settings "www/conf/local.py") (pony-settings make-pony-project :python "~/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/Envs/grace/bin/python" :settings "settings") (pony-settings make-pony-project :python "/Users/tim/.virtualenvs/grace/bin/python" :settings "settings"))))
  '(yaml-indent-offset 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -127,6 +125,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "#042028" :foreground "#999999" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "apple" :family "Menlo"))))
+ '(cursor ((t (:background "#fffece" :foreground "#042028"))))
  '(magit-branch ((t (:inherit magit-header :foreground "#9c8d37"))))
  '(magit-header ((t (:inherit header-line :foreground "#00718c"))))
  '(magit-item-highlight ((t (:inherit highlight :foreground "#9c8d37"))))

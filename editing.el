@@ -105,7 +105,6 @@
 ; Load the default configuration
 (require 'popup)
 (require 'auto-complete-config)
-(ac-config-default)
 (ac-ropemacs-initialize)
 (add-to-list 'ac-sources 'ac-source-ropemacs)
 ;; (setq-default ac-sources (add-to-list
@@ -127,5 +126,7 @@
 ; (setq ac-ignore-case nil)
 ;(add-to-list 'ac-sources 'ac-source-yasnippet)
 
+(add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
+(ac-config-default)
 
 
