@@ -34,8 +34,15 @@
 ;; ROPEMACS
 
 (pymacs-load "ropemacs" "rope-")
+(setq ropemacs-guess-project t)
+(setq ropemacs-separate-doc-buffer t)
+(setq ropemacs-enable-autoimport nil)
 
 
 ;; DJANGO
 
 (require 'pony-mode)
+(ac-ropemacs-initialize)
+(add-hook 'python-mode-hook
+          (lambda ()
+	    (add-to-list 'ac-sources 'ac-source-ropemacs)))
