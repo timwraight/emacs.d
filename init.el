@@ -1,4 +1,4 @@
-;; INCLUDING OTHER INIT FILES
+; INCLUDING OTHER INIT FILES
 
 (defconst user-init-dir
   (cond ((boundp 'user-emacs-directory)
@@ -12,7 +12,6 @@
   (interactive "f")
   "Load a file in current user's configuration directory"
   (load-file (expand-file-name file user-init-dir)))
-
 
 
 (load-user-file "packages.el")
@@ -40,7 +39,9 @@
 (require 'zencoding-mode)
 (add-hook 'html-mode-hook 'zencoding-mode)
 (add-hook 'html-mode-hook 'pony-tpl-mode)
-(add-hook 'html-mode-hook (lambda () (variable-pitch-mode 0)))
+(add-hook 'html-mode-hook (lambda ()
+                            (variable-pitch-mode 0)
+                            (setq truncate-partial-width-windows 80)))
 
 
 ;; HELP
@@ -69,9 +70,9 @@
 ;; JAVASCRIPT
 (autoload 'js-mode "js" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
-
-
-
+(require 'flymake-jshint)
+(add-hook 'js-mode-hook
+     (lambda () (flymake-mode t)))
 
 ;; BROWSING
 
@@ -116,8 +117,10 @@
  '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(debug-on-error nil)
  '(org-agenda-files (quote ("~/Dropbox/org/general.org")))
+ '(org-alphabetical-lists t)
  '(org-clock-into-drawer 2)
  '(org-global-properties (quote (("Effort_ALL" . "0 0:10 0:30 1:00 2:00 3:00 4:00 5:00 6:00 7:00"))))
+ '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "/Users/twraight/Envs/dashboard/bin/python" :settings "www/conf/local.py"))))
  '(yaml-indent-offset 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -142,6 +145,6 @@
  '(org-special-keyword ((t (:inherit font-lock-keyword-face :foreground "#003441"))))
  '(org-table ((t (:foreground "LightSkyBlue" :height 1 :family "Menlo"))))
  '(variable-pitch ((t (:height 1.3 :family "Gill Sans"))))
- '(w3m-session-select ((t (:foreground "white" :family "Gill Sans"))) t))
+ '(w3m-session-select ((t (:foreground "white" :family "Gill Sans")))))
 
 
