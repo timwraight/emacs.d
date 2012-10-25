@@ -17,7 +17,7 @@
 (global-set-key "\C-c\C-m" 'smex)
 
 (require 'rainbow-delimiters)
-(rainbow-delimiters-mode 1)
+(add-hook 'python-mode-hook 'rainbow-delimiters-mode)
 
 ;; TYPOGRAPHY
 

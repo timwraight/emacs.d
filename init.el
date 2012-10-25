@@ -34,14 +34,18 @@
 
 
 
-
 ;; HTML
 (require 'zencoding-mode)
 (add-hook 'html-mode-hook 'zencoding-mode)
 (add-hook 'html-mode-hook 'pony-tpl-mode)
 (add-hook 'html-mode-hook (lambda ()
                             (variable-pitch-mode 0)
-                            (setq truncate-partial-width-windows 80)))
+                            (setq truncate-lines t)))
+
+
+;; ReST mode
+(add-hook 'rst-mode-hook (lambda ()
+                           (variable-pitch-mode 0)))
 
 
 ;; HELP

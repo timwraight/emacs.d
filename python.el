@@ -1,10 +1,8 @@
-(require 'python-mode)
-
-;; PYTHON
+;; HOOKS
 
 (add-hook 'python-mode-hook 
-      (lambda () 
-        (unless (eq buffer-file-name nil) (flymake-mode 1)) ;dont invoke flymake on temporary buffers for the interpreter
+      (lambda ()
+        (flymake-mode)
         (local-set-key [f2] 'flymake-goto-prev-error)
         (local-set-key [f3] 'flymake-goto-next-error)
         (setq truncate-lines 1)   
@@ -47,3 +45,5 @@
 (add-hook 'python-mode-hook
           (lambda ()
 	    (add-to-list 'ac-sources 'ac-source-ropemacs)))
+
+
