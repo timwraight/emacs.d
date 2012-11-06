@@ -46,6 +46,10 @@
 ;; ReST mode
 (add-hook 'rst-mode-hook (lambda ()
                            (variable-pitch-mode 0)))
+(add-hook 'rst-adjust-hook 'rst-toc-update)
+
+;; NYAN-MODE
+(require 'nyan-mode)
 
 
 ;; HELP
@@ -77,6 +81,12 @@
 (require 'flymake-jshint)
 (add-hook 'js-mode-hook
      (lambda () (flymake-mode t)))
+
+
+;; CSS
+
+(require 'flymake-csslint)
+
 
 ;; BROWSING
 

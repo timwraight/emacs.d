@@ -18,6 +18,7 @@
 
 (require 'rainbow-delimiters)
 (add-hook 'python-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'js-mode-hook 'rainbow-delimiters-mode)
 
 ;; TYPOGRAPHY
 
