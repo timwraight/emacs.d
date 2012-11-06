@@ -52,7 +52,7 @@
 
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "~/Dropbox/org/general.org" "Tasks")
-         "* TODO %?\n  %i\n  %a %t")
+         "* TODO %?\n  %i\n %t")
         ("a" "Question" entry (file+headline "~/Dropbox/org/general.org" "Questions")
          "*  %?\n %i\n  %a %U")))
 

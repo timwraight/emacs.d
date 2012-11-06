@@ -34,6 +34,7 @@
 (global-set-key (kbd "C-z") 'undo)
 
 ; Expand region
+(require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
 ; tabs
@@ -79,6 +80,7 @@
 
 
 ; FLYMAKE
+(require 'flymake)
 
 (when (load "flymake" t)
   (defun flymake-pyflakes-init ()
@@ -88,8 +90,10 @@
             temp-file
             (file-name-directory buffer-file-name))))
       (list "pycheckers"  (list local-file))))
+  
    (add-to-list 'flymake-allowed-file-name-masks
              '("\\.py\\'" flymake-pyflakes-init))
+   
    (delete '("\\.html?\\'" flymake-xml-init)
            flymake-allowed-file-name-masks))
 
