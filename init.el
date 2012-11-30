@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-;; INCLUDING OTHER INIT FILES
-=======
 ; INCLUDING OTHER INIT FILES
 
->>>>>>> 960f4f4f20ba88eb5ef1938d48370dd8cf83440f
 (defconst user-init-dir
   (cond ((boundp 'user-emacs-directory)
          user-emacs-directory)
@@ -52,8 +48,9 @@
                            (variable-pitch-mode 0)))
 (add-hook 'rst-adjust-hook 'rst-toc-update)
 
-;; NYAN-MODE
-(require 'nyan-mode)
+
+;; SASS-MODE
+(require 'sass-mode)
 
 
 ;; HELP
@@ -99,12 +96,9 @@
 (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
 
 
-;; MAIL
+;; GNUS
 
-(setq gnus-select-method '(nnimap "wraight.net"
-				  (nnimap-address "www43.a2hosting.com")
-				  (nnimap-server-port 993)
-				  (nnimap-stream ssl)))
+(add-hook 'gnus-article-mode-hook (lambda () (variable-pitch-mode t)))
 
 
 ;; PHP
@@ -126,6 +120,9 @@
 
 (require 'clojure-mode)
 
+
+
+
 ;; *********************
 ;; EMACS-GENERATED STUFF
 ;; *********************
@@ -141,13 +138,8 @@
  '(org-agenda-files (quote ("~/Dropbox/org/general.org")))
  '(org-alphabetical-lists t)
  '(org-clock-into-drawer 2)
-<<<<<<< HEAD
  '(org-global-properties (quote (("Effort_ALL" . "0 0:05 0:10 0:20 0:30 1:00 2:00 3:00 4:00 5:00 6:00 7:00"))))
  '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "~/Envs/grace/bin/python" :settings "settings"))))
-=======
- '(org-global-properties (quote (("Effort_ALL" . "0 0:10 0:30 1:00 2:00 3:00 4:00 5:00 6:00 7:00"))))
- '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "/Users/twraight/Envs/dashboard/bin/python" :settings "www/conf/local.py"))))
->>>>>>> 960f4f4f20ba88eb5ef1938d48370dd8cf83440f
  '(yaml-indent-offset 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -171,7 +163,7 @@
  '(org-meta-line ((t (:inherit org-block-begin-line))))
  '(org-special-keyword ((t (:inherit font-lock-keyword-face :foreground "#003441"))))
  '(org-table ((t (:foreground "LightSkyBlue" :height 1 :family "Menlo"))))
- '(variable-pitch ((t (:height 1.3 :family "Gill Sans"))))
+ '(variable-pitch ((t (:height 1.4 :family "Lucida Grande"))))
  '(w3m-session-select ((t (:foreground "white" :family "Gill Sans")))))
 
 
