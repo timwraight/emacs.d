@@ -31,3 +31,24 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/vendor/emacs-color-theme-solarized/")
 (load-theme 'solarized-dark t)
 
+;; MODE-LINE
+
+;; use setq-default to set it for /all/ modes
+(setq-default mode-line-format
+  (list
+    ;; the buffer name; the file name as a tool tip
+    "%b "
+    ;; line and column
+    "(%02l, %02c)"
+    ;; relative position, size of file
+    "[%p/%I] "
+    ;; the current major mode for the buffer.
+    "[%m] "
+
+    ;; add the time, with the date and the emacs uptime in the tooltip
+    'org-mode-line-string
+    " --"
+    ;; i don't want to see minor-modes; but if you want, uncomment this:
+    ;; minor-mode-alist  ;; list of minor modes
+    "%-" ;; fill with '-'
+    ))

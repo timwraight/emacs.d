@@ -51,10 +51,18 @@
 (setq org-refile-target-verify-function 'bh/verify-refile-target)
 
 (setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/Dropbox/org/general.org" "Tasks")
-         "* TODO %?\n  %i\n %t")
-        ("a" "Question" entry (file+headline "~/Dropbox/org/general.org" "Questions")
-         "*  %?\n %i\n  %a %U")))
+      '(
+        ("t" "Todo" entry
+         (file+headline "~/Dropbox/org/general.org" "Tasks")
+         "* TODO %?\n %T")
+        ("a" "Question" entry
+         (file+headline "~/Dropbox/org/general.org" "Questions")
+         "*  %?\n %i\n  %a %U")
+        ("r" "Activity" entry
+         (file+datetree "~/Dropbox/org/journal.org" "Activities")
+         "*  %?\n  %T")        
+        )
+      )
 
 ;;;;; Columns
 (setq org-global-properties )

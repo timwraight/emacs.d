@@ -111,6 +111,8 @@
 (require 'auto-complete-config)
 (ac-ropemacs-initialize)
 (add-to-list 'ac-sources 'ac-source-ropemacs)
+(add-to-list 'ac-sources 'ac-source-yasnippet)
+(add-to-list 'ac-sources 'ac-source-words-in-same-mode-buffers)
 ;; (setq-default ac-sources (add-to-list
 ;;                           'ac-sources
 ;;                           'ac-source-dictionary

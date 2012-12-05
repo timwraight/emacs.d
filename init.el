@@ -49,9 +49,6 @@
 (add-hook 'rst-adjust-hook 'rst-toc-update)
 
 ;; NYAN-MODE
-(require 'nyan-mode)
-
-
 ;; HELP
 
 (global-set-key (kbd "C-h a") 'apropos)
@@ -76,16 +73,24 @@
 
 
 ;; JAVASCRIPT
-(autoload 'js-mode "js" nil t)
-(add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
+
+;; (autoload 'js-mode "js" nil t)
+;; (add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
 (require 'flymake-jshint)
-(add-hook 'js-mode-hook
-     (lambda () (flymake-mode t)))
+(add-hook 'js2-mode-hook
+     (lambda ()
+       (flymake-mode t)
+       (slime-js-minor-mode 1)))
 
 
 ;; CSS
 
 (require 'flymake-csslint)
+(add-hook 'css-mode-hook
+          (lambda ()
+            (define-key css-mode-map "\M-\C-x" 'slime-js-refresh-css)
+            (define-key css-mode-map "\C-c\C-r" 'slime-js-embed-css)))
+
 
 
 ;; BROWSING
@@ -118,6 +123,12 @@
 (setq yaml-indent-offset 2)
 
 
+;; SLIME
+(setq inferior-lisp-program "/usr/local/bin/clisp") ; your Lisp system
+(require 'slime)
+(slime-setup)
+
+
 ;; *********************
 ;; EMACS-GENERATED STUFF
 ;; *********************
@@ -130,11 +141,13 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(debug-on-error nil)
- '(org-agenda-files (quote ("~/Dropbox/org/general.org")))
+ '(org-agenda-files (quote ("~/Dropbox/org/journal.org" "~/Dropbox/org/general.org")))
  '(org-alphabetical-lists t)
  '(org-clock-into-drawer 2)
  '(org-global-properties (quote (("Effort_ALL" . "0 0:10 0:30 1:00 2:00 3:00 4:00 5:00 6:00 7:00"))))
- '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "/Users/twraight/Envs/dashboard/bin/python" :settings "www/conf/local.py"))))
+ '(python-shell-interpreter "ipython")
+ '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "/Users/twraight/Envs/dashboard/bin/python") (pony-settings make-pony-project :python "/Users/twraight/Envs/dashboard/bin/python" :settings "www/conf/local.py"))))
+ '(w3m-use-cookies t)
  '(yaml-indent-offset 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -145,7 +158,8 @@
  '(cursor ((t (:background "#fffece" :foreground "#042028"))))
  '(magit-branch ((t (:inherit magit-header :foreground "#9c8d37"))))
  '(magit-header ((t (:inherit header-line :foreground "#00718c"))))
- '(magit-item-highlight ((t (:inherit highlight :foreground "#9c8d37"))))
+ '(magit-item-highlight ((t (:inherit highlight))))
+ '(org-agenda-clocking ((t (:inherit secondary-selection :foreground "#f19045"))) t)
  '(org-block ((t (:height 0.85 :family "Menlo"))))
  '(org-block-background ((t (:height 0.85 :family "Menlo"))))
  '(org-block-begin-line ((t (:foreground "#777" :height 0.85 :family "Menlo"))) t)
