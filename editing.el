@@ -138,8 +138,13 @@
 
 (setq-default save-place t)
 
+;; UNIX CONF FILES MODE
+(add-to-list 'auto-mode-alist '("\\.*rc$" . conf-unix-mode))
 
 ;; GIT COMMIT MODE
-(require 'git-commit)
+(require 'git-commit-mode)
+(require 'gitconfig-mode)
+(require 'gitignore-mode)
 (add-hook 'git-commit-mode-hook 'turn-on-flyspell)
-(add-hook 'git-commit-mode-hook (lambda () (toggle-save-place 0)))
+(add-hook 'git-commit-mode-hook (lambda () (setq save-place 0)))
+(setq magit-save-some-buffers 'dontask)
