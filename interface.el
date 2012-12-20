@@ -31,6 +31,15 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/vendor/emacs-color-theme-solarized/")
 (load-theme 'solarized-dark t)
 
+
+;; SCROLLING
+
+(setq scroll-margin 1
+      scroll-conservatively 0
+      scroll-up-aggressively 0.01
+      scroll-down-aggressively 0.01)
+
+
 ;; MODE-LINE
 
 ;; use setq-default to set it for /all/ modes
@@ -40,8 +49,6 @@
     "%b "
     ;; line and column
     "(%02l, %02c)"
-    ;; relative position, size of file
-    "[%p/%I] "
     ;; the current major mode for the buffer.
     "[%m] "
 
