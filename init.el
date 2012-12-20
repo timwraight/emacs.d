@@ -78,10 +78,10 @@
 
 ;; JAVASCRIPT
 
-;; (autoload 'js-mode "js" nil t)
-;; (add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
+(autoload 'js-mode "js" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
 (require 'flymake-jshint)
-(add-hook 'js2-mode-hook
+(add-hook 'js-mode-hook
      (lambda ()
        (flymake-mode t)
        (slime-js-minor-mode 1)))
@@ -124,19 +124,19 @@
 (setq yaml-indent-offset 2)
 
 
-<<<<<<< HEAD
 ;; SLIME
 (setq inferior-lisp-program "/usr/local/bin/clisp") ; your Lisp system
 (require 'slime)
 (slime-setup)
-=======
+
 ;; CLOJURE
 
 (require 'clojure-mode)
 
-
->>>>>>> FETCH_HEAD
-
+;; HASKELL
+(load "~/.emacs.d/vendor/haskell-mode/haskell-site-file")
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 
 ;; *********************
 ;; EMACS-GENERATED STUFF
@@ -153,15 +153,8 @@
  '(org-agenda-files (quote ("~/Dropbox/org/journal.org" "~/Dropbox/org/general.org")))
  '(org-alphabetical-lists t)
  '(org-clock-into-drawer 2)
-<<<<<<< HEAD
- '(org-global-properties (quote (("Effort_ALL" . "0 0:10 0:30 1:00 2:00 3:00 4:00 5:00 6:00 7:00"))))
- '(python-shell-interpreter "ipython")
- '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "/Users/twraight/Envs/dashboard/bin/python") (pony-settings make-pony-project :python "/Users/twraight/Envs/dashboard/bin/python" :settings "www/conf/local.py"))))
- '(w3m-use-cookies t)
-=======
  '(org-global-properties (quote (("Effort_ALL" . "0 0:05 0:10 0:20 0:30 1:00 2:00 3:00 4:00 5:00 6:00 7:00"))))
  '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "~/Envs/grace/bin/python" :settings "settings"))))
->>>>>>> FETCH_HEAD
  '(yaml-indent-offset 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
