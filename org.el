@@ -6,8 +6,21 @@
 (setq org-mobile-directory "~/Dropbox/MobileOrg")
 (setq org-mobile-inbox-for-pull "~/Dropbox/org/from-mobile.org")
 (setq org-default-notes-file "~/Dropbox/org/general.org")
+
+; Clocking
 (global-set-key (kbd "S-<f13>") 'org-clock-out)
 (global-set-key (kbd "<f13>") 'org-clock-in-last)
+
+; Persist clock history
+(org-clock-persistence-insinuate)
+(setq org-clock-out-when-done t)
+;; Save the running clock and all clock history when exiting Emacs, load it on startup
+(setq org-clock-persist t)
+;; Separate drawers for clocking and logs
+(setq org-drawers (quote ("PROPERTIES" "LOGBOOK")))
+;; Save clock data and state changes and notes in the LOGBOOK drawer
+(setq org-clock-into-drawer t)
+
 (global-set-key (kbd "<f12>") 'org-agenda-list)
 (global-set-key (kbd "<f11>") 'org-capture)
 (setq org-startup-indented 1)
