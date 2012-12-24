@@ -32,13 +32,6 @@
 (load-theme 'solarized-dark t)
 
 
-;; SCROLLING
-
-(setq scroll-margin 1
-      scroll-conservatively 0
-      scroll-up-aggressively 0.01
-      scroll-down-aggressively 0.01)
-
 
 ;; MODE-LINE
 
