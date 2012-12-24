@@ -7,6 +7,9 @@
 (setq org-mobile-inbox-for-pull "~/Dropbox/org/from-mobile.org")
 (setq org-default-notes-file "~/Dropbox/org/general.org")
 
+; Keywords
+(setq org-todo-keywords '((sequence "TODO" "NEXT" "|" "DONE")))
+
 ; Clocking
 (global-set-key (kbd "S-<f13>") 'org-clock-out)
 (global-set-key (kbd "<f13>") 'org-clock-in-last)
