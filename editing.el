@@ -135,6 +135,10 @@
 (add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
 (ac-config-default)
 
+;; PABBREV
+(require 'pabbrev)
+(global-pabbrev-mode)
+
 
 ;; SAVE PLACE
 

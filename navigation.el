@@ -6,6 +6,10 @@
 
 (global-set-key (kbd "C-x O") (lambda () (interactive) (other-window -1))) ;; back one
 (global-set-key (kbd "C-x C-o") (lambda () (interactive) (other-window 2))) ;; forward two
+(global-set-key (kbd "C-S-h") 'windmove-left)
+(global-set-key (kbd "C-S-l") 'windmove-right)
+(global-set-key (kbd "C-S-k") 'windmove-up)
+(global-set-key (kbd "C-S-j") 'windmove-down)
 (setq windmove-wrap-around t)
 
 ;; Make windmove work in org-mode:
@@ -81,4 +85,12 @@
         ido-create-new-buffer 'always
         ido-use-filename-at-point nil
         ido-max-prospects 10)
+
+
+;; SCROLLING
+
+(setq scroll-margin 1
+      scroll-conservatively 0
+      scroll-up-aggressively 0.01
+      scroll-down-aggressively 0.01)
 
