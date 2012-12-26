@@ -59,3 +59,12 @@
     ;; minor-mode-alist  ;; list of minor modes
     "%-" ;; fill with '-'
     ))
+
+
+(global-set-key (kbd "C-S-M-k") '(lambda ()
+				   (interactive)
+				   (enlarge-window 1)))
+
+(global-set-key (kbd "C-S-M-j") '(lambda ()
+				   (interactive)
+				   (enlarge-window -1)))
