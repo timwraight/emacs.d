@@ -61,3 +61,11 @@
 (global-set-key (kbd "C-S-M-j") '(lambda ()
 				   (interactive)
 				   (enlarge-window -1)))
+
+(global-set-key (kbd "C-S-M-l") '(lambda ()
+				   (interactive)
+				   (enlarge-window 1 1)))
+
+(global-set-key (kbd "C-S-M-h") '(lambda ()
+				   (interactive)
+				   (enlarge-window -1 1)))

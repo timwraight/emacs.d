@@ -62,6 +62,7 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 (require 'magit)
 
+
 ;; SEARCHING 
 
 (define-key global-map "\C-x\C-r" 'rgrep)
