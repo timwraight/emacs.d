@@ -160,9 +160,9 @@
 (require 'vimp )
 (vimp-mode 1)
 
-(define-key evil-insert-state-map "k" #'cofi/maybe-exit)
+(define-key vimp-insert-state-map "k" #'tim/maybe-exit)
 
-(evil-define-command cofi/maybe-exit ()
+(vimp-define-command tim/maybe-exit ()
   :repeat change
   (interactive)
   (let ((modified (buffer-modified-p)))
