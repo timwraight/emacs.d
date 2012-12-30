@@ -109,10 +109,13 @@
 ; Load the default configuration
 (require 'popup)
 (require 'auto-complete-config)
+(ac-config-default)
 (ac-ropemacs-initialize)
 (add-to-list 'ac-sources 'ac-source-ropemacs)
 (add-to-list 'ac-sources 'ac-source-yasnippet)
 (add-to-list 'ac-sources 'ac-source-words-in-same-mode-buffers)
+(add-to-list 'ac-sources 'ac-source-abbrev)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
 ;; (setq-default ac-sources (add-to-list
 ;;                           'ac-sources
 ;;                           'ac-source-dictionary
@@ -125,19 +128,10 @@
 ;;                           'ac-source-abbrev
 ;;                           'ac-source-words-in-same-mode-buffers
 ;;                           'ac-source-yasnippet))
-; (global-auto-complete-mode t)
-; Start auto-completion after 2 characters of a word
-; (setq ac-auto-start 2)
-; case sensitivity is important when finding matches
-; (setq ac-ignore-case nil)
-;(add-to-list 'ac-sources 'ac-source-yasnippet)
 
-(add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
-(ac-config-default)
 
 ;; PABBREV
-(require 'pabbrev)
-(global-pabbrev-mode)
+;; (require 'pabbrev)
 
 
 ;; SAVE PLACE

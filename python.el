@@ -44,7 +44,7 @@
 (ac-ropemacs-initialize)
 (add-hook 'python-mode-hook
           (lambda ()
-            (eldoc-mode 1)
+            ; (eldoc-mode 1)
 	    (add-to-list 'ac-sources 'ac-source-ropemacs)))
 
 

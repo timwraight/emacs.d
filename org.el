@@ -77,6 +77,9 @@
         ("r" "Activity" entry
          (file+datetree "~/Dropbox/org/journal.org" "Activities")
          "*  %?\n  %T")        
+        ("j" "Thoughts" entry
+         (file+datetree "~/Dropbox/org/thoughts.org" "Thoughts")
+         "*  %?\n  %T")        
         )
       )
 
