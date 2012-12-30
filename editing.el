@@ -177,3 +177,8 @@
     (push 'escape unread-command-events))
        (t (setq unread-command-events (append unread-command-events
                           (list evt))))))))
+
+(require 'surround)
+(global-surround-mode 1)
+
+(global-rainbow-delimiters-mode 1)
