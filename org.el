@@ -32,7 +32,7 @@
                            (variable-pitch-mode t)
                            ()))
 (setq org-agenda-window-setup 'current-window)
-(setq org-agenda-restore-windows-after-quit 1)
+(setq org-agenda-restore-windows-after-quit nil)
 (setq org-src-fontify-natively t)
 (setq org-src-tab-acts-natively t)
 
