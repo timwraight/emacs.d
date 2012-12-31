@@ -176,3 +176,12 @@
 (global-surround-mode 1)
 
 (global-rainbow-delimiters-mode 1)
+
+;; COMMENTING
+
+(defun toggle-comment-on-line ()
+  "comment or uncomment current line"
+  (interactive)
+  (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
+
+(global-set-key (kbd "C-c c") 'toggle-comment-on-line)
