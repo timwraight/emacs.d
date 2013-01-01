@@ -20,6 +20,7 @@
 (load-user-file "editing.el")
 (load-user-file "python.el")
 (load-user-file "org.el")
+(load-user-file "gnus.el")
 
 
 
@@ -99,11 +100,6 @@
 (require 'w3m-load)
 (setq browse-url-browser-function 'w3m-browse-url) 
 (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
-
-
-;; GNUS
-
-(add-hook 'gnus-article-mode-hook (lambda () (variable-pitch-mode t)))
 
 
 ;; PHP
