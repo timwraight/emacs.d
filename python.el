@@ -47,4 +47,9 @@
             ; (eldoc-mode 1)
 	    (add-to-list 'ac-sources 'ac-source-ropemacs)))
 
+(remove-hook 'python-mode-hook 'wisent-python-default-setup)
 
+;; NOSETESTS
+;; Don't need this right now, as I should just be able to do it from Pony-mode
+;; (require 'nose)
+;; (defvar nose-use-verbose nil) 
