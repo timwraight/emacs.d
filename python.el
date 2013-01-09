@@ -44,7 +44,8 @@
 (ac-ropemacs-initialize)
 (add-hook 'python-mode-hook
           (lambda ()
-            ; (eldoc-mode 1)
+            (pony-key (kbd "C-c C-p C-s") 'pony-south-schemamigration)
+            (pony-key (kbd "C-c C-p C-a") 'pony-south-migrate)
 	    (add-to-list 'ac-sources 'ac-source-ropemacs)))
 
 (remove-hook 'python-mode-hook 'wisent-python-default-setup)

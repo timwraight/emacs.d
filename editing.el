@@ -200,3 +200,4 @@
   (comment-or-uncomment-region (line-beginning-position) (line-end-position)))
 
 (global-set-key (kbd "C-c c") 'toggle-comment-on-line)
+(eldoc-mode 1)
