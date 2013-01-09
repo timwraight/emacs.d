@@ -172,6 +172,21 @@
        (t (setq unread-command-events (append unread-command-events
                           (list evt))))))))
 
+;; Make all modes start in 'motion' state, so that vimp bindings are active
+(setq vimp-motion-state-modes (append vimp-emacs-state-modes vimp-motion-state-modes))
+(setq vimp-emacs-state-modes nil)
+
+; Make RET and SPACE do default Emacsy things instead of vim-movement
+
+(defun my-move-key (keymap-from keymap-to key)
+    "Moves key binding from one keymap to another, deleting from the old location. "
+    (define-key keymap-to key (lookup-key keymap-from key))
+    (define-key keymap-from key nil)
+    )
+  (my-move-key vimp-motion-state-map vimp-normal-state-map (kbd "RET"))
+  (my-move-key vimp-motion-state-map vimp-normal-state-map " ")
+
+
 (require 'surround)
 (global-surround-mode 1)
 
