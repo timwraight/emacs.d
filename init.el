@@ -125,6 +125,9 @@
 ;; CLOJURE
 
 (require 'clojure-mode)
+(require 'nrepl)
+(add-hook 'nrepl-interaction-mode-hook
+  'nrepl-turn-on-eldoc-mode)
 
 ;; HASKELL
 (load "~/.emacs.d/vendor/haskell-mode/haskell-site-file")
