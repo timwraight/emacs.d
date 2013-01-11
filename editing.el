@@ -22,7 +22,6 @@
 (set-default 'imenu-auto-rescan t)
 ; sentences end in a single space
 (setq sentence-end-double-space nil)
-(global-set-key (kbd "RET") 'newline-and-indent)
 
 (setq truncate-partial-width-windows 80)
 (setq fill-column 80)
