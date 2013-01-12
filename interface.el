@@ -24,7 +24,8 @@
 
 (setq line-spacing 4)
 (global-visual-line-mode t)
-
+(require 'pretty-mode)
+(global-pretty-mode 1)
 
 ;; SOLARIZED 
 

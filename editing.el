@@ -1,4 +1,5 @@
 ;; EDITING
+
 ;; I can't remember ever having meant to use C-z to suspend the frame
 (global-set-key (kbd "C-z") 'undo)
 
@@ -22,7 +23,6 @@
 (set-default 'imenu-auto-rescan t)
 ; sentences end in a single space
 (setq sentence-end-double-space nil)
-(global-set-key (kbd "RET") 'newline-and-indent)
 
 (setq truncate-partial-width-windows 80)
 (setq fill-column 80)
@@ -54,9 +54,6 @@
 (require 'yasnippet)
 (yas/load-directory "~/.emacs.d/vendor/yasnippet/snippets")
 (yas-global-mode t)
-;; (global-set-key (kbd "M-<tab>") 'hippie-expand)
-;; (delete 'try-expand-line hippie-expand-try-functions-list)
-;; (delete 'try-expand-list hippie-expand-try-functions-list)
 
 ;;; turn off auto-fill in tex and markdown
 (add-hook 'markdown-mode-hook 'turn-off-auto-fill)
@@ -163,6 +160,8 @@
 ;; VIMP
 (require 'vimp )
 (vimp-mode 1)
+(global-set-key (kbd "C-}") 'vimp-mode)
+(global-set-key (kbd "C-|") 'vimp-motion-state)
 
 (define-key vimp-insert-state-map "k" #'tim/maybe-exit)
 
@@ -181,10 +180,6 @@
     (push 'escape unread-command-events))
        (t (setq unread-command-events (append unread-command-events
                           (list evt))))))))
-
-;; Make all modes start in 'motion' state, so that vimp bindings are active
-(setq vimp-motion-state-modes (append vimp-emacs-state-modes vimp-motion-state-modes))
-(setq vimp-emacs-state-modes nil)
 
 ; Make RET and SPACE do default Emacsy things instead of vim-movement
 
