@@ -108,30 +108,40 @@
 
 ; Load the default configuration
 (require 'popup)
+(require 'fuzzy)
+(require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
+(ac-flyspell-workaround)
+(setq ac-comphist-file "~/.emacs.d/ac-comphist.dat")
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/vendor/auto-complete/dict")
+
+(global-auto-complete-mode t)
+(setq ac-auto-show-menu t)
+(setq ac-dwim t)
+(setq ac-use-menu-map t)
+(setq ac-quick-help-delay 1)
+(setq ac-quick-help-height 60)
+(setq ac-disable-inline t)
+(setq ac-show-menu-immediately-on-auto-complete t)
+(setq ac-auto-start 2)
+(setq ac-candidate-menu-min 0)
 (ac-ropemacs-initialize)
-(add-to-list 'ac-sources 'ac-source-ropemacs)
-(add-to-list 'ac-sources 'ac-source-yasnippet)
-(add-to-list 'ac-sources 'ac-source-words-in-same-mode-buffers)
-(add-to-list 'ac-sources 'ac-source-abbrev)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d//ac-dict")
-;; (setq-default ac-sources (add-to-list
-;;                           'ac-sources
-;;                           'ac-source-dictionary
-;;                           'ac-source-filename
-;;                           'ac-source-functions
-;;                           'ac-source-yasnippet
-;;                           'ac-source-variables
-;;                           'ac-source-symbols
-;;                           'ac-source-features
-;;                           'ac-source-abbrev
-;;                           'ac-source-words-in-same-mode-buffers
-;;                           'ac-source-yasnippet))
 
+(set-default 'ac-sources
+             '(ac-source-dictionary
+               ac-source-words-in-buffer
+               ac-source-words-in-same-mode-buffers
+               ac-source-semantic
+               ac-source-ropemacs
+               ac-source-abbrev
+               ac-source-yasnippet))
 
-;; PABBREV
-;; (require 'pabbrev)
+(dolist (mode '(magit-log-edit-mode log-edit-mode org-mode text-mode haml-mode
+                sass-mode yaml-mode csv-mode espresso-mode haskell-mode
+                html-mode nxml-mode sh-mode smarty-mode clojure-mode
+                lisp-mode textile-mode markdown-mode tuareg-mode))
+  (add-to-list 'ac-modes mode))
 
 
 ;; SAVE PLACE
