@@ -123,14 +123,12 @@
 (setq ac-show-menu-immediately-on-auto-complete t)
 (setq ac-auto-start 2)
 (setq ac-candidate-menu-min 0)
-(ac-ropemacs-initialize)
 
 (set-default 'ac-sources
              '(ac-source-dictionary
                ac-source-words-in-buffer
                ac-source-words-in-same-mode-buffers
                ac-source-semantic
-               ac-source-ropemacs
                ac-source-abbrev
                ac-source-yasnippet))
 
