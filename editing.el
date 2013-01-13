@@ -76,6 +76,7 @@
 ;; (add-hook 'text-mode-hook 'turn-on-flyspell)
 
 
+
 ; FLYMAKE
 (require 'flymake)
 
@@ -138,6 +139,8 @@
                 lisp-mode textile-mode markdown-mode tuareg-mode))
   (add-to-list 'ac-modes mode))
 
+(add-hook 'text-mode-hook (lambda () (setq auto-complete-mode nil)))
+;; (add-hook 'org-mode-hook (lambda () (setq auto-complete-mode nil)))
 
 ;; SAVE PLACE
 
