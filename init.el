@@ -122,6 +122,9 @@
 (require 'slime)
 (slime-setup)
 
+;; SCHEME
+(load-file "~/.emacs.d/vendor/geiser/elisp/geiser.el")
+
 ;; CLOJURE
 
 (require 'clojure-mode)
@@ -160,6 +163,11 @@
 (setq auto-mode-alist
    (cons '("\\.text" . markdown-mode) auto-mode-alist))
 
+
+;; FORTH
+(autoload 'forth-mode "gforth.el")
+(autoload 'forth-block-mode "gforth.el")
+(add-to-list 'auto-mode-alist '("\\.fs$" . forth-mode))
 
 ;; *********************
 ;; EMACS-GENERATED STUFF
@@ -205,5 +213,17 @@
  '(org-table ((t (:foreground "LightSkyBlue" :height 1 :family "Menlo"))))
  '(variable-pitch ((t (:height 1.3 :family "Lucida Grande"))))
  '(w3m-session-select ((t (:foreground "white" :family "Gill Sans")))))
+
+
+
+
+
+
+
+
+
+
+
+
 
 
