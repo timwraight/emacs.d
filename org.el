@@ -69,7 +69,7 @@
       '(
         ("t" "Todo" entry
          (file+headline "~/Dropbox/org/general.org" "Tasks")
-         "* TODO %?\n %T")
+         "* ACTION %?\n %T")
         ("a" "Question" entry
          (file+headline "~/Dropbox/org/general.org" "Questions")
          "*  %?\n %i\n  %a %U")
