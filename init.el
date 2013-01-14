@@ -83,7 +83,8 @@
 (require 'flymake-jshint)
 (add-hook 'js-mode-hook
           (lambda ()
-            (flymake-mode t)))
+            (flymake-mode t)
+            (setq truncate-lines 0)))
 
 ;; CSS
 
