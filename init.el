@@ -98,7 +98,7 @@
 ;; BROWSING
 
 (require 'w3m-load)
-(setq browse-url-browser-function 'w3m-browse-url) 
+(setq browse-url-browser-function 'browse-url-default-macosx-browser)
 (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
 
 
