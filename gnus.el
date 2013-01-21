@@ -31,4 +31,4 @@
 (setq user-full-name "Tim Wraight")
 (setq mm-discouraged-alternatives '("text/html" "text/richtext"))
 (setq gnus-always-read-dribble-file t)
-
+(setq nnmail-expiry-wait 'immediate)
