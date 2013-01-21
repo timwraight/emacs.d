@@ -1,4 +1,5 @@
 ; INCLUDING OTHER INIT FILES
+(server-start)
 
 (defconst user-init-dir
   (cond ((boundp 'user-emacs-directory)
@@ -83,7 +84,8 @@
 (require 'flymake-jshint)
 (add-hook 'js-mode-hook
           (lambda ()
-            (flymake-mode t)
+            (interactive)
+            (flymake-mode)
             (setq truncate-lines 0)))
 
 ;; CSS
