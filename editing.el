@@ -133,10 +133,10 @@
                ac-source-abbrev
                ac-source-yasnippet))
 
-(dolist (mode '(magit-log-edit-mode log-edit-mode org-mode text-mode haml-mode
+(dolist (mode '(magit-log-edit-mode log-edit-mode haml-mode
                 sass-mode yaml-mode csv-mode espresso-mode haskell-mode
                 html-mode nxml-mode sh-mode smarty-mode clojure-mode
-                lisp-mode textile-mode markdown-mode tuareg-mode))
+                lisp-mode textile-mode tuareg-mode))
   (add-to-list 'ac-modes mode))
 
 (add-hook 'text-mode-hook (lambda () (setq auto-complete-mode nil)))
