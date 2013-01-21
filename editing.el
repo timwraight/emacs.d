@@ -61,19 +61,19 @@
 
 
 ;; SPELLING
-;; (setq ispell-program-name "aspell"
-;;       ispell-dictionary "english"
-;;       ispell-dictionary-alist
-;;       (let ((default '("[A-Za-z]" "[^A-Za-z]" "[']" nil
-;;                        ("-B" "-d" "english" "--dict-dir"
-;;                         "/Library/Application Support/cocoAspell/aspell6-en-6.0-0")
-;;                        nil iso-8859-1)))
-;;         `((nil ,@default)
-;;           ("english" ,@default))))
-;; (setq ispell-extra-args '("--sug-mode=ultra"))
-;; (setq ispell-personal-dictionary "~/.aspell.en.pws")
-;; (setq flyspell-issue-message-flag nil)
-;; (add-hook 'text-mode-hook 'turn-on-flyspell)
+(setq ispell-program-name "aspell"
+      ispell-dictionary "english"
+      ispell-dictionary-alist
+      (let ((default '("[A-Za-z]" "[^A-Za-z]" "[']" nil
+                       ("-B" "-d" "english" "--dict-dir"
+                        "/Library/Application Support/cocoAspell/aspell6-en-6.0-0")
+                       nil iso-8859-1)))
+        `((nil ,@default)
+          ("english" ,@default))))
+(setq ispell-extra-args '("--sug-mode=ultra"))
+(setq ispell-personal-dictionary "~/.aspell.en.pws")
+(setq flyspell-issue-message-flag nil)
+(add-hook 'text-mode-hook 'turn-on-flyspell)
 
 
 
@@ -133,10 +133,10 @@
                ac-source-abbrev
                ac-source-yasnippet))
 
-(dolist (mode '(magit-log-edit-mode log-edit-mode org-mode text-mode haml-mode
+(dolist (mode '(magit-log-edit-mode log-edit-mode haml-mode
                 sass-mode yaml-mode csv-mode espresso-mode haskell-mode
                 html-mode nxml-mode sh-mode smarty-mode clojure-mode
-                lisp-mode textile-mode markdown-mode tuareg-mode))
+                lisp-mode textile-mode tuareg-mode))
   (add-to-list 'ac-modes mode))
 
 (add-hook 'text-mode-hook (lambda () (setq auto-complete-mode nil)))

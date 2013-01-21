@@ -1,4 +1,5 @@
 ; INCLUDING OTHER INIT FILES
+(server-start)
 
 (defconst user-init-dir
   (cond ((boundp 'user-emacs-directory)
@@ -62,6 +63,7 @@
 
 (global-set-key (kbd "C-x g") 'magit-status)
 (require 'magit)
+(add-hook 'magit-log-edit-mode-hook 'vimp-insert-state)
 
 
 ;; SEARCHING 
@@ -83,7 +85,9 @@
 (require 'flymake-jshint)
 (add-hook 'js-mode-hook
           (lambda ()
-            (flymake-mode t)))
+            (interactive)
+            (flymake-mode)
+            (setq truncate-lines 0)))
 
 ;; CSS
 
