@@ -47,6 +47,7 @@
             (pony-key (kbd "C-c C-p C-s") 'pony-south-schemamigration)
             (pony-key (kbd "C-c C-p C-a") 'pony-south-migrate)
             (ac-ropemacs-initialize)
+            (flyspell-prog-mode)
 	    (add-to-list 'ac-sources 'ac-source-ropemacs)))
 
 (remove-hook 'python-mode-hook 'wisent-python-default-setup)
