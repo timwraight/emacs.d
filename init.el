@@ -42,6 +42,7 @@
 (add-hook 'html-mode-hook 'pony-tpl-mode)
 (add-hook 'html-mode-hook (lambda ()
                             (variable-pitch-mode 0)
+                            (turn-off-flyspell)
                             (setq truncate-lines t)))
 
 
