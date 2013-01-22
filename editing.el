@@ -75,7 +75,8 @@
 (setq flyspell-issue-message-flag nil)
 (add-hook 'text-mode-hook 'turn-on-flyspell)
 
-
+(require 'flyspell-lazy)
+(flyspell-lazy-mode 1)
 
 ; FLYMAKE
 (require 'flymake)
