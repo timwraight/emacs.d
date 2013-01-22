@@ -184,6 +184,21 @@
        (t (setq unread-command-events (append unread-command-events
                           (list evt))))))))
 
+; SPC moves down ten lines
+(define-key vimp-normal-state-map (kbd "SPC") (lambda ()
+                     (interactive)
+                     (next-line 10)
+                     (vimp-scroll-line-down 10)
+                     ))
+
+; META-SPC moves up ten lines
+(define-key vimp-normal-state-map (kbd "M-SPC") (lambda ()
+                     (interactive)
+                     (previous-line 10)
+                     (vimp-scroll-line-up 10)
+                     ))
+
+
 ; Make RET and SPACE do default Emacsy things instead of vim-movement
 
 (defun my-move-key (keymap-from keymap-to key)
