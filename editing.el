@@ -166,6 +166,10 @@
 (global-set-key (kbd "C-}") 'vimp-mode)
 (global-set-key (kbd "C-|") 'vimp-motion-state)
 
+; Use visual lines with j and k
+(define-key vimp-motion-state-map "j" 'vimp-next-visual-line)
+(define-key vimp-motion-state-map "k" 'vimp-previous-visual-line)
+
 (define-key vimp-insert-state-map "k" #'tim/maybe-exit)
 
 (vimp-define-command tim/maybe-exit ()
