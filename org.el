@@ -71,7 +71,7 @@
 (setq org-capture-templates
       '(
         ("t" "Action" entry
-         (file+headline "~/Dropbox/org/projects.org" "Tasks")
+         (file+headline "~/Dropbox/org/projects.org" "Misc")
          "* ACTION %?\n %T")
         ("a" "Question" entry
          (file+headline "~/Dropbox/org/docs.org" "Questions")
