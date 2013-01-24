@@ -9,6 +9,8 @@
 (auto-compression-mode t)
 (global-font-lock-mode t)
 (show-paren-mode 1)
+(setq-default line-spacing 0.2)
+
 ;; default to unified diffs
 (setq diff-switches "-u")
 

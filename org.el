@@ -1,4 +1,3 @@
-
 ;; ORG MODE
 (add-to-list 'load-path "~/.emacs.d/vendor/org-mode/lisp")
 (setq org-directory "~/Dropbox/org")
@@ -25,6 +24,7 @@
 
 (global-set-key (kbd "<f12>") 'org-agenda-list)
 (global-set-key (kbd "<f11>") 'org-capture)
+(global-set-key (kbd "C-c a") 'org-agenda)
 (setq org-startup-indented 1)
 (setq org-use-speed-commands t)
 (add-hook 'org-mode-hook (lambda ()
@@ -41,6 +41,9 @@
                                  (org-agenda-files :maxlevel . 9))))
 ; Use full outline paths for refile targets - we file directly with IDO
 (setq org-refile-use-outline-path t)
+
+; Hitting return on a link will open it
+(setq org-return-follows-link t)
 
 ; hide the slashes around emphasised words
 (setq org-hide-emphasis-markers t)
@@ -67,17 +70,17 @@
 
 (setq org-capture-templates
       '(
-        ("t" "Todo" entry
-         (file+headline "~/Dropbox/org/general.org" "Tasks")
+        ("t" "Action" entry
+         (file+headline "~/Dropbox/org/projects.org" "Tasks")
          "* ACTION %?\n %T")
         ("a" "Question" entry
-         (file+headline "~/Dropbox/org/general.org" "Questions")
+         (file+headline "~/Dropbox/org/docs.org" "Questions")
          "*  %?\n %i\n  %a %U")
         ("r" "Activity" entry
          (file+datetree "~/Dropbox/org/journal.org" "Activities")
          "*  %?\n  %T")        
-        ("j" "Thoughts" entry
-         (file+datetree "~/Dropbox/org/thoughts.org" "Thoughts")
+        ("j" "Thought" entry
+         (file+headline "~/Dropbox/org/docs.org" "Thoughts")
          "*  %?\n  %T")        
         )
       )
