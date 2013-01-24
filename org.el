@@ -82,6 +82,10 @@
         )
       )
 
+; Enter insert on capture
+(add-hook 'org-capture-mode-hook 'vimp-insert-state)
+
+
 ;;;;; Columns
 (setq org-global-properties )
 (setq org-columns-default-format " %25ITEM %TODO %17Effort(Estimated Effort){:} %CLOCKSUM")
@@ -129,3 +133,14 @@
 (setq org-latex-to-pdf-process 
   '("xelatex -interaction nonstopmode %f"
      "xelatex -interaction nonstopmode %f")) ;; for multiple passes
+
+
+
+
+
+
+
+
+
+
+
