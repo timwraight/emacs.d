@@ -24,10 +24,16 @@
 
 ;; TYPOGRAPHY
 
+; Line Spacing 
 (setq line-spacing 4)
+(add-hook 'prog-mode-hook (lambda ()
+                            (interactive)
+                            (setq line-spacing 1)))
+
 (global-visual-line-mode t)
 (require 'pretty-mode)
 (global-pretty-mode 0)
+
 
 ;; SOLARIZED 
 
