@@ -78,3 +78,6 @@
 (global-set-key (kbd "C-S-M-h") '(lambda ()
 				   (interactive)
 				   (enlarge-window -1 1)))
+
+; Don't truncate lines when we're in dired mode
+(add-hook 'dired-mode-hook 'toggle-truncate-lines)
