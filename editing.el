@@ -134,9 +134,8 @@
                ac-source-abbrev
                ac-source-yasnippet))
 
-(dolist (mode '(magit-log-edit-mode log-edit-mode haml-mode
-                sass-mode yaml-mode csv-mode espresso-mode haskell-mode
-                html-mode nxml-mode sh-mode smarty-mode clojure-mode
+(dolist (mode '(log-edit-mode haml-mode sass-mode yaml-mode csv-mode espresso-mode
+                haskell-mode html-mode nxml-mode sh-mode smarty-mode clojure-mode
                 lisp-mode textile-mode tuareg-mode))
   (add-to-list 'ac-modes mode))
 
