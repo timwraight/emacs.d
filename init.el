@@ -179,6 +179,14 @@
 (autoload 'forth-block-mode "gforth.el")
 (add-to-list 'auto-mode-alist '("\\.fs$" . forth-mode))
 
+
+; ERC
+
+(add-hook 'erc-join-hook (lambda ()
+                           (interactive)
+                           (variable-pitch-mode)))
+
+
 ;; *********************
 ;; EMACS-GENERATED STUFF
 ;; *********************
