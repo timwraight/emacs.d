@@ -68,22 +68,7 @@
 
 (setq org-refile-target-verify-function 'bh/verify-refile-target)
 
-(setq org-capture-templates
-      '(
-        ("t" "Action" entry
-         (file+headline "~/Dropbox/org/projects.org" "Misc")
-         "* ACTION %?\n %T")
-        ("a" "Question" entry
-         (file+headline "~/Dropbox/org/docs.org" "Questions")
-         "*  %?\n %i\n  %a %U")
-        ("r" "Activity" entry
-         (file+datetree "~/Dropbox/org/journal.org" "Activities")
-         "*  %?\n  %T")        
-        ("j" "Thought" entry
-         (file+headline "~/Dropbox/org/docs.org" "Thoughts")
-         "*  %?\n  %T")        
-        )
-      )
+(load-user-file "org-files.el")
 
 ; Enter insert on capture
 (add-hook 'org-capture-mode-hook 'vimp-insert-state)

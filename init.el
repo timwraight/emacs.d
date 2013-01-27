@@ -199,7 +199,6 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(debug-on-error nil)
- '(org-agenda-files (quote ("~/Dropbox/org/snippets.org" "~/Dropbox/org/projects.org" "~/Dropbox/org/docs.org" "~/Dropbox/org/journal.org")))
  '(org-alphabetical-lists t)
  '(org-clock-into-drawer 2)
  '(org-global-properties (quote (("Effort_ALL" . "0 0:05 0:10 0:20 0:30 1:00 2:00 3:00 4:00 5:00 6:00 7:00"))))
