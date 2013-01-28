@@ -162,8 +162,8 @@
 ;; VIMP
 (require 'vimp )
 (vimp-mode 1)
-(global-set-key (kbd "C-}") 'vimp-mode)
-(global-set-key (kbd "C-|") 'vimp-motion-state)
+(global-set-key (kbd "<f1>") 'vimp-local-mode)
+(global-set-key (kbd "C-|") (lambda () (vimp-motion-state t))
 
 ; Use visual lines with j and k
 (define-key vimp-motion-state-map "j" 'vimp-next-visual-line)
