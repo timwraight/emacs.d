@@ -114,7 +114,6 @@
 
 ;; TEX
 (load "auctex.el" nil t t)
-(add-hook 'text-mode-hook (lambda () (variable-pitch-mode t)))
 
 
 ;; YAML

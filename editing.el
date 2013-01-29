@@ -78,6 +78,15 @@
 (require 'flyspell-lazy)
 (flyspell-lazy-mode 1)
 
+(add-hook 'text-mode-hook
+          (lambda ()
+            (variable-pitch-mode t)
+            (local-set-key (kbd "<f2>")
+                           (lambda ()
+                             (interactive)
+                             (flyspell-auto-correct-previous-word (point))))))
+
+
 ; FLYMAKE
 (require 'flymake)
 
