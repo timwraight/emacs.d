@@ -186,6 +186,11 @@
                            (variable-pitch-mode)))
 
 
+; TRAMP
+
+(setq tramp-default-method "ssh")
+(load-user-file "tramp.el")
+
 ;; *********************
 ;; EMACS-GENERATED STUFF
 ;; *********************
