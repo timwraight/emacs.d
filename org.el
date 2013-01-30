@@ -24,6 +24,7 @@
 
 (global-set-key (kbd "<f12>") 'org-agenda-list)
 (global-set-key (kbd "<f11>") 'org-capture)
+(global-set-key (kbd "<f10>") 'org-agenda)
 (global-set-key (kbd "C-c a") 'org-agenda)
 (setq org-startup-indented 1)
 (setq org-use-speed-commands t)
