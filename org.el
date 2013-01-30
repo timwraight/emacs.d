@@ -74,7 +74,7 @@
 (add-hook 'org-capture-mode-hook 'vimp-insert-state)
 
 
-;;;;; Columns
+; Columns
 (setq org-global-properties )
 (setq org-columns-default-format " %25ITEM %TODO %17Effort(Estimated Effort){:} %CLOCKSUM")
 
@@ -91,6 +91,11 @@
    ))
 
 (setq org-ditaa-jar-path "~/bin/ditaa.jar")
+
+; DEADLINES
+(setq org-deadline-warning-days 2)
+
+
 
 ;; ORG-EXPORT
 
