@@ -77,3 +77,12 @@
 
 ; Don't truncate lines when we're in dired mode
 (add-hook 'dired-mode-hook 'toggle-truncate-lines)
+
+;; BUFFER-MOVE
+
+(load-file "~/.emacs.d/vendor/buffer-move.el")
+(require 'buffer-move)
+(global-set-key (kbd "C-S-s-k")     'buf-move-up)
+(global-set-key (kbd "C-S-s-j")   'buf-move-down)
+(global-set-key (kbd "C-S-s-h")   'buf-move-left)
+(global-set-key (kbd "C-S-s-l")  'buf-move-right)
