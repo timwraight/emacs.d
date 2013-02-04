@@ -197,6 +197,29 @@
 (autoload 'pcomplete/ack "pcmpl-ack")
 (autoload 'pcomplete/ack-grep "pcmpl-ack")
 
+
+;; MISC
+
+; This should really go in navigation.el, but seems to be overridden
+; by a change I made around 24-01-2013. I don't have time to debug now,
+; so am just moving it here instead.
+
+; SPC moves down ten lines
+(define-key vimp-normal-state-map (kbd "SPC") (lambda ()
+                     (interactive)
+                     (next-line 10)
+                     (vimp-scroll-line-down 10)
+                     ))
+
+; META-SPC moves up ten lines
+(define-key vimp-normal-state-map (kbd "M-SPC") (lambda ()
+                     (interactive)
+                     (previous-line 10)
+                     (vimp-scroll-line-up 10)
+                     ))
+
+
+
 ;; *********************
 ;; EMACS-GENERATED STUFF
 ;; *********************
