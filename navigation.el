@@ -73,8 +73,8 @@
 
 
 (winner-mode 1)
-(global-set-key (kbd "C-c <up>") 'winner-undo)
-(global-set-key (kbd "C-c <down>") 'winner-redo)
+(global-set-key (kbd "C-M-S-s-h") 'winner-undo)
+(global-set-key (kbd "C-M-S-s-l") 'winner-redo)
 
 
 ;; IDO MODE
