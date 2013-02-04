@@ -50,7 +50,7 @@
 ;; RECENT FILES
 (recentf-mode t)
 (global-set-key (kbd "C-x f") 'recentf-ido-find-file)
-(setq recentf-max-saved-items 50)
+(setq recentf-max-saved-items 100)
 
 (defun recentf-ido-find-file ()
   "Find a recent file using Ido."
