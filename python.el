@@ -30,24 +30,31 @@
 (autoload 'pymacs-autoload "pymacs")
 (setq py-load-pymacs-p nil)
 
+;; JEDI
+
+(autoload 'jedi:setup "jedi" nil t)
+(add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:setup-keys t)
+
 ;; ROPEMACS
 
-(pymacs-load "ropemacs" "rope-")
-(setq ropemacs-guess-project t)
-(setq ropemacs-separate-doc-buffer t)
-(setq ropemacs-enable-autoimport nil)
+;; (pymacs-load "ropemacs" "rope-")
+;; (setq ropemacs-guess-project t)
+;; (setq ropemacs-separate-doc-buffer t)
+;; (setq ropemacs-enable-autoimport nil)
 
 
 ;; DJANGO
 
 (require 'pony-mode)
-(ac-ropemacs-initialize)
+;; (ac-ropemacs-initialize)
 (add-hook 'python-mode-hook
           (lambda ()
             (pony-key (kbd "C-c C-p C-s") 'pony-south-schemamigration)
             (pony-key (kbd "C-c C-p C-a") 'pony-south-migrate)
-            (ac-ropemacs-initialize)
-	    (add-to-list 'ac-sources 'ac-source-ropemacs)))
+            ;; (ac-ropemacs-initialize)
+	    ;; (add-to-list 'ac-sources 'ac-source-ropemacs)
+            ))
 
 (remove-hook 'python-mode-hook 'wisent-python-default-setup)
 (setq pony-test-failfast t)
