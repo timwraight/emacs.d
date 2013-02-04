@@ -191,6 +191,12 @@
 (setq tramp-default-method "ssh")
 (load-user-file "tramp.el")
 
+; ACK
+
+(require 'ack)
+(autoload 'pcomplete/ack "pcmpl-ack")
+(autoload 'pcomplete/ack-grep "pcmpl-ack")
+
 ;; *********************
 ;; EMACS-GENERATED STUFF
 ;; *********************
