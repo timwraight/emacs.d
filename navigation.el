@@ -50,7 +50,7 @@
 ;; RECENT FILES
 (recentf-mode t)
 (global-set-key (kbd "C-x f") 'recentf-ido-find-file)
-(setq recentf-max-saved-items 50)
+(setq recentf-max-saved-items 100)
 
 (defun recentf-ido-find-file ()
   "Find a recent file using Ido."
@@ -73,8 +73,8 @@
 
 
 (winner-mode 1)
-(global-set-key (kbd "C-c <up>") 'winner-undo)
-(global-set-key (kbd "C-c <down>") 'winner-redo)
+(global-set-key (kbd "C-M-S-s-h") 'winner-undo)
+(global-set-key (kbd "C-M-S-s-l") 'winner-redo)
 
 
 ;; IDO MODE
