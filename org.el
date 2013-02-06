@@ -129,7 +129,14 @@
      "xelatex -interaction nonstopmode %f")) ;; for multiple passes
 
 
-
+;; refresh agenda view regularly
+(defun kiwon/org-agenda-redo-in-other-window ()
+  "Call org-agenda-redo function even in the non-agenda buffer."
+  (interactive)
+  (let ((agenda-window (get-buffer-window org-agenda-buffer-name t)))
+    (when agenda-window
+      (with-selected-window agenda-window (org-agenda-redo)))))
+(run-at-time nil 300 'kiwon/org-agenda-redo-in-other-window)
 
 
 
