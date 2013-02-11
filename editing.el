@@ -207,9 +207,14 @@
   (my-move-key vimp-motion-state-map vimp-normal-state-map (kbd "RET"))
   (my-move-key vimp-motion-state-map vimp-normal-state-map " ")
 
-
 (require 'surround)
 (global-surround-mode 1)
+
+;; VIMP NUMBERS
+(require 'vimp-numbers)
+(define-key vimp-normal-state-map (kbd "C-c +") 'vimp-numbers/inc-at-pt)
+    (define-key vimp-normal-state-map (kbd "C-c -") 'vimp-numbers/dec-at-pt)
+
 
 (global-rainbow-delimiters-mode 1)
 
