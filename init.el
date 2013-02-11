@@ -240,7 +240,11 @@
  '(scheme-program-name "guile")
  '(yaml-indent-offset 2))
 (custom-set-faces
- '(default ((t (:inherit nil :stipple nil :background "#042028" :foreground "#999999" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 140 :width normal :foundry "apple" :family "Menlo"))))
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:inherit nil :stipple nil :background "#042028" :foreground "#999999" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 154 :width normal :foundry "apple" :family "Consolas"))))
  '(cursor ((t (:background "#fffece" :foreground "#042028"))))
  '(link ((t (:foreground "#9d8464" :inverse-video nil :underline t :slant normal :weight normal))))
  '(magit-branch ((t (:inherit magit-header :foreground "#9c8d37"))))
