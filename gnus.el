@@ -6,3 +6,4 @@
 (setq gnus-thread-sort-functions
            '(gnus-thread-sort-by-number
              gnus-thread-sort-by-most-recent-date))
+(gnus-demon-add-handler 'gnus-demon-scan-news 2 t) 
