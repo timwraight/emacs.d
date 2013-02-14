@@ -69,8 +69,6 @@
 
 (setq org-refile-target-verify-function 'bh/verify-refile-target)
 
-(load-user-file "org-files.el")
-
 ; Enter insert on capture
 (add-hook 'org-capture-mode-hook 'vimp-insert-state)
 

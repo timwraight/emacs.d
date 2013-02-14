@@ -21,208 +21,9 @@
 (load-user-file "editing.el")
 (load-user-file "python.el")
 (load-user-file "org.el")
-(load-user-file "gnus.el")
+(load-user-file "misc.el")
+(load-user-file "setup-specific.el")
 
-
-
-;; SMEX  (IDO for meta-x)
-(require 'smex)
-(global-set-key [(meta x)] (lambda ()
-                             (interactive)
-                             (or (boundp 'smex-cache)
-                                 (smex-initialize))
-                             (global-set-key [(meta x)] 'smex)
-                             (smex)))
-
-
-
-;; HTML
-(require 'zencoding-mode)
-(add-hook 'html-mode-hook 'zencoding-mode)
-(add-hook 'html-mode-hook 'pony-tpl-mode)
-(add-hook 'html-mode-hook (lambda ()
-                            (variable-pitch-mode 0)
-                            (turn-off-flyspell)
-                            (setq truncate-lines t)))
-
-
-;; ReST mode
-(add-hook 'rst-mode-hook (lambda ()
-                           (variable-pitch-mode 0)))
-(add-hook 'rst-adjust-hook 'rst-toc-update)
-
-
-;; SASS-MODE
-(require 'sass-mode)
-
-
-;; HELP
-
-(global-set-key (kbd "C-h a") 'apropos)
-
-;; GIT
-
-(global-set-key (kbd "C-x g") 'magit-status)
-(require 'magit)
-(add-hook 'magit-log-edit-mode-hook 'vimp-insert-state)
-
-
-;; SEARCHING 
-
-(define-key global-map "\C-x\C-r" 'rgrep)
-
-;; MODES
-
-(add-to-list 'auto-mode-alist '("COMMIT_EDITMSG$" . diff-mode))
-(add-to-list 'auto-mode-alist '("\\.css$" . css-mode))
-(add-to-list 'auto-mode-alist '("\\.ya?ml$" . yaml-mode))
-(add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.js\\(on\\)?$" . js-mode))
-;; (add-to-list 'auto-mode-alist '("\\.xml$" . nxml-mode))
-
-
-;; JAVASCRIPT
-(add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
-(require 'flymake-jshint)
-(add-hook 'js-mode-hook
-          (lambda ()
-            (interactive)
-            (flymake-mode)
-            (setq truncate-lines 0)))
-
-;; CSS
-
-(require 'flymake-csslint)
-(add-hook 'css-mode-hook
-          (lambda ()
-            (define-key css-mode-map "\M-\C-x" 'slime-js-refresh-css)
-            (define-key css-mode-map "\C-c\C-r" 'slime-js-embed-css)))
-
-
-
-;; BROWSING
-
-(require 'w3m-load)
-(setq browse-url-browser-function 'browse-url-default-macosx-browser)
-(autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
-
-
-;; PHP
-
-(require 'php-mode)
-
-
-;; TEX
-(load "auctex.el" nil t t)
-
-
-;; YAML
-(require 'yaml-mode)
-(setq yaml-indent-offset 2)
-
-
-;; SLIME
-(setq inferior-lisp-program "/usr/local/bin/clisp") ; your Lisp system
-(require 'slime)
-(slime-setup)
-
-;; SCHEME
-(load-file "~/.emacs.d/vendor/geiser/elisp/geiser.el")
-(setq geiser-active-implementations '(guile))
-(add-hook 'scheme-mode-hook
-          (lambda ()
-            (geiser-mode)
-            (run-guile)))
-
-;; CLOJURE
-
-(require 'clojure-mode)
-(require 'nrepl)
-(add-hook 'nrepl-interaction-mode-hook
-  'nrepl-turn-on-eldoc-mode)
-
-;; HASKELL
-(load "~/.emacs.d/vendor/haskell-mode/haskell-site-file")
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-
-;; SQL
-
-(add-hook 'sql-mode-hook
-          (lambda ()
-            (setq truncate-lines t)
-            (sql-highlight-mysql-keywords)))
-
-
-;; ESHELL
-(setq eshell-prompt-function
-      (lambda nil
-        (concat (car
-                 (last
-                  (split-string (eshell/pwd) "/")))
-                " ")))
-
-(setq eshell-prompt-regexp "^[^#$\n]* ")
-
-
-;; MARKDOWN
-
-(autoload 'markdown-mode "markdown-mode"
-   "Major mode for editing Markdown files" t)
-(setq auto-mode-alist
-   (cons '("\\.text" . markdown-mode) auto-mode-alist))
-
-
-;; FORTH
-(autoload 'forth-mode "gforth.el")
-(autoload 'forth-block-mode "gforth.el")
-(add-to-list 'auto-mode-alist '("\\.fs$" . forth-mode))
-
-
-; ERC
-
-(add-hook 'erc-join-hook (lambda ()
-                           (interactive)
-                           (variable-pitch-mode)))
-
-
-; TRAMP
-
-(setq tramp-default-method "ssh")
-(load-user-file "tramp.el")
-
-; ACK
-
-(require 'ack)
-(autoload 'pcomplete/ack "pcmpl-ack")
-(autoload 'pcomplete/ack-grep "pcmpl-ack")
-
-
-;; MISC
-
-; This should really go in navigation.el, but seems to be overridden
-; by a change I made around 24-01-2013. I don't have time to debug now,
-; so am just moving it here instead.
-
-; SPC moves down ten lines
-(define-key vimp-normal-state-map (kbd "SPC") (lambda ()
-                     (interactive)
-                     (next-line 10)
-                     (vimp-scroll-line-down 10)
-                     ))
-
-; META-SPC moves up ten lines
-(define-key vimp-normal-state-map (kbd "M-SPC") (lambda ()
-                     (interactive)
-                     (previous-line 10)
-                     (vimp-scroll-line-up 10)
-                     ))
-
-
-
-;; *********************
-;; EMACS-GENERATED STUFF
-;; *********************
 
 
 (custom-set-variables
@@ -244,8 +45,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#042028" :foreground "#999999" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 154 :width normal :foundry "apple" :family "Consolas"))))
+ '(default ((t (:inherit nil :stipple nil :background "#042028" :foreground "#999999" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 160 :width normal :foundry "apple" :family "Consolas"))))
  '(cursor ((t (:background "#fffece" :foreground "#042028"))))
+ '(fixed-pitch ((t (:height 140 :family "Consolas"))))
  '(link ((t (:foreground "#9d8464" :inverse-video nil :underline t :slant normal :weight normal))))
  '(magit-branch ((t (:inherit magit-header :foreground "#9c8d37"))))
  '(magit-header ((t (:inherit header-line :foreground "#00718c"))))
@@ -267,17 +69,3 @@
  '(org-table ((t (:foreground "LightSkyBlue" :height 1 :family "Menlo"))))
  '(variable-pitch ((t (:foreground "#a0a19a" :height 1.2 :family "Lucida Grande"))))
  '(w3m-session-select ((t (:foreground "white" :family "Gill Sans"))) t))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
