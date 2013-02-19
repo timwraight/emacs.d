@@ -8,6 +8,15 @@
                              (smex)))
 
 
+;; PROLOG
+
+(require 'ediprolog)
+(add-hook 'prolog-mode-hook
+          (lambda ()
+             (print "Hello")
+             (local-set-key (kbd "C-c C-c") 'ediprolog-dwim)))
+
+
 
 ;; HTML
 (require 'zencoding-mode)
