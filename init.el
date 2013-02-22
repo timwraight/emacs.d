@@ -24,6 +24,7 @@
 (load-user-file "misc.el")
 (load-user-file "setup-specific.el")
 
+(byte-recompile-directory "~/.emacs.d")
 
 
 (custom-set-variables
