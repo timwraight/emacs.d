@@ -86,3 +86,23 @@
 (global-set-key (kbd "C-S-s-j")   'buf-move-down)
 (global-set-key (kbd "C-S-s-h")   'buf-move-left)
 (global-set-key (kbd "C-S-s-l")  'buf-move-right)
+
+;; EDIFF
+
+(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(setq ediff-split-window-function 'split-window-horizontally)
+(eval-after-load "vc-hooks"
+         '(define-key vc-prefix-map "=" 'ediff-revision))
+
+(add-hook 'ediff-load-hook
+          (lambda ()
+
+            (add-hook 'ediff-before-setup-hook
+                      (lambda ()
+                        (setq ediff-saved-window-configuration (current-window-configuration))))
+            
+            (let ((restore-window-configuration
+                   (lambda ()
+                     (set-window-configuration ediff-saved-window-configuration))))
+              (add-hook 'ediff-quit-hook restore-window-configuration 'append)
+              (add-hook 'ediff-suspend-hook restore-window-configuration 'append))))
