@@ -57,8 +57,10 @@
 
 ;; SNIPPETS
 (require 'yasnippet)
-(yas/load-directory "~/.emacs.d/vendor/yasnippet/snippets")
-(yas-global-mode t)
+(yas-reload-all)
+(add-hook 'prog-mode-hook
+          '(lambda ()
+             (yas-minor-mode)))
 
 ;;; turn off auto-fill in tex and markdown
 (add-hook 'markdown-mode-hook 'turn-off-auto-fill)
