@@ -149,7 +149,7 @@
   (add-to-list 'ac-modes mode))
 
 (add-hook 'text-mode-hook (lambda () (setq auto-complete-mode nil)))
-;; (add-hook 'org-mode-hook (lambda () (setq auto-complete-mode nil)))
+(add-hook 'comint-mode-hook 'auto-complete-mode)
 
 ;; SAVE PLACE
 
