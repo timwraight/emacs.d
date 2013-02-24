@@ -22,9 +22,7 @@
 (load-user-file "python.el")
 (load-user-file "org.el")
 (load-user-file "misc.el")
-(load-user-file "setup-specific.el")
 
-(byte-recompile-directory "~/.emacs.d")
 
 
 (custom-set-variables
@@ -32,6 +30,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auto-indent-next-pair-timer-geo-mean (quote ((default 0.0005 0))))
  '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(debug-on-error nil)
  '(org-alphabetical-lists t)
@@ -70,3 +69,7 @@
  '(org-table ((t (:foreground "LightSkyBlue" :height 1 :family "Menlo"))))
  '(variable-pitch ((t (:foreground "#a0a19a" :height 1.2 :family "Lucida Grande"))))
  '(w3m-session-select ((t (:foreground "white" :family "Gill Sans"))) t))
+
+
+(load-user-file "setup-specific.el")
+(byte-recompile-directory "~/.emacs.d/")
