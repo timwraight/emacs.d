@@ -106,3 +106,7 @@
                      (set-window-configuration ediff-saved-window-configuration))))
               (add-hook 'ediff-quit-hook restore-window-configuration 'append)
               (add-hook 'ediff-suspend-hook restore-window-configuration 'append))))
+
+;; DESKTOP MODE
+;; Save the state of emacs windows and restore them on launch
+(desktop-save-mode 1)
