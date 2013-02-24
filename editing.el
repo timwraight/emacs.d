@@ -28,7 +28,9 @@
 (setq fill-column 80)
 
 ;; UNDO TREE
+(setq undo-tree-auto-save-history t)
 (require 'undo-tree)
+
 
 ;; I can't remember ever having meant to use C-z to suspend the frame
 (global-set-key (kbd "C-z") 'undo)
