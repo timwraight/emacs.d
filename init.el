@@ -63,7 +63,7 @@
  '(org-default ((t (:inherit nil :foreground "#96906a" :height 1.4 :family "Gill Sans"))))
  '(org-level-1 ((t (:inherit nil :foreground "#818f4e" :height 1.2))))
  '(org-level-2 ((t (:inherit nil :foreground "#856a6a" :height 1.1))))
- '(org-level-4 ((t (:inherit outline-4 :foreground "#544931"))))
+ '(org-level-4 ((t (:inherit outline-4 :foreground "#92805f"))))
  '(org-level-5 ((t (:inherit outline-5 :foreground "#0b5a8d"))))
  '(org-meta-line ((t (:inherit org-block-begin-line))))
  '(org-special-keyword ((t (:inherit font-lock-keyword-face :foreground "#003441"))))
