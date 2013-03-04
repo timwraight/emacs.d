@@ -89,6 +89,13 @@
 (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
 
 
+;; Markdown
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+
+
 ;; PHP
 
 (require 'php-mode)
