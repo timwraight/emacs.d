@@ -216,17 +216,14 @@
                 (interactive)
                 (marker-visit-next)))
 
-; SPC moves down ten lines
-(define-key vimp-normal-state-map (kbd "SPC") (lambda ()
+
+; These should be there too, same deal
+ (define-key vimp-normal-state-map (kbd "C-SPC") (lambda ()
                      (interactive)
                      (next-line 10)
-                     (vimp-scroll-line-down 10)
-                     ))
+                     (vimp-scroll-line-down 10)))
 
-; META-SPC moves up ten lines
-(define-key vimp-normal-state-map (kbd "M-SPC") (lambda ()
+ (define-key vimp-normal-state-map (kbd "C-S-SPC") (lambda ()
                      (interactive)
                      (previous-line 10)
-                     (vimp-scroll-line-up 10)
-                     ))
-
+                     (vimp-scroll-line-up 10)))
