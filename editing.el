@@ -32,7 +32,7 @@
 
 ;; UNDO TREE
 ;; Permamnent history will work with Emacs 24.3 or later
-;; (setq undo-tree-auto-save-history t)
+(setq undo-tree-auto-save-history t)
 (require 'undo-tree)
 
 
