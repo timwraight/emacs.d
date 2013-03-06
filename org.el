@@ -13,7 +13,6 @@
 (global-set-key (kbd "<f13>") 'org-clock-in-last)
 
 ; Persist clock history
-(org-clock-persistence-insinuate)
 (setq org-clock-out-when-done t)
 ;; Save the running clock and all clock history when exiting Emacs, load it on startup
 (setq org-clock-persist t)
