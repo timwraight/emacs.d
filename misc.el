@@ -206,11 +206,15 @@
 (add-hook 'ssh-config-mode-hook 'turn-on-font-lock)
 
 
-;; SUPER-MISC!!
+;; Marker Visit commands
+; These should be in navigation.el, but I can't figure out how to get them there
+(define-key vimp-normal-state-map (kbd "SPC") (lambda ()
+                (interactive)
+                (marker-visit-prev)))
 
-; This should really go in navigation.el, but seems to be overridden
-; by a change I made around 24-01-2013. I don't have time to debug now,
-; so am just moving it here instead.
+(define-key vimp-normal-state-map (kbd "S-SPC") (lambda ()
+                (interactive)
+                (marker-visit-next)))
 
 ; SPC moves down ten lines
 (define-key vimp-normal-state-map (kbd "SPC") (lambda ()
