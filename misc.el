@@ -60,8 +60,11 @@
 (add-to-list 'auto-mode-alist '("\\.ya?ml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.rb$" . ruby-mode))
 (add-to-list 'auto-mode-alist '("\\.js\\(on\\)?$" . js-mode))
-;; (add-to-list 'auto-mode-alist '("\\.xml$" . nxml-mode))
 
+
+;; XML
+
+(add-hook 'nxml-mode-hook (lambda () (variable-pitch-mode nil)))
 
 ;; JAVASCRIPT
 (add-to-list 'auto-mode-alist '("\\.js$" . js-mode))
@@ -205,25 +208,3 @@
 (add-to-list 'auto-mode-alist '("sshd?_config\\'" . ssh-config-mode))
 (add-hook 'ssh-config-mode-hook 'turn-on-font-lock)
 
-
-;; Marker Visit commands
-; These should be in navigation.el, but I can't figure out how to get them there
-(define-key vimp-normal-state-map (kbd "SPC") (lambda ()
-                (interactive)
-                (marker-visit-prev)))
-
-(define-key vimp-normal-state-map (kbd "S-SPC") (lambda ()
-                (interactive)
-                (marker-visit-next)))
-
-
-; These should be there too, same deal
- (define-key vimp-normal-state-map (kbd "C-SPC") (lambda ()
-                     (interactive)
-                     (next-line 10)
-                     (vimp-scroll-line-down 10)))
-
- (define-key vimp-normal-state-map (kbd "C-S-SPC") (lambda ()
-                     (interactive)
-                     (previous-line 10)
-                     (vimp-scroll-line-up 10)))

@@ -46,8 +46,7 @@
 ;; DJANGO
 
 (require 'pony-mode)
-(ac-ropemacs-initialize)
-(add-to-list 'ac-sources 'ac-source-ropemacs)
+
 (add-hook 'python-mode-hook
           (lambda ()
             (pony-key (kbd "C-c C-p C-s") 'pony-south-schemamigration)

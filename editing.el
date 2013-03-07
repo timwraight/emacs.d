@@ -159,6 +159,9 @@
 (add-hook 'text-mode-hook (lambda () (setq auto-complete-mode nil)))
 (add-hook 'comint-mode-hook 'auto-complete-mode)
 
+;; Autocomplete Python stuff
+(ac-ropemacs-initialize)
+(add-to-list 'ac-sources 'ac-source-ropemacs)
 ;; SAVE PLACE
 
 (setq-default save-place t)
@@ -235,6 +238,31 @@
 
 (global-set-key (kbd "C-c c") 'toggle-comment-on-line)
 (eldoc-mode 1)
+
+
+;; Marker Visit commands
+; These should be in navigation.el, but I can't figure out how to get them there
+(define-key vimp-normal-state-map (kbd "SPC") (lambda ()
+                (interactive)
+                (marker-visit-prev)))
+
+(define-key vimp-normal-state-map (kbd "S-SPC") (lambda ()
+                (interactive)
+                (marker-visit-next)))
+
+
+; These should be there too, same deal
+ (define-key vimp-normal-state-map (kbd "C-SPC") (lambda ()
+                     (interactive)
+                     (next-line 10)
+                     (vimp-scroll-line-down 10)))
+
+ (define-key vimp-normal-state-map (kbd "C-S-SPC") (lambda ()
+                     (interactive)
+                     (previous-line 10)
+                     (vimp-scroll-line-up 10)))
+
+
 
 (define-key vimp-normal-state-map "f" 'ace-jump-mode)
 (autoload

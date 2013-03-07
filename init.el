@@ -18,10 +18,10 @@
 (load-user-file "packages.el")
 (load-user-file "navigation.el")
 (load-user-file "interface.el")
-(load-user-file "editing.el")
 (load-user-file "python.el")
 (load-user-file "org.el")
 (load-user-file "misc.el")
+(load-user-file "editing.el")
 
 
 
