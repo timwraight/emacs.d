@@ -18,11 +18,6 @@
 (add-hook 'org-shiftdown-final-hook 'windmove-down)
 (add-hook 'org-shiftright-final-hook 'windmove-right)
 
-;; Marker Visit
-;; Allows going backwards and forwards through the mark ring
-(require 'marker-visit)
-
-
 ;; FILES
 
 ;; From https://sites.google.com/site/steveyegge2/my-dot-emacs-file
