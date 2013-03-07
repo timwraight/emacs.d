@@ -235,3 +235,10 @@
 
 (global-set-key (kbd "C-c c") 'toggle-comment-on-line)
 (eldoc-mode 1)
+
+(define-key vimp-normal-state-map "f" 'ace-jump-mode)
+(autoload
+  'ace-jump-mode
+  "ace-jump-mode"
+  "Emacs quick move minor mode"
+  t)
