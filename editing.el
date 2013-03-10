@@ -270,6 +270,10 @@
   "ace-jump-mode"
   "Emacs quick move minor mode"
   t)
+
+(define-key vimp-normal-state-map ";" 'helm-mini)
+(define-key vimp-normal-state-map "'" 'helm-command-prefix)
+
 ;; PAREDIT
 ; Minor mode for editing parentheses
 (require 'paredit)

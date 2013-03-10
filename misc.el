@@ -210,4 +210,3 @@
 
 ; HELM
 (require 'helm-config)
-(define-key vimp-normal-state-map "z" 'helm-mini)
