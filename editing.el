@@ -270,3 +270,6 @@
   "ace-jump-mode"
   "Emacs quick move minor mode"
   t)
+;; PAREDIT
+; Minor mode for editing parentheses
+(require 'paredit)
