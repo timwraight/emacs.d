@@ -8,11 +8,9 @@
 (setq mac-right-option-modifier nil)
 (setq mac-right-command-modifier 'meta)
 
-;; (require 'autopair)
-;; (autopair-global-mode 1)
-;; (setq autopair-autowrap t)
-(require 'electric)
-(electric-pair-mode 1)
+(require 'autopair)
+(autopair-global-mode 1)
+(setq autopair-autowrap t)
 
 (global-auto-revert-mode)
 (blink-cursor-mode -1)
