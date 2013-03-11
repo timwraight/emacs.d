@@ -180,7 +180,6 @@
 
 
 ;; VIMP
-(require 'vimp )
 (vimp-mode 1)
 (global-set-key (kbd "<f1>") 'vimp-local-mode)
 
