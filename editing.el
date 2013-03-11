@@ -239,3 +239,6 @@
 (eldoc-mode 1)
 
 
+;; PAREDIT
+; Minor mode for editing parentheses
+(require 'paredit)
