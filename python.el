@@ -1,9 +1,6 @@
-;; (setq py-install-directory "~/.emacs.d/vendor/python-mode/")
-;; (require 'python-mode)
-;; (setq py-shell-name "ipython")
+(setq py-shell-name "ipython")
 
-;; ;; HOOKS
-;; (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
+;; HOOKS
 
 (add-hook 'python-mode-hook 
       (lambda ()
