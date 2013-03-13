@@ -102,7 +102,7 @@
 
 
 ;; Marker Visit commands
-; These should be in navigation.el, but I can't figure out how to get them there
+; Thee should be in navigation.el, but I can't figure out how to get them there
 (define-key vimp-normal-state-map (kbd "SPC") (lambda ()
                 (interactive)
                 (back-button-global-backward)))
@@ -133,5 +133,11 @@
   t)
 
 
+; HELM
+(require 'helm-config)
+(require 'helm-ls-git)
+(setq helm-ls-git-show-abs-or-relative 'relative)
+(define-key vimp-normal-state-map "m" 'helm-ls-git-ls)
 (define-key vimp-normal-state-map ";" 'helm-mini)
 (define-key vimp-normal-state-map "'" 'helm-command-prefix)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
