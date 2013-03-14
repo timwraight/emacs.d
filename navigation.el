@@ -105,11 +105,11 @@
 ; Thee should be in navigation.el, but I can't figure out how to get them there
 (define-key vimp-normal-state-map (kbd "SPC") (lambda ()
                 (interactive)
-                (back-button-global-backward)))
+                (switch-to-prev-buffer)))
 
 (define-key vimp-normal-state-map (kbd "S-SPC") (lambda ()
                 (interactive)
-                (back-button-global-forward)))
+                (switch-to-next-buffer)))
 
 
 ; These should be there too, same deal
