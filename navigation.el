@@ -140,4 +140,3 @@
 (define-key vimp-normal-state-map "m" 'helm-ls-git-ls)
 (define-key vimp-normal-state-map ";" 'helm-mini)
 (define-key vimp-normal-state-map "'" 'helm-command-prefix)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
