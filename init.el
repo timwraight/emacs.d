@@ -33,7 +33,7 @@
  '(custom-safe-themes (quote ("fc5fcb6f1f1c1bc01305694c59a1a861b008c534cae8d0e48e4d5e81ad718bc6" default)))
  '(debug-on-error nil)
  '(org-alphabetical-lists t)
- '(org-clock-into-drawer 2)
+ '(org-clock-into-drawer 2 t)
  '(org-global-properties (quote (("Effort_ALL" . "0 0:05 0:10 0:20 0:30 1:00 2:00 3:00 4:00 5:00 6:00 7:00"))))
  '(python-shell-interpreter "ipython")
  '(safe-local-variable-values (quote ((pony-settings make-pony-project :python "/Users/twraight/Envs/dashboard/bin/python") (pony-settings make-pony-project :python "~/Envs/grace/bin/python" :settings "settings"))))
@@ -46,6 +46,8 @@
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :background "#042028" :foreground "#999999" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 150 :width normal :foundry "Microsoft" :family "Consolas"))))
  '(cursor ((t (:background "#fffece" :foreground "#042028"))))
+ '(ediff-current-diff-C ((t (:background "#393935"))))
+ '(ediff-fine-diff-C ((t (:background "#624425"))))
  '(fixed-pitch ((t (:height 140 :family "Consolas"))))
  '(link ((t (:foreground "#9d8464" :inverse-video nil :underline t :slant normal :weight normal))))
  '(magit-branch ((t (:inherit magit-header :foreground "#9c8d37"))))
