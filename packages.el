@@ -17,10 +17,3 @@
 
 (require 'vimp )
 
-;; PYTHON
-(add-to-list 'load-path "~/.emacs.d/vendor/python-mode/")
-(setq py-install-directory "~/.emacs.d/vendor/python-mode/")
-(autoload 'python-mode "python-mode" "Python Mode." t)
-(add-to-list 'auto-mode-alist '("\\.py$" . python2-mode))
-(add-to-list 'interpreter-mode-alist '("python" . python-mode))
-(require 'python-mode)
