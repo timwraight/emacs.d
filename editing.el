@@ -118,6 +118,7 @@
 ;; Disable warning popups
 (setq flymake-gui-warnings-enabled nil)
 
+
 ;; AUTOCOMPLETE
 
 ; Load the default configuration
@@ -157,9 +158,6 @@
 (add-hook 'text-mode-hook (lambda () (setq auto-complete-mode nil)))
 (add-hook 'comint-mode-hook 'auto-complete-mode)
 
-;; Autocomplete Python stuff
-(ac-ropemacs-initialize)
-(add-to-list 'ac-sources 'ac-source-ropemacs)
 ;; SAVE PLACE
 
 (setq-default save-place t)
