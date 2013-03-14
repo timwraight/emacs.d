@@ -106,7 +106,7 @@
       (list "pycheckers"  (list local-file))))
   
    (add-to-list 'flymake-allowed-file-name-masks
-             '("\\.py\\'" flymake-pyflakes-init))
+             '("\\.py$\\'" flymake-pyflakes-init))
    
    (delete '("\\.html?\\'" flymake-xml-init)
            flymake-allowed-file-name-masks))
@@ -114,6 +114,7 @@
 
 ; use flymake cursor
 (eval-after-load 'flymake '(require 'flymake-cursor))
+(add-hook 'ediff-mode-hook 'flymake-mode-off)
 
 ;; Disable warning popups
 (setq flymake-gui-warnings-enabled nil)
