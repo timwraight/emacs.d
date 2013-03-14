@@ -8,5 +8,6 @@ tramp
 bookmarks
 org-clock-save.el
 snippets
+el-get
 /org-files.el
 /tramp.el
