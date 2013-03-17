@@ -106,3 +106,6 @@
 ;; DESKTOP MODE
 ;; Save the state of emacs windows and restore them on launch
 (desktop-save-mode 1)
+
+(require 'winring)
+(winring-initialize)
