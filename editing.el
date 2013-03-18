@@ -222,6 +222,18 @@
     (define-key vimp-normal-state-map (kbd "C-c -") 'vimp-numbers/dec-at-pt)
 
 
+;; VIMP LEADER
+(require 'vimp-leader)
+(vimp-leader/set-leader ",")
+(vimp-leader/set-key "j" 'winring-jump-to-configuration)
+(vimp-leader/set-key "n" 'winring-new-configuration)
+(vimp-leader/set-key "r" 'winring-rename-configuration)
+(vimp-leader/set-key "p" 'split-window-right)
+(vimp-leader/set-key "o" 'split-window-below)
+(vimp-leader/set-key "=" 'balance-windows)
+(vimp-leader/set-key "g" 'magit-status)
+
+
 (global-rainbow-delimiters-mode 1)
 
 ;; COMMENTING
