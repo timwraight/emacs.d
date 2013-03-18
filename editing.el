@@ -225,7 +225,7 @@
 ;; VIMP LEADER
 (require 'vimp-leader)
 (vimp-leader/set-leader ",")
-(vimp-leader/set-key "j" 'winring-jump-to-configuration)
+(vimp-leader/set-key "f" 'winring-jump-to-configuration)
 (vimp-leader/set-key "n" 'winring-new-configuration)
 (vimp-leader/set-key "r" 'winring-rename-configuration)
 (vimp-leader/set-key "p" 'split-window-right)
