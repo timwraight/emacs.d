@@ -49,6 +49,7 @@
  '(ediff-current-diff-C ((t (:background "#393935"))))
  '(ediff-fine-diff-C ((t (:background "#624425"))))
  '(fixed-pitch ((t (:height 140 :family "Consolas"))))
+ '(helm-selection ((t (:background "ForestGreen" :foreground "#1e1f17" :underline t))))
  '(link ((t (:foreground "#9d8464" :inverse-video nil :underline t :slant normal :weight normal))))
  '(magit-branch ((t (:inherit magit-header :foreground "#9c8d37"))))
  '(magit-header ((t (:inherit header-line :foreground "#00718c"))))
