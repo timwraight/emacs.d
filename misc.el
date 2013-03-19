@@ -20,7 +20,7 @@
 
 ;; HTML
 (require 'emmet-mode)
-(add-hook 'html-mode-hook 'emmet-mode)
+(add-hook 'sgml-mode-hook 'emmet-mode)
 (add-hook 'html-mode-hook (lambda ()
                             (variable-pitch-mode 0)
                             (turn-off-flyspell)
