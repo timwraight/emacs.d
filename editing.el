@@ -106,7 +106,7 @@
       (list "pycheckers"  (list local-file))))
   
    (add-to-list 'flymake-allowed-file-name-masks
-             '("\\.py$\\'" flymake-pyflakes-init))
+             '("\\.py\\'" flymake-pyflakes-init))
    
    (delete '("\\.html?\\'" flymake-xml-init)
            flymake-allowed-file-name-masks))
