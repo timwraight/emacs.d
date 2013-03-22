@@ -245,6 +245,8 @@
 (vimp-leader/set-key "l" 'split-window-below)
 (vimp-leader/set-key "=" 'balance-windows)
 (vimp-leader/set-key "g" 'magit-status)
+(vimp-leader/set-key "h" 'vc-version-ediff)
+(vimp-leader/set-key "t" 'helm-ls-git-ls)
 
 
 (global-rainbow-delimiters-mode 1)
