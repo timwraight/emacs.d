@@ -143,6 +143,19 @@
 (setq ac-auto-start 2)
 (setq ac-candidate-menu-min 0)
 
+(setq ac-use-menu-map t)
+(define-key ac-menu-map (kbd "<SPC>") 'ac-isearch)
+(setq ac-trigger-commands-on-completing 
+  '(delete-backward-char
+    backward-delete-char
+    backward-delete-char-untabify
+    ;; autopair
+    autopair-backspace
+    ac-expand
+    ;; paredit
+    paredit-backward-delete
+    paredit-backward-delete-word))
+
 (set-default 'ac-sources
              '(ac-source-dictionary
                ac-source-words-in-buffer
