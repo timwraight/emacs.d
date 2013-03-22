@@ -140,3 +140,7 @@
 (define-key vimp-normal-state-map "m" 'helm-ls-git-ls)
 (define-key vimp-normal-state-map ";" 'helm-mini)
 (define-key vimp-normal-state-map "'" 'helm-command-prefix)
+
+(setq helm-display-function
+      (lambda (buf)
+        (switch-to-buffer buf)))
