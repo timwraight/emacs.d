@@ -14,6 +14,8 @@
   "Load a file in current user's configuration directory"
   (load-file (expand-file-name file user-init-dir)))
 
+(byte-recompile-directory "~/.emacs.d/")
+
 
 (load-user-file "packages.el")
 (load-user-file "interface.el")
@@ -74,4 +76,3 @@
 
 
 (load-user-file "setup-specific.el")
-(byte-recompile-directory "~/.emacs.d/")
