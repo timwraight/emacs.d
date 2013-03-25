@@ -94,30 +94,9 @@
 
 
 ; FLYMAKE
-(require 'flymake)
-
-(when (load "flymake" t)
-  (defun flymake-pyflakes-init ()
-    (let* ((temp-file (flymake-init-create-temp-buffer-copy
-               'flymake-create-temp-inplace))
-       (local-file (file-relative-name
-            temp-file
-            (file-name-directory buffer-file-name))))
-      (list "pycheckers"  (list local-file))))
-  
-   (add-to-list 'flymake-allowed-file-name-masks
-             '("\\.py\\'" flymake-pyflakes-init))
-   
-   (delete '("\\.html?\\'" flymake-xml-init)
-           flymake-allowed-file-name-masks))
-
-
-; use flymake cursor
-(eval-after-load 'flymake '(require 'flymake-cursor))
-(add-hook 'ediff-mode-hook 'flymake-mode-off)
-
-;; Disable warning popups
-(setq flymake-gui-warnings-enabled nil)
+(require 'flycheck)
+(add-hook 'prog-mode-hook 'flycheck-mode)
+(add-hook 'text-mode-hook 'flycheck-mode)
 
 
 ;; AUTOCOMPLETE
@@ -144,7 +123,7 @@
 (setq ac-candidate-menu-min 0)
 
 (setq ac-use-menu-map t)
-(define-key ac-menu-map (kbd "<SPC>") 'ac-isearch)
+(define-key ac-menu-map (kbd "/") 'ac-isearch)
 (setq ac-trigger-commands-on-completing 
   '(delete-backward-char
     backward-delete-char

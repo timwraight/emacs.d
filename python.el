@@ -1,21 +1,18 @@
 (setq python-indent-guess-indent-offset nil)
 (setq
- python-shell-interpreter "ipython"
- python-shell-interpreter-args ""
- python-shell-prompt-regexp "In \\[[0-9]+\\]: "
- python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
- python-shell-completion-setup-code
- "from IPython.core.completerlib import module_completion"
- python-shell-completion-module-string-code
- "';'.join(module_completion('''%s'''))\n")
+    python-shell-interpreter "ipython"
+    python-shell-interpreter-args ""
+    python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+    python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+    python-shell-completion-setup-code
+    "from IPython.core.completerlib import module_completion"
+    python-shell-completion-module-string-code
+    "';'.join(module_completion('''%s'''))\n")
 
 ;; HOOKS
 
 (add-hook 'python-mode-hook 
       (lambda ()
-        (flymake-mode)
-        (local-set-key [f2] 'flymake-goto-prev-error)
-        (local-set-key [f3] 'flymake-goto-next-error)
         (setq truncate-lines 1)   
         ))
 
@@ -51,13 +48,4 @@
 
 ;; DJANGO
 
-(require 'pony-mode)
-
-(add-hook 'python-mode-hook
-          (lambda ()
-            (pony-key (kbd "C-c C-p C-s") 'pony-south-schemamigration)
-            (pony-key (kbd "C-c C-p C-a") 'pony-south-migrate)))
-
-(remove-hook 'python-mode-hook 'wisent-python-default-setup)
-(setq pony-test-failfast t)
-
+(require 'python-django)
