@@ -25,7 +25,7 @@
                             (variable-pitch-mode 0)
                             (turn-off-flyspell)
                             (setq truncate-lines t)))
-
+(setq sgml-basic-offset 4)
 
 ;; ReST mode
 (add-hook 'rst-mode-hook (lambda ()
