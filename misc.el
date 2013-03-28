@@ -184,12 +184,6 @@
 (setq tramp-syntax 'url)
 (load-user-file "tramp.el")
 
-; ACK
-
-(require 'ack)
-(autoload 'pcomplete/ack "pcmpl-ack")
-(autoload 'pcomplete/ack-grep "pcmpl-ack")
-
 
 ;; SSH CONFIG MODE
 (autoload 'ssh-config-mode "ssh-config-mode" t)

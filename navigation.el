@@ -142,3 +142,15 @@
 (add-hook 'eshell-mode-hook
           #'(lambda ()
               (define-key eshell-mode-map [remap pcomplete] 'helm-esh-pcomplete)))
+
+
+;; ACK
+
+(require 'ack)
+(autoload 'pcomplete/ack "pcmpl-ack")
+(autoload 'pcomplete/ack-grep "pcmpl-ack")
+
+(vimp-leader/set-key "a" (lambda () (interactive)
+                           (ack (concat "ack " (read-string "Search for: " (word-at-point)))
+                                (helm-ls-git-root-dir))))
+
