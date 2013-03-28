@@ -62,6 +62,8 @@
  '(magit-branch ((t (:inherit magit-header :foreground "#9c8d37"))))
  '(magit-header ((t (:inherit header-line :foreground "#00718c"))))
  '(magit-item-highlight ((t (:inherit highlight))))
+ '(mode-line ((t (:foreground "#c1c379" :inverse-video t :box nil :underline nil :slant normal :weight normal))))
+ '(mode-line-highlight ((t (:box (:line-width 2 :color "#b1b1a2" :style released-button)))))
  '(org-agenda-clocking ((t (:inherit secondary-selection :foreground "#f19045"))) t)
  '(org-block ((t (:height 0.85 :family "Menlo"))))
  '(org-block-background ((t (:height 0.85 :family "Menlo"))))
