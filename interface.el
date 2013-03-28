@@ -28,7 +28,8 @@
 (setq line-spacing 4)
 (add-hook 'prog-mode-hook (lambda ()
                             (interactive)
-                            (setq line-spacing 2)))
+                            (setq line-spacing 2)
+                            (setq truncate-lines t)))
 
 (global-visual-line-mode t)
 (require 'pretty-mode)
@@ -109,3 +110,4 @@
 
 (require 'winring)
 (winring-initialize)
+
