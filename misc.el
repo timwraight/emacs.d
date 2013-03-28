@@ -28,6 +28,8 @@
                             (turn-off-flyspell)
                             (tagedit-mode)))
 
+(setq sgml-basic-offset 4)
+
 
 ;; ReST mode
 (add-hook 'rst-mode-hook (lambda ()
