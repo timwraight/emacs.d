@@ -153,9 +153,9 @@
         (concat (car
                  (last
                   (split-string (eshell/pwd) "/")))
-                " ")))
+                ": ")))
 
-(setq eshell-prompt-regexp "^[^#$\n]* ")
+(setq eshell-prompt-regexp "^[^#$\n]* :")
 
 
 ;; MARKDOWN
