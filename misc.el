@@ -144,7 +144,6 @@
 
 (add-hook 'sql-mode-hook
           (lambda ()
-            (setq truncate-lines t)
             (sql-highlight-mysql-keywords)))
 
 
