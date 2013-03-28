@@ -226,6 +226,8 @@
 (vimp-leader/set-key "g" 'magit-status)
 (vimp-leader/set-key "h" 'vc-version-ediff)
 (vimp-leader/set-key "t" 'helm-ls-git-ls)
+(vimp-leader/set-key "e" 'next-error)
+(vimp-leader/set-key "w" 'previous-error)
 
 
 (global-rainbow-delimiters-mode 1)
