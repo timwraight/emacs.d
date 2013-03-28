@@ -105,13 +105,13 @@
 (require 'popup)
 (require 'fuzzy)
 (require 'auto-complete)
-(require 'auto-complete-config)
-(ac-config-default)
+;; (require 'auto-complete-config)
+;; (ac-config-default)
 (ac-flyspell-workaround)
 (setq ac-comphist-file "~/.emacs.d/ac-comphist.dat")
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/vendor/auto-complete/dict")
 
-(global-auto-complete-mode t)
+;; (global-auto-complete-mode t)
 (setq ac-auto-show-menu t)
 (setq ac-dwim t)
 (setq ac-use-menu-map t)
@@ -122,7 +122,6 @@
 (setq ac-auto-start 2)
 (setq ac-candidate-menu-min 0)
 
-(setq ac-use-menu-map t)
 (define-key ac-menu-map (kbd "/") 'ac-isearch)
 (setq ac-trigger-commands-on-completing 
   '(delete-backward-char
@@ -149,10 +148,40 @@
   (add-to-list 'ac-modes mode))
 
 (add-hook 'text-mode-hook (lambda () (setq auto-complete-mode nil)))
-(add-hook 'comint-mode-hook 'auto-complete-mode)
+;; (add-hook 'comint-mode-hook 'auto-complete-mode)
+
+;; COMPANY MODE
+(require 'company)
+(add-hook 'prog-mode-hook 'company-mode)
+(setq company-idle-delay t)
+(setq company-active-map
+  (let ((keymap (make-sparse-keymap)))
+    (define-key keymap "\e\e\e" 'company-abort)
+    (define-key keymap "\C-g" 'company-abort)
+    (define-key keymap (kbd "M-n") 'company-select-next)
+    (define-key keymap (kbd "M-p") 'company-select-previous)
+    (define-key keymap (kbd "<down>") 'company-select-next-or-abort)
+    (define-key keymap (kbd "<up>") 'company-select-previous-or-abort)
+    (define-key keymap [down-mouse-1] 'ignore)
+    (define-key keymap [down-mouse-3] 'ignore)
+    (define-key keymap [mouse-1] 'company-complete-mouse)
+    (define-key keymap [mouse-3] 'company-select-mouse)
+    (define-key keymap [up-mouse-1] 'ignore)
+    (define-key keymap [up-mouse-3] 'ignore)
+    (define-key keymap [return] 'company-complete-selection)
+    (define-key keymap [tab] 'company-complete-common)
+    (define-key keymap (kbd "<f1>") 'company-show-doc-buffer)
+    (define-key keymap "\C-w" 'company-show-location)
+    (define-key keymap "\C-s" 'company-search-candidates)
+    (define-key keymap "\C-\M-s" 'company-filter-candidates)
+    (define-key keymap (kbd "<SPC>") 'company-filter-candidates)
+    (dotimes (i 10)
+      (define-key keymap (vector (+ (aref (kbd "M-0") 0) i))
+        `(lambda () (interactive) (company-complete-number ,i))))
+    keymap))
+
 
 ;; SAVE PLACE
-
 (setq-default save-place t)
 
 ;; UNIX CONF FILES MODE

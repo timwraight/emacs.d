@@ -26,8 +26,16 @@
 (add-hook 'html-mode-hook (lambda ()
                             (variable-pitch-mode 0)
                             (turn-off-flyspell)
+<<<<<<< variant A
                             (tagedit-mode)))
 
+>>>>>>> variant B
+                            (setq truncate-lines t)))
+(setq sgml-basic-offset 4)
+####### Ancestor
+                            (setq truncate-lines t)))
+
+======= end
 
 ;; ReST mode
 (add-hook 'rst-mode-hook (lambda ()
