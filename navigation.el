@@ -1,15 +1,10 @@
 ;; NAVIGATION
+
 (global-set-key (kbd "C-S-h") 'windmove-left) 
 (global-set-key (kbd "C-S-l") 'windmove-right)
 (global-set-key (kbd "C-S-k") 'windmove-up)
 (global-set-key (kbd "C-S-j") 'windmove-down)
 
-(global-set-key (kbd "C-x O") (lambda () (interactive) (other-window -1))) ;; back one
-(global-set-key (kbd "C-x C-o") (lambda () (interactive) (other-window 2))) ;; forward two
-(global-set-key (kbd "C-S-h") 'windmove-left)
-(global-set-key (kbd "C-S-l") 'windmove-right)
-(global-set-key (kbd "C-S-k") 'windmove-up)
-(global-set-key (kbd "C-S-j") 'windmove-down)
 (setq windmove-wrap-around t)
 
 ;; Make windmove work in org-mode:
