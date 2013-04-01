@@ -22,9 +22,10 @@
 (require 'emmet-mode)
 (require 'tagedit)
 (tagedit-add-experimental-features)
-(add-hook 'sgml-mode-hook 'emmet-mode)
-(add-hook 'html-mode-hook (lambda ()
+(add-hook 'sgml-mode-hook (lambda ()
                             (variable-pitch-mode 0)
+                            (setq truncate-lines t)
+                            (emmet-mode)
                             (turn-off-flyspell)
                             (tagedit-mode)))
 
