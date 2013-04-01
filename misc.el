@@ -132,6 +132,8 @@
 
 (require 'clojure-mode)
 (require 'nrepl)
+(require 'paredit)
+(add-hook 'clojure-mode-hook 'paredit-mode)
 (add-hook 'nrepl-interaction-mode-hook
   'nrepl-turn-on-eldoc-mode)
 
