@@ -83,8 +83,6 @@
 (global-set-key (kbd "C-S-s-j")   'buf-move-down)
 (global-set-key (kbd "C-S-s-h")   'buf-move-left)
 (global-set-key (kbd "C-S-s-l")  'buf-move-right)
-(vimp-leader/set-key "<up>" (lambda () (interactive) (enlarge-window 50)))
-(vimp-leader/set-key "<down>" (lambda () (interactive) (enlarge-window -50)))
 
 ;; EDIFF
 

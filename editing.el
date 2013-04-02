@@ -224,6 +224,8 @@
 (vimp-leader/set-key "t" 'helm-ls-git-ls)
 (vimp-leader/set-key "e" 'next-error)
 (vimp-leader/set-key "w" 'previous-error)
+(vimp-leader/set-key "<up>" (lambda () (interactive) (enlarge-window 50)))
+(vimp-leader/set-key "<down>" (lambda () (interactive) (enlarge-window -50)))
 
 
 (global-rainbow-delimiters-mode 1)
