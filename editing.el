@@ -105,11 +105,12 @@
 (require 'popup)
 (require 'fuzzy)
 (require 'auto-complete)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/vendor/auto-complete/dict")
 (require 'auto-complete-config)
 (ac-config-default)
+
 (ac-flyspell-workaround)
 (setq ac-comphist-file "~/.emacs.d/ac-comphist.dat")
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/vendor/auto-complete/dict")
 
 ;; (global-auto-complete-mode t)
 (setq ac-auto-show-menu t)
@@ -117,22 +118,17 @@
 (setq ac-use-menu-map t)
 (setq ac-quick-help-delay 1)
 (setq ac-quick-help-height 60)
-(setq ac-disable-inline t)
+;; (setq ac-disable-inline nil)
 (setq ac-show-menu-immediately-on-auto-complete t)
 (setq ac-auto-start 2)
-(setq ac-candidate-menu-min 0)
+;; (setq ac-candidate-menu-min 2)
 
-(define-key ac-menu-map (kbd "/") 'ac-isearch)
-(setq ac-trigger-commands-on-completing 
-  '(delete-backward-char
-    backward-delete-char
-    backward-delete-char-untabify
-    ;; autopair
-    autopair-backspace
-    ac-expand
-    ;; paredit
-    paredit-backward-delete
-    paredit-backward-delete-word))
+(define-key ac-menu-map (kbd "<SPC>") 'ac-isearch)
+
+
+
+;; Just ignore case
+(setq ac-ignore-case t)
 
 (set-default 'ac-sources
              '(ac-source-dictionary
