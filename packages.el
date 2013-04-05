@@ -16,4 +16,5 @@
 (load-theme 'solarized-dark t)
 
 (require 'vimp )
-
+;; VIMP LEADER
+(require 'vimp-leader)
