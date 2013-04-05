@@ -13,8 +13,7 @@
 
 (add-hook 'python-mode-hook 
       (lambda ()
-        (setq truncate-lines 1)   
-        ))
+        (setq ac-sources '(ac-source-symbols ac-source-words-in-same-mode-buffers ac-source-ropemacs))))
 
 
 ;; DOCS
