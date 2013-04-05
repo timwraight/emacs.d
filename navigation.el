@@ -154,4 +154,6 @@
 (vimp-leader/set-key "a" (lambda () (interactive)
                            (ack (concat "ack " (read-string "Search for: " (word-at-point)))
                                 (helm-ls-git-root-dir))))
+(vimp-leader/set-key "<up>" (lambda () (interactive) (enlarge-window 50)))
+(vimp-leader/set-key "<down>" (lambda () (interactive) (enlarge-window -50)))
 
