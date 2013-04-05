@@ -25,8 +25,6 @@
 ; sentences end in a single space
 (setq sentence-end-double-space nil)
 
-(setq truncate-partial-width-windows 80)
-(setq fill-column 80)
 
 ;; UNDO TREE
 ;; Permamnent history will work with Emacs 24.3 or later
@@ -57,9 +55,7 @@
 ;; SNIPPETS
 (require 'yasnippet)
 (yas-reload-all)
-(add-hook 'prog-mode-hook
-          '(lambda ()
-             (yas-minor-mode)))
+(add-hook 'prog-mode-hook 'yas-minor-mode)
 
 ;;; turn off auto-fill in tex and markdown
 (add-hook 'markdown-mode-hook 'turn-off-auto-fill)
@@ -224,8 +220,6 @@
 (vimp-leader/set-key "t" 'helm-ls-git-ls)
 (vimp-leader/set-key "e" 'next-error)
 (vimp-leader/set-key "w" 'previous-error)
-(vimp-leader/set-key "<up>" (lambda () (interactive) (enlarge-window 50)))
-(vimp-leader/set-key "<down>" (lambda () (interactive) (enlarge-window -50)))
 
 
 (global-rainbow-delimiters-mode 1)
