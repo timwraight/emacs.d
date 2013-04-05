@@ -131,6 +131,7 @@
 (require 'helm-config)
 (require 'helm-ls-git)
 (setq helm-ls-git-show-abs-or-relative 'relative)
+(setq helm-ff-transformer-show-only-basename nil)
 (define-key vimp-normal-state-map "m" 'helm-ls-git-ls)
 (define-key vimp-normal-state-map ";" 'helm-mini)
 (define-key vimp-normal-state-map "'" 'helm-command-prefix)
