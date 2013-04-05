@@ -22,6 +22,8 @@
 (eval-when-compile (require 'pylookup))
 (setq pylookup-program "~/.emacs.d/vendor/pylookup/pylookup.py")
 (setq pylookup-db-file "~/.emacs.d/vendor/pylookup/pylookup.db")
+(autoload 'pylookup-lookup "pylookup"
+  "Lookup SEARCH-TERM in the Python HTML indexes." t)
 (autoload 'pylookup-update "pylookup" 
   "Run pylookup-update and create the database at `pylookup-db-file'." t)
 (global-set-key "\C-ch" 'pylookup-lookup)
