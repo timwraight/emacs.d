@@ -22,6 +22,11 @@
 (add-hook 'python-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'js-mode-hook 'rainbow-delimiters-mode)
 
+;; ALERTS
+
+(setq ring-bell-function 'ignore)
+
+
 ;; TYPOGRAPHY
 
 ; Line Spacing 
