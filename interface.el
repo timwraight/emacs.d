@@ -29,7 +29,8 @@
 (add-hook 'prog-mode-hook (lambda ()
                             (interactive)
                             (setq line-spacing 2)
-                            (setq truncate-lines t)))
+                            (setq fill-column 80)
+                            (toggle-truncate-lines)))
 
 (global-visual-line-mode t)
 (require 'pretty-mode)
