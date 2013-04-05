@@ -114,17 +114,16 @@
 (setq ac-use-menu-map t)
 (setq ac-quick-help-delay 1)
 (setq ac-quick-help-height 60)
-;; (setq ac-disable-inline nil)
-(setq ac-show-menu-immediately-on-auto-complete t)
-(setq ac-auto-start 2)
-;; (setq ac-candidate-menu-min 2)
+(setq ac-auto-start t)
+(setq ac-candidate-menu-min 2)
 
 (define-key ac-menu-map (kbd "<SPC>") 'ac-isearch)
+                                     
 
 
 
-;; Just ignore case
-(setq ac-ignore-case t)
+;; don't ignore case
+(setq ac-ignore-case nil)
 
 (set-default 'ac-sources
              '(ac-source-dictionary
