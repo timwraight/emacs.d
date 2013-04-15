@@ -6,7 +6,7 @@
 (setq org-default-notes-file "~/Dropbox/org/general.org")
 
 ; Keywords
-(setq org-todo-keywords '((sequence "ACTION" "QUESTION" "NEXT" "|" "DONE")))
+(setq org-todo-keywords '((sequence "ACTION" "|" "DONE")))
 
 ; Clocking
 (global-set-key (kbd "S-<f13>") 'org-clock-out)
