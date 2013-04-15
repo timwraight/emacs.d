@@ -135,6 +135,7 @@
 (define-key vimp-normal-state-map "m" 'helm-ls-git-ls)
 (define-key vimp-normal-state-map ";" 'helm-mini)
 (define-key vimp-normal-state-map "'" 'helm-command-prefix)
+(vimp-leader/set-key "b" 'helm-bookmarks)
 
 (setq helm-display-function
       (lambda (buf)
