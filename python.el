@@ -48,5 +48,7 @@
 
 
 ;; DJANGO
-
-(require 'python-django)
+(require 'pony-mode)
+(setq pony-test-failfast t)
+(pony-key (kbd "C-c C-p C-s") 'pony-south-schemamigration)
+(pony-key (kbd "C-c C-p C-a") 'pony-south-migrate)
