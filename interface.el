@@ -117,3 +117,7 @@
 (require 'winring)
 (winring-initialize)
 
+
+;; Bigger/Smaller windows
+(vimp-leader/set-key "<up>" (lambda () (interactive) (enlarge-window 50)))
+(vimp-leader/set-key "<down>" (lambda () (interactive) (enlarge-window -50)))
