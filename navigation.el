@@ -89,14 +89,7 @@
       scroll-conservatively 10000)
 
 
-;; BACK BUTTON
-
-(require 'back-button)
-(back-button-mode 1)
-
-
 ;; Marker Visit commands
-; Thee should be in navigation.el, but I can't figure out how to get them there
 (define-key vimp-normal-state-map (kbd "SPC") (lambda ()
                 (interactive)
                 (switch-to-prev-buffer)))
@@ -105,6 +98,23 @@
                 (interactive)
                 (switch-to-next-buffer)))
 
+;; Make it work with magit too
+(define-key magit-mode-map (kbd "SPC") (lambda ()
+                (interactive)
+                (switch-to-prev-buffer)))
+
+(define-key magit-mode-map (kbd "S-SPC") (lambda ()
+                (interactive)
+                (switch-to-next-buffer)))
+
+;; Make it work with compilation mode
+(define-key compilation-mode-map (kbd "SPC") (lambda ()
+                (interactive)
+                (switch-to-prev-buffer)))
+
+(define-key compilation-mode-map (kbd "S-SPC") (lambda ()
+                (interactive)
+                (switch-to-next-buffer)))
 
 ; These should be there too, same deal
  (define-key vimp-normal-state-map (kbd "C-SPC") (lambda ()
