@@ -152,6 +152,11 @@
             (sql-highlight-mysql-keywords)))
 
 
+(add-hook 'sql-interactive-mode-hook (lambda ()
+                           (interactive)
+                           (toggle-truncate-lines)
+                           (setq comint-prompt-regexp "[[:alpha:]_-]+(-|=)> ")))
+
 ;; ESHELL
 (setq eshell-prompt-function
       (lambda nil
