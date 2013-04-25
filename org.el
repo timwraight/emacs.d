@@ -137,10 +137,7 @@
       (with-selected-window agenda-window (org-agenda-redo)))))
 (run-at-time nil 300 'kiwon/org-agenda-redo-in-other-window)
 
-
-
-
-
+(vimp-leader/set-key "o" 'org-switchb)
 
 
 
