@@ -157,6 +157,7 @@
 
 ;; VIMP
 (vimp-mode 1)
+(setq vimp-auto-indent nil)
 (global-set-key (kbd "<f1>") 'vimp-local-mode)
 
 ; Use visual lines with j and k
