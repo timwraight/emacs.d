@@ -53,6 +53,9 @@
 ; Allow refile to create parent tasks with confirmation
 (setq org-refile-allow-creating-parent-nodes (quote confirm))
 
+;; Don't ask me every time I want to execute some code
+(setq org-confirm-babel-evaluate nil)
+
 ; Use IDO for both buffer and file completion and ido-everywhere to t
 (setq org-completion-use-ido t)
 (setq ido-everywhere t)
