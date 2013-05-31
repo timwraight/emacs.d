@@ -11,13 +11,22 @@
 ; Clocking
 (global-set-key (kbd "S-<f13>") 'org-clock-out)
 (global-set-key (kbd "<f13>") 'org-clock-in-last)
+(vimp-leader/set-key "c" (lambda () (interactive) (org-clock-in '(4))))
 
 ; Persist clock history
 (setq org-clock-out-when-done t)
 ;; Save the running clock and all clock history when exiting Emacs, load it on startup
 (setq org-clock-persist t)
+;; Do not prompt to resume an active clock
+(setq org-clock-persist-query-resume nil)
+;; Clock out when moving task to a done state
+(setq org-clock-out-when-done t)
+;; Enable auto clock resolution for finding open clocks
+(setq org-clock-auto-clock-resolution (quote when-no-clock-is-running))
 ;; Separate drawers for clocking and logs
 (setq org-drawers (quote ("PROPERTIES" "LOGBOOK")))
+;; Include current clocking task in clock reports
+(setq org-clock-report-include-clocking-task t)
 ;; Save clock data and state changes and notes in the LOGBOOK drawer
 (setq org-clock-into-drawer t)
 
@@ -138,6 +147,3 @@
 (run-at-time nil 300 'kiwon/org-agenda-redo-in-other-window)
 
 (vimp-leader/set-key "o" 'org-switchb)
-
-
-

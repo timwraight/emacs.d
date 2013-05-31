@@ -1,9 +1,18 @@
 ;; NAVIGATION
 
-(global-set-key (kbd "C-S-h") 'windmove-left) 
-(global-set-key (kbd "C-S-l") 'windmove-right)
-(global-set-key (kbd "C-S-k") 'windmove-up)
-(global-set-key (kbd "C-S-j") 'windmove-down)
+
+(if (display-graphic-p)
+    (progn
+        (global-set-key (kbd "C-S-h") 'windmove-left) 
+        (global-set-key (kbd "C-S-l") 'windmove-right)
+        (global-set-key (kbd "C-S-k") 'windmove-up)
+        (global-set-key (kbd "C-S-j") 'windmove-down))
+  (progn
+        (global-set-key (kbd "C-S-h") 'windmove-left) 
+        (global-set-key (kbd "C-S-l") 'windmove-right)
+        (global-set-key (kbd "C-S-k") 'windmove-up)
+        (global-set-key (kbd "C-S-j") 'windmove-down))
+    )
 
 (setq windmove-wrap-around t)
 
@@ -165,5 +174,18 @@
 (vimp-leader/set-key "a" (lambda () (interactive)
                            (ack (concat "ack " (read-string "Search for: " (word-at-point)))
                                 (helm-ls-git-root-dir))))
+
+
+;; GOOGLE
+;(defun google-this () (interactive)
+  ;(browse-url
+   ;(let ((search-term
+          ;(cond ((region-active-p)
+                    ;(buffer-substring-no-properties region-beginning region-end))
+           ;((not (eq (word-at-point) nil)) (word-at-point))
+           ;(read-string "Search for term: ")))))
+   ;(concat "http://www.google.co.uk/search?q=" search-term "&ie=utf-8")))
+  
+;(vimp-leader/set-key "s" 'google-this)
 
 

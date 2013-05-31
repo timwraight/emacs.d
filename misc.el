@@ -109,6 +109,7 @@
 ;; PHP
 
 (require 'php-mode)
+(setq php-mode-force-pear t)
 
 
 ;; TEX

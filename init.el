@@ -1,5 +1,4 @@
 ; INCLUDING OTHER INIT FILES
-(server-start)
 
 (defconst user-init-dir
   (cond ((boundp 'user-emacs-directory)
@@ -13,6 +12,7 @@
   (interactive "f")
   "Load a file in current user's configuration directory"
   (load-file (expand-file-name file user-init-dir)))
+
 
 (byte-recompile-directory "~/.emacs.d/")
 
@@ -50,7 +50,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "#042028" :foreground "#999999" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 150 :width normal :foundry "Microsoft" :family "Consolas"))))
+ '(default ((t (:inherit nil :stipple nil :foreground "#999999" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 1 :width normal :foundry "default" :family "default"))))
  '(cursor ((t (:background "#fffece" :foreground "#042028"))))
  '(ediff-current-diff-C ((t (:background "#393935"))))
  '(ediff-even-diff-A ((t (:background "#002a34"))))
@@ -88,11 +88,10 @@
  '(org-level-7 ((t (:foreground "#818f4e"))))
  '(org-level-8 ((t (:foreground "#818f4e"))))
  '(org-meta-line ((t (:inherit org-block-begin-line))))
- '(org-special-keyword ((t (:inherit font-lock-keyword-face :foreground "#003441"))))
+ '(org-special-keyword ((t (:inherit font-lock-keyword-face))))
  '(org-table ((t (:foreground "LightSkyBlue" :height 1 :family "Menlo"))))
- '(org-todo ((t (:background "#002a34" :foreground "#c60007" :inverse-video nil :underline nil :slant normal :weight normal))))
+ '(org-todo ((t (:background "#d70000" :foreground "#1c1c1c" :inverse-video nil :underline nil :slant normal :weight normal))))
  '(variable-pitch ((t (:foreground "#a0a19a" :height 1.2 :family "Lucida Grande"))))
  '(w3m-session-select ((t (:foreground "white" :family "Gill Sans"))) t))
-
 
 (load-user-file "setup-specific.el")

@@ -1,11 +1,20 @@
 ;; INTERFACE
-(menu-bar-mode 0)
-(tool-bar-mode 0)
-(scroll-bar-mode 0)
+(if (display-graphic-p)
+    (progn
+      (tool-bar-mode -1)
+      (tooltip-mode -1)
+      (scroll-bar-mode -1))
+  (progn
+    (menu-bar-mode -1)))
+
+(if (not (display-graphic-p))
+    (progn
+      (add-hook 'minibuffer-setup-hook
+                      (lambda () (setq truncate-lines nil)))))
+
 (column-number-mode 1)
 (setq max-mini-window-height 1)
 (setq inhibit-splash-screen t)
-(tooltip-mode -1)
 (auto-compression-mode t)
 (global-font-lock-mode t)
 (show-paren-mode 1)

@@ -56,6 +56,9 @@
 (require 'yasnippet)
 (yas-reload-all)
 (yas-global-mode 1)
+(if (not (display-graphic-p))
+    (progn
+        (define-key yas-minor-mode-map (kbd "TAB") 'yas/expand)))
 
 ;;; turn off auto-fill in tex and markdown
 (add-hook 'markdown-mode-hook 'turn-off-auto-fill)
@@ -89,11 +92,8 @@
                              (flyspell-auto-correct-previous-word (point))))))
 
 
-; FLYMAKE
-(require 'flycheck)
-(add-hook 'prog-mode-hook 'flycheck-mode)
-(add-hook 'text-mode-hook 'flycheck-mode)
-
+; FLYCHECK
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; AUTOCOMPLETE
 
