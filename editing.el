@@ -1,4 +1,4 @@
-;; EDITING
+; EDITING
 
 ;; I can't remember ever having meant to use C-z to suspend the frame
 (global-set-key (kbd "C-z") 'undo)
@@ -19,7 +19,6 @@
 (prefer-coding-system 'utf-8)
 (setq save-place-file "/tmp/emacs-places.txt")
 
-(set-default 'indent-tabs-mode nil)
 (set-default 'indicate-empty-lines t)
 (set-default 'imenu-auto-rescan t)
 ; sentences end in a single space
@@ -47,7 +46,8 @@
          (count (/ max-column tab-width)))
     (number-sequence tab-width (* tab-width count) tab-width)))
 
-(setq tab-width 4)
+(set-default 'indent-tabs-mode nil)
+(setq-default tab-width 4)
 (setq tab-stop-list (my-generate-tab-stops))
 
 
