@@ -67,7 +67,7 @@
 
 ;; SPELLING
 (setq ispell-program-name "aspell"
-      ispell-dictionary "english"
+      ispell-dictionary "british"
       ispell-dictionary-alist
       (let ((default '("[A-Za-z]" "[^A-Za-z]" "[']" nil
                        ("-B" "-d" "english" "--dict-dir"
@@ -205,10 +205,11 @@
 ;; VIMP LEADER
 (require 'vimp-leader)
 (vimp-leader/set-leader ",")
-(vimp-leader/set-key "f" 'winring-jump-to-configuration)
+(vimp-leader/set-key "f" 'recentf-ido-find-file)
+(vimp-leader/set-key "b" 'ido-switch-buffer)
 (vimp-leader/set-key "n" 'winring-new-configuration)
 (vimp-leader/set-key "r" 'winring-rename-configuration)
-(vimp-leader/set-key "p" 'split-window-right)
+(vimp-leader/set-key "d" 'sql-connect)
 (vimp-leader/set-key "l" 'split-window-below)
 (vimp-leader/set-key "=" 'balance-windows)
 (vimp-leader/set-key "g" 'magit-status)
