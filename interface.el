@@ -1,5 +1,6 @@
 ;; SOLARIZED 
 (load-theme 'solarized-dark t)
+(menu-bar-mode -1)
 
 (column-number-mode 1)
 (setq max-mini-window-height 1)

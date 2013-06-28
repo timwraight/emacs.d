@@ -1,1 +1,1 @@
-(global-rainbow-delimiters-mode 1)
+(lambda() (global-rainbow-delimiters-mode 1))

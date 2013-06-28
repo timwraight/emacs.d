@@ -1,1 +1,1 @@
-(tagedit-add-experimental-features)
+(lambda() (tagedit-add-experimental-features))

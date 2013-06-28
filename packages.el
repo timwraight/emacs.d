@@ -18,35 +18,36 @@
 
 (setq el-get-sources
       '(
-        el-get 
-        color-theme-solarized 
-        helm 
+	markdown
+	ssh-config-mode
+                                        ; haskell-mode
+        ; jss 
         ack 
-        pbcopy
-        undo-tree 
-        yasnippet 
-        flyspell-lazy 
-        flycheck 
         auto-complete
-        rainbow-delimiters 
         autopair 
-        paredit
+        color-theme-solarized 
+        el-get 
+        emmet-mode
+        flycheck 
+        flyspell-lazy 
         git-modes
+        helm 
+        helm-ls-git
+        js2-mode
+        magit 
+        paredit
+        pbcopy
+        php-mode 
+        python-django
+        rainbow-delimiters 
         smex 
         tagedit 
-        magit 
-        js2-mode
-        ; jss 
-        php-mode 
-        yaml-mode 
-                                        ; haskell-mode
+        undo-tree 
         vimp
         vimp-leader
         vimp-surround
-        helm-ls-git
-        emmet-mode
-	markdown
-	ssh-config-mode
+        yaml-mode 
+        yasnippet 
         ))
 
 (el-get 'sync el-get-sources)
