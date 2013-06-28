@@ -14,3 +14,6 @@
 (vimp-leader/set-key "w" 'previous-error)
 (vimp-leader/set-key "c" (lambda () (interactive) (org-clock-in '(4))))
 (vimp-leader/set-key "o" 'org-switchb)
+(vimp-leader/set-key "a" (lambda () (interactive)
+			   (ack (concat "ack " (read-string "Search for: " (word-at-point)))
+				(helm-ls-git-root-dir))))

@@ -14,6 +14,7 @@
 	"~/.emacs.d/el-get/el-get/recipes/elpa/" 
 	"~/.emacs.d/el-get/el-get/recipes/emacswiki/"))
 
+(setq el-get-user-package-directory "~/.emacs.d/custom/el-get/setup/")
 
 (setq el-get-sources
       '(

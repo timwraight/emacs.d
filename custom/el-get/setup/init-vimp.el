@@ -35,3 +35,7 @@
     )
   (my-move-key vimp-motion-state-map vimp-normal-state-map (kbd "RET"))
   (my-move-key vimp-motion-state-map vimp-normal-state-map " ")
+
+(define-key vimp-normal-state-map "m" 'helm-ls-git-ls)
+(define-key vimp-normal-state-map ";" 'helm-mini)
+(define-key vimp-normal-state-map "'" 'helm-command-prefix)
