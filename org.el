@@ -11,7 +11,7 @@
 ; Clocking
 (global-set-key (kbd "S-<f13>") 'org-clock-out)
 (global-set-key (kbd "<f13>") 'org-clock-in-last)
-(vimp-leader/set-key "c" (lambda () (interactive) (org-clock-in '(4))))
+
 
 ; Persist clock history
 (setq org-clock-out-when-done t)
@@ -146,4 +146,4 @@
       (with-selected-window agenda-window (org-agenda-redo)))))
 (run-at-time nil 300 'kiwon/org-agenda-redo-in-other-window)
 
-(vimp-leader/set-key "o" 'org-switchb)
+

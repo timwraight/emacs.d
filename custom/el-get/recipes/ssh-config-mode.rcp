@@ -1,0 +1,4 @@
+(:name ssh-config-mode
+       :type github
+       :pkgname "jhgorrell/ssh-config-mode-el"
+       :features ssh-config-mode)

@@ -1,0 +1,10 @@
+(:name vimp
+       :type git
+       :url "git://gitorious.org/evil/evil.git"
+       :features vimp
+       :depends undo-tree
+       :build ("rename 's/evil/vimp/' evil*" 
+		"rename 's/evil/vimp/' doc/*" 
+		"sed -i .orig -e 's/evil/vimp/g' *.el"
+		"sed -i .orig -e 's/evil/vimp/g' Makefile"
+		"make all" "make doc"))

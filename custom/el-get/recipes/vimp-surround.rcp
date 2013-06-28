@@ -1,0 +1,9 @@
+(:name vimp-surround
+       :website "http://github.com/timcharper/evil-surround"
+       :type github
+       :pkgname "timcharper/evil-surround"
+       :features surround
+       :build ("sed -i .orig -e 's/evil/vimp/g' surround.el")
+       :post-init (global-surround-mode 1)
+       :depends vimp)
+

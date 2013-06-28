@@ -1,0 +1,8 @@
+(:name vimp-leader
+       :website "http://github.com/cofi/evil-leader"
+       :type github
+       :pkgname "cofi/evil-leader"
+       :features vimp-leader
+       :build ("rename 's/evil/vimp/' evil*" 
+	       "sed -i .orig -e 's/evil/vimp/g' *.el")
+       :depends vimp)
