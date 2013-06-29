@@ -1,20 +1,24 @@
 ;; AUTOCOMPLETE
-
 ; Load the default configuration
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/vendor/auto-complete/dict")
+(require 'auto-complete-config)
 (ac-config-default)
+(add-to-list 'ac-dictionary-directories "~/.emacs.d/vendor/auto-complete/dict")
+
+
 
 (ac-flyspell-workaround)
 (setq ac-comphist-file "~/.emacs.d/ac-comphist.dat")
 
 ;; (global-auto-complete-mode t)
-(setq ac-auto-show-menu t)
-(setq ac-dwim t)
-(setq ac-use-menu-map t)
-(setq ac-quick-help-delay 1)
-(setq ac-quick-help-height 60)
-(setq ac-auto-start 2)
-(setq ac-candidate-menu-min 2)
+(setq 
+ ac-auto-show-menu t
+ ac-dwim t
+ ac-use-menu-map t
+ ac-quick-help-delay 1
+ ac-quick-help-height 60
+ ac-auto-start 2
+ ac-candidate-menu-min 2)
+
 (define-key ac-menu-map (kbd "C-<SPC>") 'ac-isearch)
 
 ;; don't ignore case
