@@ -1,4 +1,5 @@
 ;; VIMP LEADER
+(global-vimp-leader-mode)
 (vimp-leader/set-leader ",")
 (vimp-leader/set-key "f" 'recentf-ido-find-file)
 (vimp-leader/set-key "b" 'ido-switch-buffer)
