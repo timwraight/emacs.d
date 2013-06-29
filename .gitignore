@@ -12,3 +12,5 @@ snippets
 elpa
 /org-files.el
 /tramp.el
+/setup-specific.el
+/custom/el-get/local-packages.el

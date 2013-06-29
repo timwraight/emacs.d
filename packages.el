@@ -16,13 +16,17 @@
 
 (setq el-get-user-package-directory "~/.emacs.d/custom/el-get/setup/")
 
+; Get the packages we only want locally.
+(load-file "~/.emacs.d/custom/el-get/local-packages.el")
+
 (setq el-get-sources
       '(
 	markdown
 	ssh-config-mode
-                                        ; haskell-mode
+        ; haskell-mode
         ; jss 
         ack 
+        auctex
         auto-complete
         autopair 
         color-theme-solarized 
@@ -50,4 +54,5 @@
         yasnippet 
         ))
 
-(el-get 'sync el-get-sources)
+(el-get 'sync (append el-get-sources el-get-local-sources))
+
