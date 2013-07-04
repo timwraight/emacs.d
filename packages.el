@@ -39,6 +39,7 @@
         helm-ls-git
         js2-mode
         magit 
+        org-mode
         paredit
         pbcopy
         php-mode 

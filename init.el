@@ -12,7 +12,6 @@
 (load-user-file "navigation.el")
 (load-user-file "editing.el")
 (load-user-file "python.el")
-(load-user-file "org.el")
 (load-user-file "misc.el")
 
 (setq custom-file "~/.emacs.d/setup-specific.el")
