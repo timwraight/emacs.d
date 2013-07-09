@@ -35,7 +35,6 @@
 (global-set-key (kbd "<f10>") 'org-agenda)
 (setq org-startup-indented 1)
 (setq org-use-speed-commands t)
-(add-hook 'org-mode-hook ((lambda () "Turn on variable pitch mode" (interactive) (variable-pitch-mode 1))))
 (add-hook 'org-mode-hook 'auto-fill-mode)
 (setq org-agenda-window-setup 'current-window)
 (setq org-agenda-restore-windows-after-quit nil)
