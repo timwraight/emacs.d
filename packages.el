@@ -9,8 +9,8 @@
       (eval-print-last-sexp))))
 
 (setq el-get-recipe-path 
-      '("/Users/timwraight/.emacs.d/el-get/el-get/recipes" 
-	"/Users/timwraight/.emacs.d/custom/el-get/recipes/" 
+      '("~/.emacs.d/el-get/el-get/recipes" 
+	"~/.emacs.d/custom/el-get/recipes/" 
 	"~/.emacs.d/el-get/el-get/recipes/elpa/" 
 	"~/.emacs.d/el-get/el-get/recipes/emacswiki/"))
 
@@ -30,7 +30,7 @@
         auto-complete
         autopair 
         color-theme-solarized 
-        el-get 
+        el-get
         emmet-mode
         flycheck 
         flyspell-lazy 
