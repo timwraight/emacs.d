@@ -21,12 +21,11 @@
 
 (setq el-get-sources
       '(
-	markdown
 	ssh-config-mode
         ; haskell-mode
         ; jss 
         ack 
-        auctex
+        ; auctex
         auto-complete
         autopair 
         color-theme-solarized 
@@ -39,6 +38,7 @@
         helm-ls-git
         js2-mode
         magit 
+        markdown-mode
         org-mode
         paredit
         pbcopy
