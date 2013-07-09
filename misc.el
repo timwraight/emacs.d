@@ -34,7 +34,6 @@
 
 
 ;; TEX
-(load "auctex.el" nil t t)
 
 
 
