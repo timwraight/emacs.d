@@ -72,6 +72,6 @@
 
 
 ; TRAMP
-
+(require 'tramp)
 (setq tramp-default-method "ssh")
 (setq tramp-syntax 'url)
