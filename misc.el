@@ -17,6 +17,7 @@
 
 (global-set-key (kbd "C-h a") 'apropos)
 
+
 ;; XML
 
 (add-hook 'nxml-mode-hook (lambda () (variable-pitch-mode nil)))

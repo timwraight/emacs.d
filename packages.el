@@ -21,11 +21,9 @@
 
 (setq el-get-sources
       '(
-	ssh-config-mode
-        ; haskell-mode
-        ; jss 
-        ack 
-        ; auctex
+        ssh-config-mode
+        ack-and-a-half
+        ack-menu
         auto-complete
         autopair 
         color-theme-solarized 
