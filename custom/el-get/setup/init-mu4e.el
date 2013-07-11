@@ -33,7 +33,8 @@
      (vimp-add-hjkl-bindings mu4e-main-mode-map 'normal
        "J" 'mu4e~headers-jump-to-maildir
        "j" 'vimp-next-line
-       "RET" 'mu4e-view-message)))
+       "RET" 'mu4e-view-message))
+  )
 
 (setq mu4e-maildir "~/Mail")
 (add-hook 'mu4e-main-mode-hook 'vimp-insert-state)
@@ -42,11 +43,12 @@
 (add-hook 'mu4e-headers-mode-hook 'vimp-insert-state)
 (add-hook 'mu4e-headers-mode-hook 'toggle-truncate-lines)
 (setq
- mu4e-get-mail-command "offlineimap"   ;; or fetchmail, or ...
- mu4e-update-interval 60)             ;; update every 5 minutes
+ mu4e-get-mail-command "true" ;; or fetchmail, or ...
+ mu4e-headers-auto-update nil
+ mu4e-update-interval 30)             ;; update every 5 minutes
 
 (setq mu4e-headers-fields
-      '( (:date          .  12)
+      '( (:human-date    .  12)
          (:flags         .   6)
          (:from          .  18)
          (:subject       .  nil)))
