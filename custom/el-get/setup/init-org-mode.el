@@ -6,21 +6,21 @@
 (setq org-default-notes-file "~/Dropbox/org/general.org")
 
 ; Keywords
-(setq org-todo-keywords '((sequence "ACTION" "|" "DONE")))
-
-; Clocking
-(global-set-key (kbd "S-<f13>") 'org-clock-out)
-(global-set-key (kbd "<f13>") 'org-clock-in-last)
+(setq org-todo-keywords '((sequence "ACTION(t)" "NEXT" "|" "DONE(d)")
+                          (sequence "QUESTION(q)" "|" "ANSWERED(a)")))
 
 
 ; Persist clock history
 (setq org-clock-out-when-done t)
-;; Save the running clock and all clock history when exiting Emacs, load it on startup
-(setq org-clock-persist t)
+;; Resume clocking task on clock-in if the clock is open
+(org-clock-persistence-insinuate)
+(setq org-clock-in-resume t)
 ;; Do not prompt to resume an active clock
 (setq org-clock-persist-query-resume nil)
 ;; Clock out when moving task to a done state
 (setq org-clock-out-when-done t)
+;; Sometimes I change tasks I'm clocking quickly - this removes clocked tasks with 0:00 duration
+(setq org-clock-out-remove-zero-time-clocks t)
 ;; Enable auto clock resolution for finding open clocks
 (setq org-clock-auto-clock-resolution (quote when-no-clock-is-running))
 ;; Separate drawers for clocking and logs
@@ -29,10 +29,10 @@
 (setq org-clock-report-include-clocking-task t)
 ;; Save clock data and state changes and notes in the LOGBOOK drawer
 (setq org-clock-into-drawer t)
+;; Save the running clock and all clock history when exiting Emacs, load it on startup
+(setq org-clock-persist t)
 
-(global-set-key (kbd "<f12>") 'org-agenda-list)
-(global-set-key (kbd "<f11>") 'org-capture)
-(global-set-key (kbd "<f10>") 'org-agenda)
+
 (setq org-startup-indented 1)
 (setq org-use-speed-commands t)
 (add-hook 'org-mode-hook 'auto-fill-mode)
@@ -40,13 +40,6 @@
 (setq org-agenda-restore-windows-after-quit nil)
 (setq org-src-fontify-natively t)
 (setq org-src-tab-acts-natively t)
-
-; Targets include this file and any file contributing to the agenda -
-; up to 9 levels deep
-(setq org-refile-targets (quote ((nil :maxlevel . 9)
-                                 (org-agenda-files :maxlevel . 9))))
-; Use full outline paths for refile targets - we file directly with IDO
-(setq org-refile-use-outline-path t)
 
 ; Hitting return on a link will open it
 (setq org-return-follows-link t)
@@ -94,6 +87,7 @@
    (emacs-lisp . t)
    (python . t)
    (sql . t)
+   (plantuml . t)
    (ditaa . t)
    ))
 

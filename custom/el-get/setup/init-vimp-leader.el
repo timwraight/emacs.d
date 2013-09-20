@@ -1,4 +1,4 @@
-;; VIMP LEADER
+; VIMP LEADER
 (global-vimp-leader-mode)
 (vimp-leader/set-leader ",")
 (vimp-leader/set-key "=" 'balance-windows)
@@ -15,7 +15,9 @@
 (vimp-leader/set-key "l" 'split-window-below)
 (vimp-leader/set-key "n" 'winring-new-configuration)
 (vimp-leader/set-key "o" 'org-switchb)
-(vimp-leader/set-key "r" 'recentf-ido-find-file)
+(vimp-leader/set-key "r" (lambda() (interactive) (kbd "ysiW")))
 (vimp-leader/set-key "s" 'save-buffer)
 (vimp-leader/set-key "t" 'helm-ls-git-ls)
+(vimp-leader/set-key ";" 'helm-mini)
 (vimp-leader/set-key "w" 'previous-error)
+

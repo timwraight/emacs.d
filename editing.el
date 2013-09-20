@@ -12,12 +12,17 @@
 (set-keyboard-coding-system 'utf-8)
 (prefer-coding-system 'utf-8)
 (setq save-place-file "/tmp/emacs-places.txt")
+(setq auto-save-visited-file-name t)
 
 (set-default 'indicate-empty-lines t)
 (set-default 'imenu-auto-rescan t)
 ; sentences end in a single space
 (setq sentence-end-double-space nil)
 
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
 
 ; tabs
 (defun my-generate-tab-stops (&optional width max)
@@ -36,6 +41,9 @@
 (add-hook 'markdown-mode-hook 'turn-off-auto-fill)
 (add-hook 'latex-mode-hook 'turn-off-auto-fill)
 
+
+;; TEXT MODE EDITING
+(vimp-leader/set-key-for-mode 'text-mode "p" 'flyspell-auto-correct-previous-word)
 
 ;; BACKUPS
 

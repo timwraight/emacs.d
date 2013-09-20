@@ -1,0 +1,7 @@
+(:name plantuml-mode
+       :website "https://github.com/skuro/plantuml-mode"
+       :type github
+       :pkgname "skuro/plantuml-mode"
+       :features plantuml-mode)
+
+

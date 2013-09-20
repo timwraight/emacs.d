@@ -37,15 +37,12 @@
   )
 
 (setq mu4e-maildir "~/Mail")
+(setq mu4e-headers-skip-duplicates t)
 (add-hook 'mu4e-main-mode-hook 'vimp-insert-state)
 (add-hook 'mu4e-view-mode-hook 'vimp-insert-state)
 (add-hook 'mu4e-compose-mode-hook 'vimp-insert-state)
 (add-hook 'mu4e-headers-mode-hook 'vimp-insert-state)
 (add-hook 'mu4e-headers-mode-hook 'toggle-truncate-lines)
-(setq
- mu4e-get-mail-command "true" ;; or fetchmail, or ...
- mu4e-headers-auto-update nil
- mu4e-update-interval 30)             ;; update every 5 minutes
 
 (setq mu4e-headers-fields
       '( (:human-date    .  12)
@@ -64,7 +61,9 @@
 
 (setq mu4e-attachment-dir  "~/Downloads")
 
-
+(require 'mu4e)
+(add-to-list 'mu4e-view-actions
+             '("ViewInBrowser" . mu4e-action-view-in-browser) t)
 
 ;; Attaching messages
 
@@ -86,7 +85,6 @@
 (add-hook 'dired-mode-hook 'turn-on-gnus-dired-mode)
 
 (setq mu4e-headers-leave-behavior 'apply)
-
 
 ;; don't keep message buffers around
 (setq message-kill-buffer-on-exit t)

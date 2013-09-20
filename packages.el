@@ -27,20 +27,25 @@
         auto-complete
         autopair 
         color-theme-solarized
-	context-export
+        direx
         el-get
+        emacs-jabber
         emmet-mode
         flycheck 
+        flycheck-color-mode-line
         flyspell-lazy 
         git-modes
-        haskell-mode
         helm 
         helm-ls-git
+        jedi
+        jedi-direx
         js2-mode
+        less-css-mode
         magit 
         markdown-mode
         org-mode
         paredit
+        plantuml-mode
         pbcopy
         php-mode 
         python-django

@@ -1,4 +1,4 @@
-;; HTML
+;; HT
 (add-hook 'sgml-mode-hook (lambda ()
                             (interactive)
                             (variable-pitch-mode 0)
@@ -29,12 +29,12 @@
             (define-key css-mode-map "\M-\C-x" 'slime-js-refresh-css)
             (define-key css-mode-map "\C-c\C-r" 'slime-js-embed-css)))
 
-
 ;; PHP
 (setq php-mode-force-pear t)
 
 
-;; TEX
+;; JAVASCRIPT
+(add-hook 'js-mode-hook (lambda() (flycheck-select-checker 'javascript-jshint)))
 
 
 

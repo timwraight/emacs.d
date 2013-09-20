@@ -24,6 +24,16 @@
       (find-file (cdr (assoc filename
                              file-assoc-list))))))
 
+(add-to-list 'ido-ignore-files "\\`pyc")
+
+;; DIRED MODE
+; ignore uninteresting files by default
+;; (require 'dired)
+;; (add-hook 'dired-mode-hook 
+;;           (lambda ()
+;;             (dired-omit-mode 1)))
+
+
 ;; IDO MODE
 
 (ido-mode t)
