@@ -1,4 +1,6 @@
 ;; ORG MODE
+; org-compat seems to be needed by the org-clock library
+(load-library "org-compat")
 (add-to-list 'load-path "~/.emacs.d/vendor/org-mode/lisp")
 (setq org-directory "~/Dropbox/org")
 (setq org-mobile-directory "~/Dropbox/MobileOrg")
