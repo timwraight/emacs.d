@@ -61,4 +61,3 @@
         ))
 
 (el-get 'sync (append el-get-sources el-get-local-sources))
-
