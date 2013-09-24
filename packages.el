@@ -29,7 +29,6 @@
         color-theme-solarized
         direx
         el-get
-        emacs-jabber
         emmet-mode
         flycheck 
         flycheck-color-mode-line
