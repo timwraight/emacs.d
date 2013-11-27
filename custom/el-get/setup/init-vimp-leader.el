@@ -20,5 +20,6 @@
 (vimp-leader/set-key "t" 'google-this)
 (vimp-leader/set-key ";" 'helm-mini)
 (vimp-leader/set-key "w" 'previous-error)
+(vimp-leader/set-key "z" (lambda () (interactive) (save-buffers-kill-terminal 1)))
 (vimp-leader/set-key-for-mode 'sgml-mode "<right>" 'tagedit-forward-slurp-tag)
 (vimp-leader/set-key-for-mode 'sgml-mode "<left>" 'tagedit-forward-barf-tag)
