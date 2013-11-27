@@ -26,14 +26,8 @@
 
 (add-to-list 'ido-ignore-files "\\`pyc")
 
-;; DIRED MODE
-; ignore uninteresting files by default
-;; (require 'dired)
-;; (add-hook 'dired-mode-hook
-;;           (lambda ()
-;;             (dired-omit-mode 1)))
 
-;; uniqify allows us to tell buffers with similar names apart
+;; Uniqify allows us to tell buffers with similar names apart
 (setq uniquify-buffer-name-style 'forward)
 (require 'uniquify)
 
