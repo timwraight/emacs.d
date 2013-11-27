@@ -8,11 +8,11 @@
       (goto-char (point-max))
       (eval-print-last-sexp))))
 
-(setq el-get-recipe-path 
+(setq el-get-recipe-path
       '("~/.emacs.d/custom/el-get/recipes/"
-	"~/.emacs.d/el-get/el-get/recipes" 
-	"~/.emacs.d/el-get/el-get/recipes/elpa/" 
-	"~/.emacs.d/el-get/el-get/recipes/emacswiki/"))
+        "~/.emacs.d/el-get/el-get/recipes"
+        "~/.emacs.d/el-get/el-get/recipes/elpa/"
+        "~/.emacs.d/el-get/el-get/recipes/emacswiki/"))
 
 (setq el-get-user-package-directory "~/.emacs.d/custom/el-get/setup/")
 
@@ -25,38 +25,39 @@
         ack-and-a-half
         ack-menu
         auto-complete
-        autopair 
+        autopair
         color-theme-solarized
         direx
         el-get
         emmet-mode
-        flycheck 
+        flycheck
         flycheck-color-mode-line
-        flyspell-lazy 
+        flyspell-lazy
         git-modes
-        helm 
+        helm
         helm-ls-git
         jedi
         jedi-direx
         js2-mode
         less-css-mode
-        magit 
+        magit
         markdown-mode
         org-mode
         paredit
         plantuml-mode
         pbcopy
-        php-mode 
+        php-mode
         python-django
-        rainbow-delimiters 
-        smex 
-        tagedit 
-        undo-tree 
+        rainbow-delimiters
+        smex
+        tagedit
+        undo-tree
         vimp
         vimp-leader
         vimp-surround
-        yaml-mode 
-        yasnippet 
+        yaml-mode
+        yasnippet
+        tim-zenburn
         ))
 
 (el-get 'sync (append el-get-sources el-get-local-sources))

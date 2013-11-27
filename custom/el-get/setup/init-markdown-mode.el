@@ -6,3 +6,5 @@
 (add-hook 'markdown-mode-hook (lambda () (interactive)
                                 (variable-pitch-mode nil)
                                 (auto-fill-mode)))
+(eval-after-load "markdown-mode"
+  '(define-key markdown-mode-map (kbd "M-RET") 'markdown-insert-list-item))

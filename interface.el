@@ -1,5 +1,5 @@
-;; SOLARIZED 
-(load-theme 'solarized-dark t)
+;; SOLARIZED
+(load-theme 'zenburn t)
 (menu-bar-mode -1)
 
 (column-number-mode 1)
@@ -17,7 +17,6 @@
 
 ;; ALERTS
 (setq ring-bell-function 'ignore)
-
 
 ;; TYPOGRAPHY
 (add-hook 'prog-mode-hook (lambda ()
@@ -50,4 +49,3 @@
 ;; EDIFF
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 (setq ediff-split-window-function 'split-window-horizontally)
-

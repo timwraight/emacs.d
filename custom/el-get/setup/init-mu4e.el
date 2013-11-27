@@ -2,53 +2,31 @@
 ;; the non-mu4e-* stuff is inherited from emacs/message-mode
 ;; MU4E, MU for Emacs, a mail client
 
-;; Vimp keybindings for mu4e
-
+;; Vim keybindings for mu4e
 (eval-after-load 'mu4e
   '(progn
-     ;; use the standard bindings as a base
-     (vimp-make-overriding-map mu4e-view-mode-map 'normal t)
-     (vimp-make-overriding-map mu4e-main-mode-map 'normal t)
-     (vimp-make-overriding-map mu4e-headers-mode-map 'normal t)
-     
-     (vimp-add-hjkl-bindings mu4e-view-mode-map 'normal
-                             "J" 'mu4e~headers-jump-to-maildir
-                             "j" 'vimp-next-line
-                             "C" 'mu4e-compose-new
-                             "o" 'mu4e-view-message
-                             "Q" 'mu4e-raw-view-quit-buffer)
-     
-     ;; (vimp-add-hjkl-bindings mu4e-view-raw-mode-map 'normal
-     ;; "J" 'mu4e-jump-to-maildir
-     ;; "j" 'vimp-next-line
-     ;; "C" 'mu4e-compose-new
-     ;; "q" 'mu4e-raw-view-quit-buffer)
-     
-     (vimp-add-hjkl-bindings mu4e-headers-mode-map 'normal
-       "J" 'mu4e~headers-jump-to-maildir
-       "j" 'vimp-next-line
-       "C" 'mu4e-compose-new
-       "o" 'mu4e-view-message)
-     
-     (vimp-add-hjkl-bindings mu4e-main-mode-map 'normal
-       "J" 'mu4e~headers-jump-to-maildir
-       "j" 'vimp-next-line
-       "RET" 'mu4e-view-message))
-  )
+     ;; Message box
+     (define-key mu4e-headers-mode-map (kbd "j") 'mu4e-headers-next)
+     (define-key mu4e-headers-mode-map (kbd "k") 'mu4e-headers-prev)
+     (define-key mu4e-headers-mode-map (kbd "o") 'mu4e-headers-view-message)
+     ;; Individual Message
+     (define-key mu4e-view-mode-map (kbd "j") 'next-line)
+     (define-key mu4e-view-mode-map (kbd "k") 'previous-line)))
+
 
 (setq mu4e-maildir "~/Mail")
 (setq mu4e-headers-skip-duplicates t)
-(add-hook 'mu4e-main-mode-hook 'vimp-insert-state)
-(add-hook 'mu4e-view-mode-hook 'vimp-insert-state)
+(add-hook 'mu4e-main-mode-hook 'vimp-local-mode)
+(add-hook 'mu4e-view-mode-hook 'vimp-local-mode)
 (add-hook 'mu4e-compose-mode-hook 'vimp-insert-state)
-(add-hook 'mu4e-headers-mode-hook 'vimp-insert-state)
+(add-hook 'mu4e-headers-mode-hook 'vimp-local-mode)
 (add-hook 'mu4e-headers-mode-hook 'toggle-truncate-lines)
 
 (setq mu4e-headers-fields
-      '( (:human-date    .  12)
-         (:flags         .   6)
-         (:from          .  18)
-         (:subject       .  nil)))
+      '((:human-date    .  12)
+        (:flags         .   6)
+        (:from          .  18)
+        (:subject       .  nil)))
 
 (setq
  mu4e-headers-visible-lines 16
@@ -56,7 +34,8 @@
 
 
 (setq mu4e-compose-complete-only-personal t)
-(setq mu4e-html2text-command "html2text -utf8 -width 72")
+(setq mu4e-html2text-command "html2text")
+;; (setq mu4e-html2text-command "html2text -utf8 -width 72")
 (add-to-list 'ac-modes 'mu4e-compose-mode)
 
 (setq mu4e-attachment-dir  "~/Downloads")

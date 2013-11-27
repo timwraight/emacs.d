@@ -29,10 +29,13 @@
 ;; DIRED MODE
 ; ignore uninteresting files by default
 ;; (require 'dired)
-;; (add-hook 'dired-mode-hook 
+;; (add-hook 'dired-mode-hook
 ;;           (lambda ()
 ;;             (dired-omit-mode 1)))
 
+;; uniqify allows us to tell buffers with similar names apart
+(setq uniquify-buffer-name-style 'forward)
+(require 'uniquify)
 
 ;; IDO MODE
 
@@ -50,6 +53,8 @@
       scroll-step  1
       scroll-conservatively 10000)
 
+(global-set-key (kbd "C-d") 'vimp-scroll-down)
+(global-set-key (kbd "C-e") 'vimp-scroll-up)
 
 
 ;; GOOGLE
@@ -61,7 +66,5 @@
            ;((not (eq (word-at-point) nil)) (word-at-point))
            ;(read-string "Search for term: ")))))
    ;(concat "http://www.google.co.uk/search?q=" search-term "&ie=utf-8")))
-  
+
 ;(vimp-leader/set-key "s" 'google-this)
-
-

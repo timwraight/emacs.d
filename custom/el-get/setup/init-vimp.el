@@ -7,8 +7,6 @@
 (define-key vimp-motion-state-map "j" 'vimp-next-visual-line)
 (define-key vimp-motion-state-map "k" 'vimp-previous-visual-line)
 
-(define-key vimp-insert-state-map "k" #'tim/maybe-exit)
-
 (vimp-define-command tim/maybe-exit ()
   :repeat change
   (interactive)
@@ -24,6 +22,9 @@
     (push 'escape unread-command-events))
        (t (setq unread-command-events (append unread-command-events
                           (list evt))))))))
+
+(define-key vimp-insert-state-map "k" 'tim/maybe-exit)
+(define-key vimp-replace-state-map "k" 'tim/maybe-exit)
 
 
 ; Make RET and SPACE do default Emacsy things instead of vim-movement

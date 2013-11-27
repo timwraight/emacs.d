@@ -10,7 +10,7 @@
 (setq ac-comphist-file "~/.emacs.d/ac-comphist.dat")
 
 ;; (global-auto-complete-mode t)
-(setq 
+(setq
  ac-auto-show-menu t
  ac-dwim t
  ac-use-menu-map t
@@ -19,10 +19,12 @@
  ac-auto-start 2
  ac-candidate-menu-min 2)
 
-(define-key ac-menu-map (kbd "C-<SPC>") 'ac-isearch)
+(define-key ac-menu-map (kbd "/") 'ac-isearch)
+(define-key ac-menu-map (kbd "C-j") 'ac-next)
+(define-key ac-menu-map (kbd "C-k") 'ac-previous)
 
 ;; don't ignore case
-(setq ac-ignore-case nil)
+(setq ac-ignore-case 'smart)
 
 (set-default 'ac-sources
              '(ac-source-dictionary
@@ -39,4 +41,3 @@
 
 (add-hook 'text-mode-hook (lambda () (setq auto-complete-mode nil)))
 (add-hook 'comint-mode-hook 'auto-complete-mode)
-

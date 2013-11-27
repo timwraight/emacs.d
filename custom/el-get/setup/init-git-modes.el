@@ -1,5 +1,5 @@
 (add-hook 'git-commit-mode-hook 'turn-on-flyspell)
 (add-hook 'git-commit-mode-hook (lambda () (setq save-place 0)))
+(add-hook 'git-commit-mode-hook (lambda () (interactive)(vimp-insert)))
 (setq magit-save-some-buffers 'dontask)
 (setq git-commit-ignore-style-errors t)
-

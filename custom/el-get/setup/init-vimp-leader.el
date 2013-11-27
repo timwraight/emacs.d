@@ -6,7 +6,7 @@
 			   (ack (concat "ack " (read-string "Search for: " (word-at-point)))
 				(helm-ls-git-root-dir))))
 (vimp-leader/set-key "b" 'ido-switch-buffer)
-(vimp-leader/set-key "c" (lambda () (interactive) (org-clock-in '(4))))
+(vimp-leader/set-key "c" 'flyspell-auto-correct-previous-word)
 (vimp-leader/set-key "d" 'sql-connect)
 (vimp-leader/set-key "e" 'next-error)
 (vimp-leader/set-key "f" 'recentf-ido-find-file)
@@ -20,4 +20,5 @@
 (vimp-leader/set-key "t" 'helm-ls-git-ls)
 (vimp-leader/set-key ";" 'helm-mini)
 (vimp-leader/set-key "w" 'previous-error)
-
+(vimp-leader/set-key-for-mode 'sgml-mode "<right>" 'tagedit-forward-slurp-tag)
+(vimp-leader/set-key-for-mode 'sgml-mode "<left>" 'tagedit-forward-barf-tag)

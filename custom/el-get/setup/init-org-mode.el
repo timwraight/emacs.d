@@ -2,13 +2,11 @@
 ; org-compat seems to be needed by the org-clock library
 (load-library "org-compat")
 (add-to-list 'load-path "~/.emacs.d/vendor/org-mode/lisp")
-(setq org-directory "~/Dropbox/org")
-(setq org-mobile-directory "~/Dropbox/MobileOrg")
-(setq org-mobile-inbox-for-pull "~/Dropbox/org/from-mobile.org")
-(setq org-default-notes-file "~/Dropbox/org/general.org")
+(setq org-directory "~/Documents/workspace/org")
+(setq org-default-notes-file "~/Documents/workspace/org/general.org")
 
 ; Keywords
-(setq org-todo-keywords '((sequence "ACTION(t)" "NEXT" "|" "DONE(d)")
+(setq org-todo-keywords '((sequence "ACTION(t)" "NEXT(n)" "ONGOING(o)" "|" "DONE(d)")
                           (sequence "QUESTION(q)" "|" "ANSWERED(a)")))
 
 
@@ -49,8 +47,11 @@
 ; hide the slashes around emphasised words
 (setq org-hide-emphasis-markers t)
 
-; Targets complete directly with IDO
+(setq org-refile-targets (quote ((nil :maxlevel . 9)
+                                 (org-agenda-files :maxlevel . 9))))
+
 (setq org-outline-path-complete-in-steps nil)
+(setq org-refile-use-outline-path t)
 
 ; Allow refile to create parent tasks with confirmation
 (setq org-refile-allow-creating-parent-nodes (quote confirm))
@@ -99,9 +100,8 @@
 (setq org-deadline-warning-days 2)
 
 
-(setq org-latex-default-packages-alist 
-      '(("AUTO" "inputenc" t)
-       ("sc" "mathpazo" t)
+(setq org-latex-packages-alist
+      '(("sc" "mathpazo" t)
        ("T1" "fontenc" t)
        ("" "fixltx2e" nil)
        ("" "graphicx" t)
@@ -111,19 +111,17 @@
        ("normalem" "ulem" t)
        ("" "textcomp" t)
        ("" "marvosym" t)
+       ("" "minted" nil)
+       ("" "upquote" nil)
        ("" "wasysym" t)
        ("" "latexsym" t)
        ("" "amssymb" t)
        ("" "amstext" nil)
        ("" "hyperref" nil)
        "\\tolerance=1000"
-       "\\linespread{1.05}"))
+       "\\linespread{1.05}"
+       "\\AtBeginDocument{ \\def\\PYZsq{\\textquotesingle} }"))
 
-;; refresh agenda view regularly
-(defun kiwon/org-agenda-redo-in-other-window ()
-  "Call org-agenda-redo function even in the non-agenda buffer."
-  (interactive)
-  (let ((agenda-window (get-buffer-window org-agenda-buffer-name t)))
-    (when agenda-window
-      (with-selected-window agenda-window (org-agenda-redo)))))
-(run-at-time nil 300 'kiwon/org-agenda-redo-in-other-window)
+(setq org-latex-listings 'minted)
+(setq org-latex-pdf-process
+      '("latexmk -f -pdf -latexoption=-shell-escape %f"))

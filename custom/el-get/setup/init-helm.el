@@ -8,3 +8,7 @@
 (add-hook 'eshell-mode-hook
           #'(lambda ()
               (define-key eshell-mode-map [remap pcomplete] 'helm-esh-pcomplete)))
+
+(add-hook 'helm-after-initialize-hook
+                 (lambda ()
+                        (toggle-truncate-lines t)))
