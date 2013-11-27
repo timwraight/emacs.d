@@ -52,13 +52,13 @@
 
 
 ;; GOOGLE
-;(defun google-this () (interactive)
-  ;(browse-url
-   ;(let ((search-term
-          ;(cond ((region-active-p)
-                    ;(buffer-substring-no-properties region-beginning region-end))
-           ;((not (eq (word-at-point) nil)) (word-at-point))
-           ;(read-string "Search for term: ")))))
-   ;(concat "http://www.google.co.uk/search?q=" search-term "&ie=utf-8")))
+(defun google-this () (interactive)
+  (browse-url
+   (let ((search-term
+          (cond ((region-active-p)
+                 (buffer-substring-no-properties region-beginning region-end))
+                ((not (eq (word-at-point) nil)) (word-at-point))
+                ((read-string "Search for term: ")))))
+     (concat "http://www.google.co.uk/search?q=" search-term "&ie=utf-8"))))
 
-;(vimp-leader/set-key "s" 'google-this)
+(vimp-leader/set-key "s" 'google-this)
