@@ -17,7 +17,7 @@
 (vimp-leader/set-key "o" 'org-switchb)
 (vimp-leader/set-key "r" (lambda() (interactive) (kbd "ysiW")))
 (vimp-leader/set-key "s" 'save-buffer)
-(vimp-leader/set-key "t" 'helm-ls-git-ls)
+(vimp-leader/set-key "t" 'google-this)
 (vimp-leader/set-key ";" 'helm-mini)
 (vimp-leader/set-key "w" 'previous-error)
 (vimp-leader/set-key-for-mode 'sgml-mode "<right>" 'tagedit-forward-slurp-tag)
