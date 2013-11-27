@@ -3,8 +3,11 @@
 (vimp-leader/set-leader ",")
 (vimp-leader/set-key "=" 'balance-windows)
 (vimp-leader/set-key "a" (lambda () (interactive)
-                           (ack (read-string "Search for: " (word-at-point))
-                                (helm-ls-git-root-dir))))
+                           (ack
+                            (read-string "Search for: " (word-at-point))  ; search term
+                            nil  ; interpret string as regex
+                            (helm-ls-git-root-dir)  ; root directory
+                                )))
 (vimp-leader/set-key "b" 'ido-switch-buffer)
 (vimp-leader/set-key "c" 'flyspell-auto-correct-previous-word)
 (vimp-leader/set-key "d" 'sql-connect)
