@@ -1,0 +1,5 @@
+(:name forth-mode
+       :type git
+       :load "gforth.el"
+       :url "git://git.savannah.gnu.org/gforth.git"
+       :features forth-mode)

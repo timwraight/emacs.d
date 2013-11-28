@@ -1,0 +1,8 @@
+(:name vimp-paredit
+       :website "https://github.com/roman/evil-paredit"
+       :type github
+       :pkgname "roman/evil-paredit"
+       :features vimp-paredit
+       :build ("rename 's/evil/vimp/' evil*" 
+	       "sed -i .orig -e 's/evil/vimp/g' *.el")
+       :depends (vimp paredit))
