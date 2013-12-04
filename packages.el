@@ -47,6 +47,7 @@
         plantuml-mode
         pbcopy
         php-mode
+	powerline
         python-django
         rainbow-delimiters
         smex
