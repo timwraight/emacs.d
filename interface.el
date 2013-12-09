@@ -21,7 +21,7 @@
 ;; TYPOGRAPHY
 (add-hook 'prog-mode-hook (lambda ()
                             (interactive)
-                            (setq fill-column 80)
+                            (setq fill-column 79)
                             (toggle-truncate-lines)))
 (global-visual-line-mode t)
 

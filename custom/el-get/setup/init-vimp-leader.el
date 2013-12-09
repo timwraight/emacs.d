@@ -17,7 +17,6 @@
 (vimp-leader/set-key "h" 'vc-version-ediff)
 (vimp-leader/set-key "l" 'split-window-below)
 (vimp-leader/set-key "n" 'winring-new-configuration)
-(vimp-leader/set-key "o" 'org-switchb)
 (vimp-leader/set-key "r" (lambda() (interactive) (kbd "ysiW")))
 (vimp-leader/set-key "s" 'save-buffer)
 (vimp-leader/set-key "t" 'google-this)

@@ -39,15 +39,17 @@
         jedi
         jedi-direx
         js2-mode
+        key-chord
         less-css-mode
         magit
         markdown-mode
         org-mode
         paredit
-        plantuml-mode
         pbcopy
         php-mode
-	powerline
+        powerline
+        plantuml-mode
+        popwin
         python-django
         rainbow-delimiters
         smex

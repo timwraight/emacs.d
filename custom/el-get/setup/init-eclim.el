@@ -5,6 +5,10 @@
 (require 'auto-complete-config)
 (ac-config-default)
 (add-hook 'java-mode-hook 'eclim-mode)
+(add-hook 'java-mode-hook (
+     lambda () 
+         (local-set-key (kbd "C-c .") 'eclim-java-find-declaration)))
+(vimp-leader/set-key-for-mode 'java-mode "." 'eclim-java-find-declaration)
 
 ;; show errors when on top of them
 (setq help-at-pt-display-when-idle t)

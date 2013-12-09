@@ -2,8 +2,8 @@
 ; org-compat seems to be needed by the org-clock library
 (load-library "org-compat")
 (add-to-list 'load-path "~/.emacs.d/vendor/org-mode/lisp")
-(setq org-directory "~/Documents/workspace/org")
-(setq org-default-notes-file "~/Documents/workspace/org/general.org")
+(setq org-directory "~/Dropbox/org")
+(setq org-default-notes-file "~/Dropbox/org/general.org")
 
 ; Keywords
 (setq org-todo-keywords '((sequence "ACTION(t)" "NEXT(n)" "ONGOING(o)" "|" "DONE(d)")

@@ -1,32 +1,20 @@
 ;; VIMP
+
 (vimp-mode 1)
+
+(dolist (mode '(eshell-mode shell-mode term-mode terminal-mode comint-mode skewer-repl-mode
+                profiler-report-mode
+                erc-mode weechat-mode
+                direx:direx-mode
+                project-explorer-mode))
+  (vimp-set-initial-state mode 'emacs))
+
+
 (setq vimp-auto-indent nil)
 (global-set-key (kbd "<f1>") 'vimp-local-mode)
-
-; Use visual lines with j and k
-(define-key vimp-motion-state-map "j" 'vimp-next-visual-line)
-(define-key vimp-motion-state-map "k" 'vimp-previous-visual-line)
-
-(vimp-define-command tim/maybe-exit ()
-  :repeat change
-  (interactive)
-  (let ((modified (buffer-modified-p)))
-    (insert "k")
-    (let ((evt (read-event (format "Insert %c to exit insert state" ?j)
-               nil 0.5)))
-      (cond
-       ((null evt) (message ""))
-       ((and (integerp evt) (char-equal evt ?j))
-    (delete-char -1)
-    (set-buffer-modified-p modified)
-    (push 'escape unread-command-events))
-       (t (setq unread-command-events (append unread-command-events
-                          (list evt))))))))
-
-(define-key vimp-insert-state-map "k" 'tim/maybe-exit)
-(define-key vimp-replace-state-map "k" 'tim/maybe-exit)
-
-
+(key-chord-mode 1)
+(setq key-chord-two-keys-delay 0.5)
+(key-chord-define vimp-insert-state-map "kj" 'vimp-normal-state)
 ; Make RET and SPACE do default Emacsy things instead of vim-movement
 
 (defun my-move-key (keymap-from keymap-to key)

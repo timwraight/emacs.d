@@ -31,6 +31,9 @@
 (setq uniquify-buffer-name-style 'forward)
 (require 'uniquify)
 
+(global-set-key (kbd "<f6>") 'direx-project:jump-to-project-root)
+(global-set-key (kbd "<f7>") 'list-bookmarks)
+
 ;; IDO MODE
 
 (ido-mode t)
@@ -57,8 +60,7 @@
    (let ((search-term
           (cond ((region-active-p)
                  (buffer-substring-no-properties region-beginning region-end))
-                ((not (eq (word-at-point) nil)) 
+                ((not (eq (word-at-point) nil))
                  (word-at-point))
                 ((read-string "Search for term: ")))))
      (concat "http://www.google.co.uk/search?q=" search-term "&ie=utf-8"))))
-
