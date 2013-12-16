@@ -79,7 +79,7 @@
 
 ; Columns
 (setq org-global-properties )
-(setq org-columns-default-format " %25ITEM %TODO %17Effort(Estimated Effort){:} %CLOCKSUM")
+(setq org-columns-default-format " %55ITEM %TODO %17Effort(Estimated Effort){:} %CLOCKSUM")
 
 ;; org-babel
 

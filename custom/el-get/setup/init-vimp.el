@@ -6,6 +6,7 @@
                 profiler-report-mode
                 erc-mode weechat-mode
                 direx:direx-mode
+                git-commit-mode
                 project-explorer-mode))
   (vimp-set-initial-state mode 'emacs))
 
