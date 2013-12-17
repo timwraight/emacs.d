@@ -87,3 +87,12 @@
 
 (global-set-key (kbd "C-c c") 'toggle-comment-on-line)
 (eldoc-mode 1)
+
+;; Abbrev mode
+(setq-default abbrev-mode 1)
+(setq save-abbrevs nil)
+(define-abbrev-table 'global-abbrev-table '(
+
+    (".db" "database")
+    (".dsb" "dashboard")
+    ))

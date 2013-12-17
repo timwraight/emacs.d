@@ -64,3 +64,9 @@
                  (word-at-point))
                 ((read-string "Search for term: ")))))
      (concat "http://www.google.co.uk/search?q=" search-term "&ie=utf-8"))))
+
+
+;; MU4E
+(key-chord-define mu4e-compose-mode-map ",x" 'message-kill-buffer)
+;; VIMP
+(key-chord-define vimp-insert-state-map "kj" 'vimp-normal-state)

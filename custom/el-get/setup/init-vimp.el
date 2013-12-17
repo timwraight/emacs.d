@@ -13,9 +13,6 @@
 
 (setq vimp-auto-indent nil)
 (global-set-key (kbd "<f1>") 'vimp-local-mode)
-(key-chord-mode 1)
-(setq key-chord-two-keys-delay 0.5)
-(key-chord-define vimp-insert-state-map "kj" 'vimp-normal-state)
 ; Make RET and SPACE do default Emacsy things instead of vim-movement
 
 (defun my-move-key (keymap-from keymap-to key)

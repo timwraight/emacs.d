@@ -2,7 +2,7 @@
        :type git
        :url "git://gitorious.org/evil/evil.git"
        :features vimp
-       :depends undo-tree
+       :depends (undo-tree key-chord)
        :build/darwin (("rename 's/evil/vimp/' evil*") 
 		      ("rename 's/evil/vimp/' doc/*") 
 		      ("sed -i .orig -e 's/evil/vimp/g' *.el")

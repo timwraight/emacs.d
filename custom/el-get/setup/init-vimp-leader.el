@@ -8,17 +8,13 @@
                             nil  ; interpret string as regex
                             (helm-ls-git-root-dir)  ; root directory
                                 )))
-(vimp-leader/set-key "b" 'ido-switch-buffer)
-(vimp-leader/set-key "c" 'flyspell-auto-correct-previous-word)
 (vimp-leader/set-key "d" 'sql-connect)
 (vimp-leader/set-key "e" 'next-error)
-(vimp-leader/set-key "f" 'recentf-ido-find-file)
 (vimp-leader/set-key "g" 'magit-status)
 (vimp-leader/set-key "h" 'vc-version-ediff)
 (vimp-leader/set-key "l" 'split-window-below)
 (vimp-leader/set-key "n" 'winring-new-configuration)
 (vimp-leader/set-key "r" (lambda() (interactive) (kbd "ysiW")))
-(vimp-leader/set-key "s" 'save-buffer)
 (vimp-leader/set-key "t" 'google-this)
 (vimp-leader/set-key ";" 'helm-mini)
 (vimp-leader/set-key "w" 'previous-error)

@@ -36,6 +36,7 @@
         git-modes
         helm
         helm-ls-git
+        icicles
         jedi
         jedi-direx
         js2-mode
