@@ -4,12 +4,18 @@
 ;; Get shift-up working from terminal
 
 (define-key input-decode-map "\e[1;2A" [S-up])
+(define-key input-decode-map "\e[1;6A" [C-S-up])
+
 (if (equal "xterm-256color" (tty-type))
-      (define-key input-decode-map "\e[1;2A" [S-up]))
+      (define-key input-decode-map "\e[1;2A" [S-up])
+      (define-key input-decode-map "\e[1;6A" [C-S-up]))
 
 
 (global-set-key (kbd "C-c C-c c") 'comment-region)
 (global-set-key (kbd "C-c C-c u") 'uncomment-region)
+
+
+
 
 (autopair-global-mode 1)
 (setq autopair-autowrap t)

@@ -2,7 +2,6 @@
 
 ;; RECENT FILES
 (recentf-mode t)
-(global-set-key (kbd "C-x f") 'recentf-ido-find-file)
 (setq recentf-max-saved-items 100)
 
 (defun recentf-ido-find-file ()
@@ -34,6 +33,17 @@
 (global-set-key (kbd "<f6>") 'direx-project:jump-to-project-root)
 (global-set-key (kbd "<f7>") 'list-bookmarks)
 
+
+;; MOVING BETWEEN WINDOWS
+(global-set-key (kbd "C-<left>") 'windmove-left)
+(global-set-key (kbd "C-<right>") 'windmove-right)
+(global-set-key (kbd "C-<up>") 'windmove-up)
+(global-set-key (kbd "C-<down>") 'windmove-down)
+
+;; PREVIOUS/NEXT BUFFER
+(global-set-key (kbd "C-S-<down>") 'previous-buffer)
+(global-set-key (kbd "C-S-<up>") 'next-buffer)
+
 ;; IDO MODE
 
 (ido-mode t)
@@ -49,9 +59,6 @@
 (setq scroll-margin 3
       scroll-step  1
       scroll-conservatively 10000)
-
-(global-set-key (kbd "C-d") 'vimp-scroll-down)
-(global-set-key (kbd "C-e") 'vimp-scroll-up)
 
 
 ;; GOOGLE
