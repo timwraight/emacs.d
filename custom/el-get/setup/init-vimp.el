@@ -18,10 +18,10 @@
 (defun my-move-key (keymap-from keymap-to key)
     "Moves key binding from one keymap to another, deleting from the old location. "
     (define-key keymap-to key (lookup-key keymap-from key))
-    (define-key keymap-from key nil)
-    )
-  (my-move-key vimp-motion-state-map vimp-normal-state-map (kbd "RET"))
-  (my-move-key vimp-motion-state-map vimp-normal-state-map " ")
+    (define-key keymap-from key nil))
+
+(my-move-key vimp-motion-state-map vimp-normal-state-map (kbd "RET"))
+(my-move-key vimp-motion-state-map vimp-normal-state-map " ")
 
 (define-key vimp-normal-state-map "m" 'helm-ls-git-ls)
 (define-key vimp-normal-state-map ";" 'helm-mini)

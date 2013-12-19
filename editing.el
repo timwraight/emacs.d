@@ -1,5 +1,13 @@
 ; EDITING
 
+;; TERMINAL
+;; Get shift-up working from terminal
+
+(define-key input-decode-map "\e[1;2A" [S-up])
+(if (equal "xterm-256color" (tty-type))
+      (define-key input-decode-map "\e[1;2A" [S-up]))
+
+
 (global-set-key (kbd "C-c C-c c") 'comment-region)
 (global-set-key (kbd "C-c C-c u") 'uncomment-region)
 
@@ -92,7 +100,5 @@
 (setq-default abbrev-mode 1)
 (setq save-abbrevs nil)
 (define-abbrev-table 'global-abbrev-table '(
-
-    (".db" "database")
-    (".dsb" "dashboard")
-    ))
+    ("db" "database")
+    ("dash" "dashboard")))

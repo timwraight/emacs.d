@@ -51,8 +51,10 @@
         powerline
         plantuml-mode
         popwin
+        pymacs
         python-django
         rainbow-delimiters
+        ropemacs
         smex
         tagedit
         undo-tree

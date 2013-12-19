@@ -14,4 +14,5 @@
         ("*slime-compilation*" :noselect t)
         "*slime-xref*"
         (sldb-mode :stick t)
+        (flycheck-error-list-mode :stick t)
         slime-repl-mode slime-connection-list-mode))
