@@ -1,5 +1,10 @@
 ;; VIMP
 
+; KEYBINDINGS
+
+(vimp-global-set-key 'normal " " 'vimp-jump-backward)
+(vimp-global-set-key 'normal "ซ" 'vimp-jump-forward)
+
 (vimp-mode 1)
 
 (dolist (mode '(eshell-mode shell-mode term-mode terminal-mode comint-mode skewer-repl-mode
