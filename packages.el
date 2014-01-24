@@ -16,6 +16,7 @@
 
 (setq el-get-user-package-directory "~/.emacs.d/custom/el-get/setup/")
 
+
 ; Get the packages we only want locally.
 (load-file "~/.emacs.d/custom/el-get/local-packages.el")
 
@@ -25,6 +26,7 @@
         ack-and-a-half
         ack-menu
         auto-complete
+        auto-indent-mode
         autopair
         color-theme-solarized
         direx
@@ -39,28 +41,30 @@
         icicles
         jedi
         jedi-direx
-        js2-mode
+        jss
         key-chord
         less-css-mode
         magit
         markdown-mode
+        multiple-cursors
         org-mode
         paredit
         pbcopy
         php-mode
-        powerline
         plantuml-mode
+        powerline
         popwin
+        pos-tip
         pymacs
         python-django
         rainbow-delimiters
-        ropemacs
         smex
         tagedit
         undo-tree
         vimp
         vimp-leader
         vimp-surround
+        websocket
         yaml-mode
         yasnippet
         tim-zenburn

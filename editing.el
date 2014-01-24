@@ -14,6 +14,11 @@
 (global-set-key (kbd "C-c C-c c") 'comment-region)
 (global-set-key (kbd "C-c C-c u") 'uncomment-region)
 
+;; JAVASCRIPT
+(add-hook 'javascript-mode-hook (lambda ()
+ 				  (define-key js-mode-map (kbd "<M-RET>") 'auto-indent-eol-char-newline)
+				  (define-key js-mode-map (kbd "<C-RET>") 'auto-indent-eol-newline)
+				  (key-chord-define js-mode-map ",/" 'helm-javascript-functions)))
 
 
 
@@ -33,10 +38,12 @@
 ; sentences end in a single space
 (setq sentence-end-double-space nil)
 
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
+(setq backup-directory-alist `(("." . "~/.saves")))
+(setq backup-by-copying t)
+(setq delete-old-versions t
+  kept-new-versions 6
+  kept-old-versions 2
+  version-control t)
 
 ; tabs
 (defun my-generate-tab-stops (&optional width max)
@@ -55,9 +62,6 @@
 (add-hook 'markdown-mode-hook 'turn-off-auto-fill)
 (add-hook 'latex-mode-hook 'turn-off-auto-fill)
 
-
-;; TEXT MODE EDITING
-(vimp-leader/set-key-for-mode 'text-mode "p" 'flyspell-auto-correct-previous-word)
 
 ;; BACKUPS
 
@@ -101,10 +105,3 @@
 
 (global-set-key (kbd "C-c c") 'toggle-comment-on-line)
 (eldoc-mode 1)
-
-;; Abbrev mode
-(setq-default abbrev-mode 1)
-(setq save-abbrevs nil)
-(define-abbrev-table 'global-abbrev-table '(
-    ("db" "database")
-    ("dash" "dashboard")))

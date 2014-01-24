@@ -6,7 +6,7 @@
 (ac-config-default)
 (add-hook 'java-mode-hook 'eclim-mode)
 (add-hook 'java-mode-hook (
-     lambda () 
+     lambda ()
          (local-set-key (kbd "C-c .") 'eclim-java-find-declaration)))
 (vimp-leader/set-key-for-mode 'java-mode "." 'eclim-java-find-declaration)
 
@@ -14,6 +14,7 @@
 (setq help-at-pt-display-when-idle t)
 (setq help-at-pt-timer-delay 0.1)
 (help-at-pt-set-timer)
+(add-hook 'eclim-mode-hook 'eclim-problems-highlight)
 
 ;; add the emacs-eclim source
 (require 'ac-emacs-eclim-source)

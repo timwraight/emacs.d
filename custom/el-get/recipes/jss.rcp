@@ -1,0 +1,6 @@
+(:name jss
+       :website "https://github.com/segv/jss"
+       :type github
+       :depends websocket
+       :pkgname "segv/jss"
+       :features jss)

@@ -1,0 +1,4 @@
+(:name jss
+       :type github
+       :depends (slime swank-js)
+       :pkgname "swank-js/slime-js")

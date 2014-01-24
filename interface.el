@@ -2,6 +2,7 @@
 (load-theme 'zenburn t)
 (menu-bar-mode -1)
 
+(global-hl-line-mode)
 (column-number-mode 1)
 (setq max-mini-window-height 1)
 (setq inhibit-splash-screen t)

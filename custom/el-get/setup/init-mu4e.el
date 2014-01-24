@@ -36,7 +36,6 @@
 (setq mu4e-compose-complete-only-personal t)
 (setq mu4e-html2text-command "html2text")
 ;; (setq mu4e-html2text-command "html2text -utf8 -width 72")
-(add-to-list 'ac-modes 'mu4e-compose-mode)
 
 (setq mu4e-attachment-dir  "~/Downloads")
 

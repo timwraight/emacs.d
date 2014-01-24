@@ -1,7 +1,7 @@
 
 (key-chord-mode 1)
 (setq key-chord-two-keys-delay 0.1)
-(setq key-chord-one-key-delay 0)
+(setq key-chord-one-key-delay 0.1)
 
 
 ;; GLOBAL (windows and buffers)
@@ -12,6 +12,11 @@
 (key-chord-define-global ",1" 'delete-other-windows)
 (key-chord-define-global ",0" 'delete-window)
 (key-chord-define-global ",s" 'save-buffer)
+(key-chord-define-global ",x" 'smex)
+(key-chord-define-global ",p" 'split-window-horizontally)
+(key-chord-define-global ",;" 'split-window-vertically)
+(key-chord-define-global ";;" 'helm-mini)
+
 
 ;; GLOBAL (org)
 (key-chord-define-global ",l" 'org-store-link)

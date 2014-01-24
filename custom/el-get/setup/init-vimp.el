@@ -1,9 +1,5 @@
 ;; VIMP
 
-; KEYBINDINGS
-
-(vimp-global-set-key 'normal " " 'vimp-jump-backward)
-(vimp-global-set-key 'normal "ซ" 'vimp-jump-forward)
 
 (vimp-mode 1)
 
@@ -11,9 +7,12 @@
                 profiler-report-mode
                 erc-mode weechat-mode
                 direx:direx-mode
-                git-commit-mode
                 project-explorer-mode))
   (vimp-set-initial-state mode 'emacs))
+
+(dolist (mode '(git-commit-mode))
+  (vimp-set-initial-state mode 'insert))
+
 
 
 (setq vimp-auto-indent nil)

@@ -1,0 +1,5 @@
+(:name buffer-timer
+       :website "https://github.com/timwraight/elisp-buffer-timer"
+       :description "Creates tables showing amount of time spent in buffers and buffer groups"
+       :type github
+       :pkgname "timwraight/elisp-buffer-timer")

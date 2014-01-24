@@ -34,16 +34,6 @@
 (global-set-key (kbd "<f7>") 'list-bookmarks)
 
 
-;; MOVING BETWEEN WINDOWS
-(global-set-key (kbd "C-<left>") 'windmove-left)
-(global-set-key (kbd "C-<right>") 'windmove-right)
-(global-set-key (kbd "C-<up>") 'windmove-up)
-(global-set-key (kbd "C-<down>") 'windmove-down)
-
-;; PREVIOUS/NEXT BUFFER
-(global-set-key (kbd "C-S-<down>") 'previous-buffer)
-(global-set-key (kbd "C-S-<up>") 'next-buffer)
-
 ;; IDO MODE
 
 (ido-mode t)

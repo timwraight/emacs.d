@@ -11,15 +11,15 @@
 
 ;; (global-auto-complete-mode t)
 (setq
- ac-auto-show-menu t
+ ac-auto-show-menu 0.1
  ac-dwim t
  ac-use-menu-map t
- ac-quick-help-delay 1
+ ac-quick-help-delay 0.2
  ac-quick-help-height 60
  ac-auto-start 2
- ac-candidate-menu-min 2)
+ ac-candidate-menu-min 1)
 
-(define-key ac-menu-map (kbd "/") 'ac-isearch)
+(define-key ac-menu-map (kbd "<C-SPC>") 'ac-isearch)
 (define-key ac-menu-map (kbd "C-j") 'ac-next)
 (define-key ac-menu-map (kbd "C-k") 'ac-previous)
 
