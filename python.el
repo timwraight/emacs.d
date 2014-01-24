@@ -7,3 +7,4 @@
 
 (add-hook 'python-mode-hook (lambda () (add-to-list 'write-file-functions 'delete-trailing-whitespace)))
 (define-key python-mode-map (kbd "C-c d") 'jedi:show-doc)
+(setq python-indent-offset 4)

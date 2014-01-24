@@ -29,7 +29,7 @@
                                    (vimp-jump-backward)
                                    (recenter)))
 
-(vimp-global-set-key 'normal (kbd "<C-SPC>") 'scroll-down)
+(define-key vimp-normal-state-map (kbd "C-SPC") 'scroll-down)
 (vimp-global-set-key 'normal "ซ" 'vimp-jump-forward)
 (define-key vimp-insert-state-map "ซ" (kbd "<SPC>"))
 

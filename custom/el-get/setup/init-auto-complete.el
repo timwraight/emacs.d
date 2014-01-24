@@ -19,7 +19,7 @@
  ac-auto-start 2
  ac-candidate-menu-min 1)
 
-(define-key ac-menu-map (kbd "<C-SPC>") 'ac-isearch)
+(define-key ac-menu-map (kbd "<M-SPC>") 'ac-isearch)
 (define-key ac-menu-map (kbd "C-j") 'ac-next)
 (define-key ac-menu-map (kbd "C-k") 'ac-previous)
 
