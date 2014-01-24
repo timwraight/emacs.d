@@ -1,4 +1,3 @@
-
 (key-chord-mode 1)
 (setq key-chord-two-keys-delay 0.1)
 (setq key-chord-one-key-delay 0.1)
@@ -7,7 +6,6 @@
 ;; GLOBAL (windows and buffers)
 (key-chord-define-global ",b" 'ido-switch-buffer)
 (key-chord-define-global ",r" 'recentf-ido-find-file)
-(key-chord-define-global ",f" 'ido-find-file)
 (key-chord-define-global ",k" 'kill-this-buffer)
 (key-chord-define-global ",1" 'delete-other-windows)
 (key-chord-define-global ",0" 'delete-window)

@@ -22,6 +22,7 @@
     (when filename
       (find-file (cdr (assoc filename
                              file-assoc-list))))))
+(key-chord-define-global ",f" 'ido-find-file)
 
 (add-to-list 'ido-ignore-files "\\`pyc")
 
@@ -63,6 +64,7 @@
      (concat "http://www.google.co.uk/search?q=" search-term "&ie=utf-8"))))
 
 
+(require 'key-chord)
 ;; MU4E
 (key-chord-define mu4e-compose-mode-map ",x" 'message-kill-buffer)
 ;; VIMP
