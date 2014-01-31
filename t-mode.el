@@ -22,12 +22,16 @@
 (key-chord-define-global "wj" 'vimp-scroll-page-down)
 (key-chord-define-global "wk" 'vimp-scroll-page-up)
 
+(key-chord-define ac-menu-map "  " 'ac-stop)
+(key-chord-define minibuffer-local-isearch-map "  " 'quit)
+
 ; KEYBINDINGS
 
 (vimp-global-set-key 'normal " " (lambda ()
                                    (interactive)
                                    (vimp-jump-backward)
                                    (recenter)))
+
 
 (define-key vimp-normal-state-map (kbd "C-SPC") 'scroll-down)
 (vimp-global-set-key 'normal "ซ" 'vimp-jump-forward)

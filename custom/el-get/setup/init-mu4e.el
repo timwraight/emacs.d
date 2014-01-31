@@ -11,7 +11,8 @@
      (define-key mu4e-headers-mode-map (kbd "o") 'mu4e-headers-view-message)
      ;; Individual Message
      (define-key mu4e-view-mode-map (kbd "j") 'next-line)
-     (define-key mu4e-view-mode-map (kbd "k") 'previous-line)))
+     (define-key mu4e-view-mode-map (kbd "k") 'previous-line)
+     (define-key mu4e-view-mode-map (kbd "V") 'vimp-visual-line)
 
 
 (setq mu4e-maildir "~/Mail")

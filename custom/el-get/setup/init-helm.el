@@ -11,10 +11,15 @@
 
 (setq helm-truncate-lines t)
 
+
 (defun helm-javascript-functions ()
-  "Display headlines for the current javascript file."
-  (interactive)
-  (helm-mode t)
-  (helm :sources '(((name . "Javascript Functions")
-                    (volatile)
-                    (headline "\\(function\s[a-z]+|[a-z]+:\sfunction\\)")))))
+    "Display headlines for the current javascript file."                                    (interactive)                                                                           (helm-mode t)
+    (helm :sources '(((name . "Javascript Functions")
+                      (volatile)
+                      (headline "\\([a-z]+: function\\|function [a-z]+\\)")))))
+
+
+(require 'helm)
+(define-key helm-map (kbd "C-j") 'helm-next-line)
+(define-key helm-map (kbd "C-k") 'helm-previous-line)
+

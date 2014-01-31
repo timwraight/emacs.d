@@ -41,6 +41,7 @@
         icicles
         jedi
         jedi-direx
+        js2-mode
         jss
         key-chord
         less-css-mode
