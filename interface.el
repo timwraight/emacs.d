@@ -2,6 +2,9 @@
 (load-theme 'zenburn t)
 (menu-bar-mode -1)
 
+(when window-system
+        (toggle-frame-fullscreen))
+
 (global-hl-line-mode)
 (column-number-mode 1)
 (setq max-mini-window-height 1)
