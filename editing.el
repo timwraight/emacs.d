@@ -39,6 +39,7 @@
 (setq sentence-end-double-space nil)
 
 (setq backup-directory-alist `(("." . "~/.saves")))
+(setq undo-tree-history-directory-alist `(("." . "~/.saves")))
 (setq backup-by-copying t)
 (setq delete-old-versions t
   kept-new-versions 6
