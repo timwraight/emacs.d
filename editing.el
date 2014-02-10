@@ -38,14 +38,6 @@
 ; sentences end in a single space
 (setq sentence-end-double-space nil)
 
-(setq backup-directory-alist `(("." . "~/.saves")))
-(setq undo-tree-history-directory-alist `(("." . "~/.saves")))
-(setq backup-by-copying t)
-(setq delete-old-versions t
-  kept-new-versions 6
-  kept-old-versions 2
-  version-control t)
-
 ; tabs
 (defun my-generate-tab-stops (&optional width max)
   "Return a sequence suitable for `tab-stop-list'."
@@ -68,13 +60,13 @@
 
 (setq
    backup-by-copying t      ; don't clobber symlinks
-   backup-directory-alist
-    '(("." . "~/.saves"))    ; don't litter my fs tree
+   backup-directory-alist `((".*" . ,temporary-file-directory))
+   auto-save-file-name-transforms `((".*" ,temporary-file-directory t))
+   undo-tree-history-directory-alist `(("." . "~/.saves/undo-tree"))
    delete-old-versions t
    kept-new-versions 6
    kept-old-versions 2
    version-control t)       ; use versioned backups
-
 
 
 ;; SPELLING
