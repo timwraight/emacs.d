@@ -4,27 +4,6 @@
 (recentf-mode t)
 (setq recentf-max-saved-items 100)
 
-(defun recentf-ido-find-file ()
-  "Find a recent file using Ido."
-  (interactive)
-  (let* ((file-assoc-list
-          (mapcar (lambda (x)
-                    (cons (file-name-nondirectory x)
-                          x))
-                  recentf-list))
-         (filename-list
-          (remove-duplicates (mapcar #'car file-assoc-list)
-                             :test #'string=))
-         (filename (ido-completing-read "Choose recent file: "
-                                        filename-list
-                                        nil
-                                        t)))
-    (when filename
-      (find-file (cdr (assoc filename
-                             file-assoc-list))))))
-(key-chord-define-global ",f" 'ido-find-file)
-
-(add-to-list 'ido-ignore-files "\\`pyc")
 
 
 ;; Uniqify allows us to tell buffers with similar names apart
@@ -37,12 +16,14 @@
 
 ;; IDO MODE
 
-(ido-mode t)
 (setq ido-enable-prefix nil
         ido-enable-flex-matching t
         ido-create-new-buffer 'always
         ido-use-filename-at-point nil
         ido-max-prospects 10)
+(add-to-list 'ido-ignore-files "\\`pyc")
+
+(key-chord-define-global ",f" 'helm-find-files)
 
 
 ;; SCROLLING

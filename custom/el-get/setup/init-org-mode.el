@@ -59,11 +59,7 @@
 ;; Don't ask me every time I want to execute some code
 (setq org-confirm-babel-evaluate nil)
 
-; Use IDO for both buffer and file completion and ido-everywhere to t
-(setq org-completion-use-ido t)
-(setq ido-everywhere t)
-(setq ido-max-directory-size 100000)
-(ido-mode (quote both))
+(require 'helm-org)
 
 ;;;; Refile settings
 ; Exclude DONE state tasks from refile targets
@@ -125,4 +121,3 @@
 (setq org-latex-listings 'minted)
 (setq org-latex-pdf-process
       '("latexmk -f -pdf -latexoption=-shell-escape %f"))
-

@@ -1,5 +1,0 @@
-(:name emmet-mode
-       :website "https://github.com/smihica/emmet"
-       :type github
-       :pkgname "smihica/emmet"
-       :features emmet-mode)
