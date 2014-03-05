@@ -38,7 +38,6 @@
         git-modes
         helm
         helm-ls-git
-        helm-mu
         icicles
         jedi
         jedi-direx
