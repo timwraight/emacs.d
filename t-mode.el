@@ -1,4 +1,4 @@
-;; T-KEYS
+;;T-KEYS
 
 ;; A minor-mode for some of my customisations. This means I can put all my
 ;; custom keybindings in here and they will override the major mode bindings
@@ -15,6 +15,9 @@
 ;; PREVIOUS/NEXT BUFFER
 (global-set-key (kbd "C-S-<up>") 'previous-buffer)
 (global-set-key (kbd "C-S-<down>") 'next-buffer)
+
+
+(key-chord-define-global ",f" 'helm-mu)
 
 
 (key-chord-define-global "wl" 'windmove-right)
@@ -39,11 +42,28 @@
 (vimp-global-set-key 'normal " " 'tim/jump-backward)
 (vimp-global-set-key 'normal "ซ" 'tim/jump-forward)
 
+; Next/previous buffers
 (vimp-global-set-key 'normal (kbd "<RET>") 'previous-buffer)
 (vimp-global-set-key 'normal "ร" 'next-buffer)
+(define-key mu4e-headers-mode-map (kbd "<RET>") 'previous-buffer)
+(define-key mu4e-headers-mode-map  "ร" 'next-buffer)
+(define-key mu4e-view-mode-map (kbd "<RET>") 'previous-buffer)
+(define-key mu4e-view-mode-map "ร" 'next-buffer)
 
 (define-key vimp-normal-state-map (kbd "C-SPC") 'scroll-down)
 (define-key vimp-insert-state-map "ซ" (kbd "<SPC>"))
+
+
+;; Bookmark menu mode
+(define-key bookmark-bmenu-mode-map (kbd "j") 'next-line)
+(define-key bookmark-bmenu-mode-map (kbd "k") 'previous-line)
+(define-key bookmark-bmenu-mode-map (kbd "o") 'bookmark-bmenu-this-window)
+
+;; DIRED mode
+(define-key dired-mode-map (kbd "j") 'next-line)
+(define-key dired-mode-map (kbd "k") 'previous-line)
+(define-key dired-mode-map (kbd "o") 'dired-find-file)
+
 
 
 (define-minor-mode tkeys-mode
