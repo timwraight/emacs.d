@@ -1,4 +1,4 @@
-; NAVIGATION
+                                        ; NAVIGATION
 
 ;; RECENT FILES
 (recentf-mode t)
@@ -11,7 +11,8 @@
 (require 'uniquify)
 
 (global-set-key (kbd "<f6>") 'direx-project:jump-to-project-root)
-(global-set-key (kbd "<f7>") 'list-bookmarks)
+(global-set-key (kbd "<f7>") 'helm-bookmarks)
+
 
 
 ;; IDO MODE
@@ -22,9 +23,9 @@
         ido-use-filename-at-point nil
         ido-max-prospects 10)
 (add-to-list 'ido-ignore-files "\\`pyc")
-
-(key-chord-define-global ",f" 'helm-find-files)
-
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
 
 ;; SCROLLING
 
