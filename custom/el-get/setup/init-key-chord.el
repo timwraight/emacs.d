@@ -4,7 +4,7 @@
 
 
 ;; GLOBAL (windows and buffers)
-(key-chord-define-global ",b" 'helm-buffers-list)
+(key-chord-define-global ",b" 'ido-switch-buffer)
 (key-chord-define-global ",r" 'helm-for-files)
 (key-chord-define-global ",k" 'kill-this-buffer)
 (key-chord-define-global ",1" 'delete-other-windows)
