@@ -2,4 +2,4 @@
 (setq auto-indent-assign-indent-level 4)
 ;; (add-to-list 'auto-indent-known-indent-levels 'python-indent-offset)
 (require 'auto-indent-mode)
-(auto-indent-global-mode)
+;; (auto-indent-global-mode)
