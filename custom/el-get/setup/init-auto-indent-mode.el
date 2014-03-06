@@ -1,5 +1,5 @@
 (setq auto-indent-key-for-end-of-line-insert-char-then-newline "<C-M-return>")
 (setq auto-indent-assign-indent-level 4)
-;; (add-to-list 'auto-indent-known-indent-levels 'python-indent-offset)
-(require 'auto-indent-mode)
-;; (auto-indent-global-mode)
+(add-hook 'python-mode 'auto-indent-mode)
+
+
