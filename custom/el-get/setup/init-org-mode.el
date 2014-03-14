@@ -73,6 +73,9 @@
 (add-hook 'org-capture-mode-hook 'vimp-insert-state)
 
 
+;; spelling
+(add-hook 'org-mode-hook 'flyspell-mode)
+
 ; Columns
 (setq org-global-properties )
 (setq org-columns-default-format " %55ITEM %TODO %17Effort(Estimated Effort){:} %CLOCKSUM")
