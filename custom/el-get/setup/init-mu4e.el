@@ -33,6 +33,8 @@
  mu4e-headers-visible-lines 16
  mu4e-use-fancy-chars t)
 
+(require 'mml2015)
+(setq mml2015-use 'gpg)
 
 (setq mu4e-compose-complete-only-personal t)
 (setq mu4e-html2text-command "html2text")

@@ -43,7 +43,9 @@
 
 (dolist (mode '(log-edit-mode haml-mode sass-mode yaml-mode csv-mode espresso-mode
                 haskell-mode html-mode nxml-mode sh-mode smarty-mode clojure-mode
-                lisp-mode textile-mode tuareg-mode))
+                lisp-mode mu4e-compose-mode org-mode textile-mode tuareg-mode))
   (add-to-list 'ac-modes mode))
 
+
 (add-hook 'comint-mode-hook 'auto-complete-mode)
+(add-hook 'org-mode-hook (lambda () (setq-local ac-auto-start 4)))

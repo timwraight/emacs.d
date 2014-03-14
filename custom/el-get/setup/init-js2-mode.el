@@ -8,4 +8,7 @@
      ;; Let flycheck handle parse errors
      (setq-default js2-show-parse-errors nil)
      (setq-default js2-strict-missing-semi-warning nil)
+     (setq-default js2-mode-show-strict-warnings nil)
+     (setq-default js2-strict-cond-assign-warning nil)
+     (setq-default js2-highlight-undeclared-vars nil)
      (setq-default js2-strict-trailing-comma-warning nil)))

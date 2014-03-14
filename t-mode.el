@@ -20,14 +20,6 @@
 (key-chord-define-global ",f" 'helm-mu)
 
 
-(key-chord-define-global "wl" 'windmove-right)
-(key-chord-define-global "wg" 'windmove-left)
-(key-chord-define-global "wj" 'vimp-scroll-page-down)
-(key-chord-define-global "wk" 'vimp-scroll-page-up)
-
-(key-chord-define ac-menu-map "  " 'ac-stop)
-(key-chord-define minibuffer-local-isearch-map "  " 'quit)
-
 ; KEYBINDINGS
 (defun tim/jump-backward ()
     (interactive)
@@ -63,7 +55,6 @@
 (define-key dired-mode-map (kbd "j") 'next-line)
 (define-key dired-mode-map (kbd "k") 'previous-line)
 (define-key dired-mode-map (kbd "o") 'dired-find-file)
-
 
 
 (define-minor-mode tkeys-mode
