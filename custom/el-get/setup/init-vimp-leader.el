@@ -2,12 +2,7 @@
 (global-vimp-leader-mode)
 (vimp-leader/set-leader ",")
 (vimp-leader/set-key "=" 'balance-windows)
-(vimp-leader/set-key "a" (lambda () (interactive)
-                           (ack
-                            (read-string "Search for: " (word-at-point))  ; search term
-                            nil  ; interpret string as regex
-                            (helm-ls-git-root-dir)  ; root directory
-                                )))
+(vimp-leader/set-key "a" 'helm-git-grep-at-point)
 (vimp-leader/set-key "d" 'sql-connect)
 (vimp-leader/set-key "e" 'next-error)
 (vimp-leader/set-key "g" 'magit-status)

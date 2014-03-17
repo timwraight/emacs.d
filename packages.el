@@ -22,7 +22,6 @@
 
 (setq el-get-sources
       '(
-        ssh-config-mode
         ack-and-a-half
         ack-menu
         auto-complete
@@ -38,6 +37,7 @@
         git-modes
         helm
         helm-ls-git
+        helm-git-grep
         icicles
         jedi
         jedi-direx
@@ -59,6 +59,7 @@
         pymacs
         python-django
         rainbow-delimiters
+        ssh-config-mode
         smex
         tagedit
         undo-tree
