@@ -47,7 +47,5 @@
 
 
 (require 'key-chord)
-;; MU4E
-(key-chord-define mu4e-compose-mode-map ",x" 'message-kill-buffer)
 ;; VIMP
 (key-chord-define vimp-insert-state-map "kj" 'vimp-normal-state)
