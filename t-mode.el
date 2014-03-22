@@ -37,10 +37,6 @@
 ; Next/previous buffers
 (vimp-global-set-key 'normal (kbd "<RET>") 'previous-buffer)
 (vimp-global-set-key 'normal "ร" 'next-buffer)
-(define-key mu4e-headers-mode-map (kbd "<RET>") 'previous-buffer)
-(define-key mu4e-headers-mode-map  "ร" 'next-buffer)
-(define-key mu4e-view-mode-map (kbd "<RET>") 'previous-buffer)
-(define-key mu4e-view-mode-map "ร" 'next-buffer)
 
 (define-key vimp-normal-state-map (kbd "C-SPC") 'scroll-down)
 (define-key vimp-insert-state-map "ซ" (kbd "<SPC>"))

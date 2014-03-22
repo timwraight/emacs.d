@@ -1,4 +1,3 @@
-(add-hook 'haskell-mode-hook 'structured-haskell-mode)
 (add-hook 'haskell-mode-hook
           (lambda () (interactive)
               (autopair-mode -1)))
