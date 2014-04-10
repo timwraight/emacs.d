@@ -15,3 +15,5 @@ elpa
 /setup-specific.el
 /custom/el-get/local-packages.el
 .mc-lists.el
+.python-environments
+semanticdb

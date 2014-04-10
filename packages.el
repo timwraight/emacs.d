@@ -29,6 +29,7 @@
         autopair
         color-theme-solarized
         direx
+        dockerfile-mode
         el-get
         emmet-mode
         flycheck

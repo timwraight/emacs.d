@@ -32,6 +32,8 @@
 ;; PHP
 (setq php-mode-force-pear t)
 
+;; VAGRANT FILES
+(add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
 
 ;; JAVASCRIPT
 (add-hook 'js-mode-hook (lambda() (flycheck-select-checker 'javascript-jshint)))
@@ -46,7 +48,8 @@
 
 (add-hook 'sql-mode-hook
           (lambda ()
-            (sql-highlight-mysql-keywords)))
+            (sql-highlight-mysql-keywords)
+            (auto-complete-mode)))
 
 
 (add-hook 'sql-interactive-mode-hook (lambda ()
@@ -75,4 +78,4 @@
 ; TRAMP
 (require 'tramp)
 (setq tramp-default-method "ssh")
-(setq tramp-syntax 'url)
+(setq tramp-syntax 'ftp)
