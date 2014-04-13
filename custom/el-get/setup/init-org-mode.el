@@ -72,6 +72,8 @@
 ; Enter insert on capture
 (add-hook 'org-capture-mode-hook 'vimp-insert-state)
 
+; allow alphanumberical markers in lists
+(setq org-list-allow-alphabetical t)
 
 ;; spelling
 (add-hook 'org-mode-hook 'flyspell-mode)

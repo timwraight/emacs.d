@@ -23,11 +23,13 @@
 (setq el-get-sources
       '(
         ssh-config-mode
+	ace-jump-mode
         ack-and-a-half
         ack-menu
         auto-complete
         auto-indent-mode
         autopair
+        centered-cursor-mode
         color-theme-solarized
         direx
         el-get
@@ -38,12 +40,14 @@
         git-modes
         helm
         helm-ls-git
+        helm-hoogle
         icicles
         jedi
         jedi-direx
         js2-mode
         jss
         key-chord
+        lalopmak-vimp
         less-css-mode
         magit
         markdown-mode

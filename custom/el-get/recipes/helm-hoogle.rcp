@@ -1,0 +1,5 @@
+(:name helm-hoogle
+       :type github
+       :requires helm
+       :pkgname "jwiegley/haskell-config"
+       :features helm-hoogle)
