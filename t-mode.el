@@ -43,13 +43,13 @@
 
 
 ;; Bookmark menu mode
-(define-key bookmark-bmenu-mode-map (kbd "j") 'next-line)
-(define-key bookmark-bmenu-mode-map (kbd "k") 'previous-line)
+(define-key bookmark-bmenu-mode-map (kbd "e") 'next-line)
+(define-key bookmark-bmenu-mode-map (kbd "u") 'previous-line)
 (define-key bookmark-bmenu-mode-map (kbd "o") 'bookmark-bmenu-this-window)
 
 ;; DIRED mode
-(define-key dired-mode-map (kbd "j") 'next-line)
-(define-key dired-mode-map (kbd "k") 'previous-line)
+(define-key dired-mode-map (kbd "e") 'next-line)
+(define-key dired-mode-map (kbd "u") 'previous-line)
 (define-key dired-mode-map (kbd "o") 'dired-find-file)
 
 

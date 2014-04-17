@@ -34,6 +34,7 @@
         direx
         el-get
         emmet-mode
+        expand-region
         flycheck
         flycheck-color-mode-line
         flyspell-lazy

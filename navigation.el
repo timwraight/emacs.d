@@ -48,4 +48,5 @@
 
 (require 'key-chord)
 ;; VIMP
-(key-chord-define vimp-insert-state-map "kj" 'vimp-normal-state)
+(key-chord-define vimp-insert-state-map "dh" 'vimp-normal-state)
+(key-chord-define vimp-replace-state-map "dh" 'vimp-normal-state)
