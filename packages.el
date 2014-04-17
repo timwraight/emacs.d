@@ -32,6 +32,7 @@
         centered-cursor-mode
         color-theme-solarized
         direx
+        dockerfile-mode
         el-get
         emmet-mode
         expand-region
@@ -42,6 +43,7 @@
         helm
         helm-ls-git
         helm-hoogle
+        helm-git-grep
         icicles
         jedi
         jedi-direx
@@ -64,6 +66,7 @@
         pymacs
         python-django
         rainbow-delimiters
+        ssh-config-mode
         smex
         tagedit
         undo-tree

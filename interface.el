@@ -17,8 +17,6 @@
 ;; default to unified diffs
 (setq diff-switches "-u")
 
-(require 'rainbow-delimiters)
-(global-rainbow-delimiters-mode)
 
 ;; ALERTS
 (setq ring-bell-function 'ignore)

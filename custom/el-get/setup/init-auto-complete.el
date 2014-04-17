@@ -4,8 +4,6 @@
 (ac-config-default)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/vendor/auto-complete/dict")
 
-
-
 (ac-flyspell-workaround)
 (setq ac-comphist-file "~/.emacs.d/ac-comphist.dat")
 
@@ -20,9 +18,10 @@
  ac-quick-help-delay 0.2
  ac-quick-help-height 60
  ac-auto-start 2
+ ac-ignore-case nil
  ac-candidate-menu-min 1)
 
-(define-key ac-menu-map (kbd "<SPC>") 'ac-isearch)
+(define-key ac-menu-map (kbd "<SPC>") 'ac-complete)
 (define-key ac-menu-map (kbd "C-j") 'ac-next)
 (define-key ac-menu-map (kbd "C-k") 'ac-previous)
 (define-key ac-menu-map (kbd "/") 'ac-stop)
@@ -30,8 +29,6 @@
 (define-key ac-completing-map "\t" 'ac-complete)
 (define-key ac-completing-map "\r" nil)
 
-;; don't ignore case
-(setq ac-ignore-case 'smart)
 
 (set-default 'ac-sources
              '(ac-source-dictionary
@@ -43,7 +40,7 @@
 
 (dolist (mode '(log-edit-mode haml-mode sass-mode yaml-mode csv-mode espresso-mode
                 haskell-mode html-mode nxml-mode sh-mode smarty-mode clojure-mode
-                lisp-mode mu4e-compose-mode textile-mode tuareg-mode))
+                lisp-mode mu4e-compose-mode org-mode sql-mode textile-mode tuareg-mode))
   (add-to-list 'ac-modes mode))
 
 
