@@ -1,0 +1,1 @@
+(vimpnc-default-hotkeys)
