@@ -59,7 +59,7 @@
 ;; Don't ask me every time I want to execute some code
 (setq org-confirm-babel-evaluate nil)
 
-(require 'helm-org)
+
 
 ;;;; Refile settings
 ; Exclude DONE state tasks from refile targets

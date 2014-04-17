@@ -18,9 +18,9 @@
 
 ;; AUTO-COMPLETE
 ;; Use kj to escape from auto-complete mode
-(key-chord-define ac-menu-map "lk" 'ac-stop)
-(key-chord-define ac-completing-map "lk" 'ac-stop)
-(key-chord-define ac-menu-map "ff" 'ac-isearch)
+;(key-chord-define ac-menu-map "lk" 'ac-stop)
+;(key-chord-define ac-completing-map "lk" 'ac-stop)
+;(key-chord-define ac-menu-map "ff" 'ac-isearch)
 
 
 ;; GLOBAL (org)
