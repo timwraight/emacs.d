@@ -23,7 +23,7 @@
 (setq el-get-sources
       '(
         ssh-config-mode
-	ace-jump-mode
+        ace-jump-mode
         ack-and-a-half
         ack-menu
         auto-complete
@@ -37,7 +37,7 @@
         emmet-mode
         expand-region
         flycheck
-        flycheck-color-mode-line
+ ;       flycheck-color-mode-line
         flyspell-lazy
         git-modes
         helm
@@ -60,7 +60,7 @@
         pbcopy
         php-mode
         plantuml-mode
-        powerline
+;        powerline
         popwin
         pos-tip
         pymacs
@@ -70,7 +70,7 @@
         smex
         tagedit
         undo-tree
-        vimp
+       vimp
         vimp-leader
         vimp-surround
         websocket
