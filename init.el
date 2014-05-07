@@ -15,6 +15,7 @@
 (load-user-file "elisp.el")
 (load-user-file "t-mode.el")
 (load-user-file "misc.el")
+(load-user-file "uk-holidays.el")
 
 (setq custom-file "~/.emacs.d/setup-specific.el")
 (load-user-file "setup-specific.el")

@@ -50,7 +50,7 @@
 ;; DIRED mode
 (define-key dired-mode-map (kbd "e") 'next-line)
 (define-key dired-mode-map (kbd "u") 'previous-line)
-(define-key dired-mode-map (kbd "o") 'dired-find-file)
+(define-key dired-mode-map (kbd "i") 'dired-find-file)
 
 
 (define-minor-mode tkeys-mode
