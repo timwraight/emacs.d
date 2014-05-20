@@ -1,4 +1,4 @@
-;; HT
+;; HTML
 (add-hook 'sgml-mode-hook (lambda ()
                             (interactive)
                             (variable-pitch-mode 0)
@@ -51,6 +51,14 @@
             (sql-highlight-mysql-keywords)
             (auto-complete-mode)))
 
+(define-key sql-interactive-mode-map (kbd "M-u") 'comint-previous-input)
+(define-key sql-interactive-mode-map (kbd "M-e") 'comint-next-input)
+
+;; (add-hook 'sql-interactive-mode-hook
+;;           (lambda ()
+;;             (interactive)
+;;             (setq sql-prompt-regexp "\\[_[:alpha:]]=>")
+;;             (setq sql-prompt-cont-regexp "\\[_[:alpha:]]->")))
 
 (add-hook 'sql-interactive-mode-hook (lambda ()
                            (interactive)

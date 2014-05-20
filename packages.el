@@ -37,7 +37,7 @@
         emmet-mode
         expand-region
         flycheck
- ;       flycheck-color-mode-line
+        flycheck-color-mode-line
         flyspell-lazy
         git-modes
         helm
@@ -60,7 +60,7 @@
         pbcopy
         php-mode
         plantuml-mode
-;        powerline
+        powerline
         popwin
         pos-tip
         pymacs

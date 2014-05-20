@@ -1,4 +1,4 @@
-;;T-KEYS
+;; Timp extras
 
 ;; A minor-mode for some of my customisations. This means I can put all my
 ;; custom keybindings in here and they will override the major mode bindings

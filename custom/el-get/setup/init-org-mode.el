@@ -6,7 +6,7 @@
 (setq org-default-notes-file "~/Dropbox/org/general.org")
 
 ; Keywords
-(setq org-todo-keywords '((sequence "ACTION(t)" "NEXT(n)" "ONGOING(o)" "|" "DONE(d)")
+(setq org-todo-keywords '((sequence "ACTION(t)" "NEXT(n)" "|" "DONE(d)")
                           (sequence "QUESTION(q)" "|" "ANSWERED(a)")))
 
 
@@ -77,10 +77,6 @@
 
 ;; spelling
 (add-hook 'org-mode-hook 'flyspell-mode)
-
-; Columns
-(setq org-global-properties )
-(setq org-columns-default-format " %55ITEM %TODO %17Effort(Estimated Effort){:} %CLOCKSUM")
 
 ;; org-babel
 
