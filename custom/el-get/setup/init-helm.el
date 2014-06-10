@@ -31,5 +31,6 @@
 
 
 (require 'helm)
+(require 'helm-org)
 (define-key helm-map (kbd "C-e") 'helm-next-line)
 (define-key helm-map (kbd "C-u") 'helm-previous-line)

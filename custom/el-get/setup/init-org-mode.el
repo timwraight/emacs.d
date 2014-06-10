@@ -83,7 +83,8 @@
 ;; active Babel languages
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((R . t)
+ '(
+   ; (R . t)
    (emacs-lisp . t)
    (python . t)
    (sql . t)
