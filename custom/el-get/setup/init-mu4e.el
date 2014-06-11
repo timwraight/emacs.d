@@ -7,7 +7,7 @@
   '(progn
      (add-to-list 'mu4e-view-actions
 		  '("ViewInBrowser" . mu4e-action-view-in-browser) t)
-     
+
 
      ;; Message box
      (define-key mu4e-headers-mode-map (kbd "e") 'mu4e-headers-next)
@@ -23,7 +23,7 @@
      (define-key mu4e-view-mode-map (kbd "n") 'mu4e-view-mark-for-refile)
      (define-key mu4e-view-mode-map (kbd "A") 'vimp-visual-line)))
 
-
+(setq mu4e-split-view nil)
 (setq mu4e-headers-leave-behavior 'apply)
 (setq mu4e-html2text-command
         "html2text.py | grep -v '&nbsp_place_holder;'")

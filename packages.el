@@ -61,6 +61,7 @@
         php-mode
         plantuml-mode
         powerline
+        popup
         popwin
         pos-tip
         pymacs
