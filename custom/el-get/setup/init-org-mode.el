@@ -1,3 +1,4 @@
+(require 'org-install)
 ;; ORG MODE
 ; org-compat seems to be needed by the org-clock library
 (load-library "org-compat")
@@ -9,6 +10,12 @@
 (setq org-todo-keywords '((sequence "ACTION(t)" "NEXT(n)" "|" "DONE(d)")
                           (sequence "QUESTION(q)" "|" "ANSWERED(a)")))
 
+(eval-after-load 'org-agenda
+  '(progn
+     (define-key org-agenda-keymap "i" 'org-agenda-clock-in)
+     (define-key org-agenda-keymap "n" 'org-agenda-clock-out)
+     (define-key org-agenda-keymap "e" 'next-line)
+     (define-key org-agenda-keymap "u" 'previous-line)))
 
 ; Persist clock history
 (setq org-clock-out-when-done t)

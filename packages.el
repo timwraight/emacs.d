@@ -22,6 +22,7 @@
 
 (setq el-get-sources
       '(
+		org-mode ; load first to avoid getting built-in org
         ssh-config-mode
         ace-jump-mode
         ack-and-a-half
@@ -55,7 +56,6 @@
         magit
         markdown-mode
         multiple-cursors
-        org-mode
         paredit
         pbcopy
         php-mode
