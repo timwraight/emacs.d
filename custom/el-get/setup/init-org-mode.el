@@ -1,5 +1,6 @@
 (require 'org-install)
 ;; ORG MODE
+
 ; org-compat seems to be needed by the org-clock library
 (load-library "org-compat")
 (add-to-list 'load-path "~/.emacs.d/vendor/org-mode/lisp")
@@ -85,13 +86,15 @@
 ;; spelling
 (add-hook 'org-mode-hook 'flyspell-mode)
 
+(add-to-list 'org-modules 'org-mac-iCal)
+
 ;; org-babel
 
 ;; active Babel languages
 (org-babel-do-load-languages
  'org-babel-load-languages
  '(
-   ; (R . t)
+   (R . t)
    (emacs-lisp . t)
    (python . t)
    (sql . t)

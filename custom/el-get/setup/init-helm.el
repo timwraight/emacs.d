@@ -1,3 +1,4 @@
+(require 'helm-config)
 (setq helm-ls-git-show-abs-or-relative 'relative)
 (setq helm-ff-transformer-show-only-basename nil)
 
