@@ -1,3 +1,7 @@
+;; Semantic mode
+(semantic-mode)
+
+
 ;; HTML
 (add-hook 'sgml-mode-hook (lambda ()
                             (interactive)

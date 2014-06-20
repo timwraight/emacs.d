@@ -1,4 +1,5 @@
 (require 'lalopmak-vimp)
+(require 'ace-jump-mode)
 (define-key vimp-normal-state-map "m" 'helm-ls-git-ls)
 ;; (define-key vimp-normal-state-map ";" 'helm-mini)
 (define-key vimp-normal-state-map "'" 'helm-command-prefix)
