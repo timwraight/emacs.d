@@ -3,5 +3,5 @@
 (add-hook 'magit-log-edit-mode-hook 'vimp-insert-state)
 (define-key magit-status-mode-map "e" 'next-line)
 (define-key magit-status-mode-map "u" 'previous-line)
-(define-key magit-status-mode-map "i" 'magit-unstage-item)
-(define-key magit-status-mode-map "n" 'magit-stage-item)
+(define-key magit-status-mode-map "n" 'magit-unstage-item)
+(define-key magit-status-mode-map "i" 'magit-stage-item)
