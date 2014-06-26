@@ -22,6 +22,9 @@
 ;(key-chord-define ac-completing-map "lk" 'ac-stop)
 ;(key-chord-define ac-menu-map "ff" 'ac-isearch)
 
+;; Text mode
+(key-chord-define text-mode-map "  " '(kbd ". "))
+
 
 ;; GLOBAL (org)
 (key-chord-define-global ",l" 'org-store-link)

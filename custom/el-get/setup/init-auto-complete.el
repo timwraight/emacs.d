@@ -22,8 +22,8 @@
  ac-candidate-menu-min 1)
 
 (define-key ac-menu-map (kbd "<SPC>") 'ac-complete)
-(define-key ac-menu-map (kbd "C-e") 'ac-next)
-(define-key ac-menu-map (kbd "C-u") 'ac-previous)
+(define-key ac-menu-map (kbd "M-e") 'ac-next)
+(define-key ac-menu-map (kbd "M-u") 'ac-previous)
 (define-key ac-menu-map (kbd "/") 'ac-stop)
 (define-key ac-completing-map "/" 'ac-stop)
 (define-key ac-completing-map "\t" 'ac-complete)
