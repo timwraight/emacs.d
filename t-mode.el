@@ -20,20 +20,6 @@
 (key-chord-define-global ",f" 'helm-mu)
 
 
-; KEYBINDINGS
-(defun tim/jump-backward ()
-    (interactive)
-    (vimp-jump-backward)
-    (recenter))
-
-(defun tim/jump-forward ()
-    (interactive)
-    (vimp-jump-forward)
-    (recenter))
-
-(vimp-global-set-key 'normal " " 'tim/jump-backward)
-(vimp-global-set-key 'normal "ซ" 'tim/jump-forward)
-
 ; Next/previous buffers
 (vimp-global-set-key 'normal (kbd "<RET>") 'previous-buffer)
 (vimp-global-set-key 'normal "ร" 'next-buffer)

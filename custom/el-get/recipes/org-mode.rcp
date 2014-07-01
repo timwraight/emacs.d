@@ -4,6 +4,7 @@
        :type git
        :url "git://orgmode.org/org-mode.git"
        :info "doc"
+	   :depends helm
        :checkout "release_8.2.6"
        :build/berkeley-unix `,(mapcar
                                (lambda (target)
