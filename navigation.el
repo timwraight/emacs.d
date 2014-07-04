@@ -44,9 +44,3 @@
                  (word-at-point))
                 ((read-string "Search for term: ")))))
      (concat "http://www.google.co.uk/search?q=" search-term "&ie=utf-8"))))
-
-
-(require 'key-chord)
-;; VIMP
-(key-chord-define vimp-insert-state-map "dh" 'vimp-normal-state)
-(key-chord-define vimp-replace-state-map "dh" 'vimp-normal-state)

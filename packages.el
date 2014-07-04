@@ -23,6 +23,7 @@
 (setq el-get-sources
       '(
 		org-mode ; load first to avoid getting built-in org
+        js2-mode ; similar
         ssh-config-mode
         ace-jump-mode
         ack-and-a-half
@@ -45,10 +46,8 @@
         helm-ls-git
         helm-hoogle
         helm-git-grep
-        icicles
         jedi
         jedi-direx
-        js2-mode
         jss
         key-chord
         lalopmak-vimp

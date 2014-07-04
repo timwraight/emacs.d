@@ -1,10 +1,11 @@
 (:name vimp
        :type git
        :url "git://gitorious.org/evil/evil.git"
-       :features vimp
+	   :description "Vim for emacs"
        :depends (undo-tree key-chord)
-       :build/darwin (("rename 's/evil/vimp/' evil*")
-		      ("rename 's/evil/vimp/' doc/*")
-		      ("sed -i -e 's/evil/vimp/g' *.el")
-		      ("sed -i -e 's/evil/vimp/g' Makefile")
-		      ("make EMACS=/usr/local/bin/emacs all")))
+       :build/darwin `(
+		      ,(el-get-flatten `("sed" "-i" "-e" "s/evil/vimp/g" ,(split-string (shell-command-to-string "find . -name '*.el'"))))
+	      	  "sed -i -e 's/evil/vimp/g' Makefile"
+			  ,(el-get-flatten `("rename" "s/evil/vimp/" ,(split-string (shell-command-to-string "find . -name '*.el'"))))
+			  ,(el-get-flatten `("rename" "s/evil/vimp/" ,(split-string (shell-command-to-string "ls doc"))))
+		      ,(concat "make EMACS=" el-get-emacs)))

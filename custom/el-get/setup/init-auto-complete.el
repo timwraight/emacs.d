@@ -9,16 +9,17 @@
 
 ;; (global-auto-complete-mode t)
 (setq
- ac-delay 0.2
- ac-auto-show-menu 0.8
+ ac-delay 0
+ ac-auto-show-menu 0.1
  ac-use-fuzzy t
  ac-use-comphist t
  ac-dwim nil
  ac-use-menu-map t
- ac-quick-help-delay 0.2
+ ac-quick-help-delay 2
  ac-quick-help-height 60
- ac-auto-start 2
+ ac-auto-start 3
  ac-ignore-case nil
+ ac-candidate-limit nil
  ac-candidate-menu-min 1)
 
 (define-key ac-menu-map (kbd "<SPC>") 'ac-complete)
