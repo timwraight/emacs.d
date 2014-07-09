@@ -14,6 +14,9 @@
   (vimp-set-initial-state mode 'insert))
 
 
+; magic searches
+(setq vimp-magic 'very-magic)
+
 
 (setq vimp-auto-indent nil)
 (global-set-key (kbd "<f1>") 'vimp-local-mode)
