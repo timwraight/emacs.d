@@ -12,6 +12,7 @@
 
 (global-set-key (kbd "<f6>") 'direx-project:jump-to-project-root)
 (global-set-key (kbd "<f7>") 'helm-bookmarks)
+(global-set-key (kbd "C-x q") (lambda () (interactive) (save-buffers-kill-emacs t)))
 
 
 
