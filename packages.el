@@ -43,6 +43,7 @@
         flyspell-lazy
         git-modes
         helm
+        helm-etags-plus
         helm-ls-git
         helm-hoogle
         helm-git-grep
