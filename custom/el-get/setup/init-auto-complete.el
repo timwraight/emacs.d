@@ -25,6 +25,7 @@
 (define-key ac-menu-map (kbd "<SPC>") 'ac-complete)
 (define-key ac-menu-map (kbd "M-e") 'ac-next)
 (define-key ac-menu-map (kbd "M-u") 'ac-previous)
+(define-key ac-menu-map (kbd "M-i") 'ac-isearch)
 (define-key ac-menu-map (kbd "/") 'ac-stop)
 (define-key ac-completing-map "/" 'ac-stop)
 (define-key ac-completing-map "\t" 'ac-complete)
