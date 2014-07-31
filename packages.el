@@ -41,6 +41,7 @@
         flycheck
         flycheck-color-mode-line
         flyspell-lazy
+        git-gutter
         git-modes
         helm
         helm-etags-plus

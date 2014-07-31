@@ -104,6 +104,12 @@
 
 (setq org-ditaa-jar-path "~/bin/ditaa.jar")
 
+
+; Taskjuggler
+(require 'ox-taskjuggler)
+(setq org-enforce-todo-dependencies t)
+(setq org-taskjuggler-target-version 3.5)
+(setq org-taskjuggler-valid-task-attributes)
 ; DEADLINES
 (setq org-deadline-warning-days 2)
 

@@ -20,14 +20,12 @@
  ac-auto-start 3
  ac-ignore-case nil
  ac-candidate-limit nil
- ac-candidate-menu-min 1)
+ ac-candidate-menu-min 2)
 
-(define-key ac-menu-map (kbd "<SPC>") 'ac-complete)
+(define-key ac-menu-map (kbd "<RET>") 'ac-complete)
 (define-key ac-menu-map (kbd "M-e") 'ac-next)
 (define-key ac-menu-map (kbd "M-u") 'ac-previous)
 (define-key ac-menu-map (kbd "M-i") 'ac-isearch)
-(define-key ac-menu-map (kbd "/") 'ac-stop)
-(define-key ac-completing-map "/" 'ac-stop)
 (define-key ac-completing-map "\t" 'ac-complete)
 (define-key ac-completing-map "\r" nil)
 
@@ -37,7 +35,6 @@
                ac-source-words-in-buffer
                ac-source-words-in-same-mode-buffers
                ac-source-semantic
-               ac-source-abbrev
                ac-source-yasnippet))
 
 (dolist (mode '(log-edit-mode haml-mode sass-mode yaml-mode csv-mode espresso-mode
