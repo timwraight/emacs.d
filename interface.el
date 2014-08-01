@@ -41,6 +41,7 @@
     "[%m] "
     'org-mode-line-string
     " --"
+    'jabber-activity-mode-string
     "%-" ;; fill with '-'
     ))
 

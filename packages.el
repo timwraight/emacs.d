@@ -36,6 +36,7 @@
         direx
         dockerfile-mode
         el-get
+        emacs-jabber
         emmet-mode
         expand-region
         flycheck
