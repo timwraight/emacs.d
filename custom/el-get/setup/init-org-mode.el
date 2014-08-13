@@ -1,4 +1,5 @@
 (require 'org-install)
+(require 'org-depend)
 ;; ORG MODE
 
 ; org-compat seems to be needed by the org-clock library
@@ -35,14 +36,17 @@
 (setq org-drawers (quote ("PROPERTIES" "LOGBOOK")))
 ;; Include current clocking task in clock reports
 (setq org-clock-report-include-clocking-task t)
+(setq org-clock-report)
 ;; Save clock data and state changes and notes in the LOGBOOK drawer
 (setq org-clock-into-drawer t)
 ;; Save the running clock and all clock history when exiting Emacs, load it on startup
 (setq org-clock-persist t)
 
 
+
 (setq org-startup-indented 1)
 (setq org-use-speed-commands t)
+(add-hook 'org-mode-hook 'auto-fill-mode)
 (add-hook 'org-mode-hook 'auto-fill-mode)
 (setq org-agenda-window-setup 'current-window)
 (setq org-agenda-restore-windows-after-quit nil)
@@ -59,14 +63,13 @@
                                  (org-agenda-files :maxlevel . 9))))
 
 (setq org-outline-path-complete-in-steps nil)
-(setq org-refile-use-outline-path t)
+(setq org-refile-use-outline-path 'full-file-path)
 
 ; Allow refile to create parent tasks with confirmation
 (setq org-refile-allow-creating-parent-nodes (quote confirm))
 
 ;; Don't ask me every time I want to execute some code
 (setq org-confirm-babel-evaluate nil)
-
 
 
 ;;;; Refile settings
@@ -76,6 +79,18 @@
   (not (member (nth 2 (org-heading-components)) org-done-keywords)))
 
 (setq org-refile-target-verify-function 'bh/verify-refile-target)
+
+; Use IDO for both buffer and file completion and ido-everywhere to t
+(setq org-completion-use-ido nil)
+;; (setq ido-everywhere t)
+(setq ido-max-directory-size 100000)
+(ido-mode (quote both))
+; Use the current window when visiting files and buffers with ido
+(setq ido-default-file-method 'selected-window)
+(setq ido-default-buffer-method 'selected-window)
+; Use the current window for indirect buffer display
+(setq org-indirect-buffer-display 'current-window)
+
 
 ; Enter insert on capture
 (add-hook 'org-capture-mode-hook 'vimp-insert-state)

@@ -3,7 +3,11 @@
 (menu-bar-mode -1)
 
 (when window-system
-        (toggle-frame-fullscreen))
+  (set-face-attribute 'default nil :height 140)
+  (set-face-attribute 'variable-pitch nil :height 190 :family "Calibri")
+  (set-frame-parameter nil 'fullscreen 'fullboth)
+  (add-hook 'mu4e-headers-mode-hook 'variable-pitch-mode)
+  (server-start))
 
 (global-hl-line-mode)
 (column-number-mode 1)
@@ -26,6 +30,7 @@
                             (interactive)
                             (setq fill-column 79)
                             (toggle-truncate-lines)))
+(add-hook 'text-mode-hook (lambda () (variable-pitch-mode t)))
 (global-visual-line-mode t)
 
 ;; MODE-LINE

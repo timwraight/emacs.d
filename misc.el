@@ -1,6 +1,9 @@
 ;; Semantic mode
 (semantic-mode)
 
+;; Abbrev mode (to help me write faster)
+(setq-default abbrev-mode nil)
+(setq abbrev-mode nil)
 
 ;; HTML
 (add-hook 'sgml-mode-hook (lambda ()
@@ -11,6 +14,7 @@
                             (turn-off-flyspell)
                             (tagedit-mode)))
 (setq sgml-basic-offset 4)
+
 
 ;; ReST mode
 (add-hook 'rst-mode-hook (lambda ()
@@ -53,7 +57,7 @@
 
 (add-hook 'sql-mode-hook
           (lambda ()
-            (sql-highlight-mysql-keywords)
+            (sql-highlight-postgres-keywords)
             (auto-complete-mode)))
 
 (define-key sql-interactive-mode-map (kbd "M-u") 'comint-previous-input)

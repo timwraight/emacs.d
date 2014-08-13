@@ -29,8 +29,6 @@
 
 (setq mu4e-split-view nil)
 (setq mu4e-headers-leave-behavior 'apply)
-(setq mu4e-html2text-command
-        "html2text.py | grep -v '&nbsp_place_holder;'")
 (setq mu4e-use-fancy-chars t)
 
 (setq mu4e-maildir "~/Mail")
@@ -40,3 +38,24 @@
 (add-hook 'mu4e-compose-mode-hook 'vimp-insert-state)
 (add-hook 'mu4e-headers-mode-hook 'vimp-local-mode)
 (add-hook 'mu4e-headers-mode-hook 'toggle-truncate-lines)
+
+
+(defun html2text ()
+    "Replacement for standard html2text using shr."
+    (interactive)
+    (let ((dom (libxml-parse-html-region (point-min) (point-max))))
+        (erase-buffer)
+        (shr-insert-document dom)
+        (goto-char (point-min))))
+
+; mu4e org stuff
+(setq message-citation-line-format "* On %Y-%m-%d at %R, %f wrote:")
+(defun kdm-mu4e-org-compose ()
+  "Switch to/from mu4e-compose-mode and org-mode"
+  (interactive)
+  (if (eq 'mu4e-compose-mode
+          (buffer-local-value 'major-mode
+                              (current-buffer)))
+      (org-mode)
+    (mu4e-compose-mode)))
+(global-set-key "\M-@" 'kdm-mu4e-org-compose)

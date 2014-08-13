@@ -6,6 +6,7 @@
 
 (byte-recompile-directory "~/.emacs.d/")
 
+(add-to-list 'load-path "~/.emacs.d/el-get/org-mode/lisp")
 
 (load-user-file "packages.el")
 (load-user-file "interface.el")

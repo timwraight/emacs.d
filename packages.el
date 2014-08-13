@@ -30,7 +30,6 @@
         ack-menu
         auto-complete
         auto-indent-mode
-        autopair
         centered-cursor-mode
         color-theme-solarized
         direx
@@ -43,6 +42,7 @@
         flycheck-color-mode-line
         flyspell-lazy
         git-modes
+        ;; git-timemachine
         helm
         helm-etags-plus
         helm-ls-git
@@ -62,7 +62,7 @@
         pbcopy
         php-mode
         plantuml-mode
-        powerline
+        ;; powerline
         popup
         popwin
         pos-tip
@@ -70,6 +70,7 @@
         python-django
         rainbow-delimiters
         ssh-config-mode
+        smartparens
         smex
         tagedit
         undo-tree
