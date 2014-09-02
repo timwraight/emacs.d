@@ -1,0 +1,1 @@
+(define-key helm-git-grep-mode-map (kbd "M-u") 'helm-previous-line)
