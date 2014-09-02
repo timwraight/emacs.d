@@ -9,4 +9,4 @@
     (save-buffer))
 )
 
-(add-hook 'vimp-insert-state-exit-hook 'save-if-visiting-file)
+;; (add-hook 'vimp-insert-state-exit-hook 'save-if-visiting-file)

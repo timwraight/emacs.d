@@ -6,6 +6,8 @@
 
 (byte-recompile-directory "~/.emacs.d/")
 
+;; Add my custom taskjuggler stuff to front of load path
+(add-to-list 'load-path "~/.emacs.d/ox-timjuggler.el")
 (add-to-list 'load-path "~/.emacs.d/el-get/org-mode/lisp")
 
 (load-user-file "packages.el")

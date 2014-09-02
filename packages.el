@@ -44,7 +44,7 @@
         git-modes
         ;; git-timemachine
         helm
-        helm-etags-plus
+        ;; helm-etags-plus  ;; Is this causing freezes? (27th August)
         helm-ls-git
         helm-hoogle
         helm-git-grep
@@ -74,7 +74,7 @@
         smex
         tagedit
         undo-tree
-       vimp
+        vimp
         vimp-leader
         vimp-surround
         websocket

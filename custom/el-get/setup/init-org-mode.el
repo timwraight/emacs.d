@@ -125,6 +125,41 @@
 (setq org-enforce-todo-dependencies t)
 (setq org-taskjuggler-target-version 3.5)
 (setq org-taskjuggler-valid-task-attributes)
+
+; Don't show resource allocation in default report
+(setq org-taskjuggler-default-reports
+  '("textreport report \"Plan\" {
+  formats html
+  header '== %title =='
+
+  center -8<-
+    [#Plan Plan]
+    ----
+    === Plan ===
+    <[report id=\"plan\"]>
+    ----
+  ->8-
+}
+
+# A traditional Gantt chart with a project overview.
+taskreport plan \"\" {
+  headline \"Project Plan\"
+  columns bsi, name, start, end, effort, chart
+  loadunit shortauto
+  hideresource 1
+}
+
+# A graph showing resource allocation. It identifies whether each
+# resource is under- or over-allocated for.
+resourcereport resourceGraph \"\" {
+  headline \"Resource Allocation Graph\"
+  columns no, name, effort, weekly
+  loadunit shortauto
+  hidetask ~(isleaf() & isleaf_())
+  sorttasks plan.start.up
+}"))
+
+
 ; DEADLINES
 (setq org-deadline-warning-days 2)
 
