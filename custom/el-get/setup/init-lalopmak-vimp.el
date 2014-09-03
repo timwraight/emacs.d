@@ -9,4 +9,5 @@
     (save-buffer))
 )
 
+;; Is this causing freezes?
 ;; (add-hook 'vimp-insert-state-exit-hook 'save-if-visiting-file)

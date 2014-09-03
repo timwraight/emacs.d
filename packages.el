@@ -44,7 +44,7 @@
         git-modes
         ;; git-timemachine
         helm
-        ;; helm-etags-plus  ;; Is this causing freezes? (27th August)
+        helm-etags-plus
         helm-ls-git
         helm-hoogle
         helm-git-grep
