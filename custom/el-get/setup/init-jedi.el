@@ -5,8 +5,8 @@
 ; Note that the second param here controls whether jedi jumps to the definition
 ; of the function or its assignment. nil means go to assignment. And the first
 ; arg is whether to open in new window or not.
-(setq jedi:goto-definition-config '((t definition nil)     ; C-.
-                                    (nil nil nil)          ; C-u C-.
+(setq jedi:goto-definition-config '((nil definition nil)     ; C-.
+                                    (t definition nil)          ; C-u C-.
                                     (t nil nil)            ; C-u C-u C-.
                                     (t definition nil)
                                     (nil nil t)
