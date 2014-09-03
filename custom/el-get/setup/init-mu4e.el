@@ -48,6 +48,8 @@
         (shr-insert-document dom)
         (goto-char (point-min))))
 
+(setq mu4e-html2text-command nil)
+
 ; mu4e org stuff
 (setq message-citation-line-format "* On %Y-%m-%d at %R, %f wrote:")
 (defun kdm-mu4e-org-compose ()

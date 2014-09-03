@@ -78,6 +78,7 @@
         vimp-leader
         vimp-surround
         websocket
+        wgrep ; excellent! turns grep buffers into find/replace buffers
         yaml-mode
         yasnippet
         tim-zenburn
