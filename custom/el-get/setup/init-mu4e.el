@@ -40,14 +40,6 @@
 (add-hook 'mu4e-headers-mode-hook 'toggle-truncate-lines)
 
 
-(defun html2text ()
-    "Replacement for standard html2text using shr."
-    (interactive)
-    (let ((dom (libxml-parse-html-region (point-min) (point-max))))
-        (erase-buffer)
-        (shr-insert-document dom)
-        (goto-char (point-min))))
-
 (setq mu4e-html2text-command nil)
 
 ; mu4e org stuff

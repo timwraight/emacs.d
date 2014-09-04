@@ -22,3 +22,15 @@
 
 (setq custom-file "~/.emacs.d/setup-specific.el")
 (load-user-file "setup-specific.el")
+
+
+; After all the other bits have loaded, we redefine the html2text command to a
+; better version, so that mu4e can use it for displaying messages.
+
+(defun html2text ()
+    "Replacement for standard html2text using shr."
+    (interactive)
+    (let ((dom (libxml-parse-html-region (point-min) (point-max))))
+        (erase-buffer)
+        (shr-insert-document dom)
+        (goto-char (point-min))))
