@@ -9,7 +9,16 @@
 (define-key python-mode-map (kbd "C-c d") 'jedi:show-doc)
 (setq python-indent-offset 4)
 
+(setq
+ python-shell-interpreter "ipython"
+ python-shell-interpreter-args ""
+ python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+ python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+ python-shell-completion-setup-code
+   "from IPython.core.completerlib import module_completion"
+ python-shell-completion-module-string-code
+   "';'.join(module_completion('''%s'''))\n"
+ python-shell-completion-string-code
+   "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
-(require 'key-chord)
-(require 'helm)
-(key-chord-define python-mode-map ",/" 'helm-python-functions)
+

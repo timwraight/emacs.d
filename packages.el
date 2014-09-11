@@ -26,18 +26,14 @@
         js2-mode ; similar
         ssh-config-mode
         ace-jump-mode
-        ack-and-a-half
-        ack-menu
         auto-complete
         auto-indent-mode
-        centered-cursor-mode
         color-theme-solarized
         direx
         dockerfile-mode
         el-get
         emacs-jabber
         emmet-mode
-        expand-region
         flycheck
         flycheck-color-mode-line
         flyspell-lazy
