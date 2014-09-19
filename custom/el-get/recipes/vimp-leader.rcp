@@ -3,6 +3,6 @@
        :type github
        :pkgname "cofi/evil-leader"
        :features vimp-leader
-       :build ("rename 's/evil/vimp/' evil*" 
-	       "sed -i .orig -e 's/evil/vimp/g' *.el")
+       :build ("mv evil-leader.el vimp-leader.el" 
+	       "sed -i -e 's/evil/vimp/g' vimp-leader.el")
        :depends vimp)

@@ -2,8 +2,9 @@
        :website "http://github.com/timcharper/evil-surround"
        :type github
        :pkgname "timcharper/evil-surround"
-       :features surround
-       :build ("sed -i .orig -e 's/evil/vimp/g' surround.el")
-       :post-init (global-surround-mode 1)
+       :features vimp-surround
+       :build ("mv evil-surround.el vimp-surround.el" 
+         	"sed -i 's/evil/vimp/g' vimp-surround.el")
+       :post-init (global-vimp-surround-mode 1)
        :depends vimp)
 
