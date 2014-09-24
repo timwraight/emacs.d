@@ -19,7 +19,6 @@
 
 (require 'helm)
 (require 'helm-org)
-;; (helm-mode t)
 (define-key helm-map (kbd "M-e") 'helm-next-line)
 (define-key helm-map (kbd "M-u") 'helm-previous-line)
 (define-key helm-map (kbd "M-i") 'helm-execute-persistent-action)

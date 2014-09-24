@@ -58,6 +58,7 @@
         pbcopy
         php-mode
         plantuml-mode
+        projectile
         ;; powerline
         popup
         popwin
