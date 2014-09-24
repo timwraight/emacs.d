@@ -22,9 +22,11 @@
 
 (setq el-get-sources
       '(
-		org-mode ; load first to avoid getting built-in org
+	org-mode ; load first to avoid getting built-in org
         js2-mode ; similar
         ssh-config-mode
+	helm
+	vimp
         ace-jump-mode
         auto-complete
         auto-indent-mode
@@ -54,16 +56,16 @@
         magit
         markdown-mode
         multiple-cursors
+        nix-mode
         paredit
         pbcopy
         php-mode
-        plantuml-mode
         projectile
+        ;; plantuml-mode
         ;; powerline
         popup
         popwin
         pos-tip
-        pymacs
         python-django
         rainbow-delimiters
         ssh-config-mode
@@ -71,7 +73,6 @@
         smex
         tagedit
         undo-tree
-        vimp
         vimp-leader
         vimp-surround
         websocket
