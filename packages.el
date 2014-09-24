@@ -58,6 +58,7 @@
         multiple-cursors
         nix-mode
         paredit
+        perspective
         pbcopy
         php-mode
         projectile
