@@ -22,3 +22,4 @@
 (define-key helm-map (kbd "M-e") 'helm-next-line)
 (define-key helm-map (kbd "M-u") 'helm-previous-line)
 (define-key helm-map (kbd "M-i") 'helm-execute-persistent-action)
+(define-key helm-generic-files-map (kbd "M-i") 'helm-execute-persistent-action)
