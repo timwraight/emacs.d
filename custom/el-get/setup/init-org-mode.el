@@ -42,11 +42,24 @@
 ;; Save the running clock and all clock history when exiting Emacs, load it on startup
 (setq org-clock-persist t)
 
+(format "%s/%s" (last (split-string (buffer-file-name) "/") 2))
+
+
+(require 's)
+(defun two-level-buffer ()
+    (s-join "/" (last (split-string (buffer-file-name) "/") 2)))
+
+(setq org-agenda-prefix-format
+ (quote
+  ((agenda . "%-12:c%?-12t% s %b")
+   (timeline . "  % s")
+   (todo . "  %-42(two-level-buffer) ")
+   (tags . "  %-42(two-level-buffer) ")
+   (search . "  %-42 %(two-level-buffer) "))))
 
 
 (setq org-startup-indented 1)
 (setq org-use-speed-commands t)
-(add-hook 'org-mode-hook 'auto-fill-mode)
 (add-hook 'org-mode-hook 'auto-fill-mode)
 (setq org-agenda-window-setup 'current-window)
 (setq org-agenda-restore-windows-after-quit nil)
