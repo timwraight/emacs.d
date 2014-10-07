@@ -22,11 +22,20 @@
 
 (setq el-get-sources
       '(
-	org-mode ; load first to avoid getting built-in org
-        js2-mode ; similar
+        ; a few packages we load first so that we can reference them in our
+        ; init-x files, without having to list them as explicit dependencies
+        ; (and thus create a separate recipe for them)
+        s
+        perspective
+
+        ; ones to load first so as to override built in versions
+        org-mode 
+        js2-mode
+ 
+        ; normal packages
         ssh-config-mode
-	helm
-	vimp
+        helm
+        vimp
         ace-jump-mode
         auto-complete
         auto-indent-mode

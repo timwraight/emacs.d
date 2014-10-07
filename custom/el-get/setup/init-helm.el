@@ -25,3 +25,8 @@
 (define-key helm-map (kbd "M-i") 'helm-execute-persistent-action)
 (define-key helm-generic-files-map (kbd "M-i") 'helm-execute-persistent-action)
 (define-key helm-generic-files-map (kbd "M-/") 'helm-ff-run-grep)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
+(define-key helm-find-files-map (kbd "M-i") 'helm-execute-persistent-action)
+(define-key helm-find-files-map (kbd "M-e") 'helm-next-line)
+(define-key helm-find-files-map (kbd "M-u") 'helm-previous-line)
+(define-key helm-find-files-map (kbd "M-n") 'helm-find-files-up-one-level)

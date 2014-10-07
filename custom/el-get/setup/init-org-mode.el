@@ -42,8 +42,6 @@
 ;; Save the running clock and all clock history when exiting Emacs, load it on startup
 (setq org-clock-persist t)
 
-(format "%s/%s" (last (split-string (buffer-file-name) "/") 2))
-
 
 (require 's)
 (defun two-level-buffer ()
@@ -56,7 +54,6 @@
    (todo . "  %-42(two-level-buffer) ")
    (tags . "  %-42(two-level-buffer) ")
    (search . "  %-42 %(two-level-buffer) "))))
-
 
 (setq org-startup-indented 1)
 (setq org-use-speed-commands t)
@@ -83,6 +80,8 @@
 
 ;; Don't ask me every time I want to execute some code
 (setq org-confirm-babel-evaluate nil)
+
+(add-to-list 'org-global-properties '("CLOCK_MODELINE_TOTAL" . "today"))
 
 
 ;;;; Refile settings
