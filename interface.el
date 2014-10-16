@@ -33,6 +33,11 @@
 (add-hook 'text-mode-hook (lambda () (variable-pitch-mode t)))
 (global-visual-line-mode t)
 
+;; Time format for modeline
+(setq display-time-string-forms
+      '(" " 24-hours ":" minutes
+        (if time-zone " (") time-zone (if time-zone ")")))
+
 ;; MODE-LINE
 
 ;; use setq-default to set it for /all/ modes
@@ -45,8 +50,10 @@
     'jabber-activity-mode-string
     " --"
     'org-mode-line-string
+    " --"
+    'display-time-string
     "%-" ;; fill with '-'
-    ))
+    )
 
 
 ; truncate lines in dired mode
