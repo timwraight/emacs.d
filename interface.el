@@ -40,13 +40,11 @@
   (list
     ;; the buffer name; the file name as a tool tip
     "%b "
-    ;; line and column
-    "(%02l, %02c)"
-    ;; the current major mode for the buffer.
-    "[%m] "
-    'org-mode-line-string
+    'vc-mode
     " --"
     'jabber-activity-mode-string
+    " --"
+    'org-mode-line-string
     "%-" ;; fill with '-'
     ))
 
