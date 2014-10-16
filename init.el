@@ -15,6 +15,7 @@
 (load-user-file "navigation.el")
 (load-user-file "editing.el")
 (load-user-file "python.el")
+(load-user-file "eshell_customisations.el")
 (load-user-file "elisp.el")
 (load-user-file "t-mode.el")
 (load-user-file "misc.el")
