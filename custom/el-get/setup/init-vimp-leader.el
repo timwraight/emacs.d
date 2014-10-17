@@ -7,7 +7,9 @@
 (vimp-leader/set-key "e" 'next-error)
 (vimp-leader/set-key "g" 'magit-status)
 (vimp-leader/set-key "h" 'vc-version-ediff)
+(vimp-leader/set-key "j" 'jabber-switch-to-roster-buffer)
 (vimp-leader/set-key "l" 'split-window-below)
+(vimp-leader/set-key "m" 'helm-jabber-contacts)
 (vimp-leader/set-key "'" (kbd "yse'"))
 (vimp-leader/set-key "\"" (kbd "yse\""))
 (vimp-leader/set-key "r" (lambda() (interactive) (kbd "ysiW")))
@@ -15,5 +17,6 @@
 (vimp-leader/set-key ";" 'helm-mini)
 (vimp-leader/set-key "w" 'previous-error)
 (vimp-leader/set-key "z" (lambda () (interactive) (save-buffers-kill-terminal 1)))
+
 (vimp-leader/set-key-for-mode 'sgml-mode "<right>" 'tagedit-forward-slurp-tag)
 (vimp-leader/set-key-for-mode 'sgml-mode "<left>" 'tagedit-forward-barf-tag)

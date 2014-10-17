@@ -48,3 +48,5 @@ PWD is not in a git repo (or the git command is not found)."
          (propertize "# " 'face 'default))))
 
 (setq eshell-highlight-prompt nil)
+
+(add-hook 'eshell-mode-hook (lambda () (setenv "GIT_PAGER" "cat")))

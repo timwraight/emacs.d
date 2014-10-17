@@ -53,7 +53,7 @@
     " --"
     'display-time-string
     "%-" ;; fill with '-'
-    )
+    ))
 
 
 ; truncate lines in dired mode
