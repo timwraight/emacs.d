@@ -19,6 +19,7 @@
      (define-key org-agenda-keymap "e" 'next-line)
      (define-key org-agenda-keymap "u" 'previous-line)))
 
+
 ; Persist clock history
 (setq org-clock-out-when-done t)
 ;; Resume clocking task on clock-in if the clock is open
@@ -46,14 +47,6 @@
 (require 's)
 (defun two-level-buffer ()
     (s-join "/" (last (split-string (buffer-file-name) "/") 2)))
-
-(setq org-agenda-prefix-format
- (quote
-  ((agenda . "%-12:c%?-12t% s %b")
-   (timeline . "  % s")
-   (todo . "  %-42(two-level-buffer) ")
-   (tags . "  %-42(two-level-buffer) ")
-   (search . "  %-42 %(two-level-buffer) "))))
 
 (setq org-startup-indented 1)
 (setq org-use-speed-commands t)
@@ -201,3 +194,94 @@ resourcereport resourceGraph \"\" {
 (setq org-latex-listings 'minted)
 (setq org-latex-pdf-process
       '("latexmk -f -pdf -latexoption=-shell-escape %f"))
+
+
+(defun tw/is-project-p ()
+  "Any task with a todo keyword subtask"
+  (save-restriction
+    (widen)
+    (let ((has-subtask)
+          (subtree-end (save-excursion (org-end-of-subtree t)))
+          (is-a-task (member (nth 2 (org-heading-components)) org-todo-keywords-1)))
+      (save-excursion
+        (forward-line 1)
+        (while (and (not has-subtask)
+                    (< (point) subtree-end)
+                    (re-search-forward "^\*+ " subtree-end t))
+          (when (member (org-get-todo-state) org-todo-keywords-1)
+            (setq has-subtask t))))
+      (and is-a-task has-subtask))))
+
+
+(defun tw/is-project-subtree-p ()
+  "Any task with a todo keyword that is in a project subtree.
+Callers of this function already widen the buffer view."
+  (let ((task (save-excursion (org-back-to-heading 'invisible-ok)
+                              (point))))
+    (save-excursion
+      (tw/find-project-task)
+      (if (equal (point) task)
+          nil
+        t))))
+
+(defun tw/is-task-p ()
+  "Any task with a todo keyword and no subtask"
+  (save-restriction
+    (widen)
+    (let ((has-subtask)
+          (subtree-end (save-excursion (org-end-of-subtree t)))
+          (is-a-task (member (nth 2 (org-heading-components)) org-todo-keywords-1)))
+      (save-excursion
+        (forward-line 1)
+        (while (and (not has-subtask)
+                    (< (point) subtree-end)
+                    (re-search-forward "^\*+ " subtree-end t))
+          (when (member (org-get-todo-state) org-todo-keywords-1)
+            (setq has-subtask t))))
+      (and is-a-task (not has-subtask)))))
+
+(defun tw/find-project-task ()
+  "Move point to the parent (project) task if any"
+  (save-restriction
+    (widen)
+    (let ((parent-task (save-excursion (org-back-to-heading 'invisible-ok) (point))))
+      (while (org-up-heading-safe)
+        (when (member (nth 2 (org-heading-components)) org-todo-keywords-1)
+          (setq parent-task (point))))
+      (goto-char parent-task)
+      parent-task)))
+
+(defun tw/skip-non-projects ()
+  "Skip trees that are not projects"
+  ;; (tw/list-sublevels-for-projects-indented)
+  (if (save-excursion (tw/skip-non-stuck-projects))
+      (save-restriction
+        (widen)
+        (let ((subtree-end (save-excursion (org-end-of-subtree t))))
+          (cond
+           ((tw/is-project-p)
+            nil)
+           ((and (tw/is-project-subtree-p) (not (tw/is-task-p)))
+            nil)
+           (t
+            subtree-end))))
+    (save-excursion (org-end-of-subtree t))))
+
+(defun tw/skip-non-stuck-projects ()
+  "Skip trees that are not stuck projects"
+  ;; (bh/list-sublevels-for-projects-indented)
+  (save-restriction
+    (widen)
+    (let ((next-headline (save-excursion (or (outline-next-heading) (point-max)))))
+      (if (tw/is-project-p)
+          (let* ((subtree-end (save-excursion (org-end-of-subtree t)))
+                 (has-next ))
+            (save-excursion
+              (forward-line 1)
+              (while (and (not has-next) (< (point) subtree-end) (re-search-forward "^\\*+ NEXT " subtree-end t))
+                (unless (member "WAITING" (org-get-tags-at))
+                  (setq has-next t))))
+            (if has-next
+                next-headline
+              nil)) ; a stuck project, has subtasks but no next task
+        next-headline))))

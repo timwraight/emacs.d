@@ -29,24 +29,29 @@
         perspective
 
         ; ones to load first so as to override built in versions
-        org-mode 
+        org-mode
         js2-mode
- 
-        ; normal packages
         ssh-config-mode
         helm
         vimp
+
+        ; normal packages
+        alert
         ace-jump-mode
         auto-complete
         auto-indent-mode
         color-theme-solarized
         direx
         dockerfile-mode
+        eclim
         el-get
         emacs-jabber
+        emacs-jabber-otr
         emmet-mode
+        fill-column-indicator
         flycheck
         flycheck-color-mode-line
+        flycheck-java
         flyspell-lazy
         git-modes
         ;; git-timemachine
