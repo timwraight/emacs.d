@@ -54,7 +54,7 @@
         flycheck-java
         flyspell-lazy
         git-modes
-        ;; git-timemachine
+        git-timemachine
         helm
         helm-etags-plus
         helm-ls-git

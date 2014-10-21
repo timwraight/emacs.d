@@ -19,3 +19,4 @@
 
 (add-hook 'jabber-alert-message-hooks 'notify-jabber-notify)
 (add-hook 'jabber-chat-mode-hook 'vimp-insert-state)
+(add-hook 'jabber-chat-mode-hook 'longlines-mode)

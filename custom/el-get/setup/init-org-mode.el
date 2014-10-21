@@ -285,3 +285,46 @@ Callers of this function already widen the buffer view."
                 next-headline
               nil)) ; a stuck project, has subtasks but no next task
         next-headline))))
+
+
+(require 's)
+(defun two-level-buffer ()
+    (s-join "/" (last (split-string (buffer-file-name) "/") 2)))
+
+(setq org-agenda-prefix-format
+ (quote
+  ((agenda . "%-12:c%?-12t% s %b")
+   (timeline . "  % s")
+   (todo . "  %-42(two-level-buffer) ")
+   (tags . "  %-42(two-level-buffer) ")
+   (search . "  %-42 %(two-level-buffer) "))))
+
+(setq org-agenda-custom-commands
+      '(
+        (" " "Tim's Agenda"
+         ((agenda "")
+          (tags-todo "project-dormant"
+                     ((org-agenda-overriding-header "Current Projects")
+                      (org-agenda-skip-function 'tw/skip-non-projects)
+                      (org-agenda-sorting-strategy '(priority-up scheduled-up effort-down)))
+                     (org-tags-match-list-sublevels 'indented))
+          (tags-todo "project-dormant-CANCELLED/ACTION|NEXT"
+                     ((org-agenda-overriding-header "Project Tasks")
+                      (org-tags-match-list-sublevels 'indented)))
+          ))
+                                        ; 'c' is our prefix for 'custom agendas'
+        ("c" . "Custom Agendas")
+        ("cr" "Regular Tasks" tags "regular")
+        ("cp" "Current Projects" tags "project-dormant+LEVEL=2"
+         ((org-agenda-overriding-header "Current Projects")
+          (org-agenda-skip-function 'tw/skip-non-projects)
+          (org-agenda-sorting-strategy '(priority-up scheduled-up effort-down)))
+         (org-tags-match-list-sublevels 'indented))
+        ("ct" "Project Tasks" tags "project-dormant/ACTION|NEXT"
+         ((org-agenda-overriding-header "Project Tasks")
+          (org-tags-match-list-sublevels 'indented)))
+        ("cn" "Next Actions" tags-todo "-dormant/TODO=\"NEXT\"")
+        ("cw" "This week's tasks" tags-todo "TODO=\"ACTION\"+SCHEDULED<=\"<+1w>\"")
+        ("ca" "All my tasks" tags-todo "TODO=\"ACTION\"")
+        ("cd" "Technical Debt" tags "+technical_debt")
+        ))

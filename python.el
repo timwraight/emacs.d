@@ -3,6 +3,7 @@
       (lambda ()
         (setq ac-sources '(ac-source-symbols ac-source-words-in-same-mode-buffers))))
 
+(add-hook 'python-mode-hook 'fci-mode)
 (add-hook 'python-mode-hook
       '(lambda ()
          (add-hook 'before-save-hook

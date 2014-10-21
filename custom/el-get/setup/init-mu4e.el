@@ -34,7 +34,7 @@
 (setq mu4e-maildir "~/Mail")
 (setq mu4e-headers-skip-duplicates t)
 (add-hook 'mu4e-main-mode-hook 'vimp-local-mode)
-(add-hook 'mu4e-view-mode-hook 'vimp-local-mode)
+(add-hook 'mu4e-view-mode-hook 'longlines-mode)
 (add-hook 'mu4e-compose-mode-hook 'vimp-insert-state)
 (add-hook 'mu4e-headers-mode-hook 'vimp-local-mode)
 (add-hook 'mu4e-headers-mode-hook 'toggle-truncate-lines)
@@ -51,5 +51,6 @@
           (buffer-local-value 'major-mode
                               (current-buffer)))
       (org-mode)
-    (mu4e-compose-mode)))
+      (mu4e-compose-mode)))
+
 (global-set-key "\M-@" 'kdm-mu4e-org-compose)
