@@ -305,8 +305,7 @@ Callers of this function already widen the buffer view."
          ((agenda "")
           (tags-todo "project-dormant"
                      ((org-agenda-overriding-header "Current Projects")
-                      (org-agenda-skip-function 'tw/skip-non-projects)
-                      (org-agenda-sorting-strategy '(priority-up scheduled-up effort-down)))
+                      (org-agenda-skip-function 'tw/skip-non-projects))
                      (org-tags-match-list-sublevels 'indented))
           (tags-todo "project-dormant-CANCELLED/ACTION|NEXT"
                      ((org-agenda-overriding-header "Project Tasks")
@@ -317,8 +316,7 @@ Callers of this function already widen the buffer view."
         ("cr" "Regular Tasks" tags "regular")
         ("cp" "Current Projects" tags "project-dormant+LEVEL=2"
          ((org-agenda-overriding-header "Current Projects")
-          (org-agenda-skip-function 'tw/skip-non-projects)
-          (org-agenda-sorting-strategy '(priority-up scheduled-up effort-down)))
+          (org-agenda-skip-function 'tw/skip-non-projects))
          (org-tags-match-list-sublevels 'indented))
         ("ct" "Project Tasks" tags "project-dormant/ACTION|NEXT"
          ((org-agenda-overriding-header "Project Tasks")
@@ -328,3 +326,5 @@ Callers of this function already widen the buffer view."
         ("ca" "All my tasks" tags-todo "TODO=\"ACTION\"")
         ("cd" "Technical Debt" tags "+technical_debt")
         ))
+
+

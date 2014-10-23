@@ -1,4 +1,4 @@
-(history-enabledrequire 'jabber-autoloads)
+(require 'jabber-autoloads)
 (setq jabber-default-connection-type 'network)
 (setq jabber-mode-line-presence)
 (setq jabber-auto-reconnect t)
