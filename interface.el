@@ -26,9 +26,9 @@
 (setq ring-bell-function 'ignore)
 
 ;; TYPOGRAPHY
+(setq fill-column 79)
 (add-hook 'prog-mode-hook (lambda ()
                             (interactive)
-                            (setq fill-column 79)
                             (toggle-truncate-lines)))
 (add-hook 'text-mode-hook (lambda () (variable-pitch-mode t)))
 (global-visual-line-mode t)
@@ -39,7 +39,7 @@
         (if time-zone " (") time-zone (if time-zone ")")))
 
 ;; MODE-LINE
-
+(display-time)
 ;; use setq-default to set it for /all/ modes
 (setq-default mode-line-format
   (list
