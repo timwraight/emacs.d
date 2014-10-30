@@ -66,6 +66,7 @@
         key-chord
         lalopmak-vimp
         less-css-mode
+        longlines
         magit
         markdown-mode
         multiple-cursors
