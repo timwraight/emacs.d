@@ -39,7 +39,7 @@
 
 (dolist (mode '(log-edit-mode haml-mode sass-mode yaml-mode csv-mode espresso-mode
                 haskell-mode html-mode nxml-mode sh-mode smarty-mode clojure-mode
-                lisp-mode mu4e-compose-mode org-mode sql-mode textile-mode tuareg-mode))
+                lisp-mode emacs-lisp-mode mu4e-compose-mode org-mode sql-mode textile-mode tuareg-mode))
   (add-to-list 'ac-modes mode))
 
 

@@ -3,10 +3,9 @@
 (unless (require 'el-get nil 'noerror)
   (with-current-buffer
       (url-retrieve-synchronously
-       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
-    (let (el-get-master-branch)
-      (goto-char (point-max))
-      (eval-print-last-sexp))))
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+        (eval-print-last-sexp)))
 
 (setq el-get-recipe-path
       '("~/.emacs.d/custom/el-get/recipes/"
@@ -45,7 +44,7 @@
         dockerfile-mode
         eclim
         el-get
-        emacs-jabber
+;        emacs-jabber
         emacs-jabber-otr
         emmet-mode
         fill-column-indicator
@@ -62,7 +61,7 @@
         helm-git-grep
         jedi
         jedi-direx
-        jss
+        ; jss
         json-mode  ; has really nice beautifier
         key-chord
         lalopmak-vimp
