@@ -29,7 +29,8 @@
 (setq fill-column 79)
 (add-hook 'prog-mode-hook (lambda ()
                             (interactive)
-                            (toggle-truncate-lines)))
+                            (setq truncate-lines t)
+                            (visual-line-mode t)))
 (add-hook 'text-mode-hook (lambda () (variable-pitch-mode t)))
 (global-visual-line-mode t)
 
