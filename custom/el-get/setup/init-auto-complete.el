@@ -15,7 +15,7 @@
  ac-use-comphist t
  ac-dwim nil
  ac-use-menu-map t
- ac-quick-help-delay 2
+ ac-quick-help-delay 1
  ac-quick-help-height 60
  ac-auto-start 3
  ac-ignore-case nil
