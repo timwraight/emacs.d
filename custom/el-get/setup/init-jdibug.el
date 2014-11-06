@@ -14,5 +14,4 @@
 (autoload 'wisent-java-default-setup "wisent" "Hook run to setup Semantic in 'java-mode'." nil nil)
 (require 'cl)
 (require 'jdibug)
-
-
+(define-key java-mode-map (kbd "M-B") 'jdibug-toggle-breakpoint)
