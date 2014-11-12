@@ -32,6 +32,8 @@
 
 (define-key vimp-normal-state-map "m" 'helm-ls-git-ls)
 (define-key vimp-normal-state-map ";" 'helm-mini)
+(define-key vimp-normal-state-map (kbd "M-/") 'helm-occur)
+(define-key vimp-normal-state-map (kbd "M-E") 'helm-resume)
 (define-key vimp-normal-state-map "'" 'helm-command-prefix)
 ;; Make movement keys work like they should
 (define-key vimp-normal-state-map (kbd "<remap> <vimp-next-line>") 'vimp-next-visual-line)
