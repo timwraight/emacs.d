@@ -13,6 +13,9 @@
 (define-key python-mode-map (kbd "C-c d") 'jedi:show-doc)
 (setq python-indent-offset 4)
 
+(add-to-list 'auto-mode-alist '("\\.wsgi\\'" . python-mode))
+
+
 (setq
  python-shell-interpreter "ipython"
  python-shell-interpreter-args ""
