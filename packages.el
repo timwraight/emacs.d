@@ -44,14 +44,13 @@
         dockerfile-mode
         eclim
         el-get
-;        emacs-jabber
-        emacs-jabber-otr
         emmet-mode
         fill-column-indicator
         flycheck
         flycheck-color-mode-line
         flycheck-java
         flyspell-lazy
+        flx  ;; good fuzzy matching like sublime
         git-modes
         git-timemachine
         helm

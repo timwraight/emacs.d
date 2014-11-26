@@ -7,6 +7,7 @@
                 profiler-report-mode
                 erc-mode weechat-mode
                 direx:direx-mode
+                picture-mode
                 project-explorer-mode))
   (vimp-set-initial-state mode 'emacs))
 

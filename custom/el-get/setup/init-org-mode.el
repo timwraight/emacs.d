@@ -297,7 +297,7 @@ Callers of this function already widen the buffer view."
    (timeline . "  % s")
    (todo . "  %-42(two-level-buffer) ")
    (tags . "  %-42(two-level-buffer) ")
-   (search . "  %-42 %(two-level-buffer) "))))
+   (search . " %i %-12:c"))))
 
 (setq org-agenda-custom-commands
       '(
@@ -326,5 +326,3 @@ Callers of this function already widen the buffer view."
         ("ca" "All my tasks" tags-todo "TODO=\"ACTION\"")
         ("cd" "Technical Debt" tags "+technical_debt")
         ))
-
-
