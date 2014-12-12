@@ -32,6 +32,7 @@
         js2-mode
         ssh-config-mode
         helm
+        git-timemachine
         vimp
 
         ; normal packages
@@ -50,9 +51,8 @@
         flycheck-color-mode-line
         flycheck-java
         flyspell-lazy
-        flx  ;; good fuzzy matching like sublime
+        ;; flx  ;; good fuzzy matching like sublime
         git-modes
-        git-timemachine
         helm
         helm-etags-plus
         helm-ls-git
@@ -62,7 +62,7 @@
         jedi-direx
         ; jss
         json-mode  ; has really nice beautifier
-        key-chord
+        ;; key-chord
         lalopmak-vimp
         less-css-mode
         longlines
