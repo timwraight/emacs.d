@@ -67,6 +67,7 @@
         less-css-mode
         longlines
         magit
+        magit-gh-pulls
         markdown-mode
         multiple-cursors
         nix-mode
