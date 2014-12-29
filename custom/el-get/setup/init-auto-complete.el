@@ -9,7 +9,7 @@
 
 ;; (global-auto-complete-mode t)
 (setq
- ac-delay 0
+ ac-delay 0.1
  ac-auto-show-menu 0.1
  ac-use-fuzzy t
  ac-use-comphist t

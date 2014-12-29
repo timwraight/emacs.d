@@ -7,6 +7,7 @@
 (vimp-leader/set-key "e" 'next-error)
 (vimp-leader/set-key "g" 'magit-status)
 (vimp-leader/set-key "h" 'vc-version-ediff)
+(vimp-leader/set-key "f" 'helm-mu)
 (vimp-leader/set-key "l" 'split-window-below)
 (vimp-leader/set-key "'" (kbd "yse'"))
 (vimp-leader/set-key "\"" (kbd "yse\""))
