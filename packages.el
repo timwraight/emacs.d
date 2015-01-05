@@ -41,6 +41,7 @@
         auto-complete
         auto-indent-mode
         color-theme-solarized
+        crontab-mode
         direx
         dockerfile-mode
         eclim
@@ -73,7 +74,6 @@
         multiple-cursors
         nix-mode
         paredit
-        perspective
         pbcopy
         php-mode
         projectile
