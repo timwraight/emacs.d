@@ -2,7 +2,7 @@
 
 ;; RECENT FILES
 (recentf-mode t)
-(setq recentf-max-saved-items 100)
+(setq recentf-max-saved-items 200)
 
 
 

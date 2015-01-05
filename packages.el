@@ -50,6 +50,7 @@
         flycheck
         flycheck-color-mode-line
         flycheck-java
+        flycheck-pos-tip ;; show flcheck messages in a tooltip
         flyspell-lazy
         ;; flx  ;; good fuzzy matching like sublime
         git-modes
@@ -77,7 +78,6 @@
         php-mode
         projectile
         ;; plantuml-mode
-        ;; powerline
         popup
         popwin
         pos-tip

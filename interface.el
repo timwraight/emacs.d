@@ -26,7 +26,6 @@
 (setq ring-bell-function 'ignore)
 
 ;; TYPOGRAPHY
-(setq fill-column 79)
 (add-hook 'prog-mode-hook (lambda ()
                             (interactive)
                             (setq truncate-lines t)
@@ -43,19 +42,10 @@
 (display-time)
 ;; use setq-default to set it for /all/ modes
 (setq-default mode-line-format
-  (list
-    ;; the buffer name; the file name as a tool tip
-    "%b "
-    'vc-mode
-    " --"
-    'jabber-activity-mode-string
-    " --"
-    'org-mode-line-string
-    " --"
-    'display-time-string
-    "%-" ;; fill with '-'
-    ))
-
+              '("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   "
+               mode-line-position vimp-mode-line-tag
+               (vc-mode vc-mode)
+               "  " mode-line-misc-info mode-line-end-spaces))
 
 ; truncate lines in dired mode
 (add-hook 'dired-mode-hook 'toggle-truncate-lines)
