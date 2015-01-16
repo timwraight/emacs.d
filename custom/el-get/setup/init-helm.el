@@ -44,7 +44,6 @@
                   (cons (symbol-name item) item)) jids))))))
 
 
-
 (defvar helm-c-source-jabber-contacts
     '((name . "Jabber Contacts")
       (init . (lambda () (require 'jabber)))
@@ -61,3 +60,25 @@
     (delete-other-windows)
     (helm :sources helm-c-source-jabber-contacts
           :buffer "*helm jabber contacts*"))
+
+(defun helm-timi ()
+  "Like helm-mini, but for timi, geddit?"
+  (interactive)
+  (helm-other-buffer '(helm-c-source-buffers-list
+                       helm-c-source-jabber-contacts
+                       helm-c-source-ls-git
+                       helm-c-source-recentf
+                       helm-c-source-buffer-not-found)
+                     "*helm mini*"))
+
+
+(defun helm-proj ()
+  "Like helm-mini, but for timi, geddit?"
+  (interactive)
+  (helm-other-buffer '(helm-source-ls-git-status
+                       helm-source-ls-git
+                       helm-source-git-grep
+                       helm-c-source-files-in-current-dir
+                       helm-c-source-recentf
+                       helm-c-source-buffer-not-found)
+                     "*helm proj*"))

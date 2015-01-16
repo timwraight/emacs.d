@@ -64,7 +64,6 @@
         jedi-direx
         ; jss
         json-mode  ; has really nice beautifier
-        ;; key-chord
         lalopmak-vimp
         less-css-mode
         longlines
