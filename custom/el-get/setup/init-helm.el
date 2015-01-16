@@ -23,6 +23,8 @@
 (define-key helm-map (kbd "M-e") 'helm-next-line)
 (define-key helm-map (kbd "M-u") 'helm-previous-line)
 (define-key helm-map (kbd "M-i") 'helm-execute-persistent-action)
+(define-key helm-map (kbd "M-l") 'helm-previous-source)
+(define-key helm-map (kbd "M-y") 'helm-next-source)
 (define-key helm-generic-files-map (kbd "M-i") 'helm-execute-persistent-action)
 (define-key helm-generic-files-map (kbd "M-/") 'helm-ff-run-grep)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
@@ -61,14 +63,19 @@
     (helm :sources helm-c-source-jabber-contacts
           :buffer "*helm jabber contacts*"))
 
+
+(helm-autoresize-mode t)
+
+(require 'helm-org)
+
 (defun helm-timi ()
   "Like helm-mini, but for timi, geddit?"
   (interactive)
   (helm-other-buffer '(helm-c-source-buffers-list
                        helm-c-source-jabber-contacts
-                       helm-c-source-ls-git
-                       helm-c-source-recentf
-                       helm-c-source-buffer-not-found)
+;                       helm-source-mu
+                       (helm-source-org-headings-for-files org-agenda-files)
+                       helm-c-source-recentf)
                      "*helm mini*"))
 
 
@@ -79,6 +86,5 @@
                        helm-source-ls-git
                        helm-source-git-grep
                        helm-c-source-files-in-current-dir
-                       helm-c-source-recentf
-                       helm-c-source-buffer-not-found)
+                       helm-c-source-recentf)
                      "*helm proj*"))

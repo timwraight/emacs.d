@@ -58,6 +58,7 @@
         helm
         helm-etags-plus
         helm-ls-git
+	helm-mu
         helm-hoogle
         helm-git-grep
         jedi
