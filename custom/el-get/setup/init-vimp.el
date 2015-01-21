@@ -8,7 +8,7 @@
                 erc-mode weechat-mode
                 direx:direx-mode
                 picture-mode
-                undo-tree-mode
+                undo-tree-visualizer-mode
                 project-explorer-mode))
   (vimp-set-initial-state mode 'emacs))
 
