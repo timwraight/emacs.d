@@ -8,6 +8,7 @@
                 erc-mode weechat-mode
                 direx:direx-mode
                 picture-mode
+                undo-tree-mode
                 project-explorer-mode))
   (vimp-set-initial-state mode 'emacs))
 
@@ -31,7 +32,7 @@
 (my-move-key vimp-motion-state-map vimp-normal-state-map (kbd "RET"))
 (my-move-key vimp-motion-state-map vimp-normal-state-map " ")
 
-(define-key vimp-normal-state-map "m" 'helm-proj)
+(define-key vimp-normal-state-map "m" 'helm-browse-project)
 (define-key vimp-normal-state-map (kbd "M-/") 'helm-occur)
 (define-key vimp-normal-state-map (kbd "M-E") 'helm-resume)
 (define-key vimp-normal-state-map "'" 'helm-command-prefix)
