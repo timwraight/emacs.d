@@ -13,7 +13,7 @@
             (not (memq (selected-window) (get-buffer-window-list buf))))
     (if (jabber-muc-sender-p from)
         (alert (format "(PM) %s"
-                       (jabber-jid-displayname (jabber-jid-user from)))
+                      (jabber-jid-displayname (jabber-jid-user from)))
                (format "%s: %s" (jabber-jid-resource from) text)))
       (alert (format "%s" (jabber-jid-displayname from))
              text)))

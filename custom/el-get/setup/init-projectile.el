@@ -2,5 +2,4 @@
 (projectile-global-mode)
 (setq projectile-remember-window-configs t)
 (setq projectile-completion-system 'helm)
-(require 'persp-projectile)
-(global-set-key "\C-c p p" 'projectile-persp-switch-project)
+(global-set-key "\C-c p p" 'projectile-switch-project)

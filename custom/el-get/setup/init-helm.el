@@ -6,6 +6,7 @@
 
 (setq read-buffer-function 'ido-read-buffer)
 (setq read-file-name-function 'ido-read-file-name)
+(setq helm-full-frame nil)
 
 (setq helm-display-function
       (lambda (buf)
@@ -57,26 +58,33 @@
                       (cdr (assoc x (helm-c-jabber-online-contacts)))))))))
 
 (defun helm-jabber-contacts ()
-    "Preconfigured helm for ipython completions."
+   "Preconfigured helm for ipython completions."
     (interactive)
     (delete-other-windows)
     (helm :sources helm-c-source-jabber-contacts
           :buffer "*helm jabber contacts*"))
 
 
-(helm-autoresize-mode t)
+(helm-autoresize-mode nil)
 
 (require 'helm-org)
+(require 'projectile)
+(require 'helm-projectile)
 
 (defun helm-timi ()
   "Like helm-mini, but for timi, geddit?"
   (interactive)
-  (helm-other-buffer '(helm-c-source-buffers-list
+  (unless helm-source-buffers-list
+    (setq helm-source-buffers-list
+          (helm-make-source "Buffers" 'helm-source-buffers)))
+
+  (setq helm-projectile-sources-list helm-source-projectile-projects)
+  (helm-other-buffer '(helm-source-buffers-list
                        helm-c-source-jabber-contacts
-;                       helm-source-mu
                        (helm-source-org-headings-for-files org-agenda-files)
-                       helm-c-source-recentf)
-                     "*helm mini*"))
+                       helm-projectile-sources-list
+                       helm-source-recentf)
+                     "*helm timi*"))
 
 
 (defun helm-proj ()
@@ -84,7 +92,5 @@
   (interactive)
   (helm-other-buffer '(helm-source-ls-git-status
                        helm-source-ls-git
-                       helm-source-git-grep
-                       helm-c-source-files-in-current-dir
-                       helm-c-source-recentf)
+                       helm-source-git-grep)
                      "*helm proj*"))

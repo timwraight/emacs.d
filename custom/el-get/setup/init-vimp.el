@@ -33,6 +33,7 @@
 (my-move-key vimp-motion-state-map vimp-normal-state-map " ")
 
 (define-key vimp-normal-state-map "m" 'helm-browse-project)
+(define-key vimp-insert-state-map (kbd "M-t") 'vimp-normal-state)
 (define-key vimp-normal-state-map (kbd "M-/") 'helm-occur)
 (define-key vimp-normal-state-map (kbd "M-E") 'helm-resume)
 (define-key vimp-normal-state-map "'" 'helm-command-prefix)

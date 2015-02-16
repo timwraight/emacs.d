@@ -16,6 +16,7 @@
      (define-key mu4e-headers-mode-map (kbd "l") 'mu4e-headers-mark-for-unmark)
      (define-key mu4e-headers-mode-map (kbd "n") 'mu4e-headers-mark-for-refile)
      (define-key mu4e-headers-mode-map (kbd "m") 'mu4e-headers-rerun-search)
+     (define-key mu4e-headers-mode-map (kbd "M-m") 'helm-timi)
      ;; Search result navigation
      (define-key mu4e-headers-mode-map (kbd "M-n") 'mu4e-headers-query-prev)
      (define-key mu4e-headers-mode-map (kbd "M-i") 'mu4e-headers-query-next)
@@ -25,6 +26,7 @@
      (define-key mu4e-view-mode-map (kbd "l") 'mu4e~view-quit-buffer)
      (define-key mu4e-view-mode-map (kbd "n") 'mu4e-view-mark-for-refile)
      (define-key mu4e-view-mode-map (kbd "M-s") 'mu4e-view-save-attachment)
+     (define-key mu4e-view-mode-map (kbd "M-m") 'helm-timi)
      (define-key mu4e-view-mode-map (kbd "A") 'vimp-visual-line)))
 
 (setq mu4e-split-view nil)
