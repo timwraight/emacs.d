@@ -6,9 +6,7 @@
 (add-hook 'python-mode-hook 'fci-mode)
 (add-hook 'python-mode-hook
       '(lambda ()
-         (add-hook 'before-save-hook
-                   (lambda ()
-                     (delete-trailing-whitespace)))))
+         (add-hook 'before-save-hook 'delete-trailing-whitespace nil t)))
 
 (define-key python-mode-map (kbd "C-c d") 'jedi:show-doc)
 (setq python-indent-offset 4)
