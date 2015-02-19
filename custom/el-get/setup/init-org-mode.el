@@ -14,10 +14,13 @@
 
 (eval-after-load 'org-agenda
   '(progn
+	 (define-key org-agenda-mode-map (kbd "M-m") 'helm-timi)
      (define-key org-agenda-keymap "i" 'org-agenda-clock-in)
      (define-key org-agenda-keymap "n" 'org-agenda-clock-out)
      (define-key org-agenda-keymap "e" 'next-line)
      (define-key org-agenda-keymap "u" 'previous-line)))
+
+
 
 
 ; Persist clock history

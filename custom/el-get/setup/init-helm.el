@@ -69,7 +69,25 @@
 
 (require 'helm-org)
 (require 'projectile)
-(require 'helm-projectile)
+
+(defvar tim-source-projectile-projects
+  (helm-build-in-buffer-source "Projectile projects"
+    :data (lambda ()
+            (if (projectile-project-p)
+                (cons (abbreviate-file-name (projectile-project-root))
+                      (projectile-relevant-known-projects))
+              projectile-known-projects))
+    :mode-line helm-ff-mode-line-string
+    :action '(("Switch to project" .
+               (lambda (project)
+                 (let ((projectile-completion-system 'helm))
+                   (projectile-switch-project-by-name project))))
+              ("Open Dired in project's directory `C-d'" . dired)
+              ("Open project root in vc-dir or magit `M-g'" . helm-projectile-vc)
+              ("Grep in projects `M-s'.  With C-u, recurse" . helm-find-files-grep)
+              ("Remove project(s) `M-D'" . helm-projectile-remove-known-project)))
+  "Helm source for known projectile projects.")
+
 
 (defun helm-timi ()
   "Like helm-mini, but for timi, geddit?"
@@ -82,7 +100,7 @@
   (helm-other-buffer '(helm-source-buffers-list
                        helm-c-source-jabber-contacts
                        (helm-source-org-headings-for-files org-agenda-files)
-                       helm-projectile-sources-list
+                       tim-source-projectile-projects
                        helm-source-recentf)
                      "*helm timi*"))
 
