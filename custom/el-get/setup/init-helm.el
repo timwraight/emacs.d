@@ -105,16 +105,16 @@
                        "*helm timi*")))
 
 (defun element-and-ancestors ()
-  (let ((element (org-element-at-point)))
-    (print (org-element-property :title element)))
-    ;; (org-get-outline-path (org-element-at-point))
+  (let* ((element (org-element-at-point))
+         (title (org-element-property :title element))
+         (depth (org-element-property :level element))
+         (bcrumb-list (org-get-outline-path t depth title))
+         (bcrumb-string (s-join " -> " (nreverse  (cons title bcrumb-list)))))
+    (print bcrumb-string))
   )
-
-;; ;; (popup-tip (prin1-to-string (last (cdr (car (cdr (org-map-entries 'element-and-ancestors nil 'agenda)))))))
-
+  
 (org-map-entries 'element-and-ancestors nil 'agenda)
 
-;; (popup-tip (prin1-to-string (org-map-entries 'org-get-outline-path nil 'agenda)))
 
 
 (defun helm-proj ()
