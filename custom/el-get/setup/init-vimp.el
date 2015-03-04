@@ -8,11 +8,16 @@
                 erc-mode weechat-mode
                 direx:direx-mode
                 picture-mode
+                fundamental-mode
                 undo-tree-visualizer-mode
                 project-explorer-mode))
   (vimp-set-initial-state mode 'emacs))
 
-(dolist (mode '(git-commit-mode))
+(dolist (mode '(git-commit-mode
+                jabber-chat-mode
+                erc-mode message-mode
+                mu4e-compose-mode
+                ))
   (vimp-set-initial-state mode 'insert))
 
 
@@ -32,8 +37,10 @@
 (my-move-key vimp-motion-state-map vimp-normal-state-map (kbd "RET"))
 (my-move-key vimp-motion-state-map vimp-normal-state-map " ")
 
-(define-key vimp-normal-state-map "m" 'helm-browse-project)
+(define-key vimp-normal-state-map (kbd "M-m") 'helm-proj)
+(define-key vimp-normal-state-map (kbd "m") 'helm-timi)
 (define-key vimp-insert-state-map (kbd "M-t") 'vimp-normal-state)
+(global-set-key (kbd "M-t") 'vimp-normal-state)
 (define-key vimp-normal-state-map (kbd "M-/") 'helm-occur)
 (define-key vimp-normal-state-map (kbd "M-E") 'helm-resume)
 (define-key vimp-normal-state-map "'" 'helm-command-prefix)
