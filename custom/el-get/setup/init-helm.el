@@ -95,14 +95,26 @@
   (unless helm-source-buffers-list
     (setq helm-source-buffers-list
           (helm-make-source "Buffers" 'helm-source-buffers)))
+  (let
+      (tim-agenda-items (helm-source-org-headings-for-files (org-agenda-files)))
+    (helm-other-buffer '(helm-source-buffers-list
+                         helm-c-source-jabber-contacts
+                         tim-source-projectile-projects
+                         helm-source-recentf
+                         helm-source-ls-git)
+                       "*helm timi*")))
 
-  (setq helm-projectile-sources-list helm-source-projectile-projects)
-  (helm-other-buffer '(helm-source-buffers-list
-                       helm-c-source-jabber-contacts
-                       (helm-source-org-headings-for-files org-agenda-files)
-                       tim-source-projectile-projects
-                       helm-source-recentf)
-                     "*helm timi*"))
+(defun element-and-ancestors ()
+  (let ((element (org-element-at-point)))
+    (print (org-element-property :title element)))
+    ;; (org-get-outline-path (org-element-at-point))
+  )
+
+;; ;; (popup-tip (prin1-to-string (last (cdr (car (cdr (org-map-entries 'element-and-ancestors nil 'agenda)))))))
+
+(org-map-entries 'element-and-ancestors nil 'agenda)
+
+;; (popup-tip (prin1-to-string (org-map-entries 'org-get-outline-path nil 'agenda)))
 
 
 (defun helm-proj ()
