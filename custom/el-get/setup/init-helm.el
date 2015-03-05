@@ -110,10 +110,10 @@
          (depth (org-element-property :level element))
          (bcrumb-list (org-get-outline-path t depth title))
          (bcrumb-string (s-join " -> " (nreverse  (cons title bcrumb-list)))))
-    (print bcrumb-string))
+      (cons bcrumb-string element))
   )
   
-(org-map-entries 'element-and-ancestors nil 'agenda)
+(car (cdr  (org-map-entries 'element-and-ancestors nil 'agenda)))
 
 
 
