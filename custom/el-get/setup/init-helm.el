@@ -17,6 +17,8 @@
               (define-key eshell-mode-map [remap pcomplete] 'helm-esh-pcomplete)))
 
 (setq helm-truncate-lines t)
+(helm-mode)
+(global-set-key "\M-x" 'helm-M-x)
 
 (require 'helm)
 (require 'helm-org)
@@ -110,11 +112,53 @@
          (depth (org-element-property :level element))
          (bcrumb-list (org-get-outline-path t depth title))
          (bcrumb-string (s-join " -> " (nreverse  (cons title bcrumb-list)))))
-      (cons bcrumb-string element))
+    (cons bcrumb-string (point-marker)))
   )
   
-(car (cdr  (org-map-entries 'element-and-ancestors nil 'agenda)))
+(defun org-get-agenda-items ()
+  (org-map-entries 'element-and-ancestors nil 'agenda))
 
+(defvar helm-source-agenda-keymap
+  (let ((map (make-sparse-keymap)))
+    (set-keymap-parent map helm-map)
+    (define-key map (kbd "M-a")           'helm-org-heading-archive)
+    (define-key map (kbd "M-r")           'helm-org-heading-refile)
+    (define-key map (kbd "M-t")           'helm-org-todo)
+    map)
+  "Keymap for `helm-source-agenda-items'.")
+
+
+(defvar helm-source-org-agenda-items
+  '((name . "Agenda Items")
+    (candidates . org-get-agenda-items)
+    (keymap . helm-source-agenda-keymap)
+    (persistent-action . helm-org-heading-clock-in)
+    (action . (("Go to line" . helm-org-goto-marker)
+               ("Clock in on this heading" . helm-org-heading-clock-in)
+               ("Archive this heading" . helm-org-heading-archive)
+               ("Refile to this heading" . helm-org-heading-refile)
+               ("Insert link to this heading"
+               . helm-org-insert-link-to-heading-at-marker)))))
+
+
+(defun helm-org-heading-clock-in (marker)
+  (with-current-buffer (marker-buffer marker)
+                       (goto-char (marker-position marker))
+                       (org-clock-in)))
+
+(defun helm-org-heading-archive (marker)
+  (with-current-buffer (marker-buffer marker)
+                       (goto-char (marker-position marker))
+                       (org-archive-subtree)))
+
+(defun helm-org-heading-archive (marker)
+  (with-current-buffer (marker-buffer marker)
+                       (goto-char (marker-position marker))
+                       (org-todo)))
+
+(defun helm-org-agenda-items ()
+  (interactive)
+  (helm :sources '(helm-source-org-agenda-items)))
 
 
 (defun helm-proj ()
@@ -124,3 +168,52 @@
                        helm-source-ls-git
                        helm-source-git-grep)
                      "*helm proj*"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
