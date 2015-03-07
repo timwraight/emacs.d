@@ -121,22 +121,30 @@
 (defvar helm-source-agenda-keymap
   (let ((map (make-sparse-keymap)))
     (set-keymap-parent map helm-map)
-    (define-key map (kbd "M-a")           'helm-org-heading-archive)
+    (define-key map (kbd "M-a")           'helm-org-archive-item)
     (define-key map (kbd "M-r")           'helm-org-heading-refile)
-    (define-key map (kbd "M-t")           'helm-org-todo)
+    (define-key map (kbd "M-t")           'helm-org-heading-change-state)
     map)
   "Keymap for `helm-source-agenda-items'.")
+
+
+(defun helm-org-archive-item ()
+  "Run Hardlink file action from `helm-source-find-files'."
+  (interactive)
+  (with-helm-alive-p
+    (helm-attrset 'archive '(helm-org-heading-archive . never-split))
+    (helm-execute-persistent-action 'archive)))
 
 
 (defvar helm-source-org-agenda-items
   '((name . "Agenda Items")
     (candidates . org-get-agenda-items)
-    (keymap . helm-source-agenda-keymap)
     (persistent-action . helm-org-heading-clock-in)
     (action . (("Go to line" . helm-org-goto-marker)
                ("Clock in on this heading" . helm-org-heading-clock-in)
                ("Archive this heading" . helm-org-heading-archive)
                ("Refile to this heading" . helm-org-heading-refile)
+               ("Change state of this heading" . helm-org-heading-change-state)
                ("Insert link to this heading"
                . helm-org-insert-link-to-heading-at-marker)))))
 
@@ -147,18 +155,21 @@
                        (org-clock-in)))
 
 (defun helm-org-heading-archive (marker)
+  (interactive)
   (with-current-buffer (marker-buffer marker)
                        (goto-char (marker-position marker))
                        (org-archive-subtree)))
 
-(defun helm-org-heading-archive (marker)
+(defun helm-org-heading-change-state (marker)
+  (interactive)
   (with-current-buffer (marker-buffer marker)
                        (goto-char (marker-position marker))
                        (org-todo)))
 
 (defun helm-org-agenda-items ()
   (interactive)
-  (helm :sources '(helm-source-org-agenda-items)))
+  (helm :sources '(helm-source-org-agenda-items)
+        :keymap helm-source-agenda-keymap))
 
 
 (defun helm-proj ()
