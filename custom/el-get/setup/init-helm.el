@@ -122,19 +122,17 @@
   (let ((map (make-sparse-keymap)))
     (set-keymap-parent map helm-map)
     (define-key map (kbd "M-a")           'helm-org-archive-item)
-    (define-key map (kbd "M-r")           'helm-org-heading-refile)
+    (define-key map (kbd "M-r")           'helm-refile)
     (define-key map (kbd "M-t")           'helm-org-heading-change-state)
     map)
   "Keymap for `helm-source-agenda-items'.")
 
 
 (defun helm-org-archive-item ()
-  "Run Hardlink file action from `helm-source-find-files'."
   (interactive)
   (with-helm-alive-p
     (helm-attrset 'archive '(helm-org-heading-archive . never-split))
     (helm-execute-persistent-action 'archive)))
-
 
 (defvar helm-source-org-agenda-items
   '((name . "Agenda Items")
