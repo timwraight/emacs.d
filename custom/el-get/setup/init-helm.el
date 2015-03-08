@@ -102,6 +102,7 @@
     (helm-other-buffer '(helm-source-buffers-list
                          helm-c-source-jabber-contacts
                          tim-source-projectile-projects
+                         helm-source-org-agenda-items
                          helm-source-recentf
                          helm-source-ls-git)
                        "*helm timi*")))
@@ -110,8 +111,9 @@
   (let* ((element (org-element-at-point))
          (title (org-element-property :title element))
          (depth (org-element-property :level element))
+         (todo-keyword (org-element-property :todo-keyword element))
          (bcrumb-list (org-get-outline-path t depth title))
-         (bcrumb-string (s-join " -> " (nreverse  (cons title bcrumb-list)))))
+         (bcrumb-string (s-join " -> " (delq nil (cons todo-keyword (nreverse (cons title bcrumb-list)))))))
     (cons bcrumb-string (point-marker)))
   )
   
@@ -123,7 +125,7 @@
     (set-keymap-parent map helm-map)
     (define-key map (kbd "M-a")           'helm-org-archive-item)
     (define-key map (kbd "M-r")           'helm-refile)
-    (define-key map (kbd "M-t")           'helm-org-heading-change-state)
+    (define-key map (kbd "M-t")           'helm-change-state)
     map)
   "Keymap for `helm-source-agenda-items'.")
 
@@ -133,6 +135,18 @@
   (with-helm-alive-p
     (helm-attrset 'archive '(helm-org-heading-archive . never-split))
     (helm-execute-persistent-action 'archive)))
+
+(defun helm-refile ()
+  (interactive)
+  (with-helm-alive-p
+    (helm-quit-and-execute-action 'helm-org-heading-refile)))
+
+(defun helm-change-state ()
+  (interactive)
+  (with-helm-alive-p
+    (helm-attrset 'change-state '(helm-org-heading-change-state . never-split))
+    (helm-execute-persistent-action 'change-state)))
+
 
 (defvar helm-source-org-agenda-items
   '((name . "Agenda Items")
