@@ -91,34 +91,20 @@
   "Helm source for known projectile projects.")
 
 
-(defun helm-timi ()
-  "Like helm-mini, but for timi, geddit?"
-  (interactive)
-  (unless helm-source-buffers-list
-    (setq helm-source-buffers-list
-          (helm-make-source "Buffers" 'helm-source-buffers)))
-  (let
-      (tim-agenda-items (helm-source-org-headings-for-files (org-agenda-files)))
-    (helm-other-buffer '(helm-source-buffers-list
-                         helm-c-source-jabber-contacts
-                         tim-source-projectile-projects
-                         helm-source-org-agenda-items
-                         helm-source-recentf
-                         helm-source-ls-git)
-                       "*helm timi*")))
-
 (defun element-and-ancestors ()
   (let* ((element (org-element-at-point))
          (title (org-element-property :title element))
          (depth (org-element-property :level element))
          (todo-keyword (org-element-property :todo-keyword element))
          (bcrumb-list (org-get-outline-path t depth title))
-         (bcrumb-string (s-join " -> " (delq nil (cons todo-keyword (nreverse (cons title bcrumb-list)))))))
+         (bcrumb-string (s-join " -> " (delq nil (cons todo-keyword (cons (buffer-name) (nreverse (cons title bcrumb-list))))))))
     (cons bcrumb-string (point-marker)))
   )
   
 (defun org-get-agenda-items ()
   (org-map-entries 'element-and-ancestors nil 'agenda))
+
+(org-entry-properties (car (org-get-agenda-items)))
 
 (defvar helm-source-agenda-keymap
   (let ((map (make-sparse-keymap)))
@@ -126,20 +112,25 @@
     (define-key map (kbd "M-a")           'helm-org-archive-item)
     (define-key map (kbd "M-r")           'helm-refile)
     (define-key map (kbd "M-t")           'helm-change-state)
-    map)
+    (define-key map (kbd "M-c")           'helm-clock-in)
+    (delq nil map))
   "Keymap for `helm-source-agenda-items'.")
-
 
 (defun helm-org-archive-item ()
   (interactive)
   (with-helm-alive-p
-    (helm-attrset 'archive '(helm-org-heading-archive . never-split))
-    (helm-execute-persistent-action 'archive)))
+    (helm-quit-and-execute-action 'helm-org-heading-archive)))
 
 (defun helm-refile ()
   (interactive)
   (with-helm-alive-p
-    (helm-quit-and-execute-action 'helm-org-heading-refile)))
+    (helm-attrset 'refile '(helm-org-heading-refile . never-split))
+    (helm-execute-persistent-action 'refile)))
+
+(defun helm-clock-in ()
+  (interactive)
+  (with-helm-alive-p
+    (helm-quit-and-execute-action 'helm-org-heading-clock-in)))
 
 (defun helm-change-state ()
   (interactive)
@@ -152,6 +143,7 @@
   '((name . "Agenda Items")
     (candidates . org-get-agenda-items)
     (persistent-action . helm-org-heading-clock-in)
+    ;; (keymap . helm-source-agenda-keymap)
     (action . (("Go to line" . helm-org-goto-marker)
                ("Clock in on this heading" . helm-org-heading-clock-in)
                ("Archive this heading" . helm-org-heading-archive)
@@ -180,9 +172,10 @@
 
 (defun helm-org-agenda-items ()
   (interactive)
-  (helm :sources '(helm-source-org-agenda-items)
+  (helm :sources 'helm-source-org-agenda-items
         :keymap helm-source-agenda-keymap))
 
+(global-set-key (kbd "M-<SPC>") 'helm-org-agenda-items)
 
 (defun helm-proj ()
   "Like helm-mini, but for timi, geddit?"
@@ -193,50 +186,18 @@
                      "*helm proj*"))
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+(defun helm-timi ()
+  "Like helm-mini, but for timi, geddit?"
+  (interactive)
+  (unless helm-source-buffers-list
+    (setq helm-source-buffers-list
+          (helm-make-source "Buffers" 'helm-source-buffers)))
+  (helm-other-buffer '(helm-source-buffers-list
+                       helm-c-source-jabber-contacts
+                       tim-source-projectile-projects
+                       helm-source-org-agenda-items
+                       helm-source-recentf
+                       helm-source-ls-git)
+                     "*helm timi*"))
 
 
