@@ -3,9 +3,9 @@
 
 (vimp-mode 1)
 
-(dolist (mode '(eshell-mode shell-mode term-mode terminal-mode comint-mode skewer-repl-mode
+(dolist (mode '(shell-mode term-mode terminal-mode comint-mode skewer-repl-mode
                 profiler-report-mode
-                erc-mode weechat-mode
+                weechat-mode
                 direx:direx-mode
                 picture-mode
                 fundamental-mode
@@ -15,7 +15,9 @@
 
 (dolist (mode '(git-commit-mode
                 jabber-chat-mode
-                erc-mode message-mode
+                eshell-mode
+                erc-mode
+                message-mode
                 mu4e-compose-mode
                 ))
   (vimp-set-initial-state mode 'insert))

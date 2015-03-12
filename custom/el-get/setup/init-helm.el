@@ -67,7 +67,7 @@
           :buffer "*helm jabber contacts*"))
 
 
-(helm-autoresize-mode nil)
+(setq helm-autoresize-mode nil)
 
 (require 'helm-org)
 (require 'projectile)
@@ -124,8 +124,7 @@
 (defun helm-refile ()
   (interactive)
   (with-helm-alive-p
-    (helm-attrset 'refile '(helm-org-heading-refile . never-split))
-    (helm-execute-persistent-action 'refile)))
+    (helm-quit-and-execute-action 'helm-org-heading-refile)))
 
 (defun helm-clock-in ()
   (interactive)

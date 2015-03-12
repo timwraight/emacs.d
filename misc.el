@@ -1,5 +1,9 @@
-;; Semantic mode
-(semantic-mode)
+;; Typing break mode, to remind me to take breaks
+(typing-break-mode)
+
+
+ ;; Semantic mode
+ (semantic-mode))
 
 ;; Abbrev mode (to help me write faster)
 (setq-default abbrev-mode nil)
