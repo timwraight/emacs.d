@@ -1,7 +1,8 @@
 ; VIMP LEADER
 (global-vimp-leader-mode)
+(vimp-leader/set-leader "s")
+
 (vimp-leader/set-key "'" (kbd "yse'"))
-(vimp-leader/set-leader ",")
 (vimp-leader/set-key ";" 'helm-mini)
 (vimp-leader/set-key "=" 'balance-windows)
 (vimp-leader/set-key "\"" (kbd "yse\""))
@@ -30,10 +31,12 @@
 (vimp-leader/set-key "s" 'save-buffer)
 (vimp-leader/set-key "m" 'helm-jabber-contacts)
 (vimp-leader/set-key "x" 'helm-M-x)
-(vimp-leader/set-key "i" 'split-window-horizontally)
 (vimp-leader/set-key "v" 'clipboard-yank)
 (vimp-leader/set-key ";" 'split-window-vertically)
 (vimp-leader/set-key ";" 'helm-mini)
+
+(vimp-leader/set-key "i" 'forward-symbol)
+(vimp-leader/set-key "n" (lambda () (interactive) (forward-symbol -1)))
 
 ;; AUTO-COMPLETE
 ;; Use kj to escape from auto-complete mode

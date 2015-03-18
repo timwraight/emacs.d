@@ -24,6 +24,7 @@
         ; a few packages we load first so that we can reference them in our
         ; init-x files, without having to list them as explicit dependencies
         ; (and thus create a separate recipe for them)
+	dash
         s
         projectile
 

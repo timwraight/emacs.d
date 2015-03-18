@@ -1,9 +1,9 @@
 ;; Typing break mode, to remind me to take breaks
-(typing-break-mode)
+(type-break-mode)
 
 
  ;; Semantic mode
- (semantic-mode))
+(semantic-mode)
 
 ;; Abbrev mode (to help me write faster)
 (setq-default abbrev-mode nil)
@@ -87,7 +87,7 @@
                 ": ")))
 
 (setq eshell-prompt-regexp "^[^#$\n]* :")
-
+(setenv "DYLD_LIBRARY_PATH" "/usr/local/mysql/lib:$DYLD_LIBRARY_PATH")
 
 ; ERC
 

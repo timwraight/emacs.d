@@ -6,7 +6,7 @@
 (dolist (mode '(shell-mode term-mode terminal-mode comint-mode skewer-repl-mode
                 profiler-report-mode
                 weechat-mode
-                direx:direx-mode
+               direx:direx-mode
                 picture-mode
                 fundamental-mode
                 undo-tree-visualizer-mode

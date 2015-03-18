@@ -70,7 +70,7 @@
 (setq helm-autoresize-mode nil)
 
 (require 'helm-org)
-(require 'projectile)
+;(require 'projectile)
 
 (defvar tim-source-projectile-projects
   (helm-build-in-buffer-source "Projectile projects"
@@ -96,7 +96,7 @@
          (title (org-element-property :title element))
          (depth (org-element-property :level element))
          (todo-keyword (org-element-property :todo-keyword element))
-         (bcrumb-list (org-get-outline-path t depth title))
+         (bcrumb-list (nreverse (org-get-outline-path t depth title)))
          (bcrumb-string (s-join " -> " (delq nil (cons todo-keyword (cons (buffer-name) (nreverse (cons title bcrumb-list))))))))
     (cons bcrumb-string (point-marker)))
   )
@@ -121,10 +121,10 @@
   (with-helm-alive-p
     (helm-quit-and-execute-action 'helm-org-heading-archive)))
 
-(defun helm-refile ()
+(defun helm-refile-and-archive ()
   (interactive)
   (with-helm-alive-p
-    (helm-quit-and-execute-action 'helm-org-heading-refile)))
+    (helm-quit-and-execute-action 'helm-org-heading-refile-and-archive)))
 
 (defun helm-clock-in ()
   (interactive)
@@ -179,10 +179,24 @@
 (defun helm-proj ()
   "Like helm-mini, but for timi, geddit?"
   (interactive)
-  (helm-other-buffer '(helm-source-ls-git-status
-                       helm-source-ls-git
-                       helm-source-git-grep)
-                     "*helm proj*"))
+  (unless (and helm-source-ls-git-status
+               helm-source-ls-git)
+    (setq helm-source-ls-git-status
+          (helm-make-source "Git status" 'helm-ls-git-status-source
+            :fuzzy-match helm-ls-git-fuzzy-match)
+          helm-source-ls-git
+          (helm-make-source "Git files" 'helm-ls-git-source
+            :fuzzy-match helm-ls-git-fuzzy-match)))
+  (helm :sources '(helm-source-ls-git-status
+                   helm-source-ls-git
+                   helm-source-git-grep)
+        ;; When `helm-ls-git-ls' is called from lisp
+        ;; `default-directory' is normally let-bounded,
+        ;; to some other value;
+        ;; we now set this new let-bounded value local
+        ;; to `helm-default-directory'.
+        :default-directory default-directory
+        :buffer "*helm proj*"))
 
 
 (defun helm-timi ()
@@ -195,8 +209,7 @@
                        helm-c-source-jabber-contacts
                        tim-source-projectile-projects
                        helm-source-org-agenda-items
-                       helm-source-recentf
-                       helm-source-ls-git)
+                       helm-source-recentf)
                      "*helm timi*"))
 
 
