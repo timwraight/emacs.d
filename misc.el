@@ -15,8 +15,7 @@
                             (variable-pitch-mode 0)
                             (toggle-truncate-lines)
                             (emmet-mode)
-                            (turn-off-flyspell)
-                            (tagedit-mode)))
+                            (turn-off-flyspell)))
 (setq sgml-basic-offset 4)
 
 
@@ -67,6 +66,9 @@
 (define-key sql-interactive-mode-map (kbd "M-u") 'comint-previous-input)
 (define-key sql-interactive-mode-map (kbd "M-e") 'comint-next-input)
 
+;; Wee snippet for incrementing month values using
+;; query-replace-regexp-eval
+
 ;; (add-hook 'sql-interactive-mode-hook
 ;;           (lambda ()
 ;;             (interactive)
@@ -100,3 +102,9 @@
 (require 'tramp)
 (setq tramp-default-method "ssh")
 (setq tramp-syntax 'ftp)
+
+
+; INFO
+(setq Info-default-directory-list
+             (append Info-default-directory-list
+                     '("~/info")))

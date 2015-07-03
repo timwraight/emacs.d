@@ -9,12 +9,13 @@
 (setq org-default-notes-file "~/Dropbox/org/general.org")
 
 ; Keywords
-(setq org-todo-keywords '((sequence "ACTION(t)" "NEXT(n)" "|" "DONE(d)")
+(setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
                           (sequence "QUESTION(q)" "|" "ANSWERED(a)")))
 
 (eval-after-load 'org-agenda
   '(progn
 	 (define-key org-agenda-mode-map (kbd "m") 'helm-timi) 
+	 (define-key org-agenda-mode-map (kbd "M-m") 'org-agenda-bulk-mark) 
      (define-key org-agenda-keymap "i" 'org-agenda-clock-in)
      (define-key org-agenda-keymap "n" 'org-agenda-clock-out)
      (define-key org-agenda-keymap "e" 'next-line)
@@ -45,6 +46,9 @@
 (setq org-clock-into-drawer t)
 ;; Save the running clock and all clock history when exiting Emacs, load it on startup
 (setq org-clock-persist t)
+
+(setq org-archive-mark-done nil)
+(setq org-archive-location "%s_archive::* Archived Tasks")
 
 
 (require 's)
@@ -114,17 +118,6 @@
 ;; org-babel
 
 ;; active Babel languages
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '(
-   (R . t)
-   (emacs-lisp . t)
-   (python . t)
-   (sql . t)
-   (plantuml . t)
-   (ditaa . t)
-   ))
-
 (setq org-ditaa-jar-path "~/bin/ditaa.jar")
 
 
@@ -290,6 +283,30 @@ Callers of this function already widen the buffer view."
         next-headline))))
 
 
+(defun tw/skip-non-archivable-tasks ()
+  "Skip trees that are not available for archiving"
+  (save-restriction
+    (widen)
+    ;; Consider only tasks with done todo headings as archivable candidates
+    (let ((next-headline (save-excursion (or (outline-next-heading) (point-max))))
+          (subtree-end (save-excursion (org-end-of-subtree t))))
+      (if (member (org-get-todo-state) org-todo-keywords-1)
+          (if (member (org-get-todo-state) org-done-keywords)
+              (let* ((daynr (string-to-int (format-time-string "%d" (current-time))))
+                     (a-month-ago (* 60 60 24 (+ daynr 1)))
+                     (last-month (format-time-string "%Y-%m-" (time-subtract (current-time) (seconds-to-time a-month-ago))))
+                     (this-month (format-time-string "%Y-%m-" (current-time)))
+                     (subtree-is-current (save-excursion
+                                           (forward-line 1)
+                                           (and (< (point) subtree-end)
+                                                (re-search-forward (concat last-month "\\|" this-month) subtree-end t)))))
+                (if subtree-is-current
+                    subtree-end ; Has a date in this month or last month, skip it
+                  nil))  ; available to archive
+            (or subtree-end (point-max)))
+        next-headline))))
+
+
 (require 's)
 (defun two-level-buffer ()
     (s-join "/" (last (split-string (buffer-file-name) "/") 2)))
@@ -306,13 +323,16 @@ Callers of this function already widen the buffer view."
       '(
         (" " "Tim's Agenda"
          ((agenda "")
-          (tags-todo "project-dormant"
-                     ((org-agenda-overriding-header "Current Projects")
-                      (org-agenda-skip-function 'tw/skip-non-projects))
-                     (org-tags-match-list-sublevels 'indented))
-          (tags-todo "project-dormant-CANCELLED/ACTION|NEXT"
-                     ((org-agenda-overriding-header "Project Tasks")
-                      (org-tags-match-list-sublevels 'indented)))
+          (tags-todo "-dormant-CANCELLED/TODO|NEXT"
+                     ((org-agenda-overriding-header "All Tasks")
+                      (org-agenda-sorting-strategy
+                       '(todo-state-down priority-down))
+                      ))
+          (tags "-REFILE/"
+                ((org-agenda-overriding-header "Tasks to Archive")
+                 (org-agenda-skip-function 'tw/skip-non-archivable-tasks)
+                 (org-tags-match-list-sublevels nil)
+                 ))
           ))
                                         ; 'c' is our prefix for 'custom agendas'
         ("c" . "Custom Agendas")
@@ -321,11 +341,40 @@ Callers of this function already widen the buffer view."
          ((org-agenda-overriding-header "Current Projects")
           (org-agenda-skip-function 'tw/skip-non-projects))
          (org-tags-match-list-sublevels 'indented))
-        ("ct" "Project Tasks" tags "project-dormant/ACTION|NEXT"
+        ("ct" "Project Tasks" tags "project-dormant/TODO|NEXT"
          ((org-agenda-overriding-header "Project Tasks")
           (org-tags-match-list-sublevels 'indented)))
+        ("ca" "All my tasks" tags-todo "TODO=\"TODO\"")
         ("cn" "Next Actions" tags-todo "-dormant/TODO=\"NEXT\"")
-        ("cw" "This week's tasks" tags-todo "TODO=\"ACTION\"+SCHEDULED<=\"<+1w>\"")
-        ("ca" "All my tasks" tags-todo "TODO=\"ACTION\"")
+        ("cw" "This week's tasks" tags-todo "TODO=\"TODO\"+SCHEDULED<=\"<+1w>\"")
         ("cd" "Technical Debt" tags "+technical_debt")
         ))
+
+; Redefine this so that we get breadcrumbs in our clock select menu
+(defun org-clock-insert-selection-line (i marker)
+  "Insert a line for the clock selection menu.
+And return a cons cell with the selection character integer and the marker
+pointing to it."
+  (when (marker-buffer marker)
+    (let (file cat task heading prefix)
+      (with-current-buffer (org-base-buffer (marker-buffer marker))
+	(save-excursion
+	  (save-restriction
+	    (widen)
+	    (ignore-errors
+	      (goto-char marker)
+	      (setq file (buffer-file-name (marker-buffer marker))
+		    cat (org-get-category)
+		    heading (org-get-heading 'notags)
+		    prefix (save-excursion
+			     (org-back-to-heading t)
+			     (looking-at org-outline-regexp)
+			     (match-string 0))
+		    task (substring
+			  (org-fontify-like-in-org-mode
+			   (concat prefix heading)
+			   org-odd-levels-only)
+			  (length prefix)))))))
+      (when (and cat task)
+	(insert (format "[%c] %-12s  %s\n" i cat task))
+	(cons i marker)))))
