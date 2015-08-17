@@ -1,6 +1,6 @@
 (:name vimp
-       :type git
-       :url "git://gitorious.org/evil/evil.git"
+       :type github
+       :pkgname "emacsmirror/evil")
 	   :description "Vim for emacs"
        :depends (undo-tree key-chord)
        :build/darwin `(

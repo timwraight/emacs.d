@@ -2,4 +2,4 @@
        :type github
        :pkgname "timwraight/lalopmak-vimp"
        :features (lalopmak-vimp lalopmak-camel-case)
-       :depends (vimp ace-jump-mode helm vimp-surround))
+       :depends (vimp undo-tree ace-jump-mode helm vimp-surround))

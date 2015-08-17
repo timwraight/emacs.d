@@ -23,16 +23,18 @@
       '(
         ; a few packages we load first so that we can reference them in our
         ; init-x files, without having to list them as explicit dependencies
-        ; (and thus create a separate recipe for them)
+					; (and thus create a separate recipe for them)
 	dash
-        s
+	s
+	helm
+        undo-tree
         projectile
 
         ; ones to load first so as to override built in versions
         org-mode
         js2-mode
         ssh-config-mode
-        helm
+    
         git-timemachine
         vimp
 
@@ -54,8 +56,7 @@
         flycheck-java
         flycheck-pos-tip ;; show flcheck messages in a tooltip
         flyspell-lazy
-        git-modes
-        helm
+	git-modes       
         helm-etags-plus
         helm-ls-git
      	helm-mu
@@ -68,7 +69,7 @@
         lalopmak-vimp
         less-css-mode
         longlines
-        magit
+	magit
         markdown-mode
         multiple-cursors
         nix-mode
@@ -86,7 +87,6 @@
         smartparens
         smex
         tagedit
-        undo-tree
         vimp-leader
         vimp-surround
         websocket
@@ -97,3 +97,4 @@
         ))
 
 (el-get 'sync (append el-get-sources el-get-local-sources))
+

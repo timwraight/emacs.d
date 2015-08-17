@@ -15,6 +15,7 @@
      (define-key mu4e-headers-mode-map (kbd "i") 'mu4e-headers-view-message)
      (define-key mu4e-headers-mode-map (kbd "l") 'mu4e-headers-mark-for-unmark)
      (define-key mu4e-headers-mode-map (kbd "n") 'mu4e-headers-mark-for-refile)
+     (define-key mu4e-headers-mode-map (kbd "M-m") 'mu4e-headers-mark-for-something)
      (define-key mu4e-headers-mode-map (kbd "r") 'mu4e-headers-rerun-search)
      (define-key mu4e-headers-mode-map (kbd "m") 'helm-timi)
      ;; Search result navigation
@@ -43,6 +44,11 @@
 
 
 (setq mu4e-html2text-command nil)
+
+;; configure orgmode support in mu4e
+(require 'org-mu4e)
+;; when mail is sent, automatically convert org body to HTML
+(setq org-mu4e-convert-to-html t)
 
 ; mu4e org stuff
 (setq message-citation-line-format "* On %Y-%m-%d at %R, %f wrote:")

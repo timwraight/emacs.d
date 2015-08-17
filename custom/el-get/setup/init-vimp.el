@@ -1,23 +1,29 @@
 ;; VIMP
 
-
+(require 'vimp)
 (vimp-mode 1)
 
 (dolist (mode '(shell-mode term-mode terminal-mode comint-mode skewer-repl-mode
-                profiler-report-mode
-                weechat-mode
-               direx:direx-mode
-                picture-mode
-                fundamental-mode
-                undo-tree-visualizer-mode
-                project-explorer-mode))
+                           profiler-report-mode
+                           weechat-mode
+                           direx:direx-mode
+                           magit-mode
+                           magit-commit-popup-mode
+                           magit-modes
+                           magit-popup-mode
+                           magit-blame-mode
+                           magit-diff-mode
+                           picture-mode
+                           fundamental-mode
+                           undo-tree-visualizer-mode
+                           project-explorer-mode))
   (vimp-set-initial-state mode 'emacs))
 
-(dolist (mode '(git-commit-mode
-                jabber-chat-mode
+(dolist (mode '(jabber-chat-mode
                 eshell-mode
                 erc-mode
                 message-mode
+                git-commit-mode
                 mu4e-compose-mode
                 ))
   (vimp-set-initial-state mode 'insert))

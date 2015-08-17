@@ -14,5 +14,5 @@
                 ("./configure")
                 ("make"))
        :load-path "mu4e"
-       :checkout "v0.9.9.6-pre2"
+       ;; :checkout "v0.9.9.6-pre2"
        )
