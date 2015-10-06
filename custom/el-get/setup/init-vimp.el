@@ -11,6 +11,7 @@
                            magit-commit-popup-mode
                            magit-modes
                            magit-popup-mode
+                           git-timemachine-mode
                            magit-blame-mode
                            magit-diff-mode
                            picture-mode
