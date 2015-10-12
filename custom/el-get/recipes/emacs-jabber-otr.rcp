@@ -1,4 +1,0 @@
-(:name emacs-jabber-otr
-       :type github
-       :pkgname "legoscia/emacs-jabber-otr"
-       :features jabber-otr)

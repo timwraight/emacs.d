@@ -1,4 +1,0 @@
-(:name haskell-mode
-       :description "Haskell Mode"
-       :features haskell-mode
-       :type elpa)

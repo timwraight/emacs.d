@@ -1,7 +1,0 @@
-(:name jdee
-       :url "http://netcologne.dl.sourceforge.net/project/jdee/jdee/2.4.1/jdee-bin-2.4.1.zip"
-       :load-path "lisp"
-       :load "lisp/jde.el"
-       :type http-zip)
-
-

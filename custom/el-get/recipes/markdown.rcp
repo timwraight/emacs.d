@@ -1,4 +1,0 @@
-(:name markdown
-       :type git
-       :url "git://jblevins.org/git/markdown-mode.git"
-       :features markdown)

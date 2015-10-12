@@ -1,6 +1,0 @@
-(:name jedi-direx
-       :website "https://github.com/tkf/emacs-jedi-direx"
-       :type github
-       :pkgname "tkf/emacs-jedi-direx"
-       :depends (jedi direx)
-       :features jedi-direx)

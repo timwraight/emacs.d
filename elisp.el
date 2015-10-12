@@ -1,1 +1,0 @@
-(define-key emacs-lisp-mode-map (kbd "C-e") 'eval-defun)

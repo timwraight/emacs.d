@@ -1,8 +1,0 @@
-(:name jdibug
-       :type http-tar
-       :options ("xjf")
-       :url "http://jdibug.googlecode.com/files/jdibug-0.5.tar.bz2"
-       :localname "jdibug"
-       :build ("sed -i -e 's:wisent-comp):semantic/wisent/comp):' jdibug-java-expr-wy.el"
-	       "sed -i -e 's:semantic-lex):semantic/lex):' jdibug-java-expr-wy.el"
-               "sed -i -e 's:semantic-java):semantic/java):' jdibug-expr.el"))

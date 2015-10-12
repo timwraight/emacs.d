@@ -1,0 +1,174 @@
+#!/usr/bin/emacs --script
+;;; vimpupate.el -- Publishing script for Evil
+
+;;; Header:
+
+;; This file is not part of Emacs
+
+;; Author: Frank Fischer <frank-fischer@shadow-soft.de>
+;; Maintainer: Frank Fischer <frank-fischer@shadow-soft.de>
+;; Version: 1.0
+;; Package-Requires: ((emacs "24.3") (s "1.9.0") (f "0.17.2") yaoddmuse)
+
+;; The contents of this file are subject to the GPL License, Version 3.0.
+
+;; Copyright (C) 2015, Frank Fischer
+
+;; This program is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version
+
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+;;; Commentary:
+
+;; This is a small script to update Evil's version at certain places:
+;;
+;;  - topic of the IRC channel #vimp-mode in irc.freenode.net
+;;  - EmacsWiki page
+;;  - header of all source files
+;;  - the ELPA package file
+;;
+;; The script should be invoked with the new version string
+;;
+;;   vimp-update.el 1.2.3
+;;
+
+;;; Code:
+
+(package-initialize)
+
+(require 'f)
+(require 'erc)
+(require 'yaoddmuse)
+(eval-when-compile (require 'cl))
+
+(defconst vimpupdate-irc-nick "#lyrobot")
+(defconst vimpupdate-irc-channel "#vimp-mode")
+(defconst vimpupdate-irc-topic
+  "Evil = Extensible vi layer for Emacs | Current version: VERSION | http://bitbucket.org/lyro/vimp | If you don't get an answer here, please use the mailing-list implementations-list@lists.ourproject.org")
+(defconst vimpupdate-wiki-page "Evil")
+(defvar vimpupdate-version "1.0.0")
+(defvar vimpupdate-done nil)
+
+(defun vimpupdate-wait ()
+  "Wait until `vimpupdate-done' is set to t."
+  (while (not vimpupdate-done)
+    (sleep-for 1))
+  (setq vimpupdate-done nil))
+
+(defun vimpupdate-done ()
+  "Set `vimpupdate-done' to t to stop the corresponding `vimpupdate-wait'."
+  (setq vimpupdate-done t))
+
+(defun vimpupdate-update-irc ()
+  "Update the topic of the IRC channel."
+  (erc-tls :server "irc.freenode.net" :port "6697" :nick "lyrobot")
+  (add-hook 'erc-join-hook
+            (lambda ()
+              (let (case-fold-search)
+                (erc-set-topic (replace-regexp-in-string "VERSION"
+                                                         vimpupdate-version
+                                                         vimpupdate-irc-topic
+                                                         nil t)))
+              (erc-quit-server "")
+              (sleep-for 5)
+              (vimpupdate-done)))
+  (erc-join-channel vimpupdate-irc-channel)
+  (vimpupdate-wait))
+
+(defun vimpupdate-wiki-trace (page-buffer-name)
+  "Callback for updating the EmacsWiki page in buffer PAGE-BUFFER-NAME."
+  (with-current-buffer page-buffer-name
+    (goto-char (point-min))
+    (when (re-search-forward "Current stable version: \\*\\*\\([^*]*\\)\\*\\*")
+      (goto-char (match-beginning 1))
+      (delete-region (match-beginning 1) (match-end 1))
+      (insert vimpupdate-version)
+      (yaoddmuse-post-buffer (current-buffer) vimpupdate-version nil)
+      (vimpupdate-done))))
+
+(unless (require 'nadvice nil t)
+  (defadvice yaoddmuse-display-page (around vimpupdate activate)
+    (vimpupdate-wiki-trace (ad-get-arg 0))))
+
+(defun vimpupdate-update-emacswiki ()
+  "Update the version information on the EmacsWiki page."
+  (setq yaoddmuse-wikis
+        '(("EmacsWiki" "http://www.emacswiki.org/emacs" utf-8 "uihnscuskc=1;")))
+  (when (featurep 'nadvice)
+    (advice-add 'yaoddmuse-display-page :after 'vimpupdate-wiki-trace))
+  (yaoddmuse-edit "EmacsWiki" vimpupdate-wiki-page t)
+  (vimpupdate-wait))
+
+(defun vimpupdate-update-regexp (file regexp)
+  "Update version tag in FILE.
+The version tag is defined by the REGEXP, in particular by the first
+match group."
+  (find-file file)
+  (goto-char (point-min))
+  (when (re-search-forward regexp nil t)
+    (goto-char (match-beginning 1))
+    (delete-region (match-beginning 1) (match-end 1))
+    (insert vimpupdate-version)
+    (save-buffer)))
+
+(defun vimpupdate-update-files ()
+  "Replace version comments in all source files."
+  (dolist (file (f-glob "*.el"))
+    (vimpupdate-update-regexp file ";;\\s-*Version:\\s-*\\([^\n]+\\)")))
+
+(defun vimpupdate-update-pkg ()
+  "Replace version in package file."
+  (vimpupdate-update-regexp "vimp-pkg.el" "\"vimp\"[ \t\n\r]*\"\\([^\"]+\\)\""))
+
+(defun vimpupdate-update-var ()
+  "Replace version in `vimp-version' variable."
+  (vimpupdate-update-regexp
+   "vimp-vars.el"
+   "t \"\\([^\"]*\\)\"[) \n\r\t]*\"The current version of Evil"))
+
+(defun vimpupdate-update-news ()
+  "Send an posting to the mailing list."
+  (shell-command (concat "thunderbird -compose \"newsgroups=gmane.emacs.vim-emulation,preselectid=id2,subject='[ANN] Evil version " vimpupdate-version " released',body='"
+                         "Evil version " vimpupdate-version " has been released.
+
+The stable version can be installed from MELPA stable [1].
+The latest development version is available from MELPA [2].
+
+The Evil developers.
+
+[1] http://stable.melpa.org
+[2] http://melpa.org
+'\"")))
+
+(defun vimpupdate-update (version nonews)
+  "Update Evil to VERSION.
+If NONEWS is non-nil do not post a message to the newsgroup."
+  (setq vimpupdate-cnt 0)
+  (setq vimpupdate-version version)
+  (vimpupdate-update-emacswiki)
+  (vimpupdate-update-irc)
+  (vimpupdate-update-files)
+  (vimpupdate-update-pkg)
+  (vimpupdate-update-var)
+  (unless nonews (vimpupdate-update-news)))
+
+(cond
+ ((= (length argv) 2)
+  (unless (equal (car argv) "nonews")
+    (user-error "Usage: vimpupdate.el [-n] VERSION"))
+  (vimpupdate-update (cadr argv) t))
+ ((= (length argv) 1)
+  (vimpupdate-update (cadr argv)))
+ (t
+  (user-error "Usage: vimpupdate.el [-n] VERSION")))
+
+;;; vimpupdate.el ends here

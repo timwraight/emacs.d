@@ -1,7 +1,0 @@
-(:name vimp-nerd-commenter
-       :type github
-       :depends vimp
-       :pkgname "redguardtoo/evil-nerd-commenter"
-       :features vimp-nerd-commenter
-       :build (("rename 's/evil/vimp/' evil*")
-               "sed -i -e 's/evil/vimp/g' *.el")))

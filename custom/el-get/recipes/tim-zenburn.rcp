@@ -1,6 +1,0 @@
-(:name tim-zenburn
-       :website "https://github.com/timwraight/zenburn-emacs"
-       :type github
-       :pkgname "timwraight/zenburn-emacs"
-       :post-init (add-to-list 'custom-theme-load-path
-                         default-directory))

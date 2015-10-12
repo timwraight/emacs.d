@@ -1,3 +1,0 @@
-(:name helm-git-grep
-       :type github
-       :pkgname "yasuyk/helm-git-grep")

@@ -1,4 +1,0 @@
-(:name pbcopy
-       :type github
-       :pkgname "jkp/pbcopy.el"
-       :features pbcopy)

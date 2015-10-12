@@ -1,5 +1,0 @@
-(:name less-css-mode
-       :website "https://github.com/purcell/less-css-mode"
-       :type github
-       :pkgname "purcell/less-css-mode"
-       :features less-css-mode)
