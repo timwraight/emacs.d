@@ -37,13 +37,16 @@
 (setq mu4e-maildir "~/Mail")
 (setq mu4e-headers-skip-duplicates t)
 (add-hook 'mu4e-main-mode-hook 'vimp-local-mode)
-(add-hook 'mu4e-view-mode-hook 'longlines-mode)
+(add-hook 'mu4e-view-mode-hook 'visual-line-mode)
 (add-hook 'mu4e-compose-mode-hook 'vimp-insert-state)
 (add-hook 'mu4e-headers-mode-hook 'vimp-local-mode)
 (add-hook 'mu4e-headers-mode-hook 'toggle-truncate-lines)
 
+(require 'mu4e-contrib)
+(setq mu4e-html2text-command 'mu4e-shr2text)
 
-(setq mu4e-html2text-command nil)
+
+
 
 ;; configure orgmode support in mu4e
 (require 'org-mu4e)
