@@ -2,27 +2,31 @@
 
 (defvar tim-packages
   '(magit markdown-mode python el-get helm auto-complete 
-          rainbow-delimiters helm-mu projectile helm-projectile
+          rainbow-delimiters projectile helm-projectile jabber jabber-otr alert
           jedi direx jedi-direx yasnippet dockerfile-mode php-mode python-django
-          helm-ls-git helm-git-grep flycheck flycheck-color-mode-line s
+          helm-ls-git helm-git-grep flycheck flycheck-color-mode-line s git-timemachine
           undo-tree volatile-highlights yaml-mode zenburn-theme)
   "A list of packages to ensure are installed at launch.")
 
-(defun tim-packages-installed-p ()
-  (loop for p in tim-packages
-	when (not (package-installed-p p)) do (return nil)
-	finally (return t)))
+(defun install-packages (package-list)
+  (defun tim-packages-installed-p ()
+    (loop for p in tim-packages
+          when (not (package-installed-p p)) do (return nil)
+          finally (return t)))
 
-(unless (tim-packages-installed-p)
-  ;; check for new packages (package versions)
-  (message "%s" "Refreshing our packages...")
-  (package-refresh-contents)
-  (message "%s" " done.")
-  ;; install the missing packages
-  (dolist (p tim-packages)
-    (when (not (package-installed-p p))
-      (package-install p))))
+  (unless (tim-packages-installed-p)
+    ;; check for new packages (package versions)
+    (message "%s" "Refreshing our packages...")
+    (package-refresh-contents)
+    (message "%s" " done.")
+    ;; install the missing packages
+    (dolist (p tim-packages)
+      (when (not (package-installed-p p))
+        (package-install p))))
+  )
 
+
+(install-packages tim-packages)
 
 ;; Do setup for my packages
 (defun load-all-in-directory (dir)
@@ -52,6 +56,13 @@
 (load "~/.emacs.d/custom_packages/init-mu4e.el")
 (require 'lalopmak-vimp)
 
+
+;; extra packages which need to load later
+(defvar extra-packages
+  '(helm_mu)
+  "A list of packages to ensure are installed at launch.")
+
+(install-packages extra-packages)
 
 
 

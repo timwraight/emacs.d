@@ -1,4 +1,4 @@
-(require 'package) ;; You might already have this line
+(require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
 (when (< emacs-major-version 24)
@@ -7,5 +7,5 @@
 (package-initialize) ;; You might already have this line
 (load-file "~/.emacs.d/package_loader.el")
 
-(setq custom-file "~/.emacs.d/setup-specific.el")
-(load "~/.emacs.d/setup-specific.el")
+(setq custom-file "~/.emacs.d/tim_setup/setup-specific.el")
+(load "~/.emacs.d/tim_setup/setup-specific.el")

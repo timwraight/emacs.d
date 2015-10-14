@@ -18,6 +18,7 @@
 
 (setq helm-truncate-lines t)
 (helm-mode)
+(setq helm-M-x-fuzzy-match t)
 (global-set-key "\M-x" 'helm-M-x)
 
 (require 'helm)
@@ -261,7 +262,7 @@
     (setq helm-source-buffers-list
           (helm-make-source "Buffers" 'helm-source-buffers)))
   (helm-other-buffer '(helm-source-buffers-list
-                       ;; helm-c-source-jabber-contacts
+                       helm-c-source-jabber-contacts
                        ;; helm-source-mantis-tickets
                        tim-source-projectile-projects
                        helm-source-mu
