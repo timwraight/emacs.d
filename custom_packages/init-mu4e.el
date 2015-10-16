@@ -42,8 +42,23 @@
 (add-hook 'mu4e-headers-mode-hook 'vimp-local-mode)
 (add-hook 'mu4e-headers-mode-hook 'toggle-truncate-lines)
 
+
+;; Flow text nicely for outgoing emails
+(add-hook 'mu4e-compose-mode-hook
+          (defun cpb-compose-setup ()
+            "Outgoing mails get format=flowed."
+            (use-hard-newlines t 'guess)))
+
 (require 'mu4e-contrib)
 (setq mu4e-html2text-command 'mu4e-shr2text)
+
+
+;; Convert plain text in email to html via markdown
+(defun mimedown ()
+  (interactive)
+  (save-excursion
+    (message-goto-body)
+    (shell-command-on-region (point) (point-max) "mimedown.py" nil t)))
 
 
 
