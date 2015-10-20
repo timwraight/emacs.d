@@ -28,7 +28,8 @@
      (define-key mu4e-view-mode-map (kbd "n") 'mu4e-view-mark-for-refile)
      (define-key mu4e-view-mode-map (kbd "M-s") 'mu4e-view-save-attachment)
      (define-key mu4e-view-mode-map (kbd "m") 'helm-timi)
-     (define-key mu4e-view-mode-map (kbd "A") 'vimp-visual-line)))
+     (define-key mu4e-view-mode-map (kbd "A") 'vimp-visual-line)
+     ))
 
 (setq mu4e-split-view nil)
 (setq mu4e-headers-leave-behavior 'apply)
@@ -63,20 +64,5 @@
 
 
 
-;; configure orgmode support in mu4e
-(require 'org-mu4e)
-;; when mail is sent, automatically convert org body to HTML
-(setq org-mu4e-convert-to-html t)
-
 ; mu4e org stuff
 (setq message-citation-line-format "* On %Y-%m-%d at %R, %f wrote:")
-(defun kdm-mu4e-org-compose ()
-  "Switch to/from mu4e-compose-mode and org-mode"
-  (interactive)
-  (if (eq 'mu4e-compose-mode
-          (buffer-local-value 'major-mode
-                              (current-buffer)))
-      (org-mode)
-      (mu4e-compose-mode)))
-
-(global-set-key "\M-@" 'kdm-mu4e-org-compose)

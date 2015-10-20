@@ -1,9 +1,11 @@
 (require 'cl)
 
 (defvar tim-packages
-  '(magit markdown-mode python el-get helm auto-complete 
+  '(magit markdown-mode python el-get helm
+                                        ; auto-complete
+          company company-jedi smartparens
           rainbow-delimiters projectile helm-projectile jabber jabber-otr alert
-          jedi direx jedi-direx yasnippet dockerfile-mode php-mode python-django
+          direx jedi-direx yasnippet dockerfile-mode php-mode python-django tagedit
           helm-ls-git helm-git-grep flycheck flycheck-color-mode-line s git-timemachine
           undo-tree volatile-highlights yaml-mode zenburn-theme)
   "A list of packages to ensure are installed at launch.")

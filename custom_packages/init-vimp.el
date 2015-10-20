@@ -15,7 +15,6 @@
                            magit-blame-mode
                            magit-diff-mode
                            picture-mode
-                           fundamental-mode
                            undo-tree-visualizer-mode
                            project-explorer-mode))
   (vimp-set-initial-state mode 'emacs))
@@ -27,6 +26,11 @@
                 mu4e-compose-mode
                 ))
   (vimp-set-initial-state mode 'insert))
+
+(dolist (mode '(text-mode
+                prog-mode
+                ))
+  (vimp-set-initial-state mode 'normal))
 
 
 ; magic searches
