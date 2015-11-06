@@ -23,6 +23,7 @@
                 eshell-mode
                 erc-mode
                 message-mode
+                global-git-commit-mode
                 mu4e-compose-mode
                 ))
   (vimp-set-initial-state mode 'insert))
