@@ -2,7 +2,7 @@
 
 (defvar tim-packages
   '(
-    company company-jedi smartparens wgrep idris-mode helm-idris
+    company company-jedi smartparens wgrep idris-mode helm-idris helm-mu
     direx jedi-direx yasnippet dockerfile-mode php-mode python-django tagedit
     helm-ls-git helm-git-grep flycheck flycheck-color-mode-line s git-timemachine
     rainbow-delimiters projectile helm-projectile jabber jabber-otr alert

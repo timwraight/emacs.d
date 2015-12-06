@@ -4,6 +4,12 @@
 
 (yas-global-mode 1)
 (yas-reload-all)
-(if (not (display-graphic-p))
-    (progn
-        (define-key yas-minor-mode-map (kbd "TAB") 'yas/expand)))
+
+;; This illustrates how to redefine yas-expand to S-TAB.
+(define-key yas-minor-mode-map [backtab]     'yas-expand)
+
+;; Strangely, just redefining one of the variations below won't work.
+;; All rebinds seem to be needed.
+(define-key yas-minor-mode-map [(tab)]        nil)
+(define-key yas-minor-mode-map (kbd "TAB")    nil)
+(define-key yas-minor-mode-map (kbd "<tab>")  nil)
