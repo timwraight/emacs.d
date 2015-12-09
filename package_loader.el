@@ -1,5 +1,30 @@
 (require 'cl)
 
+;; Please don't load outdated byte code
+(setq load-prefer-newer t)
+
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+
+(require 'bind-key)
+(require 'diminish)
+
+(require 'subr-x)
+(require 'rx)
+(require 'time-date)
+
+(use-package ns-win                     ; OS X window support
+  :defer t
+  :if (eq system-type 'darwin)
+  :config
+  (setq ns-pop-up-frames nil            ; Don't pop up new frames from the workspace
+        ))
+
 (defvar tim-packages
   '(
     company company-jedi company-quickhelp smartparens wgrep idris-mode helm-idris helm-mu
@@ -7,7 +32,7 @@
     helm-ls-git helm-git-grep flycheck flycheck-pos-tip flycheck-color-mode-line s git-timemachine
     rainbow-delimiters projectile helm-projectile jabber jabber-otr alert
     undo-tree volatile-highlights yaml-mode zenburn-theme
-    magit magit-gh-pulls markdown-mode python el-get helm
+    magit magit-gh-pulls markdown-mode python el-get helm ace-jump-mode
     )
   "A list of packages to ensure are installed at launch.")
 

@@ -1,3 +1,5 @@
+
+
 ;; Typing break mode, to remind me to take breaks
 (type-break-mode)
 

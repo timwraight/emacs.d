@@ -41,7 +41,6 @@
 (setq org-drawers (quote ("PROPERTIES" "LOGBOOK")))
 ;; Include current clocking task in clock reports
 (setq org-clock-report-include-clocking-task t)
-(setq org-clock-report)
 ;; Save clock data and state changes and notes in the LOGBOOK drawer
 (setq org-clock-into-drawer t)
 ;; Save the running clock and all clock history when exiting Emacs, load it on startup
