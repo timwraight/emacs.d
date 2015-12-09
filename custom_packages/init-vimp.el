@@ -13,6 +13,8 @@
                            magit-popup-mode
                            git-timemachine-mode
                            magit-blame-mode
+                           interactive-haskell-mode
+                           haskell-error-mode
                            magit-diff-mode
                            picture-mode
                            undo-tree-visualizer-mode

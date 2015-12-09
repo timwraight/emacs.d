@@ -2,9 +2,9 @@
 
 (defvar tim-packages
   '(
-    company company-jedi smartparens wgrep idris-mode helm-idris helm-mu
+    company company-jedi company-quickhelp smartparens wgrep idris-mode helm-idris helm-mu
     direx jedi-direx yasnippet dockerfile-mode php-mode python-django tagedit
-    helm-ls-git helm-git-grep flycheck flycheck-color-mode-line s git-timemachine
+    helm-ls-git helm-git-grep flycheck flycheck-pos-tip flycheck-color-mode-line s git-timemachine
     rainbow-delimiters projectile helm-projectile jabber jabber-otr alert
     undo-tree volatile-highlights yaml-mode zenburn-theme
     magit magit-gh-pulls markdown-mode python el-get helm
