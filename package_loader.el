@@ -80,6 +80,7 @@
 (require 'vimp)
 (require 'mu4e)
 (require 'vimp-leader)
+(require 'vimp-surround)
 (load "~/.emacs.d/custom_packages/init-vimp.el")
 (load "~/.emacs.d/custom_packages/init-vimp-leader.el")
 (load "~/.emacs.d/custom_packages/init-vimp-surround.el")
