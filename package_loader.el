@@ -28,12 +28,12 @@
 (defvar tim-packages
   '(
     company company-jedi company-quickhelp smartparens wgrep idris-mode helm-idris helm-mu
-    direx jedi-direx yasnippet dockerfile-mode php-mode python-django tagedit
-    helm-ls-git helm-git-grep flycheck flycheck-pos-tip flycheck-color-mode-line s git-timemachine
-    rainbow-delimiters projectile helm-projectile jabber jabber-otr alert
-    undo-tree volatile-highlights yaml-mode zenburn-theme helm-swoop aggressive-indent
-    magit magit-gh-pulls markdown-mode python el-get helm ace-jump-mode
-    )
+            direx jedi-direx yasnippet dockerfile-mode php-mode python-django tagedit helm-dash
+            helm-ls-git helm-git-grep flycheck flycheck-pos-tip flycheck-color-mode-line s git-timemachine
+            rainbow-delimiters projectile helm-projectile jabber jabber-otr alert auctex company-auctex
+            undo-tree volatile-highlights yaml-mode zenburn-theme helm-swoop aggressive-indent
+            magit magit-gh-pulls markdown-mode python el-get helm ace-jump-mode
+            )
   "A list of packages to ensure are installed at launch.")
 
 (defun install-packages (package-list)

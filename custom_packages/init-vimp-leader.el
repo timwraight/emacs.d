@@ -7,7 +7,7 @@
 (vimp-leader/set-key "=" 'balance-windows)
 (vimp-leader/set-key "\"" (kbd "yse\""))
 (vimp-leader/set-key "a" 'helm-git-grep-at-point)
-(vimp-leader/set-key "d" 'sql-connect)
+(vimp-leader/set-key "d" 'helm-dash)
 (vimp-leader/set-key "e" 'next-error)
 (vimp-leader/set-key "f" 'helm-mu)
 (vimp-leader/set-key "g" 'magit-status)

@@ -2,7 +2,9 @@
 (setq helm-ls-git-show-abs-or-relative 'relative)
 (setq helm-ff-transformer-show-only-basename nil)
 
-(setq helm-c-locate-command "mdfind -name %s %s")
+(setq
+ helm-locate-command "mdfind -name %s %s"
+ helm-c-locate-command "mdfind -name %s %s")
 
 (setq read-buffer-function 'ido-read-buffer)
 (setq read-file-name-function 'ido-read-file-name)
@@ -232,7 +234,7 @@
 ;;                . helm-org-insert-link-to-heading-at-marker)))))
 
 (defun helm-proj ()
-  "Like helm-mini, but for timi, geddit?"
+  "Project searching, by tim."
   (interactive)
   (unless (and helm-source-ls-git-status
                helm-source-ls-git)
