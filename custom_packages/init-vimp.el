@@ -52,11 +52,12 @@
 (my-move-key vimp-motion-state-map vimp-normal-state-map (kbd "RET"))
 (my-move-key vimp-motion-state-map vimp-normal-state-map " ")
 
-(define-key vimp-normal-state-map (kbd "M-m") 'helm-proj)
+(define-key vimp-normal-state-map (kbd "M-m") 'helm-do-ag-project-root)
 (define-key vimp-normal-state-map (kbd "m") 'helm-timi)
 (define-key vimp-insert-state-map (kbd "M-t") 'vimp-normal-state)
 (global-set-key (kbd "M-t") 'vimp-normal-state)
 (define-key vimp-normal-state-map (kbd "M-/") 'helm-occur)
+(define-key vimp-normal-state-map (kbd "M-h") 'helm-swoop)
 (define-key vimp-normal-state-map (kbd "M-E") 'helm-resume)
 (define-key vimp-normal-state-map "'" 'helm-command-prefix)
 ;; Make movement keys work like they should
