@@ -52,7 +52,7 @@
 (my-move-key vimp-motion-state-map vimp-normal-state-map (kbd "RET"))
 (my-move-key vimp-motion-state-map vimp-normal-state-map " ")
 
-(define-key vimp-normal-state-map (kbd "M-m") 'helm-do-ag-project-root)
+(define-key vimp-normal-state-map (kbd "M-m") 'helm-proj)
 (define-key vimp-normal-state-map (kbd "m") 'helm-timi)
 (define-key vimp-insert-state-map (kbd "M-t") 'vimp-normal-state)
 (global-set-key (kbd "M-t") 'vimp-normal-state)
