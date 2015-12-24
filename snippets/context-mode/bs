@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: block scripture
+# key: bs
+# --
+\block_scripture{$1}{$2}

@@ -3,10 +3,10 @@
 (setq helm-ff-transformer-show-only-basename nil)
 
 (setq
- helm-locate-command "mdfind -name %s %s"
- helm-c-locate-command "mdfind -name %s %s")
+ helm-locate-command "mdfind 'kMDItemDisplayName == \"%s\" || kMDItemTextContent == \"%s\"'"
+ helm-c-locate-command "mdfind 'kMDItemDisplayName == \"%s\" || kMDItemTextContent == \"%s\"'")
 
-(setq read-buffer-function 'ido-read-buffer)
+ (setq read-buffer-function 'ido-read-buffer)
 (setq read-file-name-function 'ido-read-file-name)
 (setq helm-full-frame nil)
 
