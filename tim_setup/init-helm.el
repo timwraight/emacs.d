@@ -255,7 +255,10 @@
         :default-directory default-directory
         :buffer "*helm proj*"))
 
-(require 'helm-mu)
+(with-eval-after-load 'mu4e
+  (require 'helm-mu)
+  )
+
 
 (defun helm-timi ()
   "Like helm-mini, but for timi, geddit?"
