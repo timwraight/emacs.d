@@ -2,4 +2,4 @@
 # name: running scripture
 # key: rs
 # --
-\running_scripture{$1}{$2}
+\runningscripture{$1}{$2}

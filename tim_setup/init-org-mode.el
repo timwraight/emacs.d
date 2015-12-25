@@ -119,32 +119,43 @@
 ;; active Babel languages
 (setq org-ditaa-jar-path "~/bin/ditaa.jar")
 
+(with-eval-after-load 'vimp
+  (vimp-define-key 'insert org-mode-map (kbd "M-i") 'org-metaright)
+  (vimp-define-key 'insert org-mode-map (kbd "M-n") 'org-metaleft)
+  (vimp-define-key 'insert org-mode-map (kbd "M-u") 'org-metaup)
+  (vimp-define-key 'insert org-mode-map (kbd "M-e") 'org-metadown)
+  (vimp-define-key 'normal org-mode-map (kbd "M-i") 'org-metaright)
+  (vimp-define-key 'normal org-mode-map (kbd "M-n") 'org-metaleft)
+  (vimp-define-key 'normal org-mode-map (kbd "M-u") 'org-metaup)
+  (vimp-define-key 'normal org-mode-map (kbd "M-e") 'org-metadown)
+  )
 
-; DEADLINES
+
+                                        ; DEADLINES
 (setq org-deadline-warning-days 2)
 
 
 (setq org-latex-packages-alist
       '(("sc" "mathpazo" t)
-       ("T1" "fontenc" t)
-       ("" "fixltx2e" nil)
-       ("" "graphicx" t)
-       ("" "longtable" nil)
-       ("" "float" nil)
-       ("" "wrapfig" nil)
-       ("normalem" "ulem" t)
-       ("" "textcomp" t)
-       ("" "marvosym" t)
-       ("" "minted" nil)
-       ("" "upquote" nil)
-       ("" "wasysym" t)
-       ("" "latexsym" t)
-       ("" "amssymb" t)
-       ("" "amstext" nil)
-       ("" "hyperref" nil)
-       "\\tolerance=1000"
-       "\\linespread{1.05}"
-       "\\AtBeginDocument{ \\def\\PYZsq{\\textquotesingle} }"))
+        ("T1" "fontenc" t)
+        ("" "fixltx2e" nil)
+        ("" "graphicx" t)
+        ("" "longtable" nil)
+        ("" "float" nil)
+        ("" "wrapfig" nil)
+        ("normalem" "ulem" t)
+        ("" "textcomp" t)
+        ("" "marvosym" t)
+        ("" "minted" nil)
+        ("" "upquote" nil)
+        ("" "wasysym" t)
+        ("" "latexsym" t)
+        ("" "amssymb" t)
+        ("" "amstext" nil)
+        ("" "hyperref" nil)
+        "\\tolerance=1000"
+        "\\linespread{1.05}"
+        "\\AtBeginDocument{ \\def\\PYZsq{\\textquotesingle} }"))
 
 (setq org-latex-listings 'minted)
 (setq org-latex-pdf-process

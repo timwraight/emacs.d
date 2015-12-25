@@ -85,6 +85,7 @@
 (load "~/.emacs.d/custom_packages/init-vimp-leader.el")
 (load "~/.emacs.d/custom_packages/init-vimp-surround.el")
 (load "~/.emacs.d/custom_packages/init-mu4e.el")
+(load "~/.emacs.d/custom_packages/bible_search/bibsearch.el")
 (require 'lalopmak-vimp)
 
 

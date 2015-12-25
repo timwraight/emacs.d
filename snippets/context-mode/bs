@@ -2,4 +2,4 @@
 # name: block scripture
 # key: bs
 # --
-\block_scripture{$1}{$2}
+\blockscripture{$1}{$2}
