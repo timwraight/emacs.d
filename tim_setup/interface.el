@@ -1,6 +1,8 @@
 ;; SOLARIZED
 (load-theme 'zenburn t)
 (menu-bar-mode -1)
+(scroll-bar-mode -1)
+
 
 (when window-system
   (set-face-attribute 'default nil :height 140)
