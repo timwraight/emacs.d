@@ -124,10 +124,6 @@
   (vimp-define-key 'insert org-mode-map (kbd "M-n") 'org-metaleft)
   (vimp-define-key 'insert org-mode-map (kbd "M-u") 'org-metaup)
   (vimp-define-key 'insert org-mode-map (kbd "M-e") 'org-metadown)
-  (vimp-define-key 'normal org-mode-map (kbd "M-i") 'org-metaright)
-  (vimp-define-key 'normal org-mode-map (kbd "M-n") 'org-metaleft)
-  (vimp-define-key 'normal org-mode-map (kbd "M-u") 'org-metaup)
-  (vimp-define-key 'normal org-mode-map (kbd "M-e") 'org-metadown)
   )
 
 

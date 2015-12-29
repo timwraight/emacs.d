@@ -1,5 +1,4 @@
 (require 'company)
-(define-key company-active-map (kbd "<SPC>") 'company-search-candidates)
 (define-key company-active-map (kbd "M-i") 'company-complete-common)
 (define-key company-active-map (kbd "M-<SPC>") 'company-complete-selection)
 (define-key company-active-map (kbd "M-e") 'company-select-next)
