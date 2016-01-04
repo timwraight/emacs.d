@@ -24,8 +24,8 @@
 (global-set-key "\M-x" 'helm-M-x)
 
 (require 'helm)
-(require 'helm-org)
 (require 'helm-files)
+(define-key helm-map (kbd "<escape>") 'helm-keyboard-quit)
 (define-key helm-map (kbd "M-e") 'helm-next-line)
 (define-key helm-map (kbd "M-u") 'helm-previous-line)
 (define-key helm-map (kbd "M-i") 'helm-execute-persistent-action)
@@ -53,27 +53,26 @@
 
 
 (defvar helm-c-source-jabber-contacts
-    '((name . "Jabber Contacts")
-      (init . (lambda () (require 'jabber)))
-      (candidates . (lambda () (mapcar 'car (helm-c-jabber-online-contacts))))
-      (action . (lambda (x)
-                    (jabber-chat-with
-                     (jabber-read-account)
-                     (symbol-name
-                      (cdr (assoc x (helm-c-jabber-online-contacts)))))))))
+  '((name . "Jabber Contacts")
+    (init . (lambda () (require 'jabber)))
+    (candidates . (lambda () (mapcar 'car (helm-c-jabber-online-contacts))))
+    (action . (lambda (x)
+                (jabber-chat-with
+                 (jabber-read-account)
+                 (symbol-name
+                  (cdr (assoc x (helm-c-jabber-online-contacts)))))))))
 
 (defun helm-jabber-contacts ()
-   "Preconfigured helm for ipython completions."
-    (interactive)
-    (delete-other-windows)
-    (helm :sources helm-c-source-jabber-contacts
-          :buffer "*helm jabber contacts*"))
+  "Preconfigured helm for ipython completions."
+  (interactive)
+  (delete-other-windows)
+  (helm :sources helm-c-source-jabber-contacts
+        :buffer "*helm jabber contacts*"))
 
 
 (setq helm-autoresize-mode nil)
 
-(require 'helm-org)
-;(require 'projectile)
+(require 'projectile)
 
 (defvar tim-source-projectile-projects
   (helm-build-in-buffer-source "Projectile projects"
