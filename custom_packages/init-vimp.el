@@ -60,8 +60,17 @@
 (global-set-key (kbd "M-t") 'vimp-normal-state)
 (define-key vimp-normal-state-map (kbd "M-/") 'helm-occur)
 (define-key vimp-normal-state-map (kbd "M-h") 'helm-swoop)
+(define-key vimp-normal-state-map (kbd "M-h") 'helm-swoop)
+(define-key vimp-normal-state-map (kbd "M-.") 'next-buffer)
+(define-key vimp-normal-state-map (kbd "M-,") 'previous-buffer)
+
 (define-key vimp-normal-state-map (kbd "M-E") 'helm-resume)
 (define-key vimp-normal-state-map "'" 'helm-command-prefix)
+(define-key vimp-normal-state-map (kbd "' m") 'helm-global-mark-ring)
+(define-key vimp-normal-state-map (kbd "' k") 'helm-show-kill-ring)
+(define-key vimp-normal-state-map (kbd "' x") 'helm-M-x)
+
+
 ;; Make movement keys work like they should
 (define-key vimp-normal-state-map (kbd "<remap> <vimp-next-line>") 'vimp-next-visual-line)
 (define-key vimp-normal-state-map (kbd "<remap> <vimp-previous-line>") 'vimp-previous-visual-line)
