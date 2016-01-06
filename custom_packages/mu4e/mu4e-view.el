@@ -40,6 +40,7 @@
 (require 'epa)
 (require 'epg)
 (require 'thingatpt)
+(require 'calendar)
 
 (eval-when-compile (byte-compile-disable-warning 'cl-functions))
 (require 'cl)
@@ -98,8 +99,9 @@ directory and saves all attachments in the chosen directory."
   :group 'mu4e-view)
 
 (defvar mu4e-view-actions
-  '( ("capture message" . mu4e-action-capture-message)
-     ("view as pdf"     . mu4e-action-view-as-pdf))
+  '( ("capture message"  . mu4e-action-capture-message)
+     ("view as pdf"      . mu4e-action-view-as-pdf)
+     ("show this thread" . mu4e-action-show-thread))
   "List of actions to perform on messages in view mode.
 The actions are of the form:
   (NAME FUNC)
@@ -149,6 +151,14 @@ The first letter of NAME is used as a shortcut character.")
     (define-key map (kbd "<S-return>") 'mu4e~view-save-attach-from-binding)
     map)
   "Keymap used in the \"Attachements\" header field.")
+
+(defcustom mu4e-view-auto-mark-as-read t
+  "Automatically mark messages are 'read' when you read
+them. This is typically the expected behavior, but can be turned
+off, for example when using a read-only file-system."
+  :type 'boolean
+  :group 'mu4e-view)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -240,7 +250,10 @@ found."
 		 (mu4e~view-custom-field msg field))))))
       mu4e-view-fields "")
     "\n"
-    (mu4e-message-body-text msg)))
+    (let ((body (mu4e-message-body-text msg)))
+      (when (fboundp 'add-face-text-property)
+        (add-face-text-property 0 (length body) 'mu4e-view-body-face t body))
+      body)))
 
 (defun mu4e~view-embedded-winbuf ()
   "Get a buffer (shown in a window) for the embedded message."
@@ -270,12 +283,12 @@ marking if it still had that."
 	    (if embedded
 	      (mu4e~view-embedded-winbuf)
 	      (get-buffer-create mu4e~view-buffer-name))))
-    ;; note: mu4e~view-mark-as-read will pseudo-recursively call mu4e-view again
-    ;; by triggering mu4e~view again as it marks the message as read
+    ;; note: mu4e~view-mark-as-read-maybe will pseudo-recursively call mu4e-view again by triggering
+    ;; mu4e~view again as it marks the message as read
     (with-current-buffer buf
       (switch-to-buffer buf)
       (setq mu4e~view-msg msg)
-      (when (or embedded (not (mu4e~view-mark-as-read msg)))
+      (when (or embedded (not (mu4e~view-mark-as-read-maybe msg)))
 	(let ((inhibit-read-only t))
 	  (erase-buffer)
 	  (mu4e~delete-all-overlays)
@@ -525,7 +538,6 @@ FUNC should be a function taking two arguments:
   (dolist (part (mu4e-msg-field msg :parts))
     (funcall func msg part)))
 
-
 (defvar mu4e-view-mode-map nil
   "Keymap for \"*mu4e-view*\" buffers.")
 (unless mu4e-view-mode-map
@@ -539,7 +551,7 @@ FUNC should be a function taking two arguments:
 
       ;; note, 'z' is by-default bound to 'bury-buffer'
       ;; but that's not very useful in this case
-      (define-key map "z" 'mu4e~view-quit-buffer)
+      (define-key map "z" 'ignore)
 
       (define-key map "s" 'mu4e-headers-search)
       (define-key map "S" 'mu4e-view-search-edit)
@@ -571,6 +583,8 @@ FUNC should be a function taking two arguments:
       (define-key map "|" 'mu4e-view-pipe)
       (define-key map "a" 'mu4e-view-action)
 
+      (define-key map ";" 'mu4e-context-switch)
+      
       ;; toggle header settings
       (define-key map "O" 'mu4e-headers-change-sorting)
       (define-key map "P" 'mu4e-headers-toggle-threading)
@@ -597,9 +611,8 @@ FUNC should be a function taking two arguments:
       (define-key map (kbd "<M-down>") 'mu4e-view-headers-next)
       (define-key map (kbd "<M-up>") 'mu4e-view-headers-prev)
 
+      (define-key map (kbd "[") 'mu4e-view-headers-prev-unread)
       (define-key map (kbd "]") 'mu4e-view-headers-next-unread)
-      (define-key map (kbd "[")
-	(lambda() (interactive) (mu4e-view-headers-next-unread t)))
       
       ;; switching to view mode (if it's visible)
       (define-key map "y" 'mu4e-select-other-view)
@@ -634,7 +647,8 @@ FUNC should be a function taking two arguments:
 
       ;; misc
       (define-key map "w" 'visual-line-mode)
-      (define-key map "h" 'mu4e-view-toggle-hide-cited)
+      (define-key map "#" 'mu4e-view-toggle-hide-cited)
+      (define-key map "h" 'mu4e-view-toggle-html)
       (define-key map (kbd "M-q") 'mu4e-view-fill-long-lines)
 
       ;; next 3 only warn user when attempt in the message view
@@ -657,6 +671,8 @@ FUNC should be a function taking two arguments:
 	(define-key menumap [sepa0] '("--"))
 	(define-key menumap [wrap-lines]
 	  '("Toggle wrap lines" . visual-line-mode))
+	(define-key menumap [toggle-html]
+	  '("Toggle view-html" . mu4e-view-toggle-html))
 	(define-key menumap [hide-cited]
 	  '("Toggle hide cited" . mu4e-view-toggle-hide-cited))
 	(define-key menumap [raw-view]
@@ -698,11 +714,8 @@ FUNC should be a function taking two arguments:
 	  '("Search bookmark" . mu4e-headers-search-bookmark))
 	(define-key menumap [jump]
 	  '("Jump to maildir" . mu4e~headers-jump-to-maildir))
-	(define-key menumap [refresh]
-	  '("Refresh" . mu4e-headers-rerun-search))
 	(define-key menumap [search]
 	  '("Search" . mu4e-headers-search))
-
 
 	(define-key menumap [sepa4] '("--"))
 	(define-key menumap [next]  '("Next" . mu4e-view-headers-next))
@@ -729,24 +742,26 @@ FUNC should be a function taking two arguments:
   (make-local-variable 'mu4e~view-attach-map)
   (make-local-variable 'mu4e~view-cited-hidden)
 
-  (setq buffer-undo-list t) ;; don't record undo info
-
+  ;; show context in mode-string
+  (set (make-local-variable 'global-mode-string) '(:eval (mu4e-context-label))) 
+ 
+  (setq buffer-undo-list t);; don't record undo info
+     
   ;; autopair mode gives error when pressing RET
   ;; turn it off
   (when (boundp 'autopair-dont-activate)
     (setq autopair-dont-activate t)))
 
-(defun mu4e~view-mark-as-read (msg)
+(defun mu4e~view-mark-as-read-maybe (msg)
   "Clear the message MSG New/Unread status and set it to Seen.
 If the message is not New/Unread, do nothing. Evaluates to t if it
 triggers any changes, nil otherwise. If this function does any
 changes, it triggers a refresh."
-  (when msg
+  (when (and mu4e-view-auto-mark-as-read msg)
     (let ((flags (mu4e-message-field msg :flags))
 	   (msgid (mu4e-message-field msg :message-id))
 	   (docid (mu4e-message-field msg :docid)))
-      ;; attached (embedded) messages don't have docids; leave them alone
-      ;; is it a new message
+      ;; attached (embedded) messages don't have docids; leave them alone if it is a new message
       (when (and docid (or (member 'unread flags) (member 'new flags)))
 	;; mark /all/ messages with this message-id as read, so all copies of
 	;; this message will be marked as read.
@@ -850,7 +865,8 @@ this view."
        (unless docid
 	 (mu4e-error "message without docid: action is not possible."))
        (with-current-buffer mu4e~view-headers-buffer
-	 (select-window (get-buffer-window))
+	 (when (get-buffer-window)
+	   (select-window (get-buffer-window)))
 	 (if (mu4e~headers-goto-docid docid)
 	   ,@body
 	   (mu4e-error "cannot find message in headers buffer."))))))
@@ -873,17 +889,29 @@ N (prefix argument), to the Nth previous header."
   (mu4e~view-in-headers-context
     (mu4e~headers-move (- (or n 1)))))
 
-(defun mu4e-view-headers-next-unread (&optional backwards)
+(defun mu4e~view-prev-or-next-unread (backwards)
   "Move point to the next or previous (when BACKWARDS is non-`nil')
 unread message header in the headers buffer connected with this
 message view. If this succeeds, return the new docid. Otherwise,
 return nil."
-  (interactive "P")
   (mu4e~view-in-headers-context 
-    (mu4e-headers-next-unread backwards))
+    (mu4e~headers-prev-or-next-unread backwards))
   (mu4e-select-other-view)
   (mu4e-headers-view-message))
 
+(defun mu4e-view-headers-prev-unread ()
+"Move point to the previous unread message header in the headers
+buffer connected with this message view. If this succeeds, return
+the new docid. Otherwise, return nil."
+  (interactive)
+  (mu4e~view-prev-or-next-unread t))
+
+(defun mu4e-view-headers-next-unread ()
+  "Move point to the next unread message header in the headers
+buffer connected with this message view. If this succeeds, return
+the new docid. Otherwise, return nil."
+  (interactive)
+  (mu4e~view-prev-or-next-unread nil))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -895,6 +923,12 @@ return nil."
   (if mu4e~view-cited-hidden
     (mu4e-view-refresh)
     (mu4e~view-hide-cited)))
+
+(defun mu4e-view-toggle-html ()
+  "Toggle html-display of the message body (if any)."
+  (interactive)
+  (setq mu4e-view-prefer-html (not mu4e-view-prefer-html)) 
+  (mu4e-view-refresh)) 
 
 (defun mu4e-view-refresh ()
   "Redisplay the current message."
@@ -919,17 +953,25 @@ matching messages with that mark."
   (interactive)
   (mu4e~view-in-headers-context (mu4e-headers-mark-pattern)))
 
-(defun mu4e-view-mark-thread ()
-  "Ask user for a kind of mark (move, delete etc.), and apply it to
-all messages in the thread at point in the headers view."
+(defun mu4e-view-mark-thread (&optional markpair)
+  "Ask user for a kind of mark (move, delete etc.), and apply it
+to all messages in the thread at point in the headers view. The
+optional MARKPAIR can also be used to provide the mark
+selection."
   (interactive)
-  (mu4e~view-in-headers-context (mu4e-headers-mark-thread)))
+  (mu4e~view-in-headers-context
+   (if markpair (mu4e-headers-mark-thread nil markpair)
+       (call-interactively 'mu4e-headers-mark-thread))))
 
-(defun mu4e-view-mark-subthread ()
-  "Ask user for a kind of mark (move, delete etc.), and apply it to
-all messages in the subthread at point in the headers view."
+(defun mu4e-view-mark-subthread (&optional markpair)
+  "Ask user for a kind of mark (move, delete etc.), and apply it
+to all messages in the subthread at point in the headers view.
+The optional MARKPAIR can also be used to provide the mark
+selection."
   (interactive)
-  (mu4e~view-in-headers-context (mu4e-headers-mark-subthread)))
+  (mu4e~view-in-headers-context
+   (if markpair (mu4e-headers-mark-subthread markpair)
+     (mu4e-headers-mark-subthread))))
 
 (defun mu4e-view-search-narrow ()
   "Run `mu4e-headers-search-narrow' in the headers buffer."
@@ -1124,7 +1166,7 @@ If ATTNUM is nil ask for the attachment number."
       ;; send the docid as parameter (4th arg); we'll get this back from the
       ;; server, and use it to determine the parent message (ie., the current
       ;; message) when showing the embedded message/rfc822, and return to the
-      ;; current message when quiting that one.
+      ;; current message when quitting that one.
       (mu4e~view-temp-action docid index "mu4e" docid)
       ;; otherwise, open with the default program (handled in mu-server
       (mu4e~proc-extract 'open docid index mu4e-decryption-policy))))

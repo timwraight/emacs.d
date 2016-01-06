@@ -53,12 +53,10 @@ messages. This is the mu4e-specific version of
   :group 'mu4e-compose)
 
 (defcustom mu4e-compose-signature
-  (or (and (stringp message-signature) message-signature)
-    "Sent with my mu4e")
+  (or message-signature "Sent with my mu4e")
   "The message signature (i.e. the blob at the bottom of
 messages). This is the mu4e-specific version of
 `message-signature'."
-  :type 'sexp
   :group 'mu4e-compose)
 
 (defcustom mu4e-compose-signature-auto-include t
@@ -79,11 +77,9 @@ current window."
   :type 'boolean
   :group 'mu4e-compose)
 
-(defun mu4e~draft-user-agent-construct ()
-  "Return the User-Agent string for mu4e.
-This is either the value of `mu4e-user-agent', or, if not set, a
-string based on the versions of mu4e and emacs."
-  (format "mu4e %s; emacs %s" mu4e-mu-version emacs-version))
+(defvar mu4e-user-agent-string
+  (format "mu4e %s; emacs %s" mu4e-mu-version emacs-version)
+  "The User-Agent string for mu4e.")
 
 (defun mu4e~draft-cite-original (msg)
   "Return a cited version of the original message MSG as a plist.
@@ -249,8 +245,7 @@ separator is never written to the message file. Also see
 `mu4e-remove-mail-header-separator'."
   ;; we set this here explicitly, since (as it has happened) a wrong
   ;; value for this (such as "") breaks address completion and other things
-  (set (make-local-variable 'mail-header-separator)
-    (purecopy "--text follows this line--"))
+  (set (make-local-variable 'mail-header-separator) "--text follows this line--")
   (put 'mail-header-separator 'permanent-local t)
   (save-excursion
     ;; make sure there's not one already
@@ -284,7 +279,7 @@ never hits the disk. Also see `mu4e~draft-insert-mail-header-separator."
 	(replace-match "")))))
 
 
-(defun mu4e~draft-user-wants-reply-all (origmsg)
+(defun mu4e~draft-reply-all-p (origmsg)
   "Ask user whether she wants to reply to *all* recipients.
 If there is just one recipient of ORIGMSG do nothing."
   (let* ((recipnum
@@ -320,10 +315,9 @@ You can append flags."
 (defun mu4e~draft-common-construct ()
   "Construct the common headers for each message."
   (concat
-   (mu4e~draft-header "User-agent" (mu4e~draft-user-agent-construct))
+    (mu4e~draft-header "User-agent" mu4e-user-agent-string)
    (when mu4e-compose-auto-include-date
      (mu4e~draft-header "Date" (message-make-date)))))
-
 
 (defconst mu4e~draft-reply-prefix "Re: "
   "String to prefix replies with.")
@@ -337,7 +331,7 @@ fields will be the same as in the original."
 	     (+ (length (mu4e~draft-create-to-lst origmsg))
 	       (length (mu4e~draft-create-cc-lst origmsg t))))
 	  ;; reply-to-self implies reply-all
-	  (reply-all (or reply-to-self (mu4e~draft-user-wants-reply-all origmsg)))
+	  (reply-all (or reply-to-self (mu4e~draft-reply-all-p origmsg)))
 	  (old-msgid (plist-get origmsg :message-id))
 	  (subject
 	    (concat mu4e~draft-reply-prefix
@@ -446,14 +440,13 @@ from either `mu4e~draft-reply-construct', or
 	    (forward (mu4e~draft-forward-construct msg))
 	    (new     (mu4e~draft-newmsg-construct))
 	    (t (mu4e-error "unsupported compose-type %S" compose-type))))
+	(newline)
 	;; include the message signature (if it's set)
-	(if mu4e-compose-signature-auto-include
-	  (let ((message-signature (or mu4e-compose-signature "\n"))
-		 (message-signature-insert-empty-line t))
+	(if (and mu4e-compose-signature-auto-include mu4e-compose-signature)
+	  (let ((message-signature mu4e-compose-signature))
 	    (save-excursion
 	      (message-insert-signature)
-	      (mu4e~fontify-signature)))
-	  (insert "\n"))))
+	      (mu4e~fontify-signature))))))
 	  ;; evaluate mu4e~drafts-drafts-folder once, here, and use that value
 	  ;; throughout.
     (set (make-local-variable 'mu4e~draft-drafts-folder) draft-dir)
