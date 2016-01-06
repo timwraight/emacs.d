@@ -42,6 +42,8 @@
 (add-hook 'mu4e-compose-mode-hook 'vimp-insert-state)
 (add-hook 'mu4e-headers-mode-hook 'vimp-local-mode)
 (add-hook 'mu4e-headers-mode-hook 'toggle-truncate-lines)
+(add-hook 'mu4e-headers-mode-hook (lambda () (interactive) (variable-pitch-mode t)))
+
 
 
 ;; Flow text nicely for outgoing emails
@@ -63,6 +65,5 @@
 
 
 
-
-; mu4e org stuff
+                                        ; mu4e org stuff
 (setq message-citation-line-format "* On %Y-%m-%d at %R, %f wrote:")
