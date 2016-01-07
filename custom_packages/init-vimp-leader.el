@@ -38,6 +38,21 @@
 (define-key checker-keymap (kbd "a") 'flyspell-auto-correct-previous-word)
 (vimp-leader/set-key "c" checker-keymap)
 
+;; Files keymap
+(setq files-keymap (make-sparse-keymap))
+(define-key files-keymap (kbd "r") 'helm-recentf)
+(define-key files-keymap (kbd "s") 'save-buffer)
+(define-key files-keymap (kbd "f") 'helm-find-files)
+(vimp-leader/set-key "f" files-keymap)
+
+;; Help keymap
+
+(setq help-keymap (make-sparse-keymap))
+(define-key help-keymap (kbd "f") 'describe-function)
+(define-key help-keymap (kbd "v") 'describe-variable)
+(define-key help-keymap (kbd "a") 'helm-apropos)
+(vimp-leader/set-key "h" help-keymap)
+
 
 
 (vimp-leader/set-key "b" 'ido-switch-buffer)
@@ -62,9 +77,6 @@
 
 ;; GLOBAL (org)
 (vimp-leader/set-key "l" 'org-store-link)
-
-;; GLOBAL (editing)
-(vimp-leader/set-key "c" 'flyspell-auto-correct-previous-word)
 
 
 (vimp-leader/set-key-for-mode 'sgml-mode "<right>" 'tagedit-forward-slurp-tag)

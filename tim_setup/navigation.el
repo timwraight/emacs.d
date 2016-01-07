@@ -29,6 +29,8 @@
      (setq ido-everywhere t)
      (ido-mode 1)))
 
+(define-key ido-buffer-completion-map (kbd "<escape>") 'abort-recursive-edit)
+
 ;; SCROLLING
 
 (setq scroll-margin 3
