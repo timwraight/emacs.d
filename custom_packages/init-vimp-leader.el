@@ -43,6 +43,8 @@
 (define-key files-keymap (kbd "r") 'helm-recentf)
 (define-key files-keymap (kbd "s") 'save-buffer)
 (define-key files-keymap (kbd "f") 'helm-find-files)
+(define-key files-keymap (kbd "p") 'helm-browse-project)
+
 (vimp-leader/set-key "f" files-keymap)
 
 ;; Help keymap
