@@ -9,7 +9,7 @@
 (vimp-leader/set-key "a" 'helm-git-grep-at-point)
 (vimp-leader/set-key "d" 'helm-dash)
 (vimp-leader/set-key "e" 'next-error)
-(vimp-leader/set-key "f" 'helm-mu)
+(vimp-leader/set-key "f" 'helm-find-files)
 (vimp-leader/set-key "g" 'magit-status)
 (vimp-leader/set-key "h" 'vc-version-ediff)
 (vimp-leader/set-key "l" 'split-window-below)
@@ -28,6 +28,7 @@
 (define-key window-keymap "1" 'delete-other-windows)
 (define-key window-keymap "0" 'delete-window)
 (define-key window-keymap "3" 'split-window-horizontally)
+(define-key window-keymap "2" 'split-window-below)
 
 
 (vimp-leader/set-key "w" window-keymap)
