@@ -69,6 +69,8 @@
 (define-key vimp-normal-state-map (kbd "' m") 'helm-global-mark-ring)
 (define-key vimp-normal-state-map (kbd "' k") 'helm-show-kill-ring)
 (define-key vimp-normal-state-map (kbd "' x") 'helm-M-x)
+(define-key vimp-normal-state-map (kbd "' f") 'helm-find-files)
+
 
 
 ;; Make movement keys work like they should
