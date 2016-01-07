@@ -29,9 +29,15 @@
 (define-key window-keymap "0" 'delete-window)
 (define-key window-keymap "3" 'split-window-horizontally)
 (define-key window-keymap "2" 'split-window-below)
-
-
 (vimp-leader/set-key "w" window-keymap)
+
+;; Checker keymap
+(setq checker-keymap (make-sparse-keymap))
+(define-key checker-keymap (kbd "n") 'flycheck-previous-error)
+(define-key checker-keymap (kbd "i") 'flycheck-next-error)
+(define-key checker-keymap (kbd "a") 'flyspell-auto-correct-previous-word)
+(vimp-leader/set-key "c" checker-keymap)
+
 
 
 (vimp-leader/set-key "b" 'ido-switch-buffer)

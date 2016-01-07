@@ -191,7 +191,6 @@
   (helm :sources 'helm-source-org-agenda-items
         :keymap helm-source-agenda-keymap))
 
-(global-set-key (kbd "M-s") 'helm-org-agenda-items)
 
 (require 'soap-client)
 ;; (setq mantis-wsdl (soap-load-wsdl-from-url "https://tracker.tangentlabs.co.uk:443/api/soap/mantisconnect.php?wsdl"))
