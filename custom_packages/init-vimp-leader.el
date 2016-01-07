@@ -17,18 +17,26 @@
 (vimp-leader/set-key "q" 'save-buffers-kill-emacs)
 (vimp-leader/set-key "r" (lambda() (interactive) (kbd "ysiW")))
 (vimp-leader/set-key "t" 'google-this)
-(vimp-leader/set-key "w" 'previous-error)
+(vimp-leader/set-key "3" 'split-window-horizontally)
 (vimp-leader/set-key "z" (lambda () (interactive) (save-buffers-kill-terminal 1)))
 
+;; Window keymap
+(setq window-keymap (make-sparse-keymap))
+(define-key window-keymap (kbd "i") 'vimp-window-right)
+(define-key window-keymap (kbd "n") 'vimp-window-left)
+(define-key window-keymap (kbd "u") 'vimp-window-up)
+(define-key window-keymap (kbd "e") 'vimp-window-down)
+(define-key window-keymap "1" 'delete-other-windows)
+(define-key window-keymap "0" 'delete-window)
 
-; copied from key-chord-mode
+
+(vimp-leader/set-key "w" window-keymap)
+
 
 (vimp-leader/set-key "b" 'ido-switch-buffer)
 ;; GLOBAL (windows and buffers)
 (vimp-leader/set-key "r" 'helm-recentf)
 (vimp-leader/set-key "k" 'kill-this-buffer)
-(vimp-leader/set-key "1" 'delete-other-windows)
-(vimp-leader/set-key "0" 'delete-window)
 (vimp-leader/set-key "s" 'save-buffer)
 (vimp-leader/set-key "m" 'helm-jabber-contacts)
 (vimp-leader/set-key "x" 'eval-defun)
