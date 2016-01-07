@@ -56,7 +56,6 @@
 (define-key vimp-normal-state-map (kbd "m") 'helm-timi)
 (define-key vimp-insert-state-map (kbd "M-t") 'vimp-normal-state)
 (define-key vimp-normal-state-map (kbd "M-b") 'helm-bible-search)
-(define-key vimp-insert-state-map (kbd "M-e") 'yas-expand)
 (global-set-key (kbd "M-t") 'vimp-normal-state)
 (define-key vimp-normal-state-map (kbd "M-/") 'helm-occur)
 (define-key vimp-normal-state-map (kbd "M-h") 'helm-swoop)

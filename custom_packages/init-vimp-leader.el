@@ -1,6 +1,6 @@
 ; VIMP LEADER
 (global-vimp-leader-mode)
-(vimp-leader/set-leader "s")
+(vimp-leader/set-leader "SPC")
 
 (vimp-leader/set-key "'" (kbd "yse'"))
 (vimp-leader/set-key ";" 'helm-mini)
@@ -14,6 +14,7 @@
 (vimp-leader/set-key "h" 'vc-version-ediff)
 (vimp-leader/set-key "l" 'split-window-below)
 (vimp-leader/set-key "o" 'helm-org-agenda-files-headings)
+(vimp-leader/set-key "q" 'save-buffers-kill-emacs)
 (vimp-leader/set-key "r" (lambda() (interactive) (kbd "ysiW")))
 (vimp-leader/set-key "t" 'google-this)
 (vimp-leader/set-key "w" 'previous-error)
