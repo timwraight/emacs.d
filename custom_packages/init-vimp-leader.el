@@ -17,7 +17,6 @@
 (vimp-leader/set-key "q" 'save-buffers-kill-emacs)
 (vimp-leader/set-key "r" (lambda() (interactive) (kbd "ysiW")))
 (vimp-leader/set-key "t" 'google-this)
-(vimp-leader/set-key "3" 'split-window-horizontally)
 (vimp-leader/set-key "z" (lambda () (interactive) (save-buffers-kill-terminal 1)))
 
 ;; Window keymap
@@ -28,6 +27,7 @@
 (define-key window-keymap (kbd "e") 'vimp-window-down)
 (define-key window-keymap "1" 'delete-other-windows)
 (define-key window-keymap "0" 'delete-window)
+(define-key window-keymap "3" 'split-window-horizontally)
 
 
 (vimp-leader/set-key "w" window-keymap)

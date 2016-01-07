@@ -1,7 +1,7 @@
 (require 'company)
 (with-eval-after-load 'company
   (define-key company-active-map (kbd "M-i") 'company-complete-selection)
-  (define-key company-active-map (kbd "SPC") 'company-search-candidates)
+  (define-key company-active-map (kbd "M-s") 'company-search-candidates)
   (define-key company-active-map (kbd "M-e") 'company-select-next)
   (define-key company-active-map (kbd "M-t") 'company-abort)
   (define-key company-active-map (kbd "M-u") 'company-select-previous)
