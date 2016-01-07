@@ -28,7 +28,7 @@
 (defvar tim-packages
   '(
     company company-jedi company-quickhelp smartparens wgrep idris-mode helm-idris helm-mu haskell-mode
-            direx jedi-direx yasnippet dockerfile-mode php-mode python-django tagedit helm-dash
+            direx yasnippet dockerfile-mode php-mode python-django tagedit helm-dash
             helm-ls-git helm-git-grep flycheck flycheck-pos-tip flycheck-color-mode-line s git-timemachine window-number
             rainbow-delimiters projectile helm-projectile jabber jabber-otr alert auctex company-auctex
             undo-tree volatile-highlights yaml-mode zenburn-theme helm-swoop aggressive-indent which-key

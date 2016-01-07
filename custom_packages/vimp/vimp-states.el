@@ -3,7 +3,7 @@
 ;; Author: Vegard Øye <vegard_oye at hotmail.com>
 ;; Maintainer: Vegard Øye <vegard_oye at hotmail.com>
 
-;; Version: 1.2.5
+;; Version: 1.2.8
 
 ;;
 ;; This file is NOT part of GNU Emacs.
@@ -107,7 +107,9 @@ Handles the repeat-count of the insertion command."
   (when vimp-insert-count
     (dotimes (i (1- vimp-insert-count))
       (when vimp-insert-lines
-        (vimp-insert-newline-below))
+        (vimp-insert-newline-below)
+        (when vimp-auto-indent
+          (indent-according-to-mode)))
       (when (fboundp 'vimp-execute-repeat-info)
         (vimp-execute-repeat-info
          (cdr vimp-insert-repeat-info)))))

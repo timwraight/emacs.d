@@ -3,7 +3,7 @@
 ;; Author: Frank Fischer <frank fischer at mathematik.tu-chemnitz.de>
 ;; Maintainer: Vegard Øye <vegard_oye at hotmail.com>
 
-;; Version: 1.2.5
+;; Version: 1.2.8
 
 ;;
 ;; This file is NOT part of GNU Emacs.
@@ -186,7 +186,7 @@ is appended to the line."
              ":"
              (or initial-input
                  (and vimp-ex-previous-command
-                      (format "(default: %s) " vimp-ex-previous-command)))
+                      (propertize vimp-ex-previous-command 'face 'shadow)))
              vimp-ex-completion-map
              nil
              'vimp-ex-history
@@ -256,7 +256,11 @@ Clean up everything set up by `vimp-ex-setup'."
 When ex starts, the previous command is shown enclosed in
 parenthesis. This function removes this text when the first key
 is pressed."
-  (delete-minibuffer-contents)
+  (when (and (not (eq this-command 'exit-minibuffer))
+             (/= (minibuffer-prompt-end) (point-max)))
+    (if (eq this-command 'vimp-ex-delete-backward-char)
+        (setq this-command 'ignore))
+    (delete-minibuffer-contents))
   (remove-hook 'pre-command-hook #'vimp-ex-remove-default))
 (put 'vimp-ex-remove-default 'permanent-local-hook t)
 

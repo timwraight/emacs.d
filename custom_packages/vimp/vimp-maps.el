@@ -3,7 +3,7 @@
 ;; Author: Vegard Øye <vegard_oye at hotmail.com>
 ;; Maintainer: Vegard Øye <vegard_oye at hotmail.com>
 
-;; Version: 1.2.5
+;; Version: 1.2.8
 
 ;;
 ;; This file is NOT part of GNU Emacs.
@@ -350,28 +350,59 @@
 
 ;;; Insert state
 
-(define-key vimp-insert-state-map "\C-v" 'quoted-insert)
-(define-key vimp-insert-state-map "\C-k" 'vimp-insert-digraph)
-(define-key vimp-insert-state-map "\C-o" 'vimp-execute-in-normal-state)
-(define-key vimp-insert-state-map "\C-r" 'vimp-paste-from-register)
-(define-key vimp-insert-state-map "\C-y" 'vimp-copy-from-above)
-(define-key vimp-insert-state-map "\C-e" 'vimp-copy-from-below)
-(define-key vimp-insert-state-map "\C-n" 'vimp-complete-next)
-(define-key vimp-insert-state-map "\C-p" 'vimp-complete-previous)
-(define-key vimp-insert-state-map "\C-x\C-n" 'vimp-complete-next-line)
-(define-key vimp-insert-state-map "\C-x\C-p" 'vimp-complete-previous-line)
-(define-key vimp-insert-state-map "\C-t" 'vimp-shift-right-line)
-(define-key vimp-insert-state-map "\C-d" 'vimp-shift-left-line)
-(define-key vimp-insert-state-map "\C-a" 'vimp-paste-last-insertion)
-(define-key vimp-insert-state-map [remap delete-backward-char] 'vimp-delete-backward-char-and-join)
+(defvar vimp-insert-state-bindings
+  `(("\C-v" . quoted-insert)
+    ("\C-k" . vimp-insert-digraph)
+    ("\C-o" . vimp-execute-in-normal-state)
+    ("\C-r" . vimp-paste-from-register)
+    ("\C-y" . vimp-copy-from-above)
+    ("\C-e" . vimp-copy-from-below)
+    ("\C-n" . vimp-complete-next)
+    ("\C-p" . vimp-complete-previous)
+    ("\C-x\C-n" . vimp-complete-next-line)
+    ("\C-x\C-p" . vimp-complete-previous-line)
+    ("\C-t" . vimp-shift-right-line)
+    ("\C-d" . vimp-shift-left-line)
+    ("\C-a" . vimp-paste-last-insertion)
+    ([remap delete-backward-char] . vimp-delete-backward-char-and-join)
+    ,(if vimp-want-C-w-delete
+         '("\C-w" . vimp-delete-backward-word)
+       '("\C-w" . vimp-window-map))
+    ([mouse-2] . mouse-yank-primary))
+  "Evil's bindings for insert state (for
+`vimp-insert-state-map'), excluding <delete>, <escape>, and
+`vimp-toggle-key'.")
+
+(defun vimp-update-insert-state-bindings (&optional _option-name remove force)
+  "Update bindings in `vimp-insert-state-map'.
+If no arguments are given add the bindings specified in
+`vimp-insert-state-bindings'. If REMOVE is non nil, remove only
+these bindings. Unless FORCE is non nil, this will not
+overwriting existing bindings, which means bindings will not be
+added if one already exists for a key and only default bindings
+are removed.
+
+Note that <delete>, <escape> and `vimp-toggle-key' are not
+included in `vimp-insert-state-bindings' by default."
+  (interactive)
+  (dolist (binding vimp-insert-state-bindings)
+    (cond
+     ((and remove
+           (or force
+               ;; Only remove if the default binding has not changed
+               (eq (lookup-key vimp-insert-state-map (car binding))
+                   (cdr binding))))
+      (define-key vimp-insert-state-map (car binding) nil))
+     ((and (null remove)
+           (or force
+               ;; Check to see that nothing is bound here before adding
+               (null (lookup-key vimp-insert-state-map (car binding)))))
+      (define-key vimp-insert-state-map (car binding) (cdr binding))))))
+
 (define-key vimp-insert-state-map [delete] 'delete-char)
 (define-key vimp-insert-state-map [escape] 'vimp-normal-state)
 (define-key vimp-insert-state-map
   (read-kbd-macro vimp-toggle-key) 'vimp-emacs-state)
-
-(if vimp-want-C-w-delete
-    (define-key vimp-insert-state-map "\C-w" 'vimp-delete-backward-word)
-  (define-key vimp-insert-state-map "\C-w" 'vimp-window-map))
 
 ;;; Replace state
 
@@ -390,7 +421,6 @@
 (define-key vimp-motion-state-map [down-mouse-1] 'vimp-mouse-drag-region)
 (define-key vimp-visual-state-map [mouse-2] 'vimp-exit-visual-and-repeat)
 (define-key vimp-normal-state-map [mouse-2] 'mouse-yank-primary)
-(define-key vimp-insert-state-map [mouse-2] 'mouse-yank-primary)
 
 ;; Ex
 (define-key vimp-motion-state-map ":" 'vimp-ex)
@@ -439,6 +469,7 @@
 (vimp-ex-define-cmd "x[it]" 'vimp-save-modified-and-close)
 (vimp-ex-define-cmd "exi[t]" 'vimp-save-modified-and-close)
 (vimp-ex-define-cmd "bd[elete]" 'vimp-delete-buffer)
+(vimp-ex-define-cmd "bw[ipeout]" 'vimp-delete-buffer)
 (vimp-ex-define-cmd "g[lobal]" 'vimp-ex-global)
 (vimp-ex-define-cmd "v[global]" 'vimp-ex-global-inverted)
 (vimp-ex-define-cmd "norm[al]" 'vimp-ex-normal)

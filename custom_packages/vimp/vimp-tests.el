@@ -3,7 +3,7 @@
 ;; Author: Vegard Øye <vegard_oye at hotmail.com>
 ;; Maintainer: Vegard Øye <vegard_oye at hotmail.com>
 
-;; Version: 1.2.5
+;; Version: 1.2.8
 
 ;;
 ;; This file is NOT part of GNU Emacs.
@@ -974,7 +974,14 @@ de[f]
       "[(]let (var)\n  test)\n"
       (emacs-lisp-mode)
       ("odo-it" [escape])
-      "(let (var)\n  do-i[t]\n  test)\n")))
+      "(let (var)\n  do-i[t]\n  test)\n"))
+  (let ((vimp-auto-indent t))
+    (ert-info ("With count")
+      (vimp-test-buffer
+        "[(]and a\n     c)\n"
+        (emacs-lisp-mode)
+        ("3ob" [escape])
+        "(and a\n     b\n     b\n     [b]\n     c)\n"))))
 
 (ert-deftest vimp-test-open-below-folded ()
   "Test `vimp-open-below' on folded lines"
@@ -3007,6 +3014,31 @@ Below some empty line"
       ";; This buffer is for notes you don't want to [s]ave."
       (should-error (execute-kbd-macro "j"))
       (should-error (execute-kbd-macro "42j")))))
+
+(ert-deftest vimp-test-preserve-column ()
+  "Test `vimp-previous-line' and `vimp-next-line' preserve the column."
+  :tags '(vimp motion)
+  (ert-info ("Simple")
+    (vimp-test-buffer
+      "ab[c]\nabcdef\n\nabcd\n"
+      ("j")
+      "abc\nab[c]def\n\nabcd\n")
+    (vimp-test-buffer
+      "ab[c]\nabcdef\n\nabcd\n"
+      ("jj")
+      "abc\nabcdef\n[\n]abcd\n")
+    (vimp-test-buffer
+      "ab[c]\nabcdef\n\nabcd\n"
+      ("jjj")
+      "abc\nabcdef\n\nab[c]d\n")
+    (vimp-test-buffer
+      "ab[c]\nabcdef\n\nabcd\n"
+      ("jjjk")
+      "abc\nabcdef\n[\n]abcd\n")
+    (vimp-test-buffer
+      "ab[c]\nabcdef\n\nabcd\n"
+      ("jjjkk")
+      "abc\nab[c]def\n\nabcd\n")))
 
 (ert-deftest vimp-test-beginning-of-line ()
   "Test `vimp-beginning-of-line' motion"
@@ -6077,7 +6109,13 @@ Below some empty line."))
       "Th[i]s is \"a test\". For \"quote\" objects."
       (emacs-lisp-mode)
       ("da\"")
-      "This is[.] For \"quote\" objects.")))
+      "This is[.] For \"quote\" objects."))
+  (ert-info ("Operator on empty quotes")
+    (vimp-test-buffer
+      "This is [a]n \"\" empty quote"
+      (emacs-lisp-mode)
+      ("ci\"XXX" [escape])
+      "This is an \"XX[X]\" empty quote")))
 
 (ert-deftest vimp-test-paren-objects ()
   "Test `vimp-inner-paren', etc."
@@ -6211,7 +6249,83 @@ Below some empty line."))
     (vimp-test-buffer
       "(([\"]\"))\n"
       ("dab")
-      "([)]\n")))
+      "([)]\n"))
+  (ert-info ("Enlarge to smallest complete surrounding")
+    (vimp-test-buffer
+      "for (auto i : vector) {
+  if (c<ond) {
+    do_[s]>omething();
+  }
+}"
+      ("i}")
+      "for (auto i : vector) {<
+  if (cond) {
+    do_something();
+  }[\n]>}")))
+
+(ert-deftest vimp-test-forces-linewise-text-objects ()
+  "Test `vimp-text-object-change-visual-type' option."
+  :tags '(vimp text-object)
+  (let ((vimp-text-object-change-visual-type t))
+    (ert-info ("Change visual type")
+      (vimp-test-buffer
+        "  function(opts) {
+    this.var1 = something();
+    [t]his.var2 = something_else();
+    return something_nasty();
+  }
+"
+        ("Vi}")
+        "  function(opts) {<
+    this.var1 = something();
+    this.var2 = something_else();
+    return something_nasty();
+ [ ]>}
+"
+        (should (eq (vimp-visual-type) 'inclusive)))))
+  (let ((vimp-text-object-change-visual-type nil))
+    (ert-info ("Change visual type keeping linewise")
+      (vimp-test-buffer
+        "  function(opts) {
+    this.var1 = something();
+    [t]his.var2 = something_else();
+    return something_nasty();
+  }
+"
+        ("Vi}")
+        "  function(opts) {
+<    this.var1 = something();
+    this.var2 = something_else();
+    return something_nasty();\n>  }
+"
+        (should (eq (vimp-visual-type) 'line)))))
+  (let ((vimp-text-object-change-visual-type nil))
+    (ert-info ("Linewise outer block")
+      (vimp-test-buffer
+        "  function(opts) {
+    this.var1 = something();
+    [t]his.var2 = something_else();
+    return something_nasty();
+  }
+"
+        ("Va}")
+        "<  function(opts) {
+    this.var1 = something();
+    this.var2 = something_else();
+    return something_nasty();
+  }
+>"
+        (should (eq (vimp-visual-type) 'line)))))
+  (ert-info ("Forced motion type should change text object type")
+    (vimp-test-buffer
+      "for (int i=0; i<10; i++) {
+  if ([c]ond) {
+    do_something();
+  }
+}"
+      ("dVi}")
+      "for (int i=0; i<10; i++) {
+\[}]")))
 
 (ert-deftest vimp-test-tag-objects ()
   "Test `vimp-inner-tag', etc."

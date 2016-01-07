@@ -7,6 +7,8 @@
 
 ;; This illustrates how to redefine yas-expand to S-TAB.
 (define-key yas-minor-mode-map [backtab]     'yas-expand)
+(define-key yas-minor-mode-map ("M-e")     'yas-expand)
+
 
 ;; Strangely, just redefining one of the variations below won't work.
 ;; All rebinds seem to be needed.

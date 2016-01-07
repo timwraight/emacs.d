@@ -3,7 +3,7 @@
 ;; Author: Vegard Øye <vegard_oye at hotmail.com>
 ;; Maintainer: Vegard Øye <vegard_oye at hotmail.com>
 
-;; Version: 1.2.5
+;; Version: 1.2.8
 
 ;;
 ;; This file is NOT part of GNU Emacs.
@@ -1045,6 +1045,10 @@ current search result."
             (goto-char (+ beg count))
             (setq vimp-this-type 'inclusive))))))))
 
+(defun vimp-ex-search-setup ()
+  "Hook to initialize the minibuffer for ex search."
+  (add-hook 'pre-command-hook #'vimp-ex-remove-default))
+
 (defun vimp-ex-start-search (direction count)
   "Start a new search in a certain DIRECTION."
   ;; store buffer and window where the search started
@@ -1060,9 +1064,15 @@ current search result."
       (let* ((minibuffer-local-map vimp-ex-search-keymap)
              (search-string
               (condition-case err
-                  (read-string (if (eq vimp-ex-search-direction 'forward)
-                                   "/" "?")
-                               nil 'vimp-ex-search-history)
+                  (minibuffer-with-setup-hook
+                      #'vimp-ex-search-setup
+                    (read-string (if (eq vimp-ex-search-direction 'forward)
+                                     "/" "?")
+                                 (and vimp-ex-search-history
+                                      (propertize
+                                       (car vimp-ex-search-history)
+                                       'face 'shadow))
+                                 'vimp-ex-search-history))
                 (quit
                  (vimp-ex-search-stop-session)
                  (vimp-ex-delete-hl 'vimp-ex-search)

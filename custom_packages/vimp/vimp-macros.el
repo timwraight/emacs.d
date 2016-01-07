@@ -3,7 +3,7 @@
 ;; Author: Vegard Øye <vegard_oye at hotmail.com>
 ;; Maintainer: Vegard Øye <vegard_oye at hotmail.com>
 
-;; Version: 1.2.5
+;; Version: 1.2.8
 
 ;;
 ;; This file is NOT part of GNU Emacs.
@@ -315,6 +315,40 @@ of the object; otherwise it is placed at the end of the object."
      (t
       count))))
 
+(defun vimp-text-object-make-linewise (range)
+  "Turn the text object selection RANGE to linewise.
+The selection is adjusted in a sensible way so that the selected
+lines match the user intent. In particular, whitespace-only parts
+at the first and last lines are omitted. This function returns
+the new range."
+  ;; Bug #607
+  ;; If new type is linewise and the selection of the
+  ;; first line consists of whitespace only, the
+  ;; beginning is moved to the start of the next line. If
+  ;; the selections of the last line consists of
+  ;; whitespace only, the end is moved to the end of the
+  ;; previous line.
+  (let ((expanded (plist-get (vimp-range-properties range) :expanded))
+        (newrange (vimp-expand-range range t)))
+    (save-excursion
+      ;; skip whitespace at the beginning
+      (goto-char (vimp-range-beginning newrange))
+      (skip-chars-forward " \t")
+      (when (and (not (bolp)) (eolp))
+        (vimp-set-range-beginning newrange (1+ (point))))
+      ;; skip whitepsace at the end
+      (goto-char (vimp-range-end newrange))
+      (skip-chars-backward " \t")
+      (when (and (not (eolp)) (bolp))
+        (vimp-set-range-end newrange (1- (point))))
+      ;; only modify range if result is not empty
+      (if (> (vimp-range-beginning newrange)
+             (vimp-range-end newrange))
+          range
+        (unless expanded
+          (vimp-contract-range newrange))
+        newrange))))
+
 (defmacro vimp-define-text-object (object args &rest body)
   "Define a text object command OBJECT.
 BODY should return a range (BEG END) to the right of point
@@ -375,7 +409,15 @@ if COUNT is positive, and to the left of it if negative.
                ;; unless the selection goes the other way
                (setq mark  (vimp-range-beginning range)
                      point (vimp-range-end range)
-                     type  (vimp-type range))
+                     type  (vimp-type
+                            (if vimp-text-object-change-visual-type
+                                range
+                              (vimp-visual-range))))
+               (when (and (eq type 'line)
+                          (not (eq type (vimp-type range))))
+                 (let ((newrange (vimp-text-object-make-linewise range)))
+                   (setq mark (vimp-range-beginning newrange)
+                         point (vimp-range-end newrange))))
                (when (< dir 0)
                  (vimp-swap mark point))
                ;; select the union
@@ -394,6 +436,9 @@ if COUNT is positive, and to the left of it if negative.
                ;; ensure the range is properly expanded
                (vimp-contract-range range)
                (vimp-expand-range range)
+               ;; possibly convert to linewise
+               (when (eq vimp-this-type-modified 'line)
+                 (setq range (vimp-text-object-make-linewise range)))
                (vimp-set-range-properties range nil)
                range))))))))
 
@@ -488,6 +533,7 @@ RETURN-TYPE is non-nil."
         (type vimp-operator-range-type)
         (range (vimp-range (point) (point)))
         command count modifier)
+    (setq vimp-this-type-modified nil)
     (vimp-save-echo-area
       (cond
        ;; Ex mode

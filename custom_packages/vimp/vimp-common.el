@@ -2,7 +2,7 @@
 ;; Author: Vegard Øye <vegard_oye at hotmail.com>
 ;; Maintainer: Vegard Øye <vegard_oye at hotmail.com>
 
-;; Version: 1.2.5
+;; Version: 1.2.8
 
 ;;
 ;; This file is NOT part of GNU Emacs.
@@ -635,6 +635,7 @@ Return a list (MOTION COUNT [TYPE])."
                      (vimp-visual-line . line)
                      (vimp-visual-block . block)))
         command prefix)
+    (setq vimp-this-type-modified nil)
     (unless motion
       (while (progn
                (setq command (vimp-keypress-parser)
@@ -660,7 +661,8 @@ Return a list (MOTION COUNT [TYPE])."
             (setq type 'inclusive)
           (setq type 'exclusive)))
        (t
-        (setq type modifier))))
+        (setq type modifier)))
+      (setq vimp-this-type-modified type))
     (list motion count type)))
 
 (defun vimp-mouse-events-p (keys)
@@ -3096,14 +3098,18 @@ selection matches that object exactly."
           (goto-char (cdr op-end))
           (when (and (zerop (funcall thing +1)) (match-beginning 0))
             (setq cl-end (cons (match-beginning 0) (match-end 0)))))
-        ;; use the tighter one of both
+        ;; Bug #607: use the tightest selection that contains the
+        ;; original selection. If non selection contains the original,
+        ;; use the larger one.
         (cond
          ((and (not op) (not cl-end))
           (error "No surrounding delimiters found"))
-         ((or (not op)    ; first not found
-              (and cl-end ; second better
-                   (>= (car op-end) (car op))
-                   (<= (cdr cl-end) (cdr cl))))
+         ((or (not op) ; first not found
+              (and cl-end ; second found
+                   (>= (car op-end) (car op)) ; second smaller
+                   (<= (cdr cl-end) (cdr cl))
+                   (<= (car op-end) beg)      ; second contains orig
+                   (>= (cdr cl-end) end)))
           (setq op op-end cl cl-end)))
         (setq op-end op cl-end cl) ; store copy
         ;; if the current selection contains the surrounding
@@ -3256,7 +3262,16 @@ function is called from `vimp-select-quote'."
           (goto-char (if (> dir 0) beg end))
           (if (and wsboth (setq bnd (bounds-of-thing-at-point 'vimp-space)))
               (if (> dir 0) (setq beg (car bnd)) (setq end (cdr bnd)))))))
-      (vimp-range beg end 'inclusive :expanded t))))
+      (vimp-range beg end
+                  ;; HACK: fixes #583
+                  ;; When not in visual state, an empty range is
+                  ;; possible. However, this cannot be achieved with
+                  ;; inclusive ranges, hence we use exclusive ranges
+                  ;; in this case. In visual state the range must be
+                  ;; inclusive because otherwise the selection would
+                  ;; be wrong.
+                  (if (vimp-visual-state-p) 'inclusive 'exclusive)
+                  :expanded t))))
 
 (defun vimp-select-quote (quote beg end type count &optional inclusive)
   "Return a range (BEG END) of COUNT quoted text objects.

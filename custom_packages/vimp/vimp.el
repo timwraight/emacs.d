@@ -16,6 +16,7 @@
 ;;      Jonas Bernoulli <jonas at bernoul.li>
 ;;      Jonathan Claggett <jclaggett at lonocloud.com>
 ;;      José A. Romero L. <escherdragon at gmail.com>
+;;      Justin Burkett <justin@burkett.cc>
 ;;      Lars Andersen <expez at expez.com>
 ;;      Lintaro Ina <tarao.gnn at gmail.com>
 ;;      Lukasz Wrzosek <wrzoski at mail.com>
@@ -36,7 +37,7 @@
 ;;      Tom Willemse <tom at ryuslash.org>
 ;;      Trevor Murphy <trevor.m.murphy at gmail.com>
 ;;      Ulrich Müller <ulm at gentoo.org>
-;;      Vasilij Schneidermann <>
+;;      Vasilij Schneidermann <v.schneidermann@gmail.com>
 ;;      Vegard Øye <vegard_oye at hotmail.com>
 ;;      Winfred Lu <winfred.lu at gmail.com>
 ;;      Wolfgang Jenkner <wjenkner at inode.at>
@@ -47,7 +48,7 @@
 ;;      To get in touch, please use the bug tracker or the
 ;;      mailing list (see below).
 ;; Created: 2011-03-01
-;; Version: 1.2.5
+;; Version: 1.2.8
 ;; Keywords: emulation, vim
 ;; URL: http://gitorious.org/vimp
 ;;      Repository: git://gitorious.org/vimp/vimp.git

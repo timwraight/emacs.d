@@ -3,7 +3,7 @@
 ;; Author: Vegard Øye <vegard_oye at hotmail.com>
 ;; Maintainer: Vegard Øye <vegard_oye at hotmail.com>
 
-;; Version: 1.2.5
+;; Version: 1.2.8
 
 ;;
 ;; This file is NOT part of GNU Emacs.
@@ -29,6 +29,8 @@
 
 (declare-function vimp-add-command-properties "vimp-common"
                   (command &rest properties))
+(declare-function vimp-update-insert-state-bindings "vimp-maps"
+                  (&optional _option-name remove force))
 
 ;;; Hooks
 
@@ -168,6 +170,13 @@ of `vimp-shift-width'."
   :type 'boolean
   :group 'vimp)
 (make-variable-buffer-local 'vimp-shift-round)
+
+(defcustom vimp-indent-convert-tabs t
+  "If non-nil `vimp-indent' converts between leading tabs and spaces.
+  Whether tabs are converted to spaces or vice versa depends on the
+  value of `indent-tabs-mode'."
+  :type 'boolean
+  :group 'vimp)
 
 (defcustom vimp-default-cursor t
   "The default cursor.
@@ -438,6 +447,14 @@ The default behavior is to yank the whole line."
            (vimp-add-command-properties
             'vimp-yank-line
             :motion (if value 'vimp-end-of-line 'vimp-line))))
+
+(defcustom vimp-disable-insert-state-bindings nil
+  "Whether insert state bindings should be used. Excludes
+bindings for escape, delete and `vimp-toggle-key'."
+  :group 'vimp
+  :type 'boolean
+  :initialize #'vimp-custom-initialize-pending-reset
+  :set #'vimp-update-insert-state-bindings)
 
 (defcustom vimp-echo-state t
   "Whether to signal the current state in the echo area."
@@ -905,6 +922,15 @@ that line."
   :type 'boolean
   :group 'vimp)
 
+(defcustom vimp-text-object-change-visual-type t
+  "Text objects change the current visual state type.
+If non-nil then a text-object changes the type of the visual state to
+its default selection type (e.g. a word object always changes to
+charwise visual state). Otherwise the current visual state type is
+preserved."
+  :type 'boolean
+  :group 'vimp)
+
 (defgroup vimp-cjk nil
   "CJK support"
   :prefix "vimp-cjk-"
@@ -968,14 +994,14 @@ available for completion."
 (defface vimp-ex-commands '(( nil
                               :underline t
                               :slant italic))
-         "Face for the vimp command in completion in ex mode."
-         :group 'vimp)
+  "Face for the vimp command in completion in ex mode."
+  :group 'vimp)
 
 (defface vimp-ex-info '(( ((supports :slant))
                           :slant italic
                           :foreground "red"))
-         "Face for the info message in ex mode."
-         :group 'vimp)
+  "Face for the info message in ex mode."
+  :group 'vimp)
 
 (defcustom vimp-ex-visual-char-range nil
   "Type of default ex range in visual char state.
@@ -1082,22 +1108,22 @@ specified, then is works only on the first match."
   :group 'vimp)
 
 (defface vimp-ex-search '((t :inherit isearch))
-         "Face for interactive search."
-         :group 'vimp)
+  "Face for interactive search."
+  :group 'vimp)
 
 (defface vimp-ex-lazy-highlight '((t :inherit lazy-highlight))
-         "Face for highlighting all matches in interactive search."
-         :group 'vimp)
+  "Face for highlighting all matches in interactive search."
+  :group 'vimp)
 
 (defface vimp-ex-substitute-matches '((t :inherit lazy-highlight))
-         "Face for interactive substitute matches."
-         :group 'vimp)
+  "Face for interactive substitute matches."
+  :group 'vimp)
 
 (defface vimp-ex-substitute-replacement '((((supports :underline))
                                            :underline t
                                            :foreground "red"))
-         "Face for interactive replacement text."
-         :group 'vimp)
+  "Face for interactive replacement text."
+  :group 'vimp)
 
 (defcustom vimp-command-window-height 8
   "Height (in lines) of the command line window.
@@ -1203,6 +1229,11 @@ describing it, etc.")
 
 (vimp-define-local-var vimp-this-type nil
   "Current motion type.")
+
+(vimp-define-local-var vimp-this-type-modified nil
+  "Non-nil iff current motion type has been modified by the user.
+If the type has been modified, this variable contains the new
+type.")
 
 (vimp-define-local-var vimp-this-register nil
   "Current register.")
@@ -1336,7 +1367,7 @@ has been repeated.")
   "The information about the number of following lines the
 insertion should be repeated. This is list (LINE COLUMN COUNT)
 where LINE is the line-number where the original insertion
-started and COLUMN is either a number of function determining the
+started and COLUMN is either a number or function determining the
 column where the repeated insertions should take place. COUNT is
 number of repeats (including the original insertion).")
 
@@ -1725,7 +1756,7 @@ Otherwise the previous command is assumed as substitute.")
           (goto-char (point-min))
           (buffer-substring (point-min) (line-end-position)))
          ;; no repo, use plain version
-         (t "1.2.5")))))
+         (t "1.2.8")))))
   "The current version of Evil")
 
 (defun vimp-version ()

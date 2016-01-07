@@ -30,7 +30,7 @@
 (vimp-leader/set-key "0" 'delete-window)
 (vimp-leader/set-key "s" 'save-buffer)
 (vimp-leader/set-key "m" 'helm-jabber-contacts)
-(vimp-leader/set-key "x" 'helm-M-x)
+(vimp-leader/set-key "x" 'eval-defun)
 (vimp-leader/set-key "v" 'clipboard-yank)
 (vimp-leader/set-key ";" 'split-window-vertically)
 (vimp-leader/set-key ";" 'helm-mini)
