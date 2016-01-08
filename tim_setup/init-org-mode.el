@@ -56,7 +56,7 @@
 
 (setq org-startup-indented 1)
 (setq org-use-speed-commands t)
-(add-hook 'org-mode-hook 'auto-fill-mode)
+(add-hook 'org-mode-hook 'visual-fill-column-mode)
 (setq org-agenda-window-setup 'current-window)
 (setq org-agenda-restore-windows-after-quit nil)
 (setq org-src-fontify-natively t)

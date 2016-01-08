@@ -34,6 +34,8 @@
                             (rainbow-delimiters-mode)
                             (visual-line-mode t)))
 (add-hook 'text-mode-hook (lambda () (variable-pitch-mode t)))
+(add-hook 'text-mode-hook 'visual-fill-column)
+
 (global-visual-line-mode t)
 
 ;; Time format for modeline
