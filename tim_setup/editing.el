@@ -1,5 +1,4 @@
 ; EDITING
-(electric-pair-mode)
 
 ;; TERMINAL
 ;; Get shift-up working from terminal

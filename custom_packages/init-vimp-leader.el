@@ -66,6 +66,8 @@
 ;; Project keymap
 (setq project-keymap (make-sparse-keymap))
 (define-key project-keymap (kbd "p") 'helm-projectile-switch-project)
+(define-key project-keymap (kbd "f") 'helm-browse-project)
+
 (vimp-leader/set-key "p" project-keymap)
 
 
