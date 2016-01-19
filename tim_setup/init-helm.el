@@ -1,5 +1,5 @@
 (require 'helm-config)
-(setq helm-ls-git-show-abs-or-relative 'relative)
+(setq helm-ls-git-show-abs-or-relative 'absolute)
 (setq helm-ff-transformer-show-only-basename nil)
 
 (setq
@@ -18,7 +18,7 @@
           #'(lambda ()
               (define-key eshell-mode-map [remap pcomplete] 'helm-esh-pcomplete)))
 
-(setq helm-truncate-lines t)
+(setq helm-truncate-lines nil)
 (helm-mode)
 (setq helm-M-x-fuzzy-match t)
 (global-set-key "\M-x" 'helm-M-x)

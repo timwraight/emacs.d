@@ -3,10 +3,9 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
-
 (when window-system
-  (set-face-attribute 'default nil :height 140)
-  (set-face-attribute 'variable-pitch nil :height 190 :family "Calibri")
+  (set-face-attribute 'default nil :height 160)
+  (set-face-attribute 'variable-pitch nil :height 190 :family "Helvetica")
   (set-frame-parameter nil 'fullscreen 'fullboth)
   (add-hook 'mu4e-headers-mode-hook 'variable-pitch-mode)
   (server-start))
@@ -31,12 +30,9 @@
 (add-hook 'prog-mode-hook (lambda ()
                             (interactive)
                             (setq truncate-lines t)
-                            (rainbow-delimiters-mode)
-                            (visual-line-mode t)))
+                            (rainbow-delimiters-mode)))
 (add-hook 'text-mode-hook (lambda () (variable-pitch-mode t)))
-(add-hook 'text-mode-hook 'visual-fill-column)
 
-(global-visual-line-mode t)
 
 ;; Time format for modeline
 (setq display-time-string-forms

@@ -61,6 +61,7 @@
 (define-key help-keymap (kbd "f") 'describe-function)
 (define-key help-keymap (kbd "v") 'describe-variable)
 (define-key help-keymap (kbd "a") 'helm-apropos)
+(define-key help-keymap "d" 'helm-dash-at-point)
 (vimp-leader/set-key "h" help-keymap)
 
 ;; Project keymap
@@ -85,11 +86,6 @@
 (vimp-leader/set-key "i" 'forward-symbol)
 (vimp-leader/set-key "n" (lambda () (interactive) (forward-symbol -1)))
 
-;; AUTO-COMPLETE
-;; Use kj to escape from auto-complete mode
-;(key-chord-define ac-menu-map "lk" 'ac-stop)
-;(key-chord-define ac-completing-map "lk" 'ac-stop)
-;(key-chord-define ac-menu-map "ff" 'ac-isearch)
 
 ;; GLOBAL (org)
 (vimp-leader/set-key "l" 'org-store-link)

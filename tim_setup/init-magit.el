@@ -25,4 +25,16 @@
 (define-key magit-mode-map (kbd "i") 'magit-stage)
 (define-key magit-mode-map (kbd "n") 'magit-unstage)
 
+(define-key magit-commit-section-map (kbd "e") 'next-line)
+(define-key magit-commit-section-map (kbd "u") 'previous-line)
+(define-key magit-commit-section-map (kbd "i") 'magit-stage)
+(define-key magit-commit-section-map (kbd "n") 'magit-unstage)
+
+(define-key magit-hunk-section-map (kbd "e") 'next-line)
+(define-key magit-hunk-section-map (kbd "u") 'previous-line)
+(define-key magit-hunk-section-map (kbd "i") 'magit-stage)
+(define-key magit-hunk-section-map (kbd "n") 'magit-unstage)
+
+
+
 )
