@@ -15,6 +15,11 @@
 (define-key magit-unstaged-section-map (kbd "i") 'magit-stage)
 (define-key magit-unstaged-section-map (kbd "n") 'magit-unstage)
 
+(define-key magit-staged-section-map (kbd "e") 'next-line)
+(define-key magit-staged-section-map (kbd "u") 'previous-line)
+(define-key magit-staged-section-map (kbd "i") 'magit-stage)
+(define-key magit-staged-section-map (kbd "n") 'magit-unstage)
+
 (define-key magit-file-mode-map (kbd "e") 'next-line)
 (define-key magit-file-mode-map (kbd "u") 'previous-line)
 (define-key magit-file-mode-map (kbd "i") 'magit-stage)

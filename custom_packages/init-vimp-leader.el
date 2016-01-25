@@ -30,6 +30,30 @@
 (define-key window-keymap "2" 'split-window-below)
 (vimp-leader/set-key "w" window-keymap)
 
+;; El-screen keymap
+(setq elscreen-keymap (make-sparse-keymap))
+(define-key elscreen-keymap (kbd "i") 'elscreen-next)
+(define-key elscreen-keymap (kbd "n") 'elscreen-previous)
+(define-key elscreen-keymap (kbd "c") 'elscreen-clone)
+(define-key elscreen-keymap (kbd "k") 'elscreen-kill)
+(define-key elscreen-keymap (kbd "r") 'elscreen-screen-nickname)
+(define-key elscreen-keymap (kbd "g") 'elscreen-goto)
+(define-key elscreen-keymap (kbd "0") (lambda () (interactive) (elscreen-goto 0)))
+(define-key elscreen-keymap (kbd "1") (lambda () (interactive) (elscreen-goto 1)))
+(define-key elscreen-keymap (kbd "2") (lambda () (interactive) (elscreen-goto 2)))
+(define-key elscreen-keymap (kbd "3") (lambda () (interactive) (elscreen-goto 3)))
+(define-key elscreen-keymap (kbd "4") (lambda () (interactive) (elscreen-goto 4)))
+(define-key elscreen-keymap (kbd "5") (lambda () (interactive) (elscreen-goto 5)))
+(define-key elscreen-keymap (kbd "6") (lambda () (interactive) (elscreen-goto 6)))
+
+
+
+
+
+(vimp-leader/set-key "s" elscreen-keymap)
+
+
+
 ;; Checker keymap
 (setq checker-keymap (make-sparse-keymap))
 (define-key checker-keymap (kbd "n") 'flycheck-previous-error)
@@ -43,6 +67,8 @@
 (define-key files-keymap (kbd "s") 'save-buffer)
 (define-key files-keymap (kbd "f") 'helm-find-files)
 (define-key files-keymap (kbd "p") 'helm-browse-project)
+(define-key files-keymap (kbd "SPC") 'save-buffer)
+
 (vimp-leader/set-key "f" files-keymap)
 
 ;; Evaluation keymap
@@ -76,7 +102,6 @@
 ;; GLOBAL (windows and buffers)
 (vimp-leader/set-key "r" 'helm-recentf)
 (vimp-leader/set-key "k" 'kill-this-buffer)
-(vimp-leader/set-key "s" 'save-buffer)
 (vimp-leader/set-key "m" 'helm-jabber-contacts)
 (vimp-leader/set-key "x" 'helm-M-x)
 (vimp-leader/set-key "v" 'clipboard-yank)

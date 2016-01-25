@@ -268,7 +268,7 @@
                        helm-c-source-jabber-contacts
                        ;; helm-source-mantis-tickets
                        tim-source-projectile-projects
-                       helm-source-mu
+                       ;; helm-source-mu
                        helm-source-locate
                        helm-source-org-agenda-items
                        helm-source-recentf)
