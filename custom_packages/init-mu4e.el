@@ -15,6 +15,9 @@
      (define-key mu4e-headers-mode-map (kbd "i") 'mu4e-headers-view-message)
      (define-key mu4e-headers-mode-map (kbd "l") 'mu4e-headers-mark-for-unmark)
      (define-key mu4e-headers-mode-map (kbd "n") 'mu4e-headers-mark-for-refile)
+
+     (define-key mu4e-headers-mode-map (kbd "c") 'mu4e-compose-new)
+
      (define-key mu4e-headers-mode-map (kbd "M-m") 'mu4e-headers-mark-for-something)
      (define-key mu4e-headers-mode-map (kbd "r") 'mu4e-headers-rerun-search)
      (define-key mu4e-headers-mode-map (kbd "m") 'helm-timi)

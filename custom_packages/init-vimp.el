@@ -42,7 +42,7 @@
 
 (setq vimp-auto-indent nil)
 (global-set-key (kbd "<f1>") 'vimp-local-mode)
-; Make RET and SPACE do default Emacsy things instead of vim-movement
+; Make RET do default Emacsy things instead of vim-movement
 
 (defun my-move-key (keymap-from keymap-to key)
     "Moves key binding from one keymap to another, deleting from the old location. "
@@ -50,7 +50,6 @@
     (define-key keymap-from key nil))
 
 (my-move-key vimp-motion-state-map vimp-normal-state-map (kbd "RET"))
-(my-move-key vimp-motion-state-map vimp-normal-state-map " ")
 
 (define-key vimp-normal-state-map (kbd "M-m") 'helm-proj)
 (define-key vimp-normal-state-map (kbd "m") 'helm-timi)
@@ -69,6 +68,7 @@
 (define-key vimp-normal-state-map (kbd "' k") 'helm-show-kill-ring)
 (define-key vimp-normal-state-map (kbd "' x") 'helm-M-x)
 (define-key vimp-normal-state-map (kbd "' f") 'helm-find-files)
+(define-key vimp-normal-state-map (kbd "SPC") vimp-leader--default-map)
 
 
 
