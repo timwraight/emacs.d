@@ -45,12 +45,13 @@
 (define-key elscreen-keymap (kbd "4") (lambda () (interactive) (elscreen-goto 4)))
 (define-key elscreen-keymap (kbd "5") (lambda () (interactive) (elscreen-goto 5)))
 (define-key elscreen-keymap (kbd "6") (lambda () (interactive) (elscreen-goto 6)))
-
-
-
-
-
 (vimp-leader/set-key "s" elscreen-keymap)
+
+;; Org map
+(setq org-keymap (make-sparse-keymap))
+(define-key org-keymap (kbd "c") 'org-capture)
+(vimp-leader/set-key "o" org-keymap)
+
 
 
 

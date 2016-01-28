@@ -33,6 +33,19 @@
                             (rainbow-delimiters-mode)))
 (add-hook 'text-mode-hook (lambda () (variable-pitch-mode t)))
 
+;; allow us to easily switch to monospaced or variable pitch fonts
+;; per buffer. Need to define these faces, obviously
+(defun buffer-switch-to-monospaced ()
+  (interactive)
+  (face-remap-add-relative 'default 'fixed-pitch)
+  )
+
+(defun buffer-switch-to-variable-pitch ()
+  (interactive)
+  (face-remap-add-relative 'default 'variable-pitch)
+  )
+
+
 
 ;; Time format for modeline
 (setq display-time-string-forms
