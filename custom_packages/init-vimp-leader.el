@@ -19,7 +19,9 @@
 (vimp-leader/set-key "z" (lambda () (interactive) (save-buffers-kill-terminal 1)))
 
 ;; Window keymap
-(setq window-keymap (make-sparse-keymap))
+(defvar window-keymap (make-sparse-keymap)
+  "Keymap for window commands.")
+(defalias 'windows window-keymap)
 (define-key window-keymap (kbd "i") 'vimp-window-right)
 (define-key window-keymap (kbd "n") 'vimp-window-left)
 (define-key window-keymap (kbd "u") 'vimp-window-up)
@@ -38,6 +40,8 @@
 (define-key elscreen-keymap (kbd "k") 'elscreen-kill)
 (define-key elscreen-keymap (kbd "r") 'elscreen-screen-nickname)
 (define-key elscreen-keymap (kbd "g") 'elscreen-goto)
+(define-key elscreen-keymap (kbd "t") 'elscreen-toggle)
+
 (define-key elscreen-keymap (kbd "0") (lambda () (interactive) (elscreen-goto 0)))
 (define-key elscreen-keymap (kbd "1") (lambda () (interactive) (elscreen-goto 1)))
 (define-key elscreen-keymap (kbd "2") (lambda () (interactive) (elscreen-goto 2)))
@@ -45,6 +49,10 @@
 (define-key elscreen-keymap (kbd "4") (lambda () (interactive) (elscreen-goto 4)))
 (define-key elscreen-keymap (kbd "5") (lambda () (interactive) (elscreen-goto 5)))
 (define-key elscreen-keymap (kbd "6") (lambda () (interactive) (elscreen-goto 6)))
+(define-key elscreen-keymap (kbd "7") (lambda () (interactive) (elscreen-goto 7)))
+(define-key elscreen-keymap (kbd "8") (lambda () (interactive) (elscreen-goto 8)))
+(define-key elscreen-keymap (kbd "9") (lambda () (interactive) (elscreen-goto 9)))
+
 (vimp-leader/set-key "s" elscreen-keymap)
 
 ;; Org map
@@ -77,19 +85,25 @@
 (define-key eval-keymap (kbd "x") 'eval-defun)
 (define-key eval-keymap (kbd "b") 'eval-buffer)
 (define-key eval-keymap (kbd "r") 'eval-region)
-
 (vimp-leader/set-key "e" eval-keymap)
 
 
+;; Helm keymap
+(setq helm-keymap (make-sparse-keymap))
+(define-key helm-keymap (kbd "d") 'helm-dash)
+(define-key helm-keymap (kbd "s") 'helm-swoop)
+(vimp-leader/set-key "h" helm-keymap)
 
-;; Help keymap
 
-(setq help-keymap (make-sparse-keymap))
-(define-key help-keymap (kbd "f") 'describe-function)
-(define-key help-keymap (kbd "v") 'describe-variable)
-(define-key help-keymap (kbd "a") 'helm-apropos)
-(define-key help-keymap "d" 'helm-dash-at-point)
-(vimp-leader/set-key "h" help-keymap)
+
+
+;; Docs keymap
+(setq docs-keymap (make-sparse-keymap))
+(define-key docs-keymap (kbd "f") 'describe-function)
+(define-key docs-keymap (kbd "v") 'describe-variable)
+(define-key docs-keymap (kbd "a") 'helm-apropos)
+(define-key docs-keymap "d" 'helm-dash-at-point)
+(vimp-leader/set-key "d" docs-keymap)
 
 ;; Project keymap
 (setq project-keymap (make-sparse-keymap))

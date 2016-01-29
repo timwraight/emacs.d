@@ -22,6 +22,8 @@
      (define-key mu4e-headers-mode-map (kbd "r") 'mu4e-headers-rerun-search)
      (define-key mu4e-headers-mode-map (kbd "m") 'helm-timi)
      (define-key mu4e-headers-mode-map (kbd "SPC") vimp-leader--default-map)
+     (define-key mu4e-view-mode-map (kbd "SPC") vimp-leader--default-map)
+
 
      ;; Search result navigation
      (define-key mu4e-headers-mode-map (kbd "M-n") 'mu4e-headers-query-prev)
