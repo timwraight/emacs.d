@@ -7,7 +7,6 @@
 (vimp-leader/set-key "=" 'balance-windows)
 (vimp-leader/set-key "\"" (kbd "yse\""))
 (vimp-leader/set-key "a" 'helm-git-grep-at-point)
-(vimp-leader/set-key "d" 'helm-dash)
 (vimp-leader/set-key "f" 'helm-find-files)
 (vimp-leader/set-key "g" 'magit-status)
 (vimp-leader/set-key "h" 'vc-version-ediff)
