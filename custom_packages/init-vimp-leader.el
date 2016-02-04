@@ -40,6 +40,8 @@
 (define-key elscreen-keymap (kbd "r") 'elscreen-screen-nickname)
 (define-key elscreen-keymap (kbd "g") 'elscreen-goto)
 (define-key elscreen-keymap (kbd "t") 'elscreen-toggle)
+(define-key elscreen-keymap (kbd "SPC") 'helm-elscreen-history)
+
 
 (define-key elscreen-keymap (kbd "0") (lambda () (interactive) (elscreen-goto 0)))
 (define-key elscreen-keymap (kbd "1") (lambda () (interactive) (elscreen-goto 1)))
@@ -82,6 +84,7 @@
 ;; Evaluation keymap
 (setq eval-keymap (make-sparse-keymap))
 (define-key eval-keymap (kbd "x") 'eval-defun)
+(define-key eval-keymap (kbd "SPC") 'eval-defun)
 (define-key eval-keymap (kbd "b") 'eval-buffer)
 (define-key eval-keymap (kbd "r") 'eval-region)
 (vimp-leader/set-key "e" eval-keymap)
@@ -94,6 +97,13 @@
 (vimp-leader/set-key "h" helm-keymap)
 
 
+;; Timp keymap
+;; This is a keymap for common editing commands. We give it prominence on
+;; the 't' key because these should be common operations to perform in normal mode
+(setq timp-keymap (make-sparse-keymap))
+(define-key timp-keymap (kbd "c") 'vimp-yank-line)
+(define-key timp-keymap (kbd "m") 'helm-mark-ring)
+(vimp-leader/set-key "t" timp-keymap)
 
 
 ;; Docs keymap
@@ -132,3 +142,11 @@
 
 (vimp-leader/set-key-for-mode 'sgml-mode "<right>" 'tagedit-forward-slurp-tag)
 (vimp-leader/set-key-for-mode 'sgml-mode "<left>" 'tagedit-forward-barf-tag)
+
+
+
+;; JEDI KEYMAP
+(setq jedi-keymap (make-sparse-keymap))
+(define-key jedi-keymap (kbd "g") 'jedi:goto-definition)
+(define-key jedi-keymap (kbd "g") 'jedi:goto-definition)
+(vimp-leader/set-key-for-mode 'python-mode "j" 'jedi-keymap)
