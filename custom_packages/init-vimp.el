@@ -68,6 +68,7 @@
 (define-key vimp-normal-state-map (kbd "' k") 'helm-show-kill-ring)
 (define-key vimp-normal-state-map (kbd "' x") 'helm-M-x)
 (define-key vimp-normal-state-map (kbd "' f") 'helm-find-files)
+(define-key vimp-normal-state-map (kbd "v") 'lalopmak-vimp-paste-at-eol)
 (define-key vimp-normal-state-map (kbd "SPC") vimp-leader--default-map)
 
 
