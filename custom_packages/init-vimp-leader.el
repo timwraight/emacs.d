@@ -106,6 +106,13 @@
 (vimp-leader/set-key "t" timp-keymap)
 
 
+;; Marks keymap
+(setq marks-keymap (make-sparse-keymap))
+(define-key marks-keymap (kbd "s") 'push-mark)
+(define-key marks-keymap (kbd "h") 'helm-mark-ring)
+(vimp-leader/set-key "m" marks-keymap)
+
+
 ;; Docs keymap
 (setq docs-keymap (make-sparse-keymap))
 (define-key docs-keymap (kbd "f") 'describe-function)
