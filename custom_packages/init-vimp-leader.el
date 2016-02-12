@@ -93,7 +93,7 @@
 ;; Helm keymap
 (setq helm-keymap (make-sparse-keymap))
 (define-key helm-keymap (kbd "d") 'helm-dash)
-(define-key helm-keymap (kbd "s") 'helm-swoop)
+(define-key helm-keymap (kbd "s") 'helm-swoop-without-pre-input)
 (vimp-leader/set-key "h" helm-keymap)
 
 
@@ -118,6 +118,7 @@
 (define-key docs-keymap (kbd "f") 'describe-function)
 (define-key docs-keymap (kbd "v") 'describe-variable)
 (define-key docs-keymap (kbd "a") 'helm-apropos)
+(define-key docs-keymap (kbd "SPC") 'helm-apropos)
 (define-key docs-keymap "d" 'helm-dash-at-point)
 (vimp-leader/set-key "d" docs-keymap)
 
