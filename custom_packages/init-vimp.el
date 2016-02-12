@@ -71,6 +71,7 @@
 (define-key vimp-normal-state-map (kbd "v") 'lalopmak-vimp-paste-at-eol)
 (define-key vimp-normal-state-map (kbd "SPC") vimp-leader--default-map)
 
+(define-key vimp-insert-state-map (kbd "RET") 'electric-newline-and-maybe-indent)
 
 
 ;; Make movement keys work like they should

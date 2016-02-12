@@ -11,3 +11,6 @@
 ;;   )
 
 (add-hook 'python-mode-hook 'buffer-switch-to-monospaced)
+(add-hook 'python-mode-hook 'electric-indent-local-mode)
+
+

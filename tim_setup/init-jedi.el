@@ -15,3 +15,5 @@
                                     (t nil t)
                                     (nil definition t)
                                     (t definition t)))
+(eval-after-load "company-mode"
+  (add-to-list 'company-backends 'company-jedi)) 
