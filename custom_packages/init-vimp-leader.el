@@ -108,7 +108,8 @@
 
 ;; Marks keymap
 (setq marks-keymap (make-sparse-keymap))
-(define-key marks-keymap (kbd "s") 'push-mark)
+(define-key marks-keymap (kbd "m") (lambda () (interactive) (push-mark)))
+(define-key marks-keymap (kbd "SPC") 'pop-global-mark)
 (define-key marks-keymap (kbd "h") 'helm-mark-ring)
 (vimp-leader/set-key "m" marks-keymap)
 
@@ -157,4 +158,6 @@
 (setq jedi-keymap (make-sparse-keymap))
 (define-key jedi-keymap (kbd "g") 'jedi:goto-definition)
 (define-key jedi-keymap (kbd "g") 'jedi:goto-definition)
-(vimp-leader/set-key-for-mode 'python-mode "j" 'jedi-keymap)
+(define-key jedi-keymap (kbd "d") 'jedi:show-doc)
+
+(vimp-leader/set-key-for-mode 'python-mode "j" jedi-keymap)
