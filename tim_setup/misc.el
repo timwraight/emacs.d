@@ -14,7 +14,7 @@
 ;; HTML
 (add-hook 'sgml-mode-hook (lambda ()
                             (interactive)
-                            (variable-pitch-mode 0)
+                            (buffer-switch-to-monospaced)
                             (toggle-truncate-lines)
                             (emmet-mode)
                             (turn-off-flyspell)))

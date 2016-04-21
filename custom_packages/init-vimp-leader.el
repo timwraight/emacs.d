@@ -135,7 +135,6 @@
 ;; GLOBAL (windows and buffers)
 (vimp-leader/set-key "r" 'helm-recentf)
 (vimp-leader/set-key "k" 'kill-this-buffer)
-(vimp-leader/set-key "m" 'helm-jabber-contacts)
 (vimp-leader/set-key "x" 'helm-M-x)
 (vimp-leader/set-key "v" 'clipboard-yank)
 (vimp-leader/set-key ";" 'split-window-vertically)

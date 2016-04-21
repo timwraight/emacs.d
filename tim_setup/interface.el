@@ -22,6 +22,7 @@
 ;; default to unified diffs
 (setq diff-switches "-u")
 
+(add-hook 'prog-mode-hook 'buffer-switch-to-monospaced)
 
 ;; ALERTS
 (setq ring-bell-function 'ignore)
