@@ -78,3 +78,7 @@
 (define-key vimp-normal-state-map (kbd "<remap> <vimp-previous-line>") 'vimp-previous-visual-line)
 (define-key vimp-motion-state-map (kbd "<remap> <vimp-next-line>") 'vimp-next-visual-line)
 (define-key vimp-motion-state-map (kbd "<remap> <vimp-previous-line>") 'vimp-previous-visual-line)
+
+
+
+(vimp-define-key 'normal org-mode-map (kbd "<tab>") 'org-cycle)

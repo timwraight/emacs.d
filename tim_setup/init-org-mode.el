@@ -7,7 +7,7 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/org-mode/lisp")
 (setq org-directory "~/Dropbox/org")
 (setq org-default-notes-file "~/Dropbox/org/general.org")
-
+(setq org-startup-indented t)
 ; Keywords
 (setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
                           (sequence "QUESTION(q)" "|" "ANSWERED(a)")))
