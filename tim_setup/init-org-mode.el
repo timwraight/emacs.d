@@ -55,7 +55,6 @@
 (defun two-level-buffer ()
     (s-join "/" (last (split-string (buffer-file-name) "/") 2)))
 
-(setq org-startup-indented 1)
 (setq org-use-speed-commands t)
 (setq org-agenda-window-setup 'current-window)
 (setq org-agenda-restore-windows-after-quit nil)

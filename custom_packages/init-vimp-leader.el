@@ -119,7 +119,8 @@
 (define-key docs-keymap (kbd "f") 'describe-function)
 (define-key docs-keymap (kbd "v") 'describe-variable)
 (define-key docs-keymap (kbd "a") 'helm-apropos)
-(define-key docs-keymap (kbd "SPC") 'helm-apropos)
+(define-key docs-keymap (kbd "SPC") 'describe-foo-at-point)
+
 (define-key docs-keymap "d" 'helm-dash-at-point)
 (vimp-leader/set-key "d" docs-keymap)
 
