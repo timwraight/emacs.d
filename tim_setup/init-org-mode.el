@@ -49,7 +49,8 @@
 
 (setq org-archive-mark-done nil)
 (setq org-archive-location "%s_archive::* Archived Tasks")
-
+ 
+(add-hook 'org-mode-hook 'auto-fill-mode)
 
 (require 's)
 (defun two-level-buffer ()
@@ -276,12 +277,17 @@ Callers of this function already widen the buffer view."
 (defun two-level-buffer ()
     (s-join "/" (last (split-string (buffer-file-name) "/") 2)))
 
+(defun item-with-outline ()
+   (concat (org-format-outline-path (org-get-outline-path)) " »"))
+
+
+
 (setq org-agenda-prefix-format
  (quote
-  ((agenda . "%-12:c%?-12t% s %b")
+  ((agenda . "%-12:c%?-12t% s %b ")
    (timeline . "  % s")
-   (todo . "  %-42(two-level-buffer) ")
-   (tags . "  %-42(two-level-buffer) ")
+   (todo . " %i %-12:c %(item-with-outline) ")
+   (tags .  " %i %-12:c %(item-with-outline) ")
    (search . " %i %-12:c"))))
 
 (setq org-agenda-custom-commands
