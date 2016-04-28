@@ -82,6 +82,19 @@
 
 (add-to-list 'org-global-properties '("CLOCK_MODELINE_TOTAL" . "today"))
 
+(defun make-subtle-breadcrumbs ()
+  ""
+  (save-excursion
+    (goto-char (point-min))
+    ; Are we on a breadcrumb path?
+    (while (re-search-forward "»" nil t) 
+      (add-face-text-property (point-at-bol) (match-beginning 0) 
+                           '(:foreground "#777")))) 
+  )
+
+
+(add-hook 'org-finalize-agenda-hook 'make-subtle-breadcrumbs)
+
 
 ;;;; Refile settings
 ; Exclude DONE state tasks from refile targets
@@ -278,7 +291,11 @@ Callers of this function already widen the buffer view."
     (s-join "/" (last (split-string (buffer-file-name) "/") 2)))
 
 (defun item-with-outline ()
-   (concat (org-format-outline-path (org-get-outline-path)) " »"))
+  (let*
+      ((outline-path (org-get-outline-path)))
+    (if (not (eq '() outline-path))
+        (concat (org-format-outline-path outline-path) " »")
+      "")))
 
 
 
