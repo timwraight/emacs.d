@@ -97,6 +97,10 @@
                            (toggle-truncate-lines)
                            (setq comint-prompt-regexp "[[:alpha:]_-]+(-|=)> ")))
 
+
+;; Shell script editing
+(add-to-list 'auto-mode-alist '("\\.zsh\\'" . sh-mode))
+
 ;; ESHELL
 (setq eshell-prompt-function
       (lambda nil
