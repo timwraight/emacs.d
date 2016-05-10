@@ -37,7 +37,7 @@
      (define-key mu4e-view-mode-map (kbd "m") 'helm-timi)
      (define-key mu4e-view-mode-map (kbd "A") 'vimp-visual-line)
      ))
-(setq mu4e-split-view 'horizontal)
+(setq mu4e-split-view nil)
 (setq mu4e-headers-leave-behavior 'apply)
 (setq mu4e-use-fancy-chars t)
 
