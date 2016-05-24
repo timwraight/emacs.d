@@ -12,7 +12,6 @@
 (vimp-leader/set-key "h" 'vc-version-ediff)
 (vimp-leader/set-key "l" 'split-window-below)
 (vimp-leader/set-key "o" 'helm-org-agenda-files-headings)
-(vimp-leader/set-key "q" 'save-buffers-kill-emacs)
 (vimp-leader/set-key "r" (lambda() (interactive) (kbd "ysiW")))
 (vimp-leader/set-key "t" 'google-this)
 (vimp-leader/set-key "z" (lambda () (interactive) (save-buffers-kill-terminal 1)))
@@ -30,6 +29,15 @@
 (define-key window-keymap "3" 'split-window-horizontally)
 (define-key window-keymap "2" 'split-window-below)
 (vimp-leader/set-key "w" window-keymap)
+(which-key-add-key-based-replacements
+  "<SPC> w" "window commands")
+
+(setq quit-keymap (make-sparse-keymap))
+(define-key quit-keymap (kbd "q") 'save-buffers-kill-emacs)
+(vimp-leader/set-key "q" quit-keymap)
+(which-key-add-key-based-replacements
+  "<SPC> q" "quit")
+
 
 ;; El-screen keymap
 (setq elscreen-keymap (make-sparse-keymap))
@@ -55,11 +63,16 @@
 (define-key elscreen-keymap (kbd "9") (lambda () (interactive) (elscreen-goto 9)))
 
 (vimp-leader/set-key "s" elscreen-keymap)
+(which-key-add-key-based-replacements
+  "<SPC> s" "elscreen commands")
+
 
 ;; Org map
 (setq org-keymap (make-sparse-keymap))
 (define-key org-keymap (kbd "c") 'org-capture)
 (vimp-leader/set-key "o" org-keymap)
+(which-key-add-key-based-replacements
+  "<SPC> o" "org commands")
 
 
 
@@ -70,6 +83,9 @@
 (define-key checker-keymap (kbd "i") 'flycheck-next-error)
 (define-key checker-keymap (kbd "a") 'flyspell-auto-correct-previous-word)
 (vimp-leader/set-key "c" checker-keymap)
+(which-key-add-key-based-replacements
+  "<SPC> c" "checker commands")
+
 
 ;; Files keymap
 (setq files-keymap (make-sparse-keymap))
@@ -80,6 +96,9 @@
 (define-key files-keymap (kbd "SPC") 'save-buffer)
 
 (vimp-leader/set-key "f" files-keymap)
+(which-key-add-key-based-replacements
+  "<SPC> f" "file commands")
+
 
 ;; Evaluation keymap
 (setq eval-keymap (make-sparse-keymap))
@@ -88,6 +107,8 @@
 (define-key eval-keymap (kbd "b") 'eval-buffer)
 (define-key eval-keymap (kbd "r") 'eval-region)
 (vimp-leader/set-key "e" eval-keymap)
+(which-key-add-key-based-replacements
+  "<SPC> e" "lisp evaluation commands")
 
 
 ;; Helm keymap
@@ -95,6 +116,8 @@
 (define-key helm-keymap (kbd "d") 'helm-dash)
 (define-key helm-keymap (kbd "s") 'helm-swoop-without-pre-input)
 (vimp-leader/set-key "h" helm-keymap)
+(which-key-add-key-based-replacements
+  "<SPC> h" "help commands")
 
 
 ;; Timp keymap
@@ -104,6 +127,8 @@
 (define-key timp-keymap (kbd "c") 'vimp-yank-line)
 (define-key timp-keymap (kbd "m") 'helm-mark-ring)
 (vimp-leader/set-key "t" timp-keymap)
+(which-key-add-key-based-replacements
+  "<SPC> t" "common editing commands")
 
 
 ;; Marks keymap
@@ -112,6 +137,8 @@
 (define-key marks-keymap (kbd "SPC") 'pop-global-mark)
 (define-key marks-keymap (kbd "h") 'helm-mark-ring)
 (vimp-leader/set-key "m" marks-keymap)
+(which-key-add-key-based-replacements
+  "<SPC> m" "marking commands")
 
 
 ;; Docs keymap
@@ -123,6 +150,8 @@
 
 (define-key docs-keymap "d" 'helm-dash-at-point)
 (vimp-leader/set-key "d" docs-keymap)
+(which-key-add-key-based-replacements
+  "<SPC> d" "docs commands")
 
 ;; Project keymap
 (setq project-keymap (make-sparse-keymap))
@@ -130,6 +159,8 @@
 (define-key project-keymap (kbd "f") 'helm-browse-project)
 
 (vimp-leader/set-key "p" project-keymap)
+(which-key-add-key-based-replacements
+  "<SPC> p" "project commands")
 
 
 (vimp-leader/set-key "b" 'ido-switch-buffer)
