@@ -72,5 +72,5 @@
 
 
 ;; DESKTOP
-(setq desktop-path "~/.emacs.d/.emacs.desktop")
+(setq desktop-path '("~/.emacs.d/.emacs.desktop"))
 (desktop-save-mode 1)
