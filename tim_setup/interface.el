@@ -1,8 +1,8 @@
 ;; KEYS
-(setq mac-option-key-is-meta nil
-      mac-command-key-is-meta t
-      mac-command-modifier 'meta
-      mac-option-modifier 'none)
+(setq mac-right-option-key-is-meta nil
+      mac-right-command-key-is-meta t
+      mac-right-command-modifier 'meta
+      mac-right-option-modifier 'none)
 
 ;; SOLARIZED
 (load-theme 'zenburn t)
@@ -80,3 +80,44 @@
 ;; DESKTOP
 (setq desktop-path '("~/.emacs.d/.emacs.desktop"))
 (desktop-save-mode 1)
+
+
+
+;; SAVED FACES FROM 'customize'
+;; I can't find an easy way of saving them as normal emacs lisp, so am just saving
+;; them here commented, so that I don't lose them
+
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(default ((t (:inherit nil :stipple nil :background "#222" :foreground "#DCDCCC" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 160 :width normal :foundry "nil" :family "Helvetica"))))
+;;  '(company-scrollbar-fg ((t (:background "goldenrod1"))))
+;;  '(elscreen-tab-background-face ((t (:background "gray13"))))
+;;  '(elscreen-tab-current-screen-face ((t (:inherit fixed-pitch :background "DarkGoldenrod3" :foreground "white"))))
+;;  '(elscreen-tab-other-screen-face ((t (:inherit fixed-pitch :background "CadetBlue4" :foreground "white"))))
+;;  '(fixed-pitch ((t (:height 150 :family "Consolas"))))
+;;  '(flycheck-color-mode-line-error-face ((t (:inherit flycheck-fringe-error :weight normal))))
+;;  '(flycheck-color-mode-line-warning-face ((t (:inherit flycheck-fringe-warning :weight normal))))
+;;  '(helm-ff-directory ((t nil)))
+;;  '(helm-ff-executable ((t nil)))
+;;  '(hl-line ((t (:inherit highlight :background "#313131"))))
+;;  '(italic ((t (:foreground "#aaa" :slant italic))))
+;;  '(magit-diff-added ((t (:foreground "DarkOliveGreen4"))))
+;;  '(magit-diff-added-highlight ((t (:foreground "DarkOliveGreen3"))))
+;;  '(magit-diff-removed ((t (:foreground "red4"))))
+;;  '(magit-diff-removed-highlight ((t (:foreground "red3"))))
+;;  '(mode-line ((t (:background "#1C1B19" :foreground "#8FB28F" :box (:line-width -1 :style released-button)))))
+;;  '(mode-line-inactive ((t (:inherit mode-line :background "#000" :foreground "#191C19" :box (:line-width -1 :style released-button) :weight light))))
+;;  '(mu4e-header-face ((t (:inherit fixed-pitch))))
+;;  '(mu4e-header-highlight-face ((t (:inherit fixed-pitch :background "dark cyan" :weight normal :height 150))))
+;;  '(mu4e-header-marks-face ((t (:inherit font-lock-preprocessor-face :family "Consolas"))))
+;;  '(mu4e-highlight-face ((t (:inherit fixed-pitch))))
+;;  '(mu4e-replied-face ((t (:inherit fixed-pitch :foreground "#6F6F6F"))))
+;;  '(mu4e-unread-face ((t (:foreground "white" :family "Consolas"))))
+;;  '(org-special-keyword ((t (:inherit font-lock-keyword-face :foreground "#656C5F" :weight normal))))
+;;  '(popup-isearch-match ((t (:background "DarkGoldenrod2" :foreground "#DCDCCC"))))
+;;  '(region ((t (:background "#404013"))))
+;;  '(undo-tree-visualizer-active-branch-face ((t (:foreground "yellow"))))
+;;  '(variable-pitch ((t (:height 160 :family "Helvetica")))))
