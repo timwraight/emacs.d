@@ -131,6 +131,103 @@
              (append Info-default-directory-list
                      '("~/info")))
 
+;; JUMBLE OF STUFF PREVIOUSLY IN SETUP-SPECIFIC
+(setq 
+ alert-default-style (quote notifier)
+ ansi-color-names-vector
+   ["#3F3F3F" "#CC9393" "#7F9F7F" "#F0DFAF" "#8CD0D3" "#DC8CC3" "#93E0E3" "#DCDCCC"]
+ auto-indent-key-for-end-of-line-insert-char-then-newline "M-RET"
+ bookmark-save-flag 1
+ buffer-face-mode-face (quote fixed-pitch)
+ confluence-save-credentials t
+ custom-safe-themes
+   (quote
+    ("6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" "2025fdb1712b921f60f1a7d673fefb5c397a37ba5a6e2d21b1589c4372bb9733" "b19b642b0d5be8ec4bc96698260575d3eb81a22064911a8036213facf3a9a6fa" default))
+ elscreen-display-screen-number nil
+ elscreen-tab-display-control nil
+ elscreen-tab-display-kill-screen nil
+ fci-rule-color "#383838"
+ flycheck-disabled-checkers (quote (css-csslint))
+ haskell-process-auto-import-loaded-modules t
+ haskell-process-log t
+ haskell-process-suggest-remove-import-lines t
+ helm-ff-transformer-show-only-basename nil
+ holiday-bahai-holidays nil
+ holiday-islamic-holidays nil
+ jabber-alert-presence-hooks nil
+ jabber-auto-reconnect t
+ jabber-backlog-days 7.0
+ magit-diff-refine-hunk nil
+ magit-diff-section-arguments (quote ("--no-ext-diff"))
+ magit-push-always-verify nil
+ mu4e-split-view nil
+ multi-term-program "/usr/local/bin/zsh"
+ ns-right-command-modifier (quote meta)
+ org-agenda-include-diary t
+ org-agenda-span (quote day)
+ org-agenda-start-with-clockreport-mode nil
+ org-agenda-start-with-log-mode nil
+ org-list-allow-alphabetical t
+ org-time-clocksum-format
+   (quote
+    (:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
+ password-cache-expiry 28800
+ python-indent-offset 4
+ shr-color-visible-distance-min 10
+ shr-color-visible-luminance-min 80
+ sql-product (quote postgres)
+ term-bind-key-alist
+   (quote
+    (("M-y" . term-send-right)
+     ("M-l" . term-send-left)
+     ("C-c C-c" . term-interrupt-subjob)
+     ("C-c C-e" . term-send-esc)
+     ("C-p" . previous-line)
+     ("C-n" . next-line)
+     ("C-s" . isearch-forward)
+     ("C-r" . isearch-backward)
+     ("C-m" . term-send-return)
+     ("C-y" . term-paste)
+     ("M-i" . term-send-forward-word)
+     ("M-n" . term-send-backward-word)
+     ("M-u" . term-send-up)
+     ("M-e" . term-send-down)
+     ("M-d" . term-send-forward-kill-word)
+     ("M-<backspace>" . term-send-backward-kill-word)
+     ("<C-backspace>" . term-send-backward-kill-word)
+     ("M-r" . term-send-reverse-search-history)
+     ("M-," . term-send-raw)
+     ("M-." . comint-dynamic-complete)))
+ undo-tree-history-directory-alist (quote (("." . "/tmp")))
+ vc-annotate-background "#2B2B2B"
+ vc-annotate-color-map
+   (quote
+    ((20 . "#BC8383")
+     (40 . "#CC9393")
+     (60 . "#DFAF8F")
+     (80 . "#D0BF8F")
+     (100 . "#E0CF9F")
+     (120 . "#F0DFAF")
+     (140 . "#5F7F5F")
+     (160 . "#7F9F7F")
+     (180 . "#8FB28F")
+     (200 . "#9FC59F")
+     (220 . "#AFD8AF")
+     (240 . "#BFEBBF")
+     (260 . "#93E0E3")
+     (280 . "#6CA0A3")
+     (300 . "#7CB8BB")
+     (320 . "#8CD0D3")
+     (340 . "#94BFF3")
+     (360 . "#DC8CC3")))
+ vc-annotate-very-old-color "#DC8CC3"
+ vc-follow-symlinks t
+ vimp-magic (quote very-magic)
+ with-editor-emacsclient-executable "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
+ yaml-indent-offset 2)
+
+
+
 
 ; Doc function for elisp
 ;;; describe this point lisp only
