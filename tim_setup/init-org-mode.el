@@ -366,3 +366,12 @@ pointing to it."
       (when (and cat task)
 	(insert (format "[%c] %-12s  %s\n" i cat task))
 	(cons i marker)))))
+
+
+(global-set-key (kbd "<f10>") 'org-agenda)
+(global-set-key (kbd "<f3>") 'org-iswitchb)
+
+(setq org-capture-templates
+      '(("t" "Todo" entry (file "~/Documents/workspace/org/refile.org")
+         "* TODO %?\n  %i"))
+      )
