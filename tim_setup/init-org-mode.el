@@ -23,7 +23,7 @@
      (define-key org-agenda-keymap (kbd "SPC") vimp-leader--default-map)))
 
 
-
+(setq org-enforce-todo-dependencies t)
 
 ; Persist clock history
 (setq org-clock-out-when-done t)
@@ -130,7 +130,12 @@
 ;; org-babel
 
 ;; active Babel languages
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((dot . t)))
 (setq org-ditaa-jar-path "~/bin/ditaa.jar")
+(setq org-startup-with-inline-images t)
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
 
 (with-eval-after-load 'vimp
   (vimp-define-key 'insert org-mode-map (kbd "M-i") 'org-metaright)
@@ -312,7 +317,12 @@ Callers of this function already widen the buffer view."
         (" " "Tim's Agenda"
          ((agenda "")
           (tags-todo "-dormant-CANCELLED/TODO|NEXT"
-                     ((org-agenda-overriding-header "All Tasks")
+                     ((org-agenda-overriding-header "Tasks")
+                      (org-agenda-sorting-strategy
+                       '(todo-state-down priority-down))
+                      ))
+          (tags-todo "/QUESTION"
+                     ((org-agenda-overriding-header "Questions")
                       (org-agenda-sorting-strategy
                        '(todo-state-down priority-down))
                       ))
@@ -372,6 +382,10 @@ pointing to it."
 (global-set-key (kbd "<f3>") 'org-iswitchb)
 
 (setq org-capture-templates
-      '(("t" "Todo" entry (file "~/Documents/workspace/org/refile.org")
-         "* TODO %?\n  %i"))
+      '(("t" "Todo" entry (file "~/org/refile.org")
+         "* TODO %?\n  %i")
+        ("q" "Question" entry (file "~/org/refile.org")
+         "* QUESTION %?\n  %i")
+        ("j" "Journal" entry (file+datetree "~/org/journal.org")
+             "* %?\nEntered on %U\n "))
       )

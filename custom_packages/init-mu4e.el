@@ -36,8 +36,11 @@
      (define-key mu4e-view-mode-map (kbd "M-s") 'mu4e-view-save-attachment)
      (define-key mu4e-view-mode-map (kbd "m") 'helm-timi)
      (define-key mu4e-view-mode-map (kbd "A") 'vimp-visual-line)
+
+
+     (require 'org-mu4e)
      ))
-(setq mu4e-split-view nil)
+(setq mu4e-split-view 'vertical)
 (setq mu4e-headers-leave-behavior 'apply)
 (setq mu4e-use-fancy-chars t)
 
@@ -50,7 +53,12 @@
 (add-hook 'mu4e-headers-mode-hook 'toggle-truncate-lines)
 (add-hook 'mu4e-headers-mode-hook (lambda () (interactive) (variable-pitch-mode t)))
 
-
+(setq mu4e-headers-fields
+    '( (:human-date    .  15)    ;; alternatively, use :human-date
+       (:flags         .   6)
+       (:from          .  22)
+       (:subject       .  50)))
+(setq mu4e-headers-visible-columns 140)
 
 ;; Flow text nicely for outgoing emails
 (add-hook 'mu4e-compose-mode-hook

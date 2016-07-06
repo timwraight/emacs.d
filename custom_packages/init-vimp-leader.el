@@ -70,6 +70,8 @@
 ;; Org map
 (setq org-keymap (make-sparse-keymap))
 (define-key org-keymap (kbd "c") 'org-capture)
+(define-key org-keymap (kbd "<SPC>") 'org-capture)
+
 (vimp-leader/set-key "o" org-keymap)
 (which-key-add-key-based-replacements
   "<SPC> o" "org commands")
