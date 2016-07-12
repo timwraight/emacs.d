@@ -163,6 +163,8 @@
 (vimp-leader/set-key "p" project-keymap)
 (which-key-add-key-based-replacements
   "<SPC> p" "project commands")
+ 
+(vimp-leader/set-key "<SPC>" 'vimp-jump-backward)
 
 
 (vimp-leader/set-key "b" 'ido-switch-buffer)
