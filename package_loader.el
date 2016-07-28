@@ -32,7 +32,8 @@
             helm-ls-git helm-git-grep flycheck flycheck-pos-tip flycheck-color-mode-line s git-timemachine window-number
             rainbow-delimiters projectile helm-projectile jabber jabber-otr alert auctex company-auctex virtualenvwrapper
             undo-tree volatile-highlights yaml-mode zenburn-theme helm-swoop which-key py-autopep8
-            magit markdown-mode python el-get helm ace-jump-mode helm-ag emmet-mode elscreen 
+            magit markdown-mode python el-get helm ace-jump-mode helm-ag emmet-mode elscreen py-isort
+            buffer-move
             )
   "A list of packages to ensure are installed at launch.")
 
@@ -77,7 +78,6 @@
 (add-to-list 'load-path "~/.emacs.d/custom_packages/vimp-leader/")
 (add-to-list 'load-path "~/.emacs.d/custom_packages/vimp-surround/")
 (add-to-list 'load-path "~/.emacs.d/custom_packages/lalopmak-vimp/")
-(add-to-list 'load-path "~/.emacs.d/custom_packages/vimp-mc/")
 
 (require 'vimp)
 (require 'mu4e)
@@ -87,7 +87,6 @@
 (load "~/.emacs.d/custom_packages/init-vimp-leader.el")
 (load "~/.emacs.d/custom_packages/init-vimp-surround.el")
 (load "~/.emacs.d/custom_packages/init-mu4e.el")
-(load "~/.emacs.d/custom_packages/init-vimp-mc.el")
 
 (load "~/.emacs.d/custom_packages/bible_search/bibsearch.el")
 (require 'lalopmak-vimp)
