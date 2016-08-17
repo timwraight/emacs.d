@@ -2,7 +2,11 @@
 (setq mac-right-option-key-is-meta nil
       mac-right-command-key-is-meta t
       mac-right-command-modifier 'meta
-      mac-right-option-modifier 'none)
+      mac-right-option-modifier 'meta
+
+      mac-left-option-modifier 'meta
+
+      )
 
 ;; SOLARIZED
 (load-theme 'zenburn t)
@@ -52,6 +56,14 @@
   (face-remap-add-relative 'default 'variable-pitch)
   )
 
+;; COMPILATION MODE
+(add-hook 'compilation-mode-hook 'buffer-switch-to-monospaced)
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  (read-only-mode)
+  (ansi-color-apply-on-region compilation-filter-start (point))
+  (read-only-mode))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 
 ;; Time format for modeline
@@ -79,8 +91,10 @@
 
 ;; DESKTOP
 (setq desktop-path '("~/.emacs.d/.emacs.desktop"))
-(desktop-save-mode 1)
+;; (desktop-save-mode 1)
 
+
+(global-set-key (kbd "<f2>") (lambda () (interactive) (switch-to-buffer "*mu4e-headers*")))
 
 
 ;; SAVED FACES FROM 'customize'

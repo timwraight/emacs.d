@@ -72,6 +72,16 @@
 
 (define-key vimp-insert-state-map (kbd "RET") 'electric-newline-and-maybe-indent)
 
+(defun mirror-last-arg ()
+    (interactive)
+  (insert (concat "=" (word-at-point)))
+  )
+;;  keybinding already used by mail
+;; (define-key vimp-insert-state-map (kbd "C-M-m") 'mirror-last-arg)
+
+
+
+
 
 ;; Make movement keys work like they should
 (define-key vimp-normal-state-map (kbd "<remap> <vimp-next-line>") 'vimp-next-visual-line)
@@ -82,3 +92,6 @@
 
 
 (vimp-define-key 'normal org-mode-map (kbd "<tab>") 'org-cycle)
+(with-eval-after-load "git-commit"
+  (vimp-define-key 'insert git-commit-mode-map (kbd "M-k") 'git-kill-to-comments)
+  )

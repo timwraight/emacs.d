@@ -1,0 +1,4 @@
+# key: if
+# --
+if ${1:predicate}:
+    ${2:body}

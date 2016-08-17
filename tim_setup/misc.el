@@ -1,7 +1,7 @@
 
 
 ;; Typing break mode, to remind me to take breaks
-(type-break-mode)
+;; (type-break-mode)
 
 
  ;; Semantic mode
@@ -76,7 +76,7 @@
 (add-hook 'sql-mode-hook
           (lambda ()
             (sql-highlight-postgres-keywords)
-            (auto-complete-mode)))
+            ))
 
 (eval-after-load "sql-mode"
   '(progn
@@ -223,7 +223,6 @@
  vc-annotate-very-old-color "#DC8CC3"
  vc-follow-symlinks t
  vimp-magic (quote very-magic)
- with-editor-emacsclient-executable "/Applications/Emacs.app/Contents/MacOS/bin/emacsclient"
  yaml-indent-offset 2)
 
 

@@ -25,9 +25,14 @@
 (define-key window-keymap (kbd "u") 'vimp-window-up)
 (define-key window-keymap (kbd "e") 'vimp-window-down)
 (define-key window-keymap "1" 'delete-other-windows)
-(define-key window-keymap "0" 'delete-window)
-(define-key window-keymap "3" 'split-window-horizontally)
+(define-key window-keymap "0" (lambda () (interactive) (delete-window) (balance-windows)))
+(define-key window-keymap "3" (lambda () (interactive) 
+                                           (split-window-horizontally)
+                                           (balance-windows)
+                                                ))
 (define-key window-keymap "2" 'split-window-below)
+(define-key window-keymap "p" 'winner-undo)
+(define-key window-keymap "C-p" 'winner-redo)
 (vimp-leader/set-key "w" window-keymap)
 (which-key-add-key-based-replacements
   "<SPC> w" "window commands")
@@ -83,6 +88,8 @@
 (setq checker-keymap (make-sparse-keymap))
 (define-key checker-keymap (kbd "n") 'flycheck-previous-error)
 (define-key checker-keymap (kbd "i") 'flycheck-next-error)
+(define-key checker-keymap (kbd "u") 'previous-error)
+(define-key checker-keymap (kbd "e") 'next-error)
 (define-key checker-keymap (kbd "a") 'flyspell-auto-correct-previous-word)
 (vimp-leader/set-key "c" checker-keymap)
 (which-key-add-key-based-replacements
@@ -113,21 +120,14 @@
   "<SPC> e" "lisp evaluation commands")
 
 
-;; Helm keymap
-(setq helm-keymap (make-sparse-keymap))
-(define-key helm-keymap (kbd "d") 'helm-dash)
-(define-key helm-keymap (kbd "s") 'helm-swoop-without-pre-input)
-(vimp-leader/set-key "h" helm-keymap)
-(which-key-add-key-based-replacements
-  "<SPC> h" "help commands")
-
-
 ;; Timp keymap
 ;; This is a keymap for common editing commands. We give it prominence on
 ;; the 't' key because these should be common operations to perform in normal mode
 (setq timp-keymap (make-sparse-keymap))
 (define-key timp-keymap (kbd "c") 'vimp-yank-line)
 (define-key timp-keymap (kbd "m") 'helm-mark-ring)
+(define-key timp-keymap (kbd "l") 'linum-mode)
+
 (vimp-leader/set-key "t" timp-keymap)
 (which-key-add-key-based-replacements
   "<SPC> t" "common editing commands")
@@ -144,27 +144,36 @@
 
 
 ;; Docs keymap
-(setq docs-keymap (make-sparse-keymap))
-(define-key docs-keymap (kbd "f") 'describe-function)
-(define-key docs-keymap (kbd "v") 'describe-variable)
-(define-key docs-keymap (kbd "a") 'helm-apropos)
-(define-key docs-keymap (kbd "SPC") 'describe-foo-at-point)
+(setq help-keymap (make-sparse-keymap))
+(define-key help-keymap (kbd "f") 'describe-function)
+(define-key help-keymap (kbd "v") 'describe-variable)
+(define-key help-keymap (kbd "a") 'helm-apropos)
+(define-key help-keymap (kbd "SPC") 'describe-foo-at-point)
+(define-key help-keymap (kbd "d") 'helm-dash)
+(define-key help-keymap (kbd "s") 'helm-swoop-without-pre-input)
 
-(define-key docs-keymap "d" 'helm-dash-at-point)
-(vimp-leader/set-key "d" docs-keymap)
+(define-key help-keymap "h" 'helm-dash-at-point)
+(vimp-leader/set-key "h" help-keymap)
 (which-key-add-key-based-replacements
-  "<SPC> d" "docs commands")
+  "<SPC> h" "help commands")
 
 ;; Project keymap
-(setq project-keymap (make-sparse-keymap))
-(define-key project-keymap (kbd "p") 'helm-projectile-switch-project)
-(define-key project-keymap (kbd "f") 'helm-browse-project)
+(setq python-keymap (make-sparse-keymap))
+(define-key python-keymap (kbd "i") 'rope-auto-import)
+(define-key python-keymap (kbd "SPC") 'pytest-one)
+(define-key python-keymap (kbd "1") 'pytest-one)
+(define-key python-keymap (kbd "2") 'pytest-module)
+(define-key python-keymap (kbd "3") 'pytest-all)
 
-(vimp-leader/set-key "p" project-keymap)
+
+
+(vimp-leader/set-key "p" python-keymap)
 (which-key-add-key-based-replacements
-  "<SPC> p" "project commands")
+  "<SPC> p" "python commands")
  
 (vimp-leader/set-key "<SPC>" 'vimp-jump-backward)
+(vimp-leader/set-key "S-<SPC>" 'vimp-jump-forward)
+
 
 
 (vimp-leader/set-key "b" 'ido-switch-buffer)

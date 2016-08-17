@@ -1,6 +1,6 @@
 (require 'yasnippet)
-(add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
-(add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets/yasnippets")
+(setq-default yas-snippet-dirs '("~/.emacs.d/snippets"))
+;; (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets/yasnippets")
 
 (yas-global-mode 1)
 (yas-reload-all)

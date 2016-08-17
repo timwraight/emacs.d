@@ -78,15 +78,19 @@
 (add-to-list 'load-path "~/.emacs.d/custom_packages/vimp-leader/")
 (add-to-list 'load-path "~/.emacs.d/custom_packages/vimp-surround/")
 (add-to-list 'load-path "~/.emacs.d/custom_packages/lalopmak-vimp/")
+(add-to-list 'load-path "~/.emacs.d/custom_packages/Pymacs/")
+
 
 (require 'vimp)
 (require 'mu4e)
 (require 'vimp-leader)
 (require 'vimp-surround)
+(require 'pymacs)
 (load "~/.emacs.d/custom_packages/init-vimp.el")
 (load "~/.emacs.d/custom_packages/init-vimp-leader.el")
 (load "~/.emacs.d/custom_packages/init-vimp-surround.el")
 (load "~/.emacs.d/custom_packages/init-mu4e.el")
+
 
 (load "~/.emacs.d/custom_packages/bible_search/bibsearch.el")
 (require 'lalopmak-vimp)

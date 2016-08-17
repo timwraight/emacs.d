@@ -43,6 +43,8 @@
 (setq mu4e-split-view 'vertical)
 (setq mu4e-headers-leave-behavior 'apply)
 (setq mu4e-use-fancy-chars t)
+(setq mu4e-view-show-images t)
+
 
 (setq mu4e-maildir "~/Mail")
 (setq mu4e-headers-skip-duplicates t)

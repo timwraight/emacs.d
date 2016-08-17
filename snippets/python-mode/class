@@ -1,0 +1,4 @@
+# key: c
+# --
+class ${1:ClassName}(${2:Parents}):
+    ${3:pass}
