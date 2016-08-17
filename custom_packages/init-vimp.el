@@ -93,5 +93,5 @@
 
 (vimp-define-key 'normal org-mode-map (kbd "<tab>") 'org-cycle)
 (with-eval-after-load "git-commit"
-  (vimp-define-key 'insert git-commit-mode-map (kbd "M-k") 'git-kill-to-comments)
+  (vimp-define-key 'insert with-editor-mode-map (kbd "M-k") 'git-kill-to-comments)
   )
