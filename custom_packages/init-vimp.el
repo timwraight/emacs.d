@@ -67,8 +67,13 @@
 (define-key vimp-normal-state-map (kbd "' k") 'helm-show-kill-ring)
 (define-key vimp-normal-state-map (kbd "' x") 'helm-M-x)
 (define-key vimp-normal-state-map (kbd "' f") 'helm-find-files)
-(define-key vimp-normal-state-map (kbd "v") 'lalopmak-vimp-paste-at-eol)
+(define-key vimp-normal-state-map (kbd "M-v") 'nil)
+(define-key vimp-normal-state-map (kbd "M-v") 'lalopmak-vimp-paste-below-then-normal)
 (define-key vimp-normal-state-map (kbd "SPC") vimp-leader--default-map)
+(define-key vimp-insert-state-map (kbd "M-C-i") nil)
+(define-key vimp-insert-state-map (kbd "M-C-i") 'end-of-line)
+(define-key vimp-insert-state-map (kbd "M-C-u") 'sp-up-sexp)
+
 
 (define-key vimp-insert-state-map (kbd "RET") 'electric-newline-and-maybe-indent)
 
@@ -80,7 +85,7 @@
 ;; (define-key vimp-insert-state-map (kbd "C-M-m") 'mirror-last-arg)
 
 
-
+ 
 
 
 ;; Make movement keys work like they should
@@ -89,9 +94,58 @@
 (define-key vimp-motion-state-map (kbd "<remap> <vimp-next-line>") 'vimp-next-visual-line)
 (define-key vimp-motion-state-map (kbd "<remap> <vimp-previous-line>") 'vimp-previous-visual-line)
 
+;; Easiest way to do this, rather than put a hook on every keypress to
+;; set that 'space was not pressed' is just to set a timestamp of last
+;; time the key was pressed, and if it was within the last 0.5 seconds, insert a p
 
 
+(setq last-space-insert (current-time))
+
+(defun space-or-period ()
+  (interactive)
+  (if (and (< (time-to-seconds (time-subtract (current-time) last-space-insert)) 0.2)
+           (string= " " (string (char-before (point)))))
+           (progn
+             (backward-char 1)
+             (insert ".")
+             (forward-char)
+             )  
+    (progn
+      (insert " ")
+      (setq last-space-insert (current-time))
+      )
+    )
+  )  
+   
+ (vimp-define-key 'insert prog-mode-map (kbd "SPC") 'space-or-period)
+      
 (vimp-define-key 'normal org-mode-map (kbd "<tab>") 'org-cycle)
 (with-eval-after-load "git-commit"
   (vimp-define-key 'insert with-editor-mode-map (kbd "M-k") 'git-kill-to-comments)
   )
+
+
+;; Fix these functions so that they don't skip forwards so that you can use them
+;; multiple times
+(defun increment-number-at-point ()
+      (interactive)
+      (or (looking-at "[0-9]+")
+          (error "No number at point"))
+      (replace-match (number-to-string (1+ (string-to-number (match-string 0))))))
+
+(defun decrement-number-at-point ()
+      (interactive)
+      (or (looking-at "[0-9]+")
+          (error "No number at point"))
+      (replace-match (number-to-string (1- (string-to-number (match-string 0))))))
+
+
+(define-key vimp-normal-state-map (kbd "C-M-u") 'increment-number-at-point)
+(define-key vimp-normal-state-map (kbd "C-M-e") 'decrement-number-at-point)
+
+(vimp-define-key 'normal git-rebase-mode-map (kbd "s") (lambda () (interactivet) (git-rebase-squash)))
+(vimp-define-key 'normal git-rebase-mode-map (kbd "M-e") (lambda () (interactivet) (git-rebase-edit)))
+(with-eval-after-load 'company
+  (vimp-define-key 'insert company-active-map (kbd "M-m") 'company-filter-candidates))
+
+(define-key vimp-normal-state-map (kbd "M-,") (lambda () (interactive) (set-mark-command t)))

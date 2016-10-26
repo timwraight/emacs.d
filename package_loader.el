@@ -33,7 +33,7 @@
             rainbow-delimiters projectile helm-projectile jabber jabber-otr alert auctex company-auctex virtualenvwrapper
             undo-tree volatile-highlights yaml-mode zenburn-theme helm-swoop which-key py-autopep8
             magit markdown-mode python el-get helm ace-jump-mode helm-ag emmet-mode elscreen py-isort
-            buffer-move
+            buffer-move magithub
             )
   "A list of packages to ensure are installed at launch.")
 

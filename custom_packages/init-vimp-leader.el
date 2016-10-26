@@ -24,6 +24,8 @@
 (define-key window-keymap (kbd "n") 'vimp-window-left)
 (define-key window-keymap (kbd "u") 'vimp-window-up)
 (define-key window-keymap (kbd "e") 'vimp-window-down)
+(define-key window-keymap (kbd "t") 'transpose-windows)
+
 (define-key window-keymap "1" 'delete-other-windows)
 (define-key window-keymap "0" (lambda () (interactive) (delete-window) (balance-windows)))
 (define-key window-keymap "3" (lambda () (interactive) 
@@ -32,7 +34,7 @@
                                                 ))
 (define-key window-keymap "2" 'split-window-below)
 (define-key window-keymap "p" 'winner-undo)
-(define-key window-keymap "C-p" 'winner-redo)
+(define-key window-keymap "\C-p" 'winner-redo)
 (vimp-leader/set-key "w" window-keymap)
 (which-key-add-key-based-replacements
   "<SPC> w" "window commands")
@@ -124,7 +126,7 @@
 ;; This is a keymap for common editing commands. We give it prominence on
 ;; the 't' key because these should be common operations to perform in normal mode
 (setq timp-keymap (make-sparse-keymap))
-(define-key timp-keymap (kbd "c") 'vimp-yank-line)
+(define-key timp-keymap (kbd "SPC") 'duplicate-line-or-region)
 (define-key timp-keymap (kbd "m") 'helm-mark-ring)
 (define-key timp-keymap (kbd "l") 'linum-mode)
 
@@ -136,8 +138,7 @@
 ;; Marks keymap
 (setq marks-keymap (make-sparse-keymap))
 (define-key marks-keymap (kbd "m") (lambda () (interactive) (push-mark)))
-(define-key marks-keymap (kbd "SPC") 'pop-global-mark)
-(define-key marks-keymap (kbd "h") 'helm-mark-ring)
+(define-key marks-keymap (kbd "SPC") 'helm-global-mark-ring)
 (vimp-leader/set-key "m" marks-keymap)
 (which-key-add-key-based-replacements
   "<SPC> m" "marking commands")
@@ -150,6 +151,7 @@
 (define-key help-keymap (kbd "a") 'helm-apropos)
 (define-key help-keymap (kbd "SPC") 'describe-foo-at-point)
 (define-key help-keymap (kbd "d") 'helm-dash)
+(define-key help-keymap (kbd "k") 'describe-key)
 (define-key help-keymap (kbd "s") 'helm-swoop-without-pre-input)
 
 (define-key help-keymap "h" 'helm-dash-at-point)
@@ -205,3 +207,4 @@
 (define-key jedi-keymap (kbd "d") 'jedi:show-doc)
 
 (vimp-leader/set-key-for-mode 'python-mode "j" jedi-keymap)
+

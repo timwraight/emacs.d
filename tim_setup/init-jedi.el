@@ -1,3 +1,5 @@
+(setq jedi:environment-root "jedi")  ; or any other name you like
+(setq py-python-command "/usr/local/bin/python3")
 (add-hook 'python-mode-hook 'jedi:setup)
 ;; (add-hook 'jedi-mode-hook 'jedi-direx:setup)
 (setq jedi:complete-on-dot t)
@@ -17,3 +19,4 @@
                                     (t definition t)))
 (eval-after-load "company-mode"
   (add-to-list 'company-backends 'company-jedi)) 
+

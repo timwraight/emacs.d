@@ -1,1 +1,1 @@
-(turn-on-ctags-auto-update-mode)
+(setq-default ctags-auto-update-mode t)

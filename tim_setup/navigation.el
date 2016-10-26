@@ -48,3 +48,8 @@
                  (thing-at-point 'symbol))
                 ((read-string "Search for term: ")))))
      (concat "http://www.google.co.uk/search?q=" search-term "&ie=utf-8"))))
+
+
+; marks
+(setq set-mark-command-repeat-pop t)
+(setq global-mark-ring-max 100)

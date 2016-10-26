@@ -9,10 +9,11 @@
  (setq read-buffer-function 'ido-read-buffer)
 (setq read-file-name-function 'ido-read-file-name)
 (setq helm-full-frame nil)
+(setq helm-echo-input-in-header-line t)
+(setq helm-scroll-amount 8)
 
 (setq helm-display-function
-      (lambda (buf)
-        (switch-to-buffer buf)))
+      (lambda (buf) (switch-to-buffer buf)))
 
 (add-hook 'eshell-mode-hook
           #'(lambda ()
