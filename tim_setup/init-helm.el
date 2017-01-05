@@ -19,6 +19,7 @@
           #'(lambda ()
               (define-key eshell-mode-map [remap pcomplete] 'helm-esh-pcomplete)))
 
+(setq helm-follow-mode-persistent t)
 (setq helm-truncate-lines nil)
 (helm-mode)
 (setq helm-M-x-fuzzy-match t)

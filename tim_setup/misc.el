@@ -63,7 +63,8 @@
 (add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
 
 ;; JAVASCRIPT
-(add-hook 'js-mode-hook (lambda() (flycheck-select-checker 'javascript-jshint)))
+;; We don't always want JSHint. We're trying out eslint at the mo
+;; (add-hook 'js-mode-hook (lambda() (flycheck-select-checker 'javascript-jshint)))
 
 
 
@@ -83,6 +84,17 @@
      (define-key sql-interactive-mode-map (kbd "M-u") 'comint-previous-input)
      (define-key sql-interactive-mode-map (kbd "M-e") 'comint-next-input)))
 
+(defun shell-command-on-buffer (command)
+  "Asks for a command and executes it in inferior shell with current buffer
+as input."
+  (interactive)
+  (shell-command-on-region
+   (point-min) (point-max)
+   command t t))
+
+(with-eval-after-load 'sql-mode
+  (define-key sql-mode-map (kbd "M-q") (lambda () (interactive) (shell-command-on-buffer "pg_format")))
+)
 ;; Wee snippet for incrementing month values using
 ;; query-replace-regexp-eval
 
@@ -196,7 +208,6 @@
      ("M-<backspace>" . term-send-backward-kill-word)
      ("<C-backspace>" . term-send-backward-kill-word)
      ("M-r" . term-send-reverse-search-history)
-     ("M-," . term-send-raw)
      ("M-." . comint-dynamic-complete)))
  undo-tree-history-directory-alist (quote (("." . "/tmp")))
  vc-annotate-background "#2B2B2B"

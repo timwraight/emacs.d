@@ -8,7 +8,6 @@
 (vimp-leader/set-key "\"" (kbd "yse\""))
 (vimp-leader/set-key "a" 'helm-git-grep-at-point)
 (vimp-leader/set-key "f" 'helm-find-files)
-(vimp-leader/set-key "g" 'magit-status)
 (vimp-leader/set-key "h" 'vc-version-ediff)
 (vimp-leader/set-key "l" 'split-window-below)
 (vimp-leader/set-key "o" 'helm-org-agenda-files-headings)
@@ -25,6 +24,8 @@
 (define-key window-keymap (kbd "u") 'vimp-window-up)
 (define-key window-keymap (kbd "e") 'vimp-window-down)
 (define-key window-keymap (kbd "t") 'transpose-windows)
+(define-key window-keymap (kbd "f") 'fit-window-to-buffer)
+(define-key window-keymap (kbd "SPC") (lambda () (interactive) (other-window -1)))
 
 (define-key window-keymap "1" 'delete-other-windows)
 (define-key window-keymap "0" (lambda () (interactive) (delete-window) (balance-windows)))
@@ -77,14 +78,24 @@
 ;; Org map
 (setq org-keymap (make-sparse-keymap))
 (define-key org-keymap (kbd "c") 'org-capture)
-(define-key org-keymap (kbd "<SPC>") 'org-capture)
+(define-key org-keymap (kbd "<SPC>") (lambda () (interactive) (org-capture nil " ")))
+(define-key org-keymap (kbd "l") 'org-store-link)
 
 (vimp-leader/set-key "o" org-keymap)
 (which-key-add-key-based-replacements
-  "<SPC> o" "org commands")
+  "<SPC> o" "org commands"
+  "<SPC> o <SPC>" "Todo today")
 
 
-
+;; Git map
+(setq git-keymap (make-sparse-keymap))
+(define-key git-keymap (kbd "<SPC>") 'magit-status)
+(define-key git-keymap (kbd "b") 'magit-blame)
+(define-key git-keymap (kbd "q") 'magit-blame-quit)
+(define-key git-keymap (kbd "c") 'magit-blame-copy-hash)
+(define-key git-keymap (kbd "t") 'git-timemachine)
+(define-key git-keymap (kbd "f") 'magit-commit-fixup)
+(vimp-leader/set-key "g" git-keymap)
 
 ;; Checker keymap
 (setq checker-keymap (make-sparse-keymap))
@@ -128,11 +139,32 @@
 (setq timp-keymap (make-sparse-keymap))
 (define-key timp-keymap (kbd "SPC") 'duplicate-line-or-region)
 (define-key timp-keymap (kbd "m") 'helm-mark-ring)
+(define-key timp-keymap (kbd "g") 'google-this)
 (define-key timp-keymap (kbd "l") 'linum-mode)
+(define-key timp-keymap (kbd "p") 'projectile-switch-project)
 
 (vimp-leader/set-key "t" timp-keymap)
 (which-key-add-key-based-replacements
   "<SPC> t" "common editing commands")
+
+
+;; 'Like this' keymap
+;; A keymap for editing other places in the buffer 'like this one' (my
+;; excuse for the mnemonic)
+(setq like-this-keymap (make-sparse-keymap))
+(define-key like-this-keymap (kbd "SPC") 'vimp-mc-make-cursor-here)
+(define-key like-this-keymap (kbd "a") 'vimp-mc-make-all-cursors)
+(define-key like-this-keymap (kbd "l") 'vimp-mc-mode)
+(define-key like-this-keymap (kbd "u") 'vimp-mc-undo-all-cursors)
+(define-key like-this-keymap (kbd "c") 'vimp-mc-make-cursor-here)
+(define-key like-this-keymap (kbd "p") 'vimp-mc-pause-cursors)
+(define-key like-this-keymap (kbd "r") 'vimp-mc-resume-cursors)
+(define-key like-this-keymap (kbd "i") 'vimp-mc-make-and-goto-next-match)
+(define-key like-this-keymap (kbd "n") 'vimp-mc-skip-and-goto-next-match)
+
+(vimp-leader/set-key"l" like-this-keymap)
+(which-key-add-key-based-replacements "<SPC> l" "multiple cursors ")
+
 
 
 ;; Marks keymap
@@ -162,6 +194,8 @@
 ;; Project keymap
 (setq python-keymap (make-sparse-keymap))
 (define-key python-keymap (kbd "i") 'rope-auto-import)
+(define-key python-keymap (kbd "s") 'py-isort)
+(define-key python-keymap (kbd "f") 'rope-find-occurrences)
 (define-key python-keymap (kbd "SPC") 'pytest-one)
 (define-key python-keymap (kbd "1") 'pytest-one)
 (define-key python-keymap (kbd "2") 'pytest-module)
@@ -191,8 +225,6 @@
 (vimp-leader/set-key "n" (lambda () (interactive) (forward-symbol -1)))
 
 
-;; GLOBAL (org)
-(vimp-leader/set-key "l" 'org-store-link)
 
 
 (vimp-leader/set-key-for-mode 'sgml-mode "<right>" 'tagedit-forward-slurp-tag)

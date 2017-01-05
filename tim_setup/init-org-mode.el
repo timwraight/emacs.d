@@ -384,6 +384,8 @@ pointing to it."
 (setq org-capture-templates
       '(("t" "Todo" entry (file "~/org/refile.org")
          "* TODO %?\n  %i")
+        (" " "Todo today" entry (file "~/org/refile.org")
+         "* TODO %?\n  %i \n%t")
         ("q" "Question" entry (file "~/org/refile.org")
          "* QUESTION %?\n  %i")
         ("j" "Journal" entry (file+datetree "~/org/journal.org")

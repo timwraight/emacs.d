@@ -11,7 +11,7 @@
 ; arg is whether to open in new window or not.
 (setq jedi:goto-definition-config '((nil definition nil)     ; C-.
                                     (t definition nil)          ; C-u C-.
-                                    (t nil nil)            ; C-u C-u C-.
+                                    (nil nil nil)            ; C-u C-u C-.
                                     (t definition nil)
                                     (nil nil t)
                                     (t nil t)

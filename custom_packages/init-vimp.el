@@ -58,8 +58,6 @@
 (global-set-key (kbd "M-t") 'vimp-normal-state)
 (define-key vimp-normal-state-map (kbd "M-/") 'helm-occur)
 (define-key vimp-normal-state-map (kbd "M-h") 'helm-swoop-without-pre-input)
-(define-key vimp-normal-state-map (kbd "M-.") 'next-buffer)
-(define-key vimp-normal-state-map (kbd "M-,") 'previous-buffer)
 
 (define-key vimp-normal-state-map (kbd "M-E") 'helm-resume)
 (define-key vimp-normal-state-map "'" 'helm-command-prefix)
@@ -70,10 +68,6 @@
 (define-key vimp-normal-state-map (kbd "M-v") 'nil)
 (define-key vimp-normal-state-map (kbd "M-v") 'lalopmak-vimp-paste-below-then-normal)
 (define-key vimp-normal-state-map (kbd "SPC") vimp-leader--default-map)
-(define-key vimp-insert-state-map (kbd "M-C-i") nil)
-(define-key vimp-insert-state-map (kbd "M-C-i") 'end-of-line)
-(define-key vimp-insert-state-map (kbd "M-C-u") 'sp-up-sexp)
-
 
 (define-key vimp-insert-state-map (kbd "RET") 'electric-newline-and-maybe-indent)
 
@@ -143,9 +137,14 @@
 (define-key vimp-normal-state-map (kbd "C-M-u") 'increment-number-at-point)
 (define-key vimp-normal-state-map (kbd "C-M-e") 'decrement-number-at-point)
 
+; Use magit mode's default show commit command for RET
+(vimp-define-key 'normal magit-blame-mode-map (kbd "RET") 'magit-show-commit)
+(vimp-define-key 'normal magit-blame-mode-map (kbd "SPC") 'magit-diff-show-or-scroll-up)
+
 (vimp-define-key 'normal git-rebase-mode-map (kbd "s") (lambda () (interactivet) (git-rebase-squash)))
 (vimp-define-key 'normal git-rebase-mode-map (kbd "M-e") (lambda () (interactivet) (git-rebase-edit)))
 (with-eval-after-load 'company
   (vimp-define-key 'insert company-active-map (kbd "M-m") 'company-filter-candidates))
 
-(define-key vimp-normal-state-map (kbd "M-,") (lambda () (interactive) (set-mark-command t)))
+(global-set-key (kbd "M-,") 'pop-global-mark)
+(vimp-global-set-key 'normal (kbd "M-,") 'pop-global-mark)

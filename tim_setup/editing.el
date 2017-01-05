@@ -1,5 +1,8 @@
 ; EDITING
 
+;; COMPLETION
+(setq completion-ignore-case t)
+
 ;; TERMINAL
 ;; Get shift-up working from terminal
 

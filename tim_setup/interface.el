@@ -58,6 +58,8 @@
 
 ;; COMPILATION MODE
 (add-hook 'compilation-mode-hook 'buffer-switch-to-monospaced)
+;; Compilation output
+(setq compilation-scroll-output t)
 (require 'ansi-color)
 (defun colorize-compilation-buffer ()
   (read-only-mode)
@@ -90,8 +92,8 @@
 
 
 ;; DESKTOP
-(setq desktop-path '("~/.emacs.d/.emacs.desktop"))
-;; (desktop-save-mode 1)
+(setq desktop-path '("~/.emacs.d/"))
+(desktop-save-mode 1)
 
 
 (global-set-key (kbd "<f2>") (lambda () (interactive) (switch-to-buffer "*mu4e-headers*")))
@@ -113,6 +115,15 @@
     (set-window-buffer w2 w1b)))
 
 
+(defun copy-file-name-to-clipboard ()
+  "Copy the current buffer file name to the clipboard."
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (kill-new filename)
+      (message "Copied buffer file name '%s' to the clipboard." filename))))
 
 
 ;; SAVED FACES FROM 'customize'

@@ -33,7 +33,7 @@
             rainbow-delimiters projectile helm-projectile jabber jabber-otr alert auctex company-auctex virtualenvwrapper
             undo-tree volatile-highlights yaml-mode zenburn-theme helm-swoop which-key py-autopep8
             magit markdown-mode python el-get helm ace-jump-mode helm-ag emmet-mode elscreen py-isort
-            buffer-move magithub
+            buffer-move magithub format-sql switch-window golden-ratio
             )
   "A list of packages to ensure are installed at launch.")
 
@@ -69,36 +69,39 @@
 	(load library nil t)
 	          (push library libraries-loaded))))))
 
+
 (load-all-in-directory "~/.emacs.d/tim_setup")
 
 
 ;; Get my custom packages
-(add-to-list 'load-path "~/.emacs.d/custom_packages/mu4e/")
 (add-to-list 'load-path "~/.emacs.d/custom_packages/vimp/")
 (add-to-list 'load-path "~/.emacs.d/custom_packages/vimp-leader/")
 (add-to-list 'load-path "~/.emacs.d/custom_packages/vimp-surround/")
+(add-to-list 'load-path "~/.emacs.d/custom_packages/emacs-flycheck-mypy/")
+(add-to-list 'load-path "~/.emacs.d/custom_packages/vimp-mc/")
 (add-to-list 'load-path "~/.emacs.d/custom_packages/lalopmak-vimp/")
-(add-to-list 'load-path "~/.emacs.d/custom_packages/Pymacs/")
-
 
 (require 'vimp)
-(require 'mu4e)
 (require 'vimp-leader)
 (require 'vimp-surround)
-(require 'pymacs)
+(require 'vimp-mc)
+
 (load "~/.emacs.d/custom_packages/init-vimp.el")
 (load "~/.emacs.d/custom_packages/init-vimp-leader.el")
 (load "~/.emacs.d/custom_packages/init-vimp-surround.el")
-(load "~/.emacs.d/custom_packages/init-mu4e.el")
+(load "~/.emacs.d/custom_packages/emacs-flycheck-mypy/flycheck-mypy.el")
+(load "~/.emacs.d/custom_packages/init-flycheck-mypy.el")
 
 
 (load "~/.emacs.d/custom_packages/bible_search/bibsearch.el")
 (require 'lalopmak-vimp)
 
+;; Some setup to load after everything else, to overwrite other stuff
+(load "~/.emacs.d/custom_packages/final-init.el")
 
 ;; extra packages which need to load later
 (defvar extra-packages
-  '(helm_mu)
+  '()
   "A list of packages to ensure are installed at launch.")
 
 (install-packages extra-packages)
