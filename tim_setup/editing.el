@@ -17,6 +17,10 @@
 (global-set-key (kbd "C-c C-c c") 'comment-region)
 (global-set-key (kbd "C-c C-c u") 'uncomment-region)
 
+
+;; TEXT-MODE
+(add-hook 'text-mode-hook (lambda () (interactive) (setq fill-column 70)))
+
 ;; JAVASCRIPT
 (add-hook 'javascript-mode-hook (lambda ()
  				  (define-key js-mode-map (kbd "<M-RET>") 'auto-indent-eol-char-newline)

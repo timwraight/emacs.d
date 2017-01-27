@@ -102,7 +102,7 @@
          (title (org-element-property :title element))
          (depth (org-element-property :level element))
          (todo-keyword (org-element-property :todo-keyword element))
-         (bcrumb-list (nreverse (org-get-outline-path t depth title)))
+         (bcrumb-list (nreverse (org-get-outline-path t t)))
          (bcrumb-string (s-join " -> " (delq nil (cons todo-keyword (cons (buffer-name) (nreverse (cons title bcrumb-list))))))))
     (cons bcrumb-string (point-marker)))
   )
@@ -117,7 +117,7 @@
          (title (org-element-property :title element))
          (depth (org-element-property :level element))
          (todo-keyword (org-element-property :todo-keyword element))
-         (bcrumb-list (nreverse (org-get-outline-path t depth title)))
+         (bcrumb-list (nreverse (org-get-outline-path t t)))
          (bcrumb-string (s-join " -> " (delq nil (cons todo-keyword (nreverse (cons title bcrumb-list)))))))
     (cons bcrumb-string (point-marker)))
   )
@@ -232,6 +232,9 @@
 ;;                ("Change state of this heading" . helm-org-heading-change-state)
 ;;                ("Insert link to this heading"
 ;;                . helm-org-insert-link-to-heading-at-marker)))))
+(require 'helm-ag)
+
+
 
 (defun helm-proj ()
   "Project searching, by tim."
@@ -244,9 +247,10 @@
           helm-source-ls-git
           (helm-make-source "Git files" 'helm-ls-git-source
             :fuzzy-match helm-ls-git-fuzzy-match)))
+  (setq helm-ag--default-directory (helm-ag--project-root))
   (helm :sources '(helm-source-ls-git-status
                    helm-source-ls-git
-                   helm-source-git-grep)
+                   helm-source-do-ag)
         ;; When `helm-ls-git-ls' is called from lisp
         ;; `default-directory' is normally let-bounded,
         ;; to some other value;
@@ -267,7 +271,7 @@
     (setq helm-source-buffers-list
           (helm-make-source "Buffers" 'helm-source-buffers)))
   (helm-other-buffer '(helm-source-buffers-list
-                       helm-c-source-jabber-contacts
+                       ;; helm-c-source-jabber-contacts
                        ;; helm-source-mantis-tickets
                        tim-source-projectile-projects
                        ;; helm-source-mu

@@ -125,6 +125,11 @@ as input."
 (setenv "DYLD_LIBRARY_PATH" "/usr/local/mysql/lib:$DYLD_LIBRARY_PATH")
 
 
+; COMINT MODE
+(add-hook 'comint-mode-hook 'buffer-switch-to-monospaced)
+
+
+
 ; ERC
 
 (add-hook 'erc-join-hook (lambda ()

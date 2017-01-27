@@ -13,6 +13,7 @@
 (vimp-leader/set-key "o" 'helm-org-agenda-files-headings)
 (vimp-leader/set-key "r" (lambda() (interactive) (kbd "ysiW")))
 (vimp-leader/set-key "t" 'google-this)
+(vimp-leader/set-key (kbd "n") (lambda () (interactive) (find-file "~/org/journal.org")))
 (vimp-leader/set-key "z" (lambda () (interactive) (save-buffers-kill-terminal 1)))
 
 ;; Window keymap
@@ -78,8 +79,10 @@
 ;; Org map
 (setq org-keymap (make-sparse-keymap))
 (define-key org-keymap (kbd "c") 'org-capture)
-(define-key org-keymap (kbd "<SPC>") (lambda () (interactive) (org-capture nil " ")))
+(define-key org-keymap (kbd "<SPC>") (lambda () (interactive) (org-capture nil "j")))
 (define-key org-keymap (kbd "l") 'org-store-link)
+(define-key org-keymap (kbd "n") 'org-narrow-to-subtree)
+(define-key org-keymap (kbd "w") (lambda () (interactive) (find-file "~/org/journal.org")))
 
 (vimp-leader/set-key "o" org-keymap)
 (which-key-add-key-based-replacements
@@ -94,6 +97,8 @@
 (define-key git-keymap (kbd "q") 'magit-blame-quit)
 (define-key git-keymap (kbd "c") 'magit-blame-copy-hash)
 (define-key git-keymap (kbd "t") 'git-timemachine)
+(define-key git-keymap (kbd "n") 'git-timemachine-show-previous-revision)
+(define-key git-keymap (kbd "i") 'git-timemachine-show-next-revision)
 (define-key git-keymap (kbd "f") 'magit-commit-fixup)
 (vimp-leader/set-key "g" git-keymap)
 
@@ -191,10 +196,17 @@
 (which-key-add-key-based-replacements
   "<SPC> h" "help commands")
 
+
+(defun pytest-support ()
+  (interactive)
+  (let*
+      (flags (concat pytest-cmd-flags " --support --ds=tests.settings_support"))
+    (pytest-one))) 
+
 ;; Project keymap
 (setq python-keymap (make-sparse-keymap))
 (define-key python-keymap (kbd "i") 'rope-auto-import)
-(define-key python-keymap (kbd "s") 'py-isort)
+(define-key python-keymap (kbd "s") 'py-support)
 (define-key python-keymap (kbd "f") 'rope-find-occurrences)
 (define-key python-keymap (kbd "SPC") 'pytest-one)
 (define-key python-keymap (kbd "1") 'pytest-one)

@@ -56,8 +56,9 @@
 (define-key vimp-insert-state-map (kbd "M-t") 'vimp-normal-state)
 (define-key vimp-normal-state-map (kbd "M-b") 'helm-bible-search)
 (global-set-key (kbd "M-t") 'vimp-normal-state)
-(define-key vimp-normal-state-map (kbd "M-/") 'helm-occur)
+(define-key vimp-normal-state-map (kbd "M-/") 'helm-swoop)
 (define-key vimp-normal-state-map (kbd "M-h") 'helm-swoop-without-pre-input)
+(define-key vimp-normal-state-map (kbd "B") 'bury-buffer)
 
 (define-key vimp-normal-state-map (kbd "M-E") 'helm-resume)
 (define-key vimp-normal-state-map "'" 'helm-command-prefix)
