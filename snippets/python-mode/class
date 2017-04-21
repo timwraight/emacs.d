@@ -1,4 +1,4 @@
 # key: c
 # --
-class ${1:ClassName}(${2:Parents}):
+class ${1:ClassName}:
     ${3:pass}

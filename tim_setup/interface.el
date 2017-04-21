@@ -12,6 +12,7 @@
 (load-theme 'zenburn t)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
+(tool-bar-mode -1)
 
 (when window-system
   (set-face-attribute 'default nil :height 160)
@@ -56,6 +57,34 @@
   (face-remap-add-relative 'default 'variable-pitch)
   )
 
+
+;; Cursors in the terminal
+(defun tim-make-cursor (ctype)
+  (cond
+   ((eq ctype 'bar) "\033]1337;CursorShape=1^\a")
+   ((eq ctype 'hbar)  "\033]1337;CursorShape=2^\a")
+   ((eq ctype 'box)  "\033]1337;CursorShape=0^\a"))
+  ) 
+
+(defun tim-set-cursor ()
+  (interactive)
+  (let
+      ((cstring 
+        (cond
+         ((eq evil-state 'insert) (tim-make-cursor 'bar))
+         (t (tim-make-cursor 'box)))))
+    (send-string-to-terminal cstring))
+)
+
+(add-hook 'pre-command-hook 'tim-set-cursor)
+(add-hook 'suspend-hook (lambda () (interactive) (remove-hook 'pre-command-hook 'tim-set-cursor)))
+(add-hook 'suspend-resume-hook (lambda () (interactive) (add-hook 'pre-command-hook 'tim-set-cursor)))
+
+(add-hook 'post-command-hook 'tim-set-cursor)
+(add-hook 'suspend-hook (lambda () (interactive) (remove-hook 'post-command-hook 'tim-set-cursor)))
+(add-hook 'suspend-resume-hook (lambda () (interactive) (add-hook 'post-command-hook 'tim-set-cursor)))
+
+
 ;; COMPILATION MODE
 (add-hook 'compilation-mode-hook 'buffer-switch-to-monospaced)
 ;; Compilation output
@@ -78,7 +107,7 @@
 ;; use setq-default to set it for /all/ modes
 (setq-default mode-line-format
               '("%e" mode-line-front-space mode-line-mule-info mode-line-client mode-line-modified mode-line-remote mode-line-frame-identification mode-line-buffer-identification "   "
-               mode-line-position vimp-mode-line-tag
+               mode-line-position evil-mode-line-tag
                (vc-mode vc-mode)
                "  " mode-line-misc-info mode-line-end-spaces))
 
@@ -93,7 +122,7 @@
 
 ;; DESKTOP
 (setq desktop-path '("~/.emacs.d/"))
-(desktop-save-mode 1)
+;; (desktop-save-mode 1)
 
 
 (global-set-key (kbd "<f2>") (lambda () (interactive) (switch-to-buffer "*mu4e-headers*")))

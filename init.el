@@ -9,3 +9,4 @@
 
 (setq custom-file "~/.emacs.d/tim_setup/setup-specific.el")
 (load "~/.emacs.d/tim_setup/setup-specific.el")
+(put 'erase-buffer 'disabled nil)

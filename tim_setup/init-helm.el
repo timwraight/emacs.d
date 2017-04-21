@@ -12,6 +12,7 @@
 (setq helm-echo-input-in-header-line t)
 (setq helm-scroll-amount 8)
 
+
 (setq helm-display-function
       (lambda (buf) (switch-to-buffer buf)))
 

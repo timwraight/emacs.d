@@ -1,4 +1,4 @@
-(add-hook 'with-editor-mode-hook 'vimp-insert-state)
+(add-hook 'with-editor-mode-hook 'evil-insert-state)
 (with-eval-after-load 'magit
 (define-key magit-status-mode-map (kbd "e") 'next-line)
 (define-key magit-status-mode-map (kbd "u") 'previous-line)
@@ -39,6 +39,7 @@
 (define-key magit-hunk-section-map (kbd "u") 'previous-line)
 (define-key magit-hunk-section-map (kbd "i") 'magit-stage)
 (define-key magit-hunk-section-map (kbd "n") 'magit-unstage)
+
 
 
 

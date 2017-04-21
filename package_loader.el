@@ -26,15 +26,18 @@
         ))
 
 (defvar tim-packages
+
   '(
-    company company-jedi company-quickhelp smartparens wgrep idris-mode helm-idris helm-mu haskell-mode
-            direx yasnippet dockerfile-mode php-mode python-django tagedit helm-dash crontab-mode
-            helm-ls-git helm-git-grep flycheck flycheck-pos-tip flycheck-color-mode-line s git-timemachine window-number
-            rainbow-delimiters projectile helm-projectile jabber jabber-otr alert auctex company-auctex virtualenvwrapper
-            undo-tree volatile-highlights yaml-mode zenburn-theme helm-swoop which-key py-autopep8
-            magit markdown-mode python el-get helm ace-jump-mode helm-ag emmet-mode elscreen py-isort
-            buffer-move magithub format-sql switch-window golden-ratio
-            )
+    evil evil-leader evil-surround evil-mc
+         company company-jedi company-quickhelp smartparens wgrep idris-mode helm-idris helm-mu haskell-mode
+         direx yasnippet dockerfile-mode php-mode python-django tagedit helm-dash crontab-mode
+         helm-ls-git flycheck flycheck-pos-tip flycheck-color-mode-line s git-timemachine window-number
+         rainbow-delimiters projectile helm-projectile jabber jabber-otr alert auctex company-auctex virtualenvwrapper
+         undo-tree volatile-highlights yaml-mode zenburn-theme helm-swoop which-key py-autopep8
+         magit markdown-mode python el-get helm ace-jump-mode helm-ag emmet-mode py-isort
+         buffer-move magithub format-sql switch-window golden-ratio ctags-update
+         )
+
   "A list of packages to ensure are installed at launch.")
 
 (defun install-packages (package-list)
@@ -74,27 +77,14 @@
 
 
 ;; Get my custom packages
-(add-to-list 'load-path "~/.emacs.d/custom_packages/vimp/")
-(add-to-list 'load-path "~/.emacs.d/custom_packages/vimp-leader/")
-(add-to-list 'load-path "~/.emacs.d/custom_packages/vimp-surround/")
 (add-to-list 'load-path "~/.emacs.d/custom_packages/emacs-flycheck-mypy/")
-(add-to-list 'load-path "~/.emacs.d/custom_packages/vimp-mc/")
-(add-to-list 'load-path "~/.emacs.d/custom_packages/lalopmak-vimp/")
+(add-to-list 'load-path "~/.emacs.d/custom_packages/lalopmak-evil/")
 
-(require 'vimp)
-(require 'vimp-leader)
-(require 'vimp-surround)
-(require 'vimp-mc)
-
-(load "~/.emacs.d/custom_packages/init-vimp.el")
-(load "~/.emacs.d/custom_packages/init-vimp-leader.el")
-(load "~/.emacs.d/custom_packages/init-vimp-surround.el")
 (load "~/.emacs.d/custom_packages/emacs-flycheck-mypy/flycheck-mypy.el")
 (load "~/.emacs.d/custom_packages/init-flycheck-mypy.el")
 
-
 (load "~/.emacs.d/custom_packages/bible_search/bibsearch.el")
-(require 'lalopmak-vimp)
+(require 'lalopmak-evil)
 
 ;; Some setup to load after everything else, to overwrite other stuff
 (load "~/.emacs.d/custom_packages/final-init.el")

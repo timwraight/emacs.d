@@ -21,8 +21,8 @@
      (define-key mu4e-headers-mode-map (kbd "M-m") 'mu4e-headers-mark-for-something)
      (define-key mu4e-headers-mode-map (kbd "r") 'mu4e-headers-rerun-search)
      (define-key mu4e-headers-mode-map (kbd "m") 'helm-timi)
-     (define-key mu4e-headers-mode-map (kbd "SPC") vimp-leader--default-map)
-     (define-key mu4e-view-mode-map (kbd "SPC") vimp-leader--default-map)
+     (define-key mu4e-headers-mode-map (kbd "SPC") evil-leader--default-map)
+     (define-key mu4e-view-mode-map (kbd "SPC") evil-leader--default-map)
 
 
      ;; Search result navigation
@@ -35,7 +35,7 @@
      (define-key mu4e-view-mode-map (kbd "n") 'mu4e-view-mark-for-refile)
      (define-key mu4e-view-mode-map (kbd "M-s") 'mu4e-view-save-attachment)
      (define-key mu4e-view-mode-map (kbd "m") 'helm-timi)
-     (define-key mu4e-view-mode-map (kbd "A") 'vimp-visual-line)
+     (define-key mu4e-view-mode-map (kbd "A") 'evil-visual-line)
 
 
      (require 'org-mu4e)
@@ -48,10 +48,10 @@
 
 (setq mu4e-maildir "~/Mail")
 (setq mu4e-headers-skip-duplicates t)
-(add-hook 'mu4e-main-mode-hook 'vimp-local-mode)
+(add-hook 'mu4e-main-mode-hook 'evil-local-mode)
 (add-hook 'mu4e-view-mode-hook 'visual-line-mode)
-(add-hook 'mu4e-compose-mode-hook 'vimp-insert-state)
-(add-hook 'mu4e-headers-mode-hook 'vimp-local-mode)
+(add-hook 'mu4e-compose-mode-hook 'evil-insert-state)
+(add-hook 'mu4e-headers-mode-hook 'evil-local-mode)
 (add-hook 'mu4e-headers-mode-hook 'toggle-truncate-lines)
 (add-hook 'mu4e-headers-mode-hook (lambda () (interactive) (variable-pitch-mode t)))
 

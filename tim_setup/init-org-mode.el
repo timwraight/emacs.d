@@ -20,7 +20,7 @@
      (define-key org-agenda-keymap "n" 'org-agenda-clock-out)
      (define-key org-agenda-keymap "e" 'next-line)
      (define-key org-agenda-keymap "u" 'previous-line)
-     (define-key org-agenda-keymap (kbd "SPC") vimp-leader--default-map)))
+     (define-key org-agenda-keymap (kbd "SPC") evil-leader--default-map)))
 
 
 (setq org-enforce-todo-dependencies t)
@@ -117,7 +117,7 @@
 
 
 ; Enter insert on capture
-(add-hook 'org-capture-mode-hook 'vimp-insert-state)
+(add-hook 'org-capture-mode-hook 'evil-insert-state)
 
 ; allow alphanumberical markers in lists
 (setq org-list-allow-alphabetical t)
@@ -138,10 +138,10 @@
 (add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
 
 (with-eval-after-load 'vimp
-  (vimp-define-key 'insert org-mode-map (kbd "M-i") 'org-metaright)
-  (vimp-define-key 'insert org-mode-map (kbd "M-n") 'org-metaleft)
-  (vimp-define-key 'insert org-mode-map (kbd "M-u") 'org-metaup)
-  (vimp-define-key 'insert org-mode-map (kbd "M-e") 'org-metadown)
+  (evil-define-key 'insert org-mode-map (kbd "M-i") 'org-metaright)
+  (evil-define-key 'insert org-mode-map (kbd "M-n") 'org-metaleft)
+  (evil-define-key 'insert org-mode-map (kbd "M-u") 'org-metaup)
+  (evil-define-key 'insert org-mode-map (kbd "M-e") 'org-metadown)
   )
 
 
@@ -312,14 +312,23 @@ Callers of this function already widen the buffer view."
    (tags .  " %i %-12:c %(item-with-outline) ")
    (search . " %i %-12:c"))))
 
+;; When sorting our agenda items, treat ones without time as being late
+(setq org-sort-agenda-notime-is-late nil)
+
 (setq org-agenda-custom-commands
       '(
         (" " "Tim's Agenda"
          ((agenda "")
+          (todo "TODO"
+                     ((org-agenda-files '("~/org/journal.org"))
+                      (org-agenda-overriding-header "Recent work")
+                      (org-agenda-sorting-strategy
+                       '(timestamp-down priority-down))
+          ))
           (tags-todo "-dormant-CANCELLED/TODO|NEXT"
                      ((org-agenda-overriding-header "Tasks")
                       (org-agenda-sorting-strategy
-                       '(todo-state-down priority-down))
+                       '(timestamp-down priority-down))
                       ))
           (tags-todo "/QUESTION"
                      ((org-agenda-overriding-header "Questions")

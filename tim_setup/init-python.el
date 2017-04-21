@@ -5,10 +5,11 @@
 ;;
 
 (add-hook 'python-mode-hook 'buffer-switch-to-monospaced)
+(add-hook 'inferior-python-mode-hook 'buffer-switch-to-monospaced)
 (add-hook 'python-mode-hook 'electric-indent-local-mode)
 (setq python-indent-offset 4)
 ;; (with-eval-after-load "vimp"
-;;   (vimp-define-key 'insert python-mode-map (kbd "M-h") 'rope-lucky-assist))
+;;   (evil-define-key 'insert python-mode-map (kbd "M-h") 'rope-lucky-assist))
 
 ;; ;; Autofill inside of comments
 ;; (setq-mode-local python-mode

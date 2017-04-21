@@ -238,7 +238,7 @@ as input."
      (360 . "#DC8CC3")))
  vc-annotate-very-old-color "#DC8CC3"
  vc-follow-symlinks t
- vimp-magic (quote very-magic)
+ evil-magic (quote very-magic)
  yaml-indent-offset 2)
 
 

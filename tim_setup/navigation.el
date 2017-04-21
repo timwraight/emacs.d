@@ -1,10 +1,30 @@
                                         ; NAVIGATION
 
+(require 'dash)
+
 ;; RECENT FILES
 (recentf-mode t)
 (setq recentf-max-saved-items 200)
+(add-to-list 'recentf-exclude "\\TAGS\\'")
 
 
+(defun last-file-buffer ()
+  (car (-filter (lambda (buf) (buffer-file-name buf)) (buffer-list)))
+  )
+
+(defun last-file ()
+  (let
+      ((file (nth 0 (or recentf--files-with-key recentf-list))))
+    (find-file-noselect file)
+  ))
+
+(defun last-buffer-or-file ()
+  (let
+      ((last-buffer (or (last-file-buffer) (last-file) (get-buffer "*sratch*"))))
+    (print last-buffer)
+    last-buffer
+    )
+  )
 
 ;; Uniqify allows us to tell buffers with similar names apart
 (setq uniquify-buffer-name-style 'forward)
@@ -15,6 +35,16 @@
 (global-set-key (kbd "C-x q") (lambda () (interactive) (save-buffers-kill-emacs t)))
 
 
+(defun other-window-kill-buffer ()
+  "Kill the buffer in the other window"
+  (interactive)
+  ;; Window selection is used because point goes to a different window
+  ;; if more than 2 windows are present
+  (let ((win-curr (selected-window))
+        (win-other (next-window)))
+    (select-window win-other)
+    (kill-this-buffer)
+    (select-window win-curr)))
 
 ;; IDO MODE
 (eval-after-load "ido"
