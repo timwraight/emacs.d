@@ -19,12 +19,13 @@
 
   (define-key company-filter-map (kbd "M-e") 'company-select-next)
   (define-key company-filter-map (kbd "M-u") 'company-select-previous)
+  (define-key company-filter-map (kbd "M-i") 'company-complete-selection)
   (define-key company-search-map (kbd "<SPC>") 'company-abort)
 
   (define-key company-search-map (kbd "M-e") 'company-select-next)
   (define-key company-search-map (kbd "M-u") 'company-select-previous)
+  (define-key company-search-map (kbd "M-i") 'company-complete-selection)
   (define-key company-search-map (kbd "<SPC>") 'company-abort)
-
 
   (setq company-idle-delay 0.2)
   (add-to-list 'completion-styles 'initials t)
