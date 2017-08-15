@@ -121,7 +121,7 @@ as input."
                   (split-string (eshell/pwd) "/")))
                 ": ")))
 
-(setq eshell-prompt-regexp "^[^#$\n]* :")
+(setq eshell-prompt-regexp "^[^#$\n]*:")
 (setenv "DYLD_LIBRARY_PATH" "/usr/local/mysql/lib:$DYLD_LIBRARY_PATH")
 
 
