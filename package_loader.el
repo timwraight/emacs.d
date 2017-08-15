@@ -34,7 +34,7 @@
          helm-ls-git flycheck flycheck-pos-tip flycheck-color-mode-line s git-timemachine window-number
          rainbow-delimiters projectile helm-projectile jabber jabber-otr alert auctex company-auctex virtualenvwrapper
          undo-tree volatile-highlights yaml-mode zenburn-theme helm-swoop which-key py-autopep8
-         magit markdown-mode python el-get helm ace-jump-mode helm-ag emmet-mode py-isort
+         magit markdown-mode python el-get helm evil-avy helm-ag emmet-mode py-isort
          buffer-move magithub format-sql switch-window golden-ratio ctags-update
          )
 

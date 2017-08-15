@@ -51,14 +51,16 @@
 
 (my-move-key evil-motion-state-map evil-normal-state-map (kbd "RET"))
 
+(require 'evil-avy)
+
 (define-key evil-normal-state-map (kbd "M-m") 'helm-proj)
 (define-key evil-normal-state-map (kbd "m") 'helm-timi)
 (define-key evil-insert-state-map (kbd "M-t") 'evil-normal-state)
+(define-key evil-normal-state-map (kbd "l") 'avy-goto-char-timer)
+(define-key evil-normal-state-map (kbd "M-l") 'avy-goto-line)
 (define-key evil-normal-state-map (kbd "M-b") 'helm-bible-search)
 (global-set-key (kbd "M-t") 'evil-normal-state)
 (define-key evil-normal-state-map (kbd "M-/") 'helm-swoop-without-pre-input)
-(define-key evil-normal-state-map (kbd "M-h") 'evil-mc-make-cursor-here)
-(define-key evil-normal-state-map (kbd "M-C-h") 'evil-mc-undo-cursor-at-pos)
 (define-key evil-normal-state-map (kbd "B") 'bury-buffer)
 (define-key evil-normal-state-map (kbd "TAB") 'indent-for-tab-command)
 (define-key evil-normal-state-map (kbd "M-k") (lambda () (interactive) (suspend-tty)))
@@ -72,6 +74,7 @@
 ;; (define-key evil-normal-state-map (kbd "' x") 'helm-M-x)
 ;; (define-key evil-normal-state-map (kbd "' f") 'helm-find-files)
 (define-key evil-normal-state-map (kbd "M-v") 'nil)
+(define-key evil-normal-state-map (kbd "C-p") 'undo-tree-redo)
 (define-key evil-normal-state-map (kbd "M-v") 'lalopmak-evil-paste-below-then-normal)
 (define-key evil-normal-state-map (kbd "SPC") evil-leader--default-map)
 
