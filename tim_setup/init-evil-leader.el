@@ -149,6 +149,7 @@
 (define-key timp-keymap (kbd "m") 'helm-mark-ring)
 (define-key timp-keymap (kbd "g") 'google-this)
 (define-key timp-keymap (kbd "l") 'linum-mode)
+(define-key timp-keymap (kbd "s") 'projectile-run-eshell)
 (define-key timp-keymap (kbd "p") 'projectile-switch-project)
 
 (evil-leader/set-key "t" timp-keymap)
@@ -200,11 +201,21 @@
   "<SPC> h" "help commands")
 
 
-(defun pytest-support ()
+(defun pytest-last ()
   (interactive)
   (let*
-      (flags (concat pytest-cmd-flags " --support --ds=tests.settings_support"))
-    (pytest-one))) 
+      ((flags (concat pytest-cmd-flags " --lf")))
+    (pytest-all flags))) 
+
+(defun pytest-support ()
+  (interactive)
+  (setq pytest-cmd-flags (concat pytest-cmd-flags  " --support --ds=tests.settings_support"))
+  (pytest-last))
+
+(defun pytest-create-db ()
+  (interactive)
+  (setq pytest-cmd-flags (concat pytest-cmd-flags " --create-db"))
+  (pytest-last)) 
 
 ;; Project keymap
 (setq python-keymap (make-sparse-keymap))
@@ -215,6 +226,8 @@
 (define-key python-keymap (kbd "1") 'pytest-one)
 (define-key python-keymap (kbd "2") 'pytest-module)
 (define-key python-keymap (kbd "3") 'pytest-all)
+(define-key python-keymap (kbd "l") 'pytest-last)
+(define-key python-keymap (kbd "c") 'pytest-create-db)
 
 
 
