@@ -150,7 +150,7 @@
 (define-key timp-keymap (kbd "g") 'google-this)
 (define-key timp-keymap (kbd "l") 'linum-mode)
 (define-key timp-keymap (kbd "s") 'projectile-run-eshell)
-(define-key timp-keymap (kbd "p") 'projectile-switch-project)
+(define-key timp-keymap (kbd "p") 'helm-projectile-switch-project)
 
 (evil-leader/set-key "t" timp-keymap)
 (which-key-add-key-based-replacements
