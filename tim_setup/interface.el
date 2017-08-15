@@ -76,13 +76,13 @@
     (send-string-to-terminal cstring))
 )
 
-(add-hook 'pre-command-hook 'tim-set-cursor)
-(add-hook 'suspend-hook (lambda () (interactive) (remove-hook 'pre-command-hook 'tim-set-cursor)))
-(add-hook 'suspend-resume-hook (lambda () (interactive) (add-hook 'pre-command-hook 'tim-set-cursor)))
+;; (add-hook 'pre-command-hook 'tim-set-cursor)
+;; (add-hook 'suspend-hook (lambda () (interactive) (remove-hook 'pre-command-hook 'tim-set-cursor)))
+;; (add-hook 'suspend-resume-hook (lambda () (interactive) (add-hook 'pre-command-hook 'tim-set-cursor)))
 
-(add-hook 'post-command-hook 'tim-set-cursor)
-(add-hook 'suspend-hook (lambda () (interactive) (remove-hook 'post-command-hook 'tim-set-cursor)))
-(add-hook 'suspend-resume-hook (lambda () (interactive) (add-hook 'post-command-hook 'tim-set-cursor)))
+;; (add-hook 'post-command-hook 'tim-set-cursor)
+;; (add-hook 'suspend-hook (lambda () (interactive) (remove-hook 'post-command-hook 'tim-set-cursor)))
+;; (add-hook 'suspend-resume-hook (lambda () (interactive) (add-hook 'post-command-hook 'tim-set-cursor)))
 
 
 ;; COMPILATION MODE
