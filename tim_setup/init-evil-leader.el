@@ -163,6 +163,7 @@
 ;; Timp keymap
 ;; This is a keymap for common editing commands. We give it prominence on
 ;; the 't' key because these should be common operations to perform in normal mode
+(require 'helm-projectile)
 (setq timp-keymap (make-sparse-keymap))
 (define-key timp-keymap (kbd "SPC") 'duplicate-line-or-region)
 (define-key timp-keymap (kbd "m") 'helm-mark-ring)
