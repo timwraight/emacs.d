@@ -200,6 +200,16 @@
 (which-key-add-key-based-replacements
   "<SPC> h" "help commands")
 
+(setq tw-pytest-last-run-test nil)
+
+(defun pytest-one-remember (&optional flags)
+  "Like pytest-one, but remembers the thing it tested, so that
+you can run it quickly again, without pytest collecting all of its tests"
+  (interactive)
+  (if (not tw-pytest-last-run-test)
+      (setq tw-pytest-last-run-test (pytest-py-testable)))
+  (pytest-run (format "%s" tw-pytest-last-run-test) flags))
+
 
 (defun pytest-last ()
   (interactive)
@@ -222,8 +232,8 @@
 (define-key python-keymap (kbd "i") 'rope-auto-import)
 (define-key python-keymap (kbd "s") 'py-support)
 (define-key python-keymap (kbd "f") 'rope-find-occurrences)
-(define-key python-keymap (kbd "SPC") 'pytest-one)
-(define-key python-keymap (kbd "1") 'pytest-one)
+(define-key python-keymap (kbd "SPC") 'pytest-one-remember)
+(define-key python-keymap (kbd "1") 'pytest-one-remember)
 (define-key python-keymap (kbd "2") 'pytest-module)
 (define-key python-keymap (kbd "3") 'pytest-all)
 (define-key python-keymap (kbd "l") 'pytest-last)
