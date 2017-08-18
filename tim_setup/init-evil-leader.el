@@ -94,16 +94,35 @@
 
 
 ;; Git map
+(require 'magit)
+(defun new-branch-from-master (new-branch-name)
+    (interactive "MNew branch name: ")
+    (magit-git-pull "master" nil)
+    (magit-branch-and-checkout new-branch-name "master"))
+
+(defun delete-branch-checkout-master ()
+     (let* ((branches (magit-region-values 'branch))
+            ((branch (car branches))))
+       (magit-call-git "checkout" "master")
+     (magit-run-git "branch" "-d" branch))
+     )
+
+
 (setq git-keymap (make-sparse-keymap))
+(evil-leader/set-key "g" git-keymap)
 (define-key git-keymap (kbd "<SPC>") 'magit-status)
-(define-key git-keymap (kbd "b") 'magit-blame)
+(define-key git-keymap (kbd "r") 'magit-blame)
 (define-key git-keymap (kbd "q") 'magit-blame-quit)
 (define-key git-keymap (kbd "c") 'magit-blame-copy-hash)
 (define-key git-keymap (kbd "t") 'git-timemachine)
 (define-key git-keymap (kbd "n") 'git-timemachine-show-previous-revision)
 (define-key git-keymap (kbd "i") 'git-timemachine-show-next-revision)
 (define-key git-keymap (kbd "f") 'magit-commit-fixup)
-(evil-leader/set-key "g" git-keymap)
+(setq git-branch-keymap (make-sparse-keymap))
+(define-key git-keymap (kbd "b") git-branch-keymap)
+(define-key git-branch-keymap (kbd "n") 'new-branch-from-master)
+(define-key git-branch-keymap (kbd "c") 'magit-checkout)
+(define-key git-branch-keymap (kbd "d") 'delete-branch-checkout-master)
 
 ;; Checker keymap
 (setq checker-keymap (make-sparse-keymap))
