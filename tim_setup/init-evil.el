@@ -39,6 +39,9 @@
 ; magic searches
 (setq evil-magic 'very-magic)
 
+(setq evil-normal-state-cursor '(box "OrangeRed3"))
+(setq evil-insert-state-cursor '((bar . 2)  "OrangeRed3"))
+
 
 (setq evil-auto-indent nil)
 (global-set-key (kbd "<f1>") 'evil-local-mode)
@@ -53,7 +56,8 @@
 
 (require 'evil-avy)
 
-(define-key evil-normal-state-map (kbd "M-m") 'helm-proj)
+(define-key evil-normal-state-map (kbd "M-m") 'helm-ls-git-ls)
+(define-key evil-normal-state-map (kbd "M-s") 'helm-projectile-ag)
 (define-key evil-normal-state-map (kbd "m") 'helm-timi)
 (define-key evil-insert-state-map (kbd "M-t") 'evil-normal-state)
 (define-key evil-normal-state-map (kbd "l") 'avy-goto-char-timer)
