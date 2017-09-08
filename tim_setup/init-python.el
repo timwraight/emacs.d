@@ -18,6 +18,12 @@
 ;;                  )
 
 (add-hook 'python-mode-hook (lambda () (interactive) (setq comment-fill-column 99)))
+(add-hook 'python-mode-hook (lambda () (interactive)
+                              (if (buffer-file-name)
+                                  (progn
+                                    (hs-minor-mode)
+                                    (hs-hide-all)))
+                              ))
 
 (defun send-to-pony-shell ()
   (interactive)

@@ -8,6 +8,13 @@
 
       )
 
+;; ANNOTATE
+(add-hook 'vc-annotate-mode-hook 'buffer-switch-to-monospaced)
+
+;; EDBI
+(add-hook 'edbi:dbview-update-hook 'buffer-switch-to-monospaced)
+
+
 ;; SOLARIZED
 (load-theme 'zenburn t)
 (menu-bar-mode -1)
@@ -113,6 +120,7 @@
 
 ; truncate lines in dired mode
 (add-hook 'dired-mode-hook 'toggle-truncate-lines)
+(setq dired-dwim-target t)
 
 
 ;; EDIFF

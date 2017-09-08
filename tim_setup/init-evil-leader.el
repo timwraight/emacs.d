@@ -16,7 +16,7 @@
 (require 'org)
 (with-eval-after-load 'org
   (evil-leader/set-key (kbd "n") (lambda () (interactive) (find-file "~/org/journal.org"))))
-(evil-leader/set-key "z" (lambda () (interactive) (suspend-tty)))
+(evil-leader/set-key "z" 'hs-toggle-hiding)
 
 ;; Window keymap
 (defvar window-keymap (make-sparse-keymap)
@@ -246,6 +246,12 @@ you can run it quickly again, without pytest collecting all of its tests"
   (interactive)
   (setq pytest-cmd-flags (concat pytest-cmd-flags " --create-db"))
   (pytest-last)) 
+
+(defun pdb-thing-at-point ()
+  (interactive)
+  (let*
+      ((flags (concat pytest-cmd-flags "-s --lf --pdb --pdbcls=IPython.terminal.debugger:Pdb")))
+    (ipdb (format "%s %s %s" (pytest-find-test-runner) flags (pytest-py-testable)))))
 
 ;; Project keymap
 (setq python-keymap (make-sparse-keymap))

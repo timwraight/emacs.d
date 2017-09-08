@@ -56,7 +56,7 @@
 
 (require 'evil-avy)
 
-(define-key evil-normal-state-map (kbd "M-m") 'helm-ls-git-ls)
+(define-key evil-normal-state-map (kbd "M-m") 'projectile-find-file)
 (define-key evil-normal-state-map (kbd "M-s") 'helm-projectile-ag)
 (define-key evil-normal-state-map (kbd "m") 'helm-timi)
 (define-key evil-insert-state-map (kbd "M-t") 'evil-normal-state)

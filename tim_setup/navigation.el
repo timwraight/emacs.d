@@ -51,11 +51,11 @@
   '(progn
      (setq ido-enable-prefix nil
            ido-enable-flex-matching t
+           ido-use-virtual-buffers t
            ido-create-new-buffer 'always
            ido-use-filename-at-point nil
            ido-max-prospects 10)
      (add-to-list 'ido-ignore-files "\\`pyc")
-     (setq ido-enable-flex-matching t)
      (setq ido-everywhere t)
      (ido-mode 1)))
 

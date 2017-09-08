@@ -44,3 +44,20 @@
 
 
 )
+
+(defun tw/visit-pull-request-url ()
+  "Visit the current branch's PR on Github."
+  (interactive)
+  (browse-url
+   (format "https://github.com/%s/pull/new/%s"
+           (replace-regexp-in-string
+            "\\`.+github\\.com:\\(.+\\)\\.git\\'" "\\1"
+            (magit-get "remote"
+                       (magit-get-upstream-remote)
+                       "url"))
+           (magit-get-current-branch))))
+
+
+(defun tw/push-to-origin ()
+  (interactive)
+  (magit-run-git-async "push" "-v" "origin" "--set-upstream" (magit-get-current-branch)))
