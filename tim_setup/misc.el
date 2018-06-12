@@ -14,7 +14,9 @@
                             (buffer-switch-to-monospaced)
                             (toggle-truncate-lines)
                             (emmet-mode)
+
                             (turn-off-flyspell)))
+(evil-define-key 'insert web-mode-map (kbd "M-.") 'emmet-expand-line)
 (setq sgml-basic-offset 4)
 
 ;; EDIFF
@@ -75,6 +77,10 @@
           (lambda ()
             (sql-highlight-postgres-keywords)
             ))
+;; Capitalize keywords in SQL mode
+(add-hook 'sql-mode-hook 'sqlup-mode)
+;; Set a global keyword to use sqlup on a region
+(global-set-key (kbd "C-c u") 'sqlup-capitalize-keywords-in-region)
 
 (eval-after-load "sql-mode"
   '(progn

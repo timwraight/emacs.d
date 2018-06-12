@@ -27,21 +27,23 @@
 				  (define-key js-mode-map (kbd "<C-RET>") 'auto-indent-eol-newline)
 				  (key-chord-define js-mode-map ",/" 'helm-javascript-functions)))
 
-
+;; Try to make semantic (which does some file parsing stuff) faster
+(setq semanticdb-find-default-throttle '(file local project))
 
 ;; Copy yanks to clipboard
-(setq save-interprogram-paste-before-kill t)
-(defun copy-from-osx ()
-  (shell-command-to-string "pbpaste"))
 
-(defun paste-to-osx (text &optional push)
-  (let ((process-connection-type nil))
-    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
-      (process-send-string proc text)
-      (process-send-eof proc))))
+;; (setq save-interprogram-paste-before-kill t)
+;; (defun copy-from-osx ()
+;;   (shell-command-to-string "pbpaste"))
 
-(setq interprogram-cut-function 'paste-to-osx)
-(setq interprogram-paste-function 'copy-from-osx)
+;; (defun paste-to-osx (text &optional push)
+;;   (let ((process-connection-type nil))
+;;     (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+;;       (process-send-string proc text)
+;;       (process-send-eof proc))))
+
+;; (setq interprogram-cut-function 'paste-to-osx)
+;; (setq interprogram-paste-function 'copy-from-osx)
 
 
 (global-auto-revert-mode)

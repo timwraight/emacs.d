@@ -1,3 +1,6 @@
+(setq magit-completing-read-function 'ido-completing-read)
+(global-magit-file-mode -1)
+
 (add-hook 'with-editor-mode-hook 'evil-insert-state)
 (with-eval-after-load 'magit
 (define-key magit-status-mode-map (kbd "e") 'next-line)

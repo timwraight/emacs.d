@@ -1,5 +1,6 @@
 (require 'cl)
 
+
 ;; Please don't load outdated byte code
 (setq load-prefer-newer t)
 
@@ -12,7 +13,7 @@
   (require 'use-package))
 
 (require 'bind-key)
-(require 'diminish)
+;(require 'diminish)
 
 (require 'subr-x)
 (require 'rx)
@@ -25,17 +26,20 @@
   (setq ns-pop-up-frames nil            ; Don't pop up new frames from the workspace
         ))
 
+(require 'python)
+
 (defvar tim-packages
 
   '(
     evil evil-leader evil-surround evil-mc
          company company-jedi company-quickhelp smartparens wgrep idris-mode helm-idris helm-mu haskell-mode
-         direx yasnippet dockerfile-mode php-mode python-django tagedit helm-dash crontab-mode
+         direx yasnippet dockerfile-mode php-mode python-django tagedit helm-dash 
          helm-ls-git flycheck flycheck-pos-tip flycheck-color-mode-line s git-timemachine window-number
-         rainbow-delimiters projectile helm-projectile helm-flx jabber jabber-otr alert auctex company-auctex virtualenvwrapper
+         rainbow-delimiters projectile helm-projectile helm-flx flx jabber jabber-otr alert auctex company-auctex virtualenvwrapper
          undo-tree volatile-highlights yaml-mode zenburn-theme helm-swoop which-key py-autopep8
-         magit markdown-mode python el-get helm evil-avy helm-ag emmet-mode py-isort
-         buffer-move format-sql switch-window golden-ratio ctags-update realgud terraform-mode
+         magit markdown-mode python el-get helm evil-avy helm-ag emmet-mode py-isort swiper counsel
+         buffer-move format-sql switch-window golden-ratio terraform-mode counsel-gtags ggtags
+         outorg outshine navi-mode ivy-rich helm-gtags pytest web-mode sqlup-mode importmagic
          )
 
   "A list of packages to ensure are installed at launch.")
@@ -79,9 +83,11 @@
 ;; Get my custom packages
 (add-to-list 'load-path "~/.emacs.d/custom_packages/emacs-flycheck-mypy/")
 (add-to-list 'load-path "~/.emacs.d/custom_packages/lalopmak-evil/")
+(add-to-list 'load-path "~/.emacs.d/custom_packages/Pymacs/")
 
 (load "~/.emacs.d/custom_packages/emacs-flycheck-mypy/flycheck-mypy.el")
 (load "~/.emacs.d/custom_packages/init-flycheck-mypy.el")
+(load "~/.emacs.d/custom_packages/crontab-mode.el")
 
 (load "~/.emacs.d/custom_packages/bible_search/bibsearch.el")
 (require 'lalopmak-evil)

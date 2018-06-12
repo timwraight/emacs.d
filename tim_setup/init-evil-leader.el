@@ -15,7 +15,7 @@
 (evil-leader/set-key "t" 'google-this)
 (require 'org)
 (with-eval-after-load 'org
-  (evil-leader/set-key (kbd "n") (lambda () (interactive) (find-file "~/org/journal.org"))))
+  (evil-leader/set-key (kbd "n") (lambda () (interactive) (find-file "~/org/general.org"))))
 (evil-leader/set-key "z" 'hs-toggle-hiding)
 
 ;; Window keymap
@@ -97,23 +97,36 @@
 (require 'magit)
 (defun new-branch-from-master (new-branch-name)
     (interactive "MNew branch name: ")
-    (magit-git-pull "master" nil)
+    (magit-call-git "checkout" "master")
+    (magit-git-pull "origin/master" nil)
     (magit-branch-and-checkout new-branch-name "master"))
 
 (defun delete-branch-checkout-master ()
-     (let* ((branches (magit-region-values 'branch))
-            ((branch (car branches))))
+  (interactive)
+     (let* ((branch-to-delete (magit-get-current-branch)))
        (magit-call-git "checkout" "master")
-     (magit-run-git "branch" "-d" branch))
+       (magit-git-pull "origin/master" nil)
+       (magit-run-git "branch" "-d" branch-to-delete))
      )
+
+(defun git-rebase-onto-master ()
+  (interactive)
+  (let* ((current-branch (magit-get-current-branch)))
+    (magit-call-git "checkout" "master")
+    (magit-git-pull "origin/master" nil)
+    (magit-call-git "checkout" current-branch)
+    (magit-git-rebase "master" nil)
+    ))
 
 
 (setq git-keymap (make-sparse-keymap))
-(evil-leader/set-key "g" git-keymap)
+;; No reason for setting this to 's' except that it's much handier on my keyboard
+;; than 'g'
+(evil-leader/set-key "s" git-keymap)
 (define-key git-keymap (kbd "<SPC>") 'magit-status)
 (define-key git-keymap (kbd "r") 'magit-blame)
 (define-key git-keymap (kbd "q") 'magit-blame-quit)
-(define-key git-keymap (kbd "c") 'magit-blame-copy-hash)
+(define-key git-keymap (kbd "c") 'magit-checkout)
 (define-key git-keymap (kbd "t") 'git-timemachine)
 (define-key git-keymap (kbd "n") 'git-timemachine-show-previous-revision)
 (define-key git-keymap (kbd "i") 'git-timemachine-show-next-revision)
@@ -122,7 +135,10 @@
 (define-key git-keymap (kbd "b") git-branch-keymap)
 (define-key git-branch-keymap (kbd "n") 'new-branch-from-master)
 (define-key git-branch-keymap (kbd "c") 'magit-checkout)
+(define-key git-branch-keymap (kbd "P") 'tw/push-to-origin)
+(define-key git-branch-keymap (kbd "p") 'tw/visit-pull-request-url)
 (define-key git-branch-keymap (kbd "d") 'delete-branch-checkout-master)
+(define-key git-branch-keymap (kbd "r") 'git-rebase-onto-master)
 
 ;; Checker keymap
 (setq checker-keymap (make-sparse-keymap))
@@ -160,6 +176,26 @@
   "<SPC> e" "lisp evaluation commands")
 
 
+
+
+(defun mypy-show-region ()
+  "Show type of variable at point."
+  (interactive)
+  (let ((here (region-beginning))
+        (there (region-end))
+        (filename (buffer-file-name)))
+    (let ((hereline (line-number-at-pos here))
+          (herecol (save-excursion (goto-char here) (current-column)))
+          (thereline (line-number-at-pos there))
+          (therecol (save-excursion (goto-char there) (current-column))))
+      (shell-command
+       (format "cd ~/.virtualenvs/octopy3/src/mypy; python3 ./scripts/find_type.py %s %s %s %s %s /Users/Wraight/.virtualenvs/octopy3/bin/mypy $(find /Users/Wraight/projects/consumer-site/src/octoenergy -name '*.py' ! -path '*migrations/*' ! -path '*tests/*' ! -path '*node_modules/*' ! -path '*admin.py' ! -path '*/\.*') --follow-imports=silent --ignore-missing-imports --incremental"
+               filename hereline herecol thereline therecol)
+       )
+      )
+    )
+  )
+
 ;; Timp keymap
 ;; This is a keymap for common editing commands. We give it prominence on
 ;; the 't' key because these should be common operations to perform in normal mode
@@ -169,6 +205,7 @@
 (define-key timp-keymap (kbd "m") 'helm-mark-ring)
 (define-key timp-keymap (kbd "g") 'google-this)
 (define-key timp-keymap (kbd "l") 'linum-mode)
+(define-key timp-keymap (kbd "t") 'mypy-show-region)
 (define-key timp-keymap (kbd "s") 'projectile-run-eshell)
 (define-key timp-keymap (kbd "p") 'helm-projectile-switch-project)
 
@@ -226,9 +263,21 @@
   "Like pytest-one, but remembers the thing it tested, so that
 you can run it quickly again, without pytest collecting all of its tests"
   (interactive)
+  (save-some-buffers t)
   (if (not tw-pytest-last-run-test)
       (setq tw-pytest-last-run-test (pytest-py-testable)))
-  (pytest-run (format "%s" tw-pytest-last-run-test) flags))
+  ;; We want to run the thing at point, regardless of the value of last run test
+  (tw-pytest-run (format "%s" (pytest-py-testable)) flags))
+
+(defun pytest-all-remember (&optional flags)
+  "Like pytest-one, but remembers the thing it tested, so that
+you can run it quickly again, without pytest collecting all of its tests"
+  (interactive)
+  (if (not tw-pytest-last-run-test)
+      (setq tw-pytest-last-run-test (pytest-py-testable)))
+  (let*
+      ((flags (concat pytest-cmd-flags " --lf")))
+    (tw-pytest-run nil flags)))
 
 
 (defun pytest-last ()
@@ -239,26 +288,95 @@ you can run it quickly again, without pytest collecting all of its tests"
 
 (defun pytest-support ()
   (interactive)
-  (setq pytest-cmd-flags (concat pytest-cmd-flags  " --support --ds=tests.settings_support"))
-  (pytest-last))
+  (let
+      ((flags (concat pytest-cmd-flags  " --support --ds=tests.settings_support")))
+    (pytest-one flags)))
 
 (defun pytest-create-db ()
   (interactive)
-  (setq pytest-cmd-flags (concat pytest-cmd-flags " --create-db"))
-  (pytest-last)) 
+  (let
+      ((flags (concat pytest-cmd-flags " --create-db")))
+    (pytest-one flags)))
+
+
+
+(defun tw-pytest-forget-last-test-if-successful (buffer msg)
+  (if (string-match "^finished" msg)
+      (setq tw-pytest-last-run-test nil)))
+
+
+(defun pdb-thing-at-point-support ()
+  (interactive)
+  (save-some-buffers t)
+  (let*
+      ((flags (concat pytest-cmd-flags " --support --ds=tests.settings_support -s --lf --pdb --pdbcls=IPython.terminal.debugger:Pdb")))
+    (ipdb (format "%s %s %s" (pytest-find-test-runner) flags (pytest-py-testable)))))
+
 
 (defun pdb-thing-at-point ()
   (interactive)
+  (save-some-buffers t)
   (let*
-      ((flags (concat pytest-cmd-flags "-s --lf --pdb --pdbcls=IPython.terminal.debugger:Pdb")))
+      ((flags (concat pytest-cmd-flags " --lf --pdb --pdbcls=IPython.terminal.debugger:Pdb")))
     (ipdb (format "%s %s %s" (pytest-find-test-runner) flags (pytest-py-testable)))))
+
+(defun pdb-printout ()
+  (interactive)
+  (save-some-buffers t)
+  (let* 
+      ((flags (concat pytest-cmd-flags " --lf --pdb --pdbcls=IPython.terminal.debugger:Pdb")))
+    (message (format "%s %s %s" (pytest-find-test-runner) flags (pytest-py-testable)))))
+
+(defun tw-pytest-run (&optional tests flags)
+  "My version of pytest-run which adds a function to
+'compilation-finish-functions which forgets the last test if it was successful"
+  (interactive "fTest directory or file: \nspy.test flags: ")
+  (let* ((pytest (pytest-find-test-runner))
+         (where (if tests
+                    (let ((testpath (if (listp tests) (car tests) tests)))
+                      (pytest-find-project-root (file-name-directory testpath)))
+                  (pytest-find-project-root)))
+         (tests (cond ((not tests) (list "."))
+                      ((listp tests) tests)
+                      ((stringp tests) (split-string tests))))
+         (tnames (mapconcat (apply-partially 'format "'%s'") tests " "))
+         (cmd-flags (if flags flags pytest-cmd-flags))
+         (use-comint (s-contains? "pdb" cmd-flags)))
+    (add-to-list 'compilation-finish-functions 'tw-pytest-forget-last-test-if-successful)
+    (funcall #'(lambda (command)
+                 (compilation-start command use-comint
+                                    (lambda (mode) (concat (pytest-get-temp-buffer-name)))))
+             (pytest-cmd-format pytest-cmd-format-string where pytest cmd-flags tnames))
+    (if use-comint
+	(with-current-buffer (get-buffer (pytest-get-temp-buffer-name))
+	  (inferior-python-mode)))))
+
+
+(defun tw/pytest-command-string (tests flags)
+  (let* ((pytest (pytest-find-test-runner))
+         (where (if tests
+                    (let ((testpath (if (listp tests) (car tests) tests)))
+                      (pytest-find-project-root (file-name-directory testpath)))
+                  (pytest-find-project-root)))
+         (tests (cond ((not tests) (list "."))
+                      ((listp tests) tests)
+                      ((stringp tests) (split-string tests))))
+         (tnames (mapconcat (apply-partially 'format "'%s'") tests " "))
+         (cmd-flags (if flags flags pytest-cmd-flags))
+         (use-comint (s-contains? "pdb" cmd-flags)))
+    (add-to-list 'compilation-finish-functions 'tw-pytest-forget-last-test-if-successful)
+    (pytest-cmd-format pytest-cmd-format-string where pytest cmd-flags tnames)
+  ))
+
+
 
 ;; Project keymap
 (setq python-keymap (make-sparse-keymap))
 (define-key python-keymap (kbd "i") 'rope-auto-import)
-(define-key python-keymap (kbd "s") 'py-support)
+(define-key python-keymap (kbd "s") 'pytest-support)
 (define-key python-keymap (kbd "f") 'rope-find-occurrences)
-(define-key python-keymap (kbd "SPC") 'pytest-one-remember)
+(define-key python-keymap (kbd "p") 'pdb-thing-at-point)
+(define-key python-keymap (kbd "SPC") 'pytest-all-remember)
 (define-key python-keymap (kbd "1") 'pytest-one-remember)
 (define-key python-keymap (kbd "2") 'pytest-module)
 (define-key python-keymap (kbd "3") 'pytest-all)
@@ -302,4 +420,3 @@ you can run it quickly again, without pytest collecting all of its tests"
 (define-key jedi-keymap (kbd "d") 'jedi:show-doc)
 
 (evil-leader/set-key-for-mode 'python-mode "j" jedi-keymap)
-

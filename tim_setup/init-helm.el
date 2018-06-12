@@ -1,20 +1,20 @@
 (require 'helm-config)
 (setq helm-ls-git-show-abs-or-relative 'absolute)
 (setq helm-ff-transformer-show-only-basename nil)
+(with-eval-after-load 'helm
+    (setq helm-display-function 'helm-default-display-buffer))
 
 (setq
  helm-locate-command "mdfind 'kMDItemDisplayName == \"%s\" || kMDItemTextContent == \"%s\"'"
  helm-c-locate-command "mdfind 'kMDItemDisplayName == \"%s\" || kMDItemTextContent == \"%s\"'")
 
+(setq helm-swoop-speed-or-color t)
  (setq read-buffer-function 'ido-read-buffer)
 (setq read-file-name-function 'ido-read-file-name)
 (setq helm-full-frame nil)
 (setq helm-echo-input-in-header-line t)
 (setq helm-scroll-amount 8)
 
-
-(setq helm-display-function
-      (lambda (buf) (switch-to-buffer buf)))
 
 (add-hook 'eshell-mode-hook
           #'(lambda ()
@@ -235,30 +235,49 @@
 ;;                . helm-org-insert-link-to-heading-at-marker)))))
 (require 'helm-ag)
 
-
+(add-hook 'helm-major-mode-hook 'buffer-switch-to-monospaced)
 
 (defun helm-proj ()
   "Project searching, by tim."
   (interactive)
-  (unless (and helm-source-ls-git-status
-               helm-source-ls-git)
-    (setq helm-source-ls-git-status
-          (helm-make-source "Git status" 'helm-ls-git-status-source
-            :fuzzy-match helm-ls-git-fuzzy-match)
-          helm-source-ls-git
+  (unless helm-source-ls-git
+    (setq helm-source-ls-git
           (helm-make-source "Git files" 'helm-ls-git-source
-            :fuzzy-match helm-ls-git-fuzzy-match)))
+            :fuzzy-match helm-ls-git-fuzzy-match
+            :requires-pattern 2)))
   (setq helm-ag--default-directory (helm-ag--project-root))
-  (helm :sources '(helm-source-ls-git-status
-                   helm-source-ls-git
+  (helm :sources '(helm-source-ls-git
                    helm-source-do-ag)
-        ;; When `helm-ls-git-ls' is called from lisp
-        ;; `default-directory' is normally let-bounded,
-        ;; to some other value;
-        ;; we now set this new let-bounded value local
-        ;; to `helm-default-directory'.
+        ;; When `helm-ls-git-ls' is called from lisp `default-directory' is normally let-bounded,
+        ;; to some other value; we now set this new let-bounded value local to
+        ;; `helm-default-directory'.
         :default-directory default-directory
         :buffer "*helm proj*"))
+
+
+(defun tw/git-files ()
+  (interactive)
+  (unless helm-source-ls-git
+    (setq helm-source-ls-git
+          (helm-make-source "Git files" 'helm-ls-git-source
+            :fuzzy-match helm-ls-git-fuzzy-match
+            :requires-pattern 2)))
+  (helm :sources '(helm-source-ls-git)
+        ;; When `helm-ls-git-ls' is called from lisp `default-directory' is normally let-bounded,
+        ;; to some other value; we now set this new let-bounded value local to
+        ;; `helm-default-directory'.
+        :default-directory default-directory
+        :buffer "*helm git files*"))
+
+
+(defun tw/helm-ag ()
+  "Project searching, by tim."
+  (interactive)
+  (setq helm-ag--default-directory (helm-ag--project-root))
+  (helm :sources '(helm-source-do-ag)
+        :default-directory default-directory
+        :buffer "*helm ag results*"))
+
 
 (with-eval-after-load 'mu4e
   (require 'helm-mu)
@@ -282,3 +301,32 @@
                      "*helm timi*"))
 
 
+;; ripgrep
+
+(setq helm-grep-ag-command "rg --smart-case --no-heading --line-number %s %s %s")
+
+
+;; FZF
+
+(defvar helm-fzf-source
+  (helm-build-async-source "fzf"
+    :candidates-process 'helm-fzf--do-candidate-process
+    :nohighlight t
+    :requires-pattern 2
+    :candidate-number-limit 9999))
+
+(defun helm-fzf--do-candidate-process ()
+  (let* ((cmd-args `("fzf" "-x" "-f" ,helm-pattern))
+         (proc (apply #'start-file-process "helm-fzf" nil cmd-args)))
+    (prog1 proc
+      (set-process-sentinel
+       proc
+       (lambda (process event)
+         (helm-process-deferred-sentinel-hook
+          process event (helm-default-directory)))))))
+
+(defun helm-fzf (directory)
+  (interactive "D")
+  (let ((default-directory directory))
+    (helm :sources '(helm-fzf-source)
+:buffer "*helm-fzf*")))

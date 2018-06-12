@@ -1,4 +1,5 @@
 (require 'helm-ls-git)
+(setq helm-ls-git-default-sources '(helm-source-ls-git))
 (defun file-name-at-point ()
        (cond ((region-active-p)
               (buffer-substring-no-properties region-beginning region-end))

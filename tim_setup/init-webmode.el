@@ -1,5 +1,6 @@
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
@@ -9,7 +10,9 @@
 (add-to-list 'auto-mode-alist '("\\.rml\\'" . web-mode))
 
 (defun my-web-mode-hook ()
-  (setq web-mode-enable-auto-pairing nil))
+  (setq web-mode-enable-auto-pairing nil)
+  (buffer-switch-to-monospaced)
+  )
 
 (add-hook 'web-mode-hook  'my-web-mode-hook)
 

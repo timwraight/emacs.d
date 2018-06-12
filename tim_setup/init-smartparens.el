@@ -3,4 +3,5 @@
 (require 'smartparens-haskell)
 
 (add-hook 'inferior-idris 'sp--haskell-mode-hooksetup-inferior-haskell-mode-search-bounds)
-(smartparens-global-mode)
+(add-hook 'python-mode-hook #'smartparens-mode)
+(add-hook 'scss-mode-hook #'smartparens-mode)
