@@ -16,10 +16,27 @@
 ;;                  comment-auto-fill-only-comments t
 ;;                  comment-fill-column 99
 ;;                  )
+(add-to-list 'auto-mode-alist '("\\.pyi\\'" . python-mode))
+
 
 (add-hook 'python-mode-hook (lambda () (interactive) (setq comment-fill-column 99)))
+
+;; (add-hook 'python-mode-hook (lambda () (interactive)
+;;                               (if (buffer-file-name)
+;;                                   (progn
+;;                                     (hs-minor-mode)
+;;                                     (hs-hide-all)))
+;;                               ))
 
 (defun send-to-pony-shell ()
   (interactive)
   (comint-send-string (get-buffer-process "*ponysh*") (concat (buffer-substring (region-beginning) (region-end)) "\n"))
   )
+
+(add-hook 'python-mode-hook (ggtags-mode 1))
+
+(add-hook 'semantic-init-hook
+          (lambda ()
+            (interactive)
+            (if (and (bound-and-true-p python-mode) (buffer-file-name))
+                (helm-semantic nil))))

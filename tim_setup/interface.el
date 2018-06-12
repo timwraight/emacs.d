@@ -3,10 +3,16 @@
       mac-right-command-key-is-meta t
       mac-right-command-modifier 'meta
       mac-right-option-modifier 'meta
+      mac-left-option-modifier 'meta)
 
-      mac-left-option-modifier 'meta
+;; ANNOTATE
+(add-hook 'vc-annotate-mode-hook 'buffer-switch-to-monospaced)
 
-      )
+;; EDBI
+(add-hook 'edbi:dbview-update-hook 'buffer-switch-to-monospaced)
+ 
+;; MINIBUFFER
+(add-hook 'minibuffer-setup-hook 'buffer-switch-to-monospaced)
 
 ;; SOLARIZED
 (load-theme 'zenburn t)

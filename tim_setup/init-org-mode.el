@@ -9,7 +9,8 @@
 (setq org-default-notes-file "~/Dropbox/org/general.org")
 (setq org-startup-indented t)
 ; Keywords
-(setq org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+(setq org-todo-keywords '((sequence "PROJECT(p)" "|" "HOLDING(h)")
+                          (sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
                           (sequence "QUESTION(q)" "|" "ANSWERED(a)")))
 
 (eval-after-load 'org-agenda
@@ -22,7 +23,12 @@
      (define-key org-agenda-keymap "u" 'previous-line)
      (define-key org-agenda-keymap (kbd "SPC") evil-leader--default-map)))
 
+(evil-define-key 'normal 'org-mode-map (kbd "C-M-e") 'org-move-subtree-down)
+(evil-define-key 'normal 'org-mode-map (kbd "C-M-u") 'org-move-item-up)
+(evil-define-key 'normal 'org-mode-map (kbd "C-M-i") 'org-indent-block)
+(evil-define-key 'normal 'org-mode-map (kbd "C-M-n") 'org-dedent-block)
 
+(setq org-agenda-dim-blocked-tasks nil)
 (setq org-enforce-todo-dependencies t)
 
 ; Persist clock history
@@ -302,60 +308,23 @@ Callers of this function already widen the buffer view."
         (concat (org-format-outline-path outline-path) " »")
       "")))
 
+(defun outline-leaf ()
+  (car (last (split-string (item-with-outline) "/")))
+  )
 
+(setq org-agenda-include-inactive-timestamps t)
 
 (setq org-agenda-prefix-format
  (quote
   ((agenda . "%-12:c%?-12t% s %b ")
    (timeline . "  % s")
-   (todo . " %i %-12:c %(item-with-outline) ")
+   (todo . "%(item-with-outline) ")
    (tags .  " %i %-12:c %(item-with-outline) ")
    (search . " %i %-12:c"))))
 
 ;; When sorting our agenda items, treat ones without time as being late
 (setq org-sort-agenda-notime-is-late nil)
 
-(setq org-agenda-custom-commands
-      '(
-        (" " "Tim's Agenda"
-         ((agenda "")
-          (todo "TODO"
-                     ((org-agenda-files '("~/org/journal.org"))
-                      (org-agenda-overriding-header "Recent work")
-                      (org-agenda-sorting-strategy
-                       '(timestamp-down priority-down))
-          ))
-          (tags-todo "-dormant-CANCELLED/TODO|NEXT"
-                     ((org-agenda-overriding-header "Tasks")
-                      (org-agenda-sorting-strategy
-                       '(timestamp-down priority-down))
-                      ))
-          (tags-todo "/QUESTION"
-                     ((org-agenda-overriding-header "Questions")
-                      (org-agenda-sorting-strategy
-                       '(todo-state-down priority-down))
-                      ))
-          (tags "-REFILE/"
-                ((org-agenda-overriding-header "Tasks to Archive")
-                 (org-agenda-skip-function 'tw/skip-non-archivable-tasks)
-                 (org-tags-match-list-sublevels nil)
-                 ))
-          ))
-                                        ; 'c' is our prefix for 'custom agendas'
-        ("c" . "Custom Agendas")
-        ("cr" "Regular Tasks" tags "regular")
-        ("cp" "Current Projects" tags "project-dormant+LEVEL=2"
-         ((org-agenda-overriding-header "Current Projects")
-          (org-agenda-skip-function 'tw/skip-non-projects))
-         (org-tags-match-list-sublevels 'indented))
-        ("ct" "Project Tasks" tags "project-dormant/TODO|NEXT"
-         ((org-agenda-overriding-header "Project Tasks")
-          (org-tags-match-list-sublevels 'indented)))
-        ("ca" "All my tasks" tags-todo "TODO=\"TODO\"")
-        ("cn" "Next Actions" tags-todo "-dormant/TODO=\"NEXT\"")
-        ("cw" "This week's tasks" tags-todo "TODO=\"TODO\"+SCHEDULED<=\"<+1w>\"")
-        ("cd" "Technical Debt" tags "+technical_debt")
-        ))
 
 ; Redefine this so that we get breadcrumbs in our clock select menu
 (defun org-clock-insert-selection-line (i marker)

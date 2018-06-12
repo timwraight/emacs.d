@@ -1,5 +1,6 @@
 (require 'projectile)
 (projectile-global-mode)
 (setq projectile-remember-window-configs t)
+(setq projectile-enable-caching nil)
 (setq projectile-completion-system 'helm)
 (global-set-key "\C-c p p" 'projectile-switch-project)
