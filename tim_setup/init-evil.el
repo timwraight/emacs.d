@@ -118,7 +118,7 @@
 (define-key evil-normal-state-map (kbd "M-h") 'helm-swoop-without-pre-input)
 (define-key evil-normal-state-map (kbd "M-f") 'tw/helm-gtags-dwim)
 (define-key evil-insert-state-map (kbd "M-t") 'evil-normal-state)
-(define-key evil-normal-state-map (kbd "l") 'avy-goto-word-0)
+(define-key evil-normal-state-map (kbd "l") 'avy-goto-char-timer)
 (define-key evil-normal-state-map (kbd "M-l") 'avy-goto-line)
 (define-key evil-normal-state-map (kbd "M-b") 'helm-bible-search)
 (global-set-key (kbd "M-t") 'evil-normal-state)

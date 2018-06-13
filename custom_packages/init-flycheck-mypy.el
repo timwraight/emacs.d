@@ -3,3 +3,6 @@
                                   "--follow-imports=skip" 
                                   "--ignore-missing-imports"
                                   ))
+
+
+(flycheck-add-next-checker 'python-flake8 'python-mypy)

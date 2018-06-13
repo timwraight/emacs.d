@@ -119,6 +119,7 @@
 
 ; truncate lines in dired mode
 (add-hook 'dired-mode-hook 'toggle-truncate-lines)
+(setq dired-dwim-target t)
 
 
 ;; EDIFF

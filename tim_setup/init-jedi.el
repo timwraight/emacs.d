@@ -12,7 +12,7 @@
 (setq jedi:goto-definition-config '((nil definition nil)     ; C-.
                                     (t definition nil)          ; C-u C-.
                                     (nil nil nil)            ; C-u C-u C-.
-                                    (t definition nil)
+                                    (t nil nil)
                                     (nil nil t)
                                     (t nil t)
                                     (nil definition t)

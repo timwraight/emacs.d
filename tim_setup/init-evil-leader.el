@@ -13,9 +13,6 @@
 (evil-leader/set-key "o" 'helm-org-agenda-files-headings)
 (evil-leader/set-key "r" (lambda() (interactive) (kbd "ysiW")))
 (evil-leader/set-key "t" 'google-this)
-(require 'org)
-(with-eval-after-load 'org
-  (evil-leader/set-key (kbd "n") (lambda () (interactive) (find-file "~/org/general.org"))))
 (evil-leader/set-key "z" 'hs-toggle-hiding)
 
 ;; Window keymap
@@ -80,11 +77,22 @@
 
 
 ;; Org map
+(require 'org)
+
+(defun tw/go-to-custom-agenda (&optional arg)
+  (interactive "P")
+  (org-agenda arg " "))
+
+
+(with-eval-after-load 'org
+  (evil-leader/set-key (kbd "n") 'tw/go-to-custom-agenda))
+
 (setq org-keymap (make-sparse-keymap))
 (define-key org-keymap (kbd "c") 'org-capture)
-(define-key org-keymap (kbd "<SPC>") (lambda () (interactive) (org-capture nil "j")))
+(define-key org-keymap (kbd "<SPC>") (lambda () (interactive) (org-capture nil "t")))
 (define-key org-keymap (kbd "l") 'org-store-link)
 (define-key org-keymap (kbd "n") 'org-narrow-to-subtree)
+(define-key org-keymap (kbd "o") 'tw/go-to-custom-agenda)
 (define-key org-keymap (kbd "w") (lambda () (interactive) (find-file "~/org/journal.org")))
 
 (evil-leader/set-key "o" org-keymap)
@@ -205,9 +213,8 @@
 (define-key timp-keymap (kbd "m") 'helm-mark-ring)
 (define-key timp-keymap (kbd "g") 'google-this)
 (define-key timp-keymap (kbd "l") 'linum-mode)
-(define-key timp-keymap (kbd "t") 'mypy-show-region)
 (define-key timp-keymap (kbd "s") 'projectile-run-eshell)
-(define-key timp-keymap (kbd "p") 'helm-projectile-switch-project)
+(define-key timp-keymap (kbd "t") 'helm-projectile-switch-project)
 
 (evil-leader/set-key "t" timp-keymap)
 (which-key-add-key-based-replacements
@@ -318,7 +325,7 @@ you can run it quickly again, without pytest collecting all of its tests"
   (save-some-buffers t)
   (let*
       ((flags (concat pytest-cmd-flags " --lf --pdb --pdbcls=IPython.terminal.debugger:Pdb")))
-    (ipdb (format "%s %s %s" (pytest-find-test-runner) flags (pytest-py-testable)))))
+    (pdb (format "%s %s %s" (pytest-find-test-runner) flags (pytest-py-testable)))))
 
 (defun pdb-printout ()
   (interactive)

@@ -35,6 +35,8 @@
          company company-jedi company-quickhelp smartparens wgrep idris-mode helm-idris helm-mu haskell-mode
          direx yasnippet dockerfile-mode php-mode python-django tagedit helm-dash 
          helm-ls-git flycheck flycheck-pos-tip flycheck-color-mode-line s git-timemachine window-number
+         rainbow-delimiters projectile helm-projectile helm-flx flx jabber jabber-otr alert auctex company-auctex virtualenvwrapper
+         undo-tree volatile-highlights yaml-mode zenburn-theme helm-swoop which-key py-autopep8
          magit markdown-mode python el-get helm evil-avy helm-ag emmet-mode py-isort swiper counsel
          buffer-move format-sql switch-window golden-ratio terraform-mode counsel-gtags ggtags
          outorg outshine navi-mode ivy-rich helm-gtags pytest web-mode sqlup-mode importmagic

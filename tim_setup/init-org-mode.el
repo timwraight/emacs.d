@@ -20,6 +20,7 @@
      (define-key org-agenda-keymap "i" 'org-agenda-clock-in)
      (define-key org-agenda-keymap "n" 'org-agenda-clock-out)
      (define-key org-agenda-keymap "e" 'next-line)
+     (define-key org-agenda-keymap "q" 'previous-buffer)
      (define-key org-agenda-keymap "u" 'previous-line)
      (define-key org-agenda-keymap (kbd "SPC") evil-leader--default-map)))
 
@@ -143,7 +144,7 @@
 (setq org-startup-with-inline-images t)
 (add-hook 'org-babel-after-execute-hook 'org-display-inline-images)
 
-(with-eval-after-load 'vimp
+(with-eval-after-load 'evil
   (evil-define-key 'insert org-mode-map (kbd "M-i") 'org-metaright)
   (evil-define-key 'insert org-mode-map (kbd "M-n") 'org-metaleft)
   (evil-define-key 'insert org-mode-map (kbd "M-u") 'org-metaup)
@@ -282,7 +283,7 @@ Callers of this function already widen the buffer view."
           (subtree-end (save-excursion (org-end-of-subtree t))))
       (if (member (org-get-todo-state) org-todo-keywords-1)
           (if (member (org-get-todo-state) org-done-keywords)
-              (let* ((daynr (string-to-int (format-time-string "%d" (current-time))))
+              (let* ((daynr (string-to-number (format-time-string "%d" (current-time))))
                      (a-month-ago (* 60 60 24 (+ daynr 1)))
                      (last-month (format-time-string "%Y-%m-" (time-subtract (current-time) (seconds-to-time a-month-ago))))
                      (this-month (format-time-string "%Y-%m-" (current-time)))
