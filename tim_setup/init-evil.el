@@ -113,20 +113,31 @@
 
 (define-key evil-normal-state-map (kbd "M-m") 'tw/git-files)
 (define-key evil-normal-state-map (kbd "m") 'tw/helm-ag)
-(define-key evil-normal-state-map (kbd "o") 'avy-goto-line)
-(define-key evil-normal-state-map (kbd "w") 'avy-goto-char-in-line)
+(define-key evil-normal-state-map (kbd "w") #'evil-avy-goto-word-crt-line)
+(define-key evil-motion-state-map (kbd "w") #'evil-avy-goto-word-crt-line)
+(define-key evil-visual-state-map (kbd "w") #'evil-avy-goto-word-crt-line)
+
 (define-key evil-normal-state-map (kbd "M-h") 'helm-swoop-without-pre-input)
 (define-key evil-normal-state-map (kbd "M-f") 'tw/helm-gtags-dwim)
 (define-key evil-insert-state-map (kbd "M-t") 'evil-normal-state)
 (define-key evil-normal-state-map (kbd "l") 'avy-goto-char-timer)
+(define-key evil-motion-state-map (kbd "l") 'avy-goto-char-timer)
 (define-key evil-normal-state-map (kbd "M-l") 'avy-goto-line)
-(define-key evil-normal-state-map (kbd "M-b") 'helm-bible-search)
+(define-key evil-normal-state-map (kbd "M-s") 'avy-goto-char-timer)
+(define-key evil-normal-state-map (kbd "M-b") 'helm-git-branches)
 (global-set-key (kbd "M-t") 'evil-normal-state)
 (define-key evil-normal-state-map (kbd "M-/") 'helm-swoop-without-pre-input)
 (define-key evil-normal-state-map (kbd "B") 'bury-buffer)
 (define-key evil-normal-state-map (kbd "TAB") 'indent-for-tab-command)
 (define-key evil-normal-state-map (kbd "M-k") (lambda () (interactive) (suspend-tty)))
 (define-key evil-normal-state-map (kbd "C-k") (lambda () (interactive) (recenter-top-bottom 0)))
+
+
+
+;; Treemacs
+; (require 'evil-treemacs)
+(evil-define-key 'normal treemacs-mode-map (kbd "t") 'treemacs-toggle-node)
+(evil-define-key 'normal treemacs-mode-map (kbd "q") 'treemacs-quit)
 
 
 (global-set-key (kbd "M-v") 'yank)
@@ -226,9 +237,6 @@
 (evil-define-key 'normal git-rebase-mode-map (kbd "M-e") (lambda () (interactivet) (git-rebase-edit)))
 (with-eval-after-load 'company
   (evil-define-key 'insert company-active-map (kbd "M-m") 'company-filter-candidates))
-
-(global-set-key (kbd "M-,") 'pop-global-mark)
-(evil-global-set-key 'normal (kbd "M-,") 'pop-global-mark)
 
 (evil-define-key 'normal helm-ag-mode-map (kbd "RET") 'helm-ag-mode-jump)
 (evil-define-key 'normal wgrep-mode-map (kbd "RET") 'helm-ag-mode-jump)

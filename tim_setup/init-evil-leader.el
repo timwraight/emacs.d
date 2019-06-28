@@ -26,7 +26,7 @@
 (define-key window-keymap (kbd "t") 'transpose-windows)
 (define-key window-keymap (kbd "f") 'fit-window-to-buffer)
 (define-key window-keymap (kbd "o") 'other-window-kill-buffer)
-(define-key window-keymap (kbd "SPC") (lambda () (interactive) (other-window -1)))
+;; (define-key window-keymap (kbd "SPC") (lambda () (interactive) (other-window -1)))
 
 (define-key window-keymap "1" 'delete-other-windows)
 (define-key window-keymap "0" (lambda () (interactive) (delete-window) (balance-windows)))
@@ -36,7 +36,9 @@
                                                 ))
 (define-key window-keymap "2" 'split-window-below)
 (define-key window-keymap "p" 'winner-undo)
+(define-key window-keymap "w" 'treemacs)
 (define-key window-keymap "\C-p" 'winner-redo)
+(define-key window-keymap " " 'eyebrowse-switch-to-window-config)
 (evil-leader/set-key "w" window-keymap)
 (which-key-add-key-based-replacements
   "<SPC> w" "window commands")
@@ -143,7 +145,6 @@
 (define-key git-keymap (kbd "b") git-branch-keymap)
 (define-key git-branch-keymap (kbd "n") 'new-branch-from-master)
 (define-key git-branch-keymap (kbd "c") 'magit-checkout)
-(define-key git-branch-keymap (kbd "P") 'tw/push-to-origin)
 (define-key git-branch-keymap (kbd "p") 'tw/visit-pull-request-url)
 (define-key git-branch-keymap (kbd "d") 'delete-branch-checkout-master)
 (define-key git-branch-keymap (kbd "r") 'git-rebase-onto-master)
@@ -396,14 +397,15 @@ you can run it quickly again, without pytest collecting all of its tests"
 (which-key-add-key-based-replacements
   "<SPC> p" "python commands")
  
-(evil-leader/set-key "<SPC>" 'evil-jump-backward)
+(evil-leader/set-key "<SPC>" 'helm-curated-actions)
 (evil-leader/set-key "S-<SPC>" 'evil-jump-forward)
 
 
 
-(evil-leader/set-key "b" 'ido-switch-buffer)
+(evil-leader/set-key "b" 'projectile-switch-to-buffer)
+(evil-leader/set-key "K" 'bury-buffer)
 ;; GLOBAL (windows and buffers)
-(evil-leader/set-key "r" 'helm-recentf)
+(evil-leader/set-key "r" 'helm-global-mark-ring)
 (evil-leader/set-key "k" 'kill-this-buffer)
 (evil-leader/set-key "x" 'helm-M-x)
 (evil-leader/set-key "v" 'clipboard-yank)

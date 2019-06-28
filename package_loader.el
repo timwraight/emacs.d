@@ -33,13 +33,13 @@
   '(
     evil evil-leader evil-surround evil-mc
          company company-jedi company-quickhelp smartparens wgrep idris-mode helm-idris helm-mu haskell-mode
-         direx yasnippet dockerfile-mode php-mode python-django tagedit helm-dash 
-         helm-ls-git flycheck flycheck-pos-tip flycheck-color-mode-line s git-timemachine window-number
+         direx yasnippet dockerfile-mode php-mode tagedit helm-dash expand-region
+         helm-ls-git flycheck flycheck-color-mode-line s git-timemachine window-number
          rainbow-delimiters projectile helm-projectile helm-flx flx jabber jabber-otr alert auctex company-auctex virtualenvwrapper
-         undo-tree volatile-highlights yaml-mode zenburn-theme helm-swoop which-key py-autopep8
+         undo-tree volatile-highlights yaml-mode zenburn-theme helm-swoop which-key blacken
          magit markdown-mode python el-get helm evil-avy helm-ag emmet-mode py-isort swiper counsel
-         buffer-move format-sql switch-window golden-ratio terraform-mode counsel-gtags ggtags
-         outorg outshine navi-mode ivy-rich helm-gtags pytest web-mode sqlup-mode importmagic
+         buffer-move format-sql switch-window golden-ratio terraform-mode counsel-gtags ggtags company-box
+         outorg outshine navi-mode ivy-rich helm-gtags pytest web-mode sqlup-mode importmagic treemacs
          )
 
   "A list of packages to ensure are installed at launch.")
@@ -88,6 +88,7 @@
 (load "~/.emacs.d/custom_packages/emacs-flycheck-mypy/flycheck-mypy.el")
 (load "~/.emacs.d/custom_packages/init-flycheck-mypy.el")
 (load "~/.emacs.d/custom_packages/crontab-mode.el")
+; (load "~/.emacs.d/custom_packages/init-mu4e.el")
 
 (load "~/.emacs.d/custom_packages/bible_search/bibsearch.el")
 (require 'lalopmak-evil)

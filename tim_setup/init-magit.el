@@ -1,7 +1,11 @@
 (setq magit-completing-read-function 'ido-completing-read)
 (global-magit-file-mode -1)
+(setq magit-refresh-status-buffer nil)
+(setq vc-handled-backends (delq 'Git vc-handled-backends))
 
 (add-hook 'with-editor-mode-hook 'evil-insert-state)
+(add-hook 'magit-status-mode-hook 'buffer-switch-to-variable-pitch)
+
 (with-eval-after-load 'magit
 (define-key magit-status-mode-map (kbd "e") 'next-line)
 (define-key magit-status-mode-map (kbd "u") 'previous-line)
@@ -12,6 +16,9 @@
 (define-key magit-file-section-map (kbd "u") 'previous-line)
 (define-key magit-file-section-map (kbd "i") 'magit-stage)
 (define-key magit-file-section-map (kbd "n") 'magit-unstage)
+
+(define-key magit-mode-map (kbd "M-b") 'helm-git-branches)
+(define-key magit-mode-map (kbd "M-p") 'tw/visit-pull-request-url)
 
 (define-key magit-unstaged-section-map (kbd "e") 'next-line)
 (define-key magit-unstaged-section-map (kbd "u") 'previous-line)
@@ -44,8 +51,6 @@
 (define-key magit-hunk-section-map (kbd "n") 'magit-unstage)
 
 
-
-
 )
 
 (defun tw/visit-pull-request-url ()
@@ -56,11 +61,6 @@
            (replace-regexp-in-string
             "\\`.+github\\.com:\\(.+\\)\\.git\\'" "\\1"
             (magit-get "remote"
-                       (magit-get-upstream-remote)
+                       (magit-get-push-remote)
                        "url"))
            (magit-get-current-branch))))
-
-
-(defun tw/push-to-origin ()
-  (interactive)
-  (magit-run-git-async "push" "-v" "origin" "--set-upstream" (magit-get-current-branch)))

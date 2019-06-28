@@ -7,6 +7,15 @@
 (add-hook 'python-mode-hook 'buffer-switch-to-monospaced)
 (add-hook 'inferior-python-mode-hook 'buffer-switch-to-monospaced)
 (add-hook 'python-mode-hook 'electric-indent-local-mode)
+
+(defun tw/isort-and-blacken ()
+  (py-isort-buffer)
+  (blacken-buffer)
+  )
+
+(add-hook 'python-mode-hook
+          (lambda () (add-hook 'before-save-hook 'tw/isort-and-blacken nil 'local)))
+
 (setq python-indent-offset 4)
 ;; (with-eval-after-load "vimp"
 ;;   (evil-define-key 'insert python-mode-map (kbd "M-h") 'rope-lucky-assist))

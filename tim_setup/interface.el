@@ -50,6 +50,7 @@
                             (setq truncate-lines t)
                             (rainbow-delimiters-mode)))
 (add-hook 'text-mode-hook (lambda () (variable-pitch-mode t)))
+(add-hook 'git-commit-mode-hook 'buffer-switch-to-variable-pitch)
 
 ;; allow us to easily switch to monospaced or variable pitch fonts
 ;; per buffer. Need to define these faces, obviously

@@ -23,6 +23,9 @@
 (setq helm-follow-mode-persistent t)
 (setq helm-truncate-lines nil)
 (helm-mode)
+(add-to-list 'helm-completing-read-handlers-alist '(dired-do-copy))
+(add-to-list 'helm-completing-read-handlers-alist '(dired-do-rename))
+(add-to-list 'helm-completing-read-handlers-alist '(projectile-switch-to-buffer . ido))
 (setq helm-M-x-fuzzy-match t)
 (global-set-key "\M-x" 'helm-M-x)
 
@@ -34,6 +37,7 @@
 (define-key helm-map (kbd "M-i") 'helm-execute-persistent-action)
 (define-key helm-map (kbd "M-l") 'helm-previous-source)
 (define-key helm-map (kbd "M-y") 'helm-next-source)
+(define-key helm-map (kbd "M-v") 'yank)
 (define-key helm-generic-files-map (kbd "M-i") 'helm-execute-persistent-action)
 (define-key helm-generic-files-map (kbd "M-/") 'helm-ff-run-grep)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
@@ -41,6 +45,8 @@
 (define-key helm-find-files-map (kbd "M-e") 'helm-next-line)
 (define-key helm-find-files-map (kbd "M-u") 'helm-previous-line)
 (define-key helm-find-files-map (kbd "M-n") 'helm-find-files-up-one-level)
+(define-key helm-read-file-map (kbd "M-n") 'helm-find-files-up-one-level)
+(define-key helm-read-file-map (kbd "M-i") 'helm-execute-persistent-action)
 
 ;;; Jabber Contacts (jabber.el)
 ;; I think this is already defined in helm and can be deleted
@@ -330,3 +336,46 @@
   (let ((default-directory directory))
     (helm :sources '(helm-fzf-source)
 :buffer "*helm-fzf*")))
+
+
+(defun tw/get-recent-branches ()
+  (split-string
+   (shell-command-to-string "git reflog --since '1 month ago' | grep checkout | awk '{ print $NF }' | head -n 100 |  nl | sort -u -k 2,2 | sort -k 1,1 | grep -v '\\\\^' | awk '{ print $2 }' | head -n 20")))
+
+(defun tw/new-git-branch ()
+  (interactive)
+  (let*
+      ((branch-name (read-string "New branch name: ")))
+    (shell-command-to-string (concat "git checkout -b " branch-name))
+      )
+  )
+
+(defun helm-git-branches ()
+  (interactive)
+    (helm :sources (helm-build-sync-source "Recent git branches"
+                     :candidates 'tw/get-recent-branches
+                     :nohighlight t
+                     :candidate-number-limit 9999
+                     :action (lambda (candidate)
+                               (magit-checkout candidate)))
+          :buffer "*helm-git-recent-branches*"))
+
+(defun tw/diff-current-file-with-master ()
+  (interactive)
+    (vc-version-ediff (cons (buffer-file-name) ()) "master" "HEAD"))
+
+(defun helm-curated-actions ()
+  (interactive)
+    (helm :sources (helm-build-sync-source "Useful actions"
+                     :candidates '(git-rebase-onto-master
+                                   tw/visit-pull-request-url
+                                   tw/get-recent-branches
+                                   tw/new-git-branch
+                                   tw/diff-current-file-with-master)
+                     :nohighlight t
+                     :candidate-number-limit 9999
+                     :action (lambda (fname) (funcall (intern fname))))
+          :buffer "*helm-useful-actions*"))
+
+;; (global-set-key (kbd "M-,") 'helm-global-mark-ring)
+;; (evil-global-set-key 'normal (kbd "M-,") 'helm-global-mark-ring)
