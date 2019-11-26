@@ -56,7 +56,7 @@
            ido-use-filename-at-point nil
            ido-max-prospects 10)
      (add-to-list 'ido-ignore-files "\\`pyc")
-     (setq ido-everywhere t)
+     ;; (setq ido-everywhere t)
      (ido-mode 1)))
 
 (define-key ido-buffer-completion-map (kbd "<escape>") 'abort-recursive-edit)

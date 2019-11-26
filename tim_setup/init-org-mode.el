@@ -17,10 +17,15 @@
   '(progn
 	 (define-key org-agenda-mode-map (kbd "m") 'helm-timi) 
 	 (define-key org-agenda-mode-map (kbd "M-m") 'org-agenda-bulk-mark) 
-     (define-key org-agenda-keymap "i" 'org-agenda-clock-in)
-     (define-key org-agenda-keymap "n" 'org-agenda-clock-out)
+
+     ;; (define-key org-agenda-keymap "i" 'org-agenda-clock-in)
+     ;; (define-key org-agenda-keymap "n" 'org-agenda-clock-out)
+
+     (define-key org-agenda-keymap "i" 'evil-forward-char)
+     (define-key org-agenda-keymap "n" 'evil-backward-char)
+
      (define-key org-agenda-keymap "e" 'next-line)
-     (define-key org-agenda-keymap "q" 'previous-buffer)
+     ;; (define-key org-agenda-keymap "q" 'previous-buffer)
      (define-key org-agenda-keymap "u" 'previous-line)
      (define-key org-agenda-keymap (kbd "SPC") evil-leader--default-map)))
 
@@ -64,8 +69,8 @@
     (s-join "/" (last (split-string (buffer-file-name) "/") 2)))
 
 (setq org-use-speed-commands t)
-(setq org-agenda-window-setup 'current-window)
-(setq org-agenda-restore-windows-after-quit nil)
+(setq org-agenda-window-setup 'reorganize-frame)
+(setq org-agenda-restore-windows-after-quit t)
 (setq org-src-fontify-natively t)
 (setq org-src-tab-acts-natively t)
 
@@ -100,7 +105,6 @@
   )
 
 
-(add-hook 'org-finalize-agenda-hook 'make-subtle-breadcrumbs)
 
 
 ;;;; Refile settings
@@ -181,7 +185,7 @@
 (setq org-latex-listings 'minted)
 (setq org-latex-pdf-process
       '("latexmk -f -pdf -latexoption=-shell-escape %f"))
-
+(add-hook 'org-agenda-mode-hook 'buffer-switch-to-monospaced)
 
 (defun tw/is-project-p ()
   "Any task with a todo keyword subtask"
@@ -369,4 +373,8 @@ pointing to it."
          "* QUESTION %?\n  %i")
         ("j" "Journal" entry (file+datetree "~/org/journal.org")
              "* %?\nEntered on %U\n "))
+      )
+
+(setq org-src-block-faces
+      '(("python" (:inherit "default")))
       )

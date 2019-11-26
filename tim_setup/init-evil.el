@@ -111,13 +111,14 @@
 (require 'evil-avy)
 
 
-(define-key evil-normal-state-map (kbd "M-m") 'tw/git-files)
+;; (define-key evil-normal-state-map (kbd "M-m") 'tw/git-files)
+(define-key evil-normal-state-map (kbd "M-m") 'counsel-git)
 (define-key evil-normal-state-map (kbd "m") 'tw/helm-ag)
 (define-key evil-normal-state-map (kbd "w") #'evil-avy-goto-word-crt-line)
 (define-key evil-motion-state-map (kbd "w") #'evil-avy-goto-word-crt-line)
 (define-key evil-visual-state-map (kbd "w") #'evil-avy-goto-word-crt-line)
 
-(define-key evil-normal-state-map (kbd "M-h") 'helm-swoop-without-pre-input)
+(define-key evil-normal-state-map (kbd "M-h") 'swiper)
 (define-key evil-normal-state-map (kbd "M-f") 'tw/helm-gtags-dwim)
 (define-key evil-insert-state-map (kbd "M-t") 'evil-normal-state)
 (define-key evil-normal-state-map (kbd "l") 'avy-goto-char-timer)
@@ -142,7 +143,7 @@
 
 (global-set-key (kbd "M-v") 'yank)
 
-(define-key evil-normal-state-map (kbd "M-E") 'helm-resume)
+(define-key evil-normal-state-map (kbd "M-E") 'ivy-resume)
 ;; (define-key evil-normal-state-map "'" 'helm-command-prefix)
 ;; (define-key evil-normal-state-map (kbd "' m") 'helm-global-mark-ring)
 ;; (define-key evil-normal-state-map (kbd "' k") 'helm-show-kill-ring)

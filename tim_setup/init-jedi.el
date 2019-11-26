@@ -6,6 +6,7 @@
 (setq jedi:setup-keys t)
 (setq jedi:tooltip-method nil)
 
+(define-key python-mode-map (kbd "M-.") 'jedi:goto-definition)
 ; Note that the second param here controls whether jedi jumps to the definition
 ; of the function or its assignment. nil means go to assignment. And the first
 ; arg is whether to open in new window or not.
@@ -19,4 +20,3 @@
                                     (t definition t)))
 (eval-after-load "company-mode"
   (add-to-list 'company-backends 'company-jedi)) 
-

@@ -1,0 +1,1 @@
+;; (counsel-mode 1)

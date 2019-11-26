@@ -33,7 +33,7 @@
   '(
     evil evil-leader evil-surround evil-mc
          company company-jedi company-quickhelp smartparens wgrep idris-mode helm-idris helm-mu haskell-mode
-         direx yasnippet dockerfile-mode php-mode tagedit helm-dash expand-region
+         direx yasnippet dockerfile-mode php-mode tagedit helm-dash expand-region multiple-cursors
          helm-ls-git flycheck flycheck-color-mode-line s git-timemachine window-number
          rainbow-delimiters projectile helm-projectile helm-flx flx jabber jabber-otr alert auctex company-auctex virtualenvwrapper
          undo-tree volatile-highlights yaml-mode zenburn-theme helm-swoop which-key blacken

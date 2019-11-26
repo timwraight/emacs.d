@@ -2,6 +2,7 @@
 (setq flycheck-python-mypy-args ' (
                                   "--follow-imports=skip" 
                                   "--ignore-missing-imports"
+                                  "--allow-untyped-globals"
                                   ))
 
 

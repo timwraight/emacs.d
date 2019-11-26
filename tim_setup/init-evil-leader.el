@@ -7,7 +7,6 @@
 (evil-leader/set-key "=" 'balance-windows)
 (evil-leader/set-key "\"" (kbd "yse\""))
 (evil-leader/set-key "a" 'helm-git-grep-at-point)
-(evil-leader/set-key "f" 'helm-find-files)
 (evil-leader/set-key "h" 'vc-version-ediff)
 (evil-leader/set-key "l" 'split-window-below)
 (evil-leader/set-key "o" 'helm-org-agenda-files-headings)
@@ -163,9 +162,9 @@
 
 ;; Files keymap
 (setq files-keymap (make-sparse-keymap))
-(define-key files-keymap (kbd "r") 'helm-recentf)
+(define-key files-keymap (kbd "r") 'counsel-recentf)
 (define-key files-keymap (kbd "s") 'save-buffer)
-(define-key files-keymap (kbd "f") 'helm-find-files)
+(define-key files-keymap (kbd "f") 'counsel-find-file)
 (define-key files-keymap (kbd "p") 'helm-browse-project)
 (define-key files-keymap (kbd "SPC") 'save-buffer)
 
@@ -216,6 +215,8 @@
 (define-key timp-keymap (kbd "l") 'linum-mode)
 (define-key timp-keymap (kbd "s") 'projectile-run-eshell)
 (define-key timp-keymap (kbd "t") 'helm-projectile-switch-project)
+(define-key timp-keymap (kbd "-") 'make-font-smaller)
+(define-key timp-keymap (kbd "=") 'make-font-bigger)
 
 (evil-leader/set-key "t" timp-keymap)
 (which-key-add-key-based-replacements

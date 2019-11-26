@@ -27,7 +27,6 @@
 (add-to-list 'helm-completing-read-handlers-alist '(dired-do-rename))
 (add-to-list 'helm-completing-read-handlers-alist '(projectile-switch-to-buffer . ido))
 (setq helm-M-x-fuzzy-match t)
-(global-set-key "\M-x" 'helm-M-x)
 
 (require 'helm)
 (require 'helm-files)
@@ -40,6 +39,7 @@
 (define-key helm-map (kbd "M-v") 'yank)
 (define-key helm-generic-files-map (kbd "M-i") 'helm-execute-persistent-action)
 (define-key helm-generic-files-map (kbd "M-/") 'helm-ff-run-grep)
+(define-key helm-generic-files-map (kbd "M-RET") 'helm-ff-run-switch-other-window)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (define-key helm-find-files-map (kbd "M-i") 'helm-execute-persistent-action)
 (define-key helm-find-files-map (kbd "M-e") 'helm-next-line)

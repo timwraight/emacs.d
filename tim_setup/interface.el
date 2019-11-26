@@ -2,6 +2,7 @@
 (setq mac-right-option-key-is-meta nil
       mac-right-command-key-is-meta t
       mac-right-command-modifier 'meta
+      mac-option-modifier 'meta
       mac-right-option-modifier 'meta
       mac-left-option-modifier 'meta)
 
@@ -10,6 +11,10 @@
 
 ;; EDBI
 (add-hook 'edbi:dbview-update-hook 'buffer-switch-to-monospaced)
+
+(require 'newcomment)
+(setq comment-auto-fill-only-comments 1)
+(setq-default auto-fill-function 'do-auto-fill)
  
 ;; MINIBUFFER
 (add-hook 'minibuffer-setup-hook 'buffer-switch-to-monospaced)
@@ -26,6 +31,29 @@
   (set-frame-parameter nil 'fullscreen 'fullboth)
   (add-hook 'mu4e-headers-mode-hook 'variable-pitch-mode)
   (server-start))
+
+(defun change-default-height-by (magnitude)
+  (let*
+   ((current-height (face-attribute 'default :height nil 'default))
+   (new-height (+ current-height magnitude)))
+   (progn
+     (message "Changing height of default font from %d to %d" current-height new-height)
+     (set-face-attribute 'default nil :height new-height)
+     )
+  )
+)
+
+(defun make-font-bigger ()
+  (interactive)
+  (change-default-height-by 10)
+)
+
+
+(defun make-font-smaller ()
+  (interactive)
+  (change-default-height-by -10)
+)
+
 
 (global-hl-line-mode)
 (column-number-mode 1)
@@ -117,10 +145,6 @@
                mode-line-position evil-mode-line-tag
                (vc-mode vc-mode)
                "  " mode-line-misc-info mode-line-end-spaces))
-
-; truncate lines in dired mode
-(add-hook 'dired-mode-hook 'toggle-truncate-lines)
-(setq dired-dwim-target t)
 
 
 ;; EDIFF
