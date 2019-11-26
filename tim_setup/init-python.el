@@ -34,12 +34,10 @@
      :success (cl-function
                (lambda (&key data &allow-other-keys)
                  (when data 
-                   (message "Got some data")
-                   (with-current-buffer tw/timlint-file-for-linting
+                   (with-current-buffer (find-file-noselect (concat "/tmp/" tw/timlint-file-for-linting))
                      (revert-buffer t t nil))
                    (replace-buffer-contents (find-file-noselect (concat "/tmp/" tw/timlint-file-for-linting)))
                    (message "Buffer updated!")))))))
-
 
 (add-hook 'python-mode-hook
           (lambda () (add-hook 'before-save-hook 'tw/send-to-timlint nil 'local)))

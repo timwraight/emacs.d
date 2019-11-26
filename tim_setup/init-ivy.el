@@ -10,6 +10,7 @@
 (define-key ivy-minibuffer-map (kbd "M-e") 'ivy-next-line)
 (define-key ivy-minibuffer-map (kbd "M-u") 'ivy-previous-line)
 
+(require 'counsel)
 (define-key counsel-find-file-map (kbd "M-n") 'counsel-up-directory)
 (define-key counsel-find-file-map (kbd "M-i") 'counsel-down-directory)
 
